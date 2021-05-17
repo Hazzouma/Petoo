@@ -14,6 +14,14 @@ const petSchema = new Schema({
   petProfilePicture: { type: String, default: "" },
   isVaccined: { type: Boolean, default: false },
   isDead: { type: Boolean, default: false },
+  isOwned: { type: Boolean, default: true }, 
+  color:{type:String,default: "" },//
+  distinguishingMark:{type:String,default: "" },//
+  petCoverPicture: { type: String, default: "" },//
+  knownAllergies: { type: Array, default: [] }, //
+  vaccines: { type: Array, default: [] }, //array of objects {vaccineName, Date }
+  medecines: { type: Array, default: [] }//array of objects {medecineName, Date ,Reason}
+
 });
 
 //pet model
