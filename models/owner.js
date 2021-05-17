@@ -18,7 +18,8 @@ const ownerSchema = new Schema({
   profilePicture: { type: String, default: "" },
   ownedPets: [],
   OTP: { type: String, default: "" },
-  role: { type: String, default: "petOwer" },
+  orderId:{type:Array, default:[]},//
+  role:{ type: String, default: "petOwner" }
 });
 
 //Owner model

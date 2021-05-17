@@ -41,9 +41,13 @@ export const MENUITEMS = [
             },
             {
                 title: 'Users', icon:Users, path:`${process.env.PUBLIC_URL}/app/users/userProfile`, type: 'sub',bookmark:true,active:false, children: [
-                    { path: `${process.env.PUBLIC_URL}/app/users/userProfile`, type: 'link', title: 'Users Profile ' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/petProfile`, type: 'link', title: 'Pet Profile ' },
                     { path: `${process.env.PUBLIC_URL}/app/users/userEdit`, type: 'link', title: 'Users Edit' },
-                    { path: `${process.env.PUBLIC_URL}/app/users/userCards`, type: 'link', title: 'Users Cards' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/vetoList`, type: 'link', title: 'Vet List' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/vetCard`, type: 'link', title: 'Vet Card' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/petList`, type: 'link', title: 'Pet List ' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/createShop`, type: 'link', title: 'Create Shop ' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/createVet`, type: 'link', title: 'Create Vet ' },
                 ]
             },
             {
