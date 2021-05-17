@@ -1,5 +1,6 @@
 import React, { Fragment,useEffect,useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
+import { Container, Row, Col, Card, CardHeader, CardBody, CardFooter, Media, Form, FormGroup, Label, Input } from 'reactstrap'
 import axios from 'axios'
 import { MyProfile,Bio,MarkJecno,Designer,Password,Website,Save,EditProfile,Company,Username,UsersCountryMenu,AboutMe,UpdateProfile,FirstName,LastName,Address,EmailAddress,PostalCode,Country, City} from '../../constant'
 const UserEdit = (props) => {

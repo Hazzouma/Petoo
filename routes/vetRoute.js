@@ -4,19 +4,19 @@ const vetModel = require("../models/Vet");
 const {
   VetRegister,
   VetLogin,
-  // ResetPassword,
-  // validateOTP,
+  ResetPassword,
+  validateOTP,
 } = require("../controllers/vet.controller");
-const { loginValidate, validation, registerValidate } = require("../middlewares/validateOwner");
+const { loginValidate, validation, registerValidate, validReset, } = require("../middlewares/validateOwner");
 
 
 // const {
 //   validation,
 //   registerValidate,
 //   loginValidate,
-//   validReset,
+// 
 // } = require("../middlewares/validateOwner");
-// const { isAuth, tokenValid } = require("../middlewares/validations");
+const { isAuth, tokenValid } = require("../middlewares/validations");
 
 
 
@@ -30,80 +30,80 @@ routerVet.post( "/login",loginValidate(), validation, VetLogin);
 
 
 
-// //Utilisateur authentifié
-// routerVet.get("/dashboard/default/current", isAuth, (req, res) => {
-//   res.send({ msg: "Welcome", userLogged: req.userLogged });
-// });
+//Utilisateur authentifié
+routerVet.get("/dashboard/default/current", isAuth, (req, res) => {
+  res.send({ msg: "Welcome", userLogged: req.userLogged });
+});
 
-// //utilisateur a oublié son password
-// routerVet.post("/forgetPwd/otp", ResetPassword);
+//utilisateur a oublié son password
+routerVet.post("/forgetPwd/otp", ResetPassword);
 
-// //user after receiving mail to reset password
-// rrouterVet.post("/forgetPwd", validReset(), validation, validateOTP);
+//user after receiving mail to reset password
+routerVet.post("/forgetPwd", validReset(), validation, validateOTP);
 
-// //Get all Owners
-// routerOwner.get("/getAllOwners", async (request, response, next) => {
-//   try {
-//     const allOwners = await ownerModel.find();
-//     response.status(200).json({ msg: "All Owners", allOwners });
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   next();
-// });
-// // Find Owner by idOwner && Send Full info
-// routerOwner.get("/find/:idOwner", async (req, res, next) => {
-//   const { idOwner } = req.params;
-//   console.log(idOwner);
-//   try {
-//     const ownerFoundById = await ownerModel.find({ idOwner });
-//     res.status(200).json({ msg: `Owner found`, ownerFoundById });
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   next();
-// });
+//Get all Owners
+routerVet.get("/getAllOwners", async (request, response, next) => {
+  try {
+    const allVets = await vetModel.find();
+    response.status(200).json({ msg: "All Vets", allVets });
+  } catch (error) {
+    console.log(error);
+  }
+  next();
+});
+// Find Owner by idOwner && Send Full info
+routerVet.get("/find/:idVet", async (req, res, next) => {
+  const { idVet } = req.params;
+  console.log(idVet);
+  try {
+    const vetFoundById = await vetModel.find({ idVet });
+    res.status(200).json({ msg: `Vet found`, vetFoundById });
+  } catch (error) {
+    console.log(error);
+  }
+  next();
+});
 
-// // Modify Owner by idOwner
-// routerOwner.post("/modify/:idOwner", async (req, res, next) => {
-//   const { idOwner } = req.params;
-//   let ownerFoundById = ownerModel.find({ idOwner });
-//   let {
-//     nom,
-//     prenom,
-//     email,
-//     phoneNumber,
-//     dateNaissance,
-//     adresse,
-//     ville,
-//     codePostale,
-//   } = req.body;
+// Modify Owner by idOwner
+routerVet.post("/modify/:idVet", async (req, res, next) => {
+  const { idVet } = req.params;
+  let vetFoundById = vetModel.find({ idVet });
+  let {
+    nom,
+    prenom,
+    email,
+    phoneNumber,
+    dateNaissance,
+    adresse,
+    ville,
+    codePostale,
+  } = req.body;
 
-//   console.log(idOwner);
-//   try {
-//     if (req.body.password) {
-//       //if pass has ben changed
-//       password = passwordHash.generate(req.body.password); //crypt
-//       ownerFoundById = await ownerModel.findOneAndUpdate(
-//         { idOwner },
-//         {
-//           $set: { ...req.body, password },
-//         }
-//       );
-//     } else {
-//       //if NOT
-//       ownerFoundById = await ownerModel.findOneAndUpdate(
-//         { idOwner },
-//         {
-//           $set: { ...req.body },
-//         }
-//       );
-//     }
-//     res.status(200).json({ msg: `Owner modified`, ownerFoundById });
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   next();
-// });
+  console.log(idVet);
+  try {
+    if (req.body.password) {
+      //if pass has ben changed
+      password = passwordHash.generate(req.body.password); //crypt
+      vetFoundById = await vetModel.findOneAndUpdate(
+        { idVet },
+        {
+          $set: { ...req.body, password },
+        }
+      );
+    } else {
+      //if NOT
+      vetFoundById = await ownerModel.findOneAndUpdate(
+        { idOwner },
+        {
+          $set: { ...req.body },
+        }
+      );
+    }
+    res.status(200).json({ msg: `Vet modified`, vetFoundById });
+  } catch (error) {
+    console.log(error);
+  }
+  next();
+});
 
 module.exports = routerVet;

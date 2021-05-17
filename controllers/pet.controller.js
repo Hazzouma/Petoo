@@ -12,9 +12,21 @@ exports.PetCreate = async (req, res) => {
 
     await newPet.save();
 
-    res.status(200).json({ msg: `Account created successfully!` });
+    res.status(200).json({ msg: `Account created successfully!`,newPet });
   } catch (error) {
     console.log(error)
     res.status(500).send({ errors: [{ msg: "Can not create account!" }] });
   }
 };
+exports.PetEdit =async(req, res)=>{
+  try {
+      const {idPet}= req.params
+      console.log(req.body)
+      let newData= await petModel.findOneAndUpdate({idPet:idPet},{$set:{...req.body}},{new: true})
+      console.log(newData)
+      res.status(200).send({msg:"Contact edited successfully",newData})
+  } catch (error) {
+    console.log(error)
+      res.status(500).send("Cant' edit the Data")
+  }
+  }
