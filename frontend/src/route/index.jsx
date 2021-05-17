@@ -134,9 +134,15 @@ import BasicCalender from "../components/calendar/basicCalendar"
 import DraggableCalendar from "../components/calendar/draggableCalendar"
 
 // Users
-import UserProfile from "../components/users/userProfile"
+import PetProfile from "../components/users/petProfile"
 import UserEdit from "../components/users/userEdit"
 import UserCards from "../components/users/userCards"
+import VetoList from "../components/users/vetoList"
+import VetCard from "../components/users/vetCard"
+import PetList from "../components/users/petList"
+import CreateShop from "../components/users/createShop"
+import CreateVet from "../components/users/createVet"
+
 
 // Maps
 import GoogleMap from "../components/map/googleMap"
@@ -319,9 +325,14 @@ export const routes = [
         { path:"/app/learning/learning-list", Component:Learninglist},
         { path:"/app/learning/learning-detail", Component:LearningDeatil},
 
-        { path:"/app/users/userProfile", Component:UserProfile},
+        { path:"/app/users/petProfile", Component:PetProfile},
         { path:"/app/users/userEdit", Component:UserEdit},
         { path:"/app/users/userCards", Component:UserCards},
+        { path:"/app/users/vetoList", Component:VetoList},
+        { path:"/app/users/vetCard", Component:VetCard},
+        { path:"/app/users/petList", Component:PetList},
+        { path:"/app/users/CreateShop", Component:CreateShop},
+        { path:"/app/users/CreateVet", Component:CreateVet},
 
         { path:"/app/calendar/basic-calendar", Component:BasicCalender},
         { path:"/app/calendar/draggable-calendar", Component:DraggableCalendar},

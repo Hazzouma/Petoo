@@ -1,11 +1,11 @@
 import React, { Fragment,useState,useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, CardFooter, Media } from 'reactstrap'
-import {Follower,Following,TotalPost} from '../../constant/index'
 import axios from 'axios'
+import Rating from 'react-rating'
 
-const UserCards = (props) => {
-
+const VetoList = (props) => {
+  const [rating, setRating] = useState(5)
   const [cards,setCards] = useState([])
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const UserCards = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb parent="Users" title="User Cards" />
+      <Breadcrumb parent="Users" title="List Of Vets" />
       <Container fluid={true}>
         
         <Row>
@@ -25,31 +25,36 @@ const UserCards = (props) => {
                 <Media body className="img-fluid" src={require(`../../assets/images/${cardItem.card_bg}`)} alt="" />
               </CardHeader>
               <div className="card-profile">
-                <Media body className="rounded-circle" src={require(`../../assets/images/${cardItem.avatar}`)} alt="" />
+                <Media body className="rounded-circle" src={require(`../../assets/images/user/3.png`)} alt="" />
               </div>
-              <ul className="card-social">
-                <li><a href="#javascript"><i className="fa fa-facebook"></i></a></li>
-                <li><a href="#javascript"><i className="fa fa-google-plus"></i></a></li>
-                <li><a href="#javascript"><i className="fa fa-twitter"></i></a></li>
-                <li><a href="#javascript"><i className="fa fa-instagram"></i></a></li>
-                <li><a href="#javascript"><i className="fa fa-rss"></i></a></li>
-              </ul>
               <div className="text-center profile-details">
                 <h4>{cardItem.name}</h4>
-                <h6>{cardItem.post}</h6>
+                <h6>{cardItem.post}/Location</h6>
               </div>
               <CardFooter className="row">
+
+                 {/* Ratings Starts Here  */}
                 <Col sm="4 col-4">
-                  <h6>{Follower}</h6>
-                  <h3 className="counter">{cardItem.follower}</h3>
+                  <h6>Ratings</h6>
+                  <h6>
+                    <Rating  className="rating"
+                      initialRating={rating}
+                      emptySymbol="fa fa-star-o fa-2x"
+                      fullSymbol="fa fa-star fa-2x"
+                      onChange={(rate) => setRating(rate)}
+                    >
+                    </Rating>
+                    </h6>
+                </Col>
+                {/* Ratings Ends Here  */}
+
+                <Col sm="4 col-4">
+                  <h6>Phone Number</h6>
+                  <h5><span className="counter">{cardItem.following}******</span></h5>
                 </Col>
                 <Col sm="4 col-4">
-                  <h6>{Following}</h6>
-                  <h3><span className="counter">{cardItem.following}</span>{"K"}</h3>
-                </Col>
-                <Col sm="4 col-4">
-                  <h6>{TotalPost}</h6>
-                  <h3><span className="counter">{cardItem.totalPost}</span>{"M"}</h3>
+                  <h6>Working Hours </h6>
+                  <h3><span className="counter">{cardItem.totalPost}-18h</span></h3>
                 </Col>
               </CardFooter>
             </Card>
@@ -61,4 +66,4 @@ const UserCards = (props) => {
   );
 }
 
-export default UserCards;
+export default VetoList;
