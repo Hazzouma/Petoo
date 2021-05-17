@@ -8,6 +8,7 @@ const petSchema = new Schema({
   pseudo: { type: String, required: true }, // required Pseudo
   petType: { type: String, required: true }, //required type of Pet
   race: { type: String, default: "animal" },
+  name: {type: String, default: "" },
   age: { type: Date, default: Date.now },
   gender: { type: String, default: null },
   petPictures: [String],
