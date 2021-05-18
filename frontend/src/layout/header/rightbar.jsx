@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 // import { firebase_app } from "../../data/config";
 import { useSelector, useDispatch } from "react-redux";
 // import { useAuth0 } from "@auth0/auth0-react";
-import Bookmark from "../../layout/bookmark";
+// import Bookmark from "../../layout/bookmark";
 import { Link } from "react-router-dom";
 import {
   setTranslations,
@@ -65,6 +65,7 @@ import du from "../../assets/i18n/du.json";
 import cn from "../../assets/i18n/cn.json";
 import ae from "../../assets/i18n/ae.json";
 import { InputGroup, InputGroupAddon, Button } from "reactstrap";
+// import { useSelector } from "react-redux";
 
 setTranslations({ en, es, pt, fr, du, cn, ae });
 setDefaultLanguage("en");
@@ -92,6 +93,7 @@ const Rightbar = (props) => {
     setLanguage(key);
     setSelected(key);
   };
+  const { prenom, role } = useSelector((state) => state.currentUser.user);
   useEffect(() => {
     // setProfile(localStorage.getItem("profileURL") || man);
     // setName(localStorage.getItem("Name"));
@@ -262,7 +264,7 @@ const Rightbar = (props) => {
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
               <Bell />
-              <span className='badge badge-pill badge-secondary'>2</span>
+              <span className='badge badge-pill badge-secondary'></span>
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
@@ -322,7 +324,7 @@ const Rightbar = (props) => {
               onClick={() => setCartDropDown(!cartDropdown)}
             >
               <ShoppingCart />
-              <span className='badge badge-pill badge-primary'>{"2"}</span>
+              <span className='badge badge-pill badge-primary'></span>
             </div>
             <ul
               className={`cart-dropdown onhover-show-div ${
@@ -535,9 +537,9 @@ const Rightbar = (props) => {
               />
               <div className='media-body'>
                 {/* <span>{authenticated ? user.nom : user.nom}</span> */}
-                <span>{user.nom}</span>
+                <span>{prenom}</span>
                 <p className='mb-0 font-roboto'>
-                  {Admin} <i className='middle fa fa-angle-down'></i>
+                  {role} <i className='middle fa fa-angle-down'></i>
                 </p>
               </div>
             </div>
@@ -550,25 +552,18 @@ const Rightbar = (props) => {
                 }
               >
                 <User />
-                <span>{Account} </span>
+                <span>My Pofile </span>
               </li>
-              <li
-                onClick={() =>
-                  UserMenuRedirect(`${process.env.PUBLIC_URL}/app/email-app`)
-                }
-              >
-                <Mail />
-                <span>{Inbox}</span>
-              </li>
+
               <li
                 onClick={() =>
                   UserMenuRedirect(
-                    `${process.env.PUBLIC_URL}/app/todo-app/todo`
+                    `${process.env.PUBLIC_URL}/app/users/userEdit`
                   )
                 }
               >
                 <FileText />
-                <span>{Taskboard}</span>
+                <span>Edit Profile</span>
               </li>
               <li
                 // onClick={
