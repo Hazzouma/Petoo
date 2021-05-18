@@ -114,19 +114,7 @@ const CreateShop = () => {
                     </Form>
                     <hr className="mt-4 mb-4" />
 
-                    Optional 
-                    <label className="pb-4">{BillingInformation}</label>
-                    <Form className="form-inline theme-form billing-form">
-                      <FormGroup>
-                        <Input className="form-control" type="text" placeholder="Name On Card" />
-                      </FormGroup>
-                      <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="Card Number" />
-                      </FormGroup>
-                      <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="Zip Code" />
-                      </FormGroup>
-                    </Form>
+                    
 
                     {/* Drop ZOne Starts Here */}
                     

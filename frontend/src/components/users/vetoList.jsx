@@ -29,24 +29,14 @@ const VetoList = (props) => {
               </div>
               <div className="text-center profile-details">
                 <h4>{cardItem.name}</h4>
-                <h6>{cardItem.post}/Location</h6>
+                <h6>{cardItem.post}</h6>
               </div>
               <CardFooter className="row">
 
-                 {/* Ratings Starts Here  */}
-                <Col sm="4 col-4">
-                  <h6>Ratings</h6>
-                  <h6>
-                    <Rating  className="rating"
-                      initialRating={rating}
-                      emptySymbol="fa fa-star-o fa-2x"
-                      fullSymbol="fa fa-star fa-2x"
-                      onChange={(rate) => setRating(rate)}
-                    >
-                    </Rating>
-                    </h6>
+              <Col sm="4 col-4">
+                  <h6>Location</h6>
+                  <h5><span className="counter">Rades</span></h5>
                 </Col>
-                {/* Ratings Ends Here  */}
 
                 <Col sm="4 col-4">
                   <h6>Phone Number</h6>
