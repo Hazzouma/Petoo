@@ -48,6 +48,7 @@ export const MENUITEMS = [
                     { path: `${process.env.PUBLIC_URL}/app/users/petList`, type: 'link', title: 'Pet List ' },
                     { path: `${process.env.PUBLIC_URL}/app/users/createShop`, type: 'link', title: 'Create Shop ' },
                     { path: `${process.env.PUBLIC_URL}/app/users/createVet`, type: 'link', title: 'Create Vet ' },
+                    { path: `${process.env.PUBLIC_URL}/app/users/createPet`, type: 'link', title: 'Create Pet ' },
                 ]
             },
             {
