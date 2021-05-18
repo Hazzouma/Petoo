@@ -189,7 +189,7 @@ const Rightbar = (props) => {
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
         <ul className='nav-menus'>
-          <li className='language-nav'>
+          {/* <li className='language-nav'>
             <div
               className={`translate_wrapper ${langdropdown ? "active" : ""}`}
             >
@@ -250,7 +250,7 @@ const Rightbar = (props) => {
                 </div>
               </div>
             </div>
-          </li>
+          </li> */}
           <li>
             <span className='header-search'>
               <Search onClick={() => SeacrhResposive(searchresponsive)} />
@@ -308,7 +308,7 @@ const Rightbar = (props) => {
               </li>
             </ul>
           </li>
-          <Bookmark />
+          {/* <Bookmark /> */}
           <li>
             <div className='mode' onClick={() => MoonlightToggle(moonlight)}>
               <i
@@ -456,7 +456,7 @@ const Rightbar = (props) => {
               </li>
             </ul>
           </li>
-          <li
+          {/* <li
             className='onhover-dropdown'
             onClick={() => setChatDropDown(!chatDropDown)}
           >
@@ -520,7 +520,7 @@ const Rightbar = (props) => {
                 <button className='btn btn-primary'>{ViewAll} </button>
               </li>
             </ul>
-          </li>
+          </li> */}
           <li className='maximize'>
             <a className='text-dark' href='#javascript' onClick={goFull}>
               <Minimize />
