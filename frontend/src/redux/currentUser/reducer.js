@@ -1,4 +1,4 @@
-import { CURRENT_USER } from "../actionTypes";
+import { CURRENT_USER, VIDE_ERRORS } from "../actionTypes";
 
 //Initale States
 const initialState = {
@@ -13,8 +13,14 @@ const initialState = {
 const currentUser = (state = initialState, { type, payload }) => {
   switch (type) {
     case CURRENT_USER:
-      return { ...state, user: payload.userLogged, isAuth: true };
-
+      return {
+        ...state,
+        user: payload.userLogged,
+        isAuth: true,
+        msg: payload.msg,
+      };
+    case VIDE_ERRORS:
+      return { ...state, errors: [], msg: "" };
     default:
       return state;
   }

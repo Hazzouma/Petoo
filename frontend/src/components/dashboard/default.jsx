@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
 import userImg from "../../assets/images/dashboard/welcome.png";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Container,
   Row,
@@ -26,6 +28,7 @@ import {
   JohnLoren,
 } from "../../constant";
 import Slider from "react-slick";
+import { current, videErrors } from "../../redux/currentUser/action";
 
 const Default = (props) => {
   const [daytimes, setDayTimes] = useState();
@@ -45,6 +48,9 @@ const Default = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const dispatch = useDispatch();
+  const notification = useSelector((state) => state.currentUser.msg);
+
   useEffect(() => {
     if (curHr < 12) {
       setDayTimes("Good Morning");
@@ -59,13 +65,20 @@ const Default = (props) => {
     } else {
       setMeridiem("AM");
     }
+    if (notification) {
+      toast.success(notification, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 10000, //stay 10 secondes
+      });
+      dispatch(videErrors());
+    }
 
     // eslint-disable-next-line
-  }, []);
+  }, [notification]);
 
   return (
     <Fragment>
-      <Breadcrumb parent='Dashboard' title='Owner' />
+      <Breadcrumb parent='Dashboard' title='Home' />
       <Container fluid={true}>
         <Row className='second-chart-list third-news-update'>
           {/* Good Morning Components */}

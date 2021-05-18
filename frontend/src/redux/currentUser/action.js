@@ -1,6 +1,12 @@
-import { CURRENT_USER } from "../actionTypes";
+import { CURRENT_USER, VIDE_ERRORS } from "../actionTypes";
 
 import axios from "axios";
+
+export const videErrors = () => {
+  return {
+    type: VIDE_ERRORS,
+  };
+};
 
 export const current = () => async (dispatch) => {
   try {
