@@ -10,5 +10,6 @@ isDone:{type:boolean, default:false},
 petId:{type:String , default:""},
 vetId:{type:String, default:""},
 ownerId:{type:String, default:""},
-}
+description:{type:String, default:""},
+})
 module.exports = Appointment = model("appointment", appointmentSchema);

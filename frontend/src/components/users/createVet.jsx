@@ -18,7 +18,7 @@ const CreateVet = () => {
   }  // Image DropZone reltated
   return (
     <Fragment>
-      <Breadcrumb parent="Forms" />
+      <Breadcrumb parent="Forms" title="Create Vet Account" />
       <Container fluid={true}>
         <Row>
           
@@ -75,7 +75,7 @@ const CreateVet = () => {
                       </FormGroup>
 
                     <label className="pb-4">Full Adress</label>
-                    <Form className="form-inline theme-form billing-form">
+                    <div className="form-inline theme-form billing-form">
                       <FormGroup>
                         <Input className="form-control" type="text" placeholder="Adress" />
                       </FormGroup>
@@ -85,7 +85,7 @@ const CreateVet = () => {
                       <FormGroup>
                         <Input className="form-control" type="text" name="inputPassword" placeholder="Postal Code" />
                       </FormGroup>
-                    </Form>
+                    </div>
                     <FormGroup>
                         <Label className="col-form-label">About</Label>
                         <Input className="form-control" type="text" placeholder="About" />

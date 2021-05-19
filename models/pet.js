@@ -4,12 +4,11 @@ const Schema = mongoose.Schema;
 //pet Schema
 const petSchema = new Schema({
   idPet: { type: String, required: true }, //required ID
-  idOwnerForPet: { type: String, required: true }, //required Id of the Owner of the pet
-  pseudo: { type: String, required: true }, // required Pseudo
+  idOwnerOfPet: { type: String, required: true }, //required Id of the Owner of the pet
+  name: { type: String, required: true }, // required name
   petType: { type: String, required: true }, //required type of Pet
   race: { type: String, default: "animal" },
-  name: {type: String, default: "" },
-  age: { type: Date, default: Date.now },
+  age: { type: String, default: Date.now },
   gender: { type: String, default: null },
   petPictures: [String],
   petProfilePicture: { type: String, default: "" },

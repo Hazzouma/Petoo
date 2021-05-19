@@ -10,7 +10,7 @@ const CreateShop = () => {
   }  // DropZone reltated
   return (
     <Fragment>
-      <Breadcrumb parent="Forms"/>
+      <Breadcrumb parent="Forms" title="Create Shop" />
       <Container fluid={true}>
         <Row>
           
@@ -33,7 +33,7 @@ const CreateShop = () => {
                         </FormGroup>
 
                         <label className="pb-4">Full Adress</label>
-                    <Form className="form-inline theme-form billing-form">
+                    <div className="form-inline theme-form billing-form">
                       <FormGroup>
                         <Input className="form-control" type="text" placeholder="Adress" />
                       </FormGroup>
@@ -43,7 +43,7 @@ const CreateShop = () => {
                       <FormGroup>
                         <Input className="form-control" type="text" name="inputPassword" placeholder="Postal Code" />
                       </FormGroup>
-                    </Form>
+                    </div>
 
                       
                       <FormGroup>
@@ -81,7 +81,7 @@ const CreateShop = () => {
 
                       
                     <label className="pb-4">Full Adress</label>
-                    <Form className="form-inline theme-form billing-form">
+                    <div className="form-inline theme-form billing-form">
                       <FormGroup>
                         <Input className="form-control" type="text" placeholder="Adress" />
                       </FormGroup>
@@ -91,7 +91,7 @@ const CreateShop = () => {
                       <FormGroup>
                         <Input className="form-control" type="text" name="inputPassword" placeholder="Postal Code" />
                       </FormGroup>
-                    </Form>
+                    </div>
 
 
                     

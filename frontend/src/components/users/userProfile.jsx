@@ -52,7 +52,7 @@ const UserProfile = (props) => {
   };
   return (
     <Fragment>
-      <Breadcrumb parent='Users' title='User Profile' />
+      <Breadcrumb parent='Users' title='My Profile' />
       <Container fluid={true}>
         <div className='user-profile'>
           <Row>
