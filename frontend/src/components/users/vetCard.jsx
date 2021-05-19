@@ -46,7 +46,7 @@ useEffect(() => {
   }
   return (
     <Fragment>
-      <Breadcrumb parent="Users" title="User Profile" />
+      <Breadcrumb parent="Users" title="Vet Profile" />
       <Container fluid={true}>
         <div className="user-profile">
           <Row>
@@ -135,7 +135,7 @@ useEffect(() => {
               <Col sm="12" >
               
                 
-                      <card>
+                      <Card>
                           <CardHeader> 
                           <h5> Book An Appointment</h5>
                           </CardHeader>
@@ -151,7 +151,7 @@ useEffect(() => {
                             </div>
                           </div>
                         </FormGroup>
-                      </card>
+                      </Card>
                 
                 
                 <div> Choose Time 6<TimePickerFour/></div>

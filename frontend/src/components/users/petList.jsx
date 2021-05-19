@@ -12,7 +12,7 @@ const PetList = (props) => {
 
   return (
     <Fragment>
-      <Breadcrumb parent="Users" title="List Of Vets" />
+      <Breadcrumb parent="Users" title="List Of Pets" />
       <Container fluid={true}>
         
         <Row>

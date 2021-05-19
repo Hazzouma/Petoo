@@ -32,7 +32,7 @@ useEffect(() => {
   }
   return (
     <Fragment>
-      <Breadcrumb parent="Users" title="User Profile" />
+      <Breadcrumb parent="Users" title="My Pet" />
       <Container fluid={true}>
         <div className="user-profile">
           <Row>
@@ -58,7 +58,7 @@ useEffect(() => {
                           <div className="ttl-info text-left">
                             <h6><i className="fa fa-envelope mr-2"></i> Gender</h6><span>Male</span>
                           </div>
-                        </Col>>
+                        </Col>
                         <Col md="5">
                           <div className="ttl-info text-left ttl-sm-mb-0">
                             <h6><i className="fa fa-calendar"></i> DOB</h6><span>{DDMMYY}</span>

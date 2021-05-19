@@ -98,3 +98,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RESET_PASSWORD = "RESET_PASSWORD";
 export const VALIDATE_OTP = "VALIDATE_OTP";
 export const VIDE_ERRORS = "VIDE_ERRORS";
+
+/* PetActions */
+export const ADD_PET = "ADD_PET";
+export const FAIL_PET ="FAIL_PET";
