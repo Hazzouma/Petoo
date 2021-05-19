@@ -6,6 +6,7 @@ const initialState = {
     pet: {},
     errors: [],
     msg: "",
+    pets:[],
   };
 
  const petReducer = (state = initialState, { type, payload }) =>{
