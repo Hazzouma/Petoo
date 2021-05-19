@@ -16,7 +16,7 @@ export const login = (user) => async (dispatch) => {
   try {
     let result = await axios.post(`${process.env.PUBLIC_URL}/api/login`, user);
     // console.log(result.data);
-    console.log(`${process.env.PUBLIC_URL}`);
+    // console.log(`${process.env.PUBLIC_URL}`);
     dispatch({ type: LOGIN_USER, payload: result.data }); // payload : {msg,token,user}
     window.location.href = `${process.env.PUBLIC_URL}/dashboard/default`; //Nice Samuuu
   } catch (error) {

@@ -1,5 +1,4 @@
 const routerOwner = require("express").Router();
-const ownerModel = require("../models/owner");
 
 const {
   Register,
@@ -13,7 +12,7 @@ const {
   loginValidate,
   validReset,
 } = require("../middlewares/validateOwner");
-const { isAuth, tokenValid } = require("../middlewares/validations");
+const { isAuth } = require("../middlewares/validations");
 
 //Create new Owner
 routerOwner.post("/register", registerValidate(), validation, Register);

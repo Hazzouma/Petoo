@@ -43,7 +43,7 @@ const Logins = (props) => {
   const [togglePassword, setTogglePassword] = useState(false);
   const [user, setUser] = useState({});
   const getUser = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value }); //{email, pass}
   };
 
   const loginBtn = () => {

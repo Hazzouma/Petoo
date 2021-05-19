@@ -16,11 +16,11 @@ const ownerSchema = new Schema({
   codePostale: { type: String, maxlength: 4, default: "" },
   maxPetNumber: { type: Number, max: 3, default: 0 },
   profilePicture: { type: String, default: "" },
-  ownedPets: {type:Array, default:[]},
+  ownedPets: { type: Array, default: [] },
   OTP: { type: String, default: "" },
-  notificationId:{type:Array, default:[]}, //
-  orderId:{type:Array, default:[]},//
-  role:{ type: String, default: "petOwner" }
+  notificationId: { type: Array, default: [] }, //
+  orderId: { type: Array, default: [] }, //
+  role: { type: String, default: "petOwner" },
 });
 
 //Owner model
