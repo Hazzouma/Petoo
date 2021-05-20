@@ -22,7 +22,8 @@ const ownerSchema = new Schema({
   orderId: { type: Array, default: [] }, //
   role: { type: String, default: "petOwner" },
   isVet: {type:Boolean, default:false} ,// vet realted
-  CIN: {type:String, default:"",minlength: 8, maxlength: 8} // vet realted
+  CIN: {type:String, default:"",minlength: 8, maxlength: 8}, // vet realted
+  proNumber: { type: String, required: true }
 });
 
 //Owner model
