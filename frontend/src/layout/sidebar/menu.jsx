@@ -184,7 +184,7 @@ export const MENUITEMS = [
           {
             path: `${process.env.PUBLIC_URL}/app/users/createVet`,
             type: "link",
-            title: "Create Vet ",
+            title: "Create/ Become a Vet ",
           },
           {
             path: `${process.env.PUBLIC_URL}/app/users/createPet`,

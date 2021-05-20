@@ -7,14 +7,10 @@ const mailgun = require("mailgun-js");
 //register
 exports.VetRegister = async (req, res) => {
   try {
-    let { email } = req.body;
-    email = email.toLowerCase();
+   
     
-    // const foundVet = await vetModel.findOne({ email });
-    // if (foundVet)
-    //   return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
 
-    const newVet = new vetModel({ ...req.body });
+
     newVet.idVet = uniqid("Vet-"); //Create specific Id for Owner, not the mongoDB one
 
     // newVet.password = passwordHash.generate(newVet.password); //crypt password

@@ -31,14 +31,14 @@ const CreateVet = () => {
                   <CardBody>
                     <Form className="theme-form mega-form">
                       <h6>The Veterinay Details:</h6>
-                      <FormGroup>
+                      {/* <FormGroup>
                         <Label className="col-form-label">First Name</Label>
                         <Input className="form-control" type="text" placeholder="your Name" />
                       </FormGroup>
                       <FormGroup>
                         <Label className="col-form-label">Last Name</Label>
                         <Input className="form-control" type="text" placeholder="your Name" />
-                      </FormGroup>
+                      </FormGroup> */}
 
                       <FormGroup>
                         <Label className="col-form-label">Date Of Birth</Label>
@@ -56,12 +56,12 @@ const CreateVet = () => {
                         <Label className="col-form-label">Gender</Label>
                         <Input className="form-control" type="text" placeholder="Gender" />
                       </FormGroup>
-                      <FormGroup>
-                        <Label className="col-form-label">{EmailAddress}</Label>
+                      {/* <FormGroup>
+                        <Label className="col-form-label">Professional Email Adress</Label>
                         <Input className="form-control" type="email" placeholder="Enter email" />
-                      </FormGroup>
+                      </FormGroup> */}
                       <FormGroup>
-                        <Label className="col-form-label">{ContactNumber}</Label>
+                        <Label className="col-form-label">Professional Phone Number</Label>
                         <Input className="form-control" type="Number" placeholder="Enter contact number" />
                       </FormGroup>
                       <FormGroup>
@@ -69,12 +69,12 @@ const CreateVet = () => {
                         <Input className="form-control" type="Number" placeholder="Enter CIN" />
                       </FormGroup>
                       
-                      <FormGroup>
+                      {/* <FormGroup>
                         <Label className="col-form-label">Password</Label>
                         <Input className="form-control" type="text" placeholder="Website" />
-                      </FormGroup>
+                      </FormGroup> */}
 
-                    <label className="pb-4">Full Adress</label>
+                    <label className="pb-4">Work Full Adress</label>
                     <div className="form-inline theme-form billing-form">
                       <FormGroup>
                         <Input className="form-control" type="text" placeholder="Adress" />
