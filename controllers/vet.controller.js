@@ -6,49 +6,55 @@ const uniqid = require("uniqid");
 //register
 exports.VetRegister = async (req, res) => {
   try {
-   
-    const { vet, ownerID } = req.body;
+    let { email } = req.body;
+    email = email.toLowerCase();
+    const foundOwner = await ownerModel.findOne({ email });
+    if (foundOwner)
+      return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
 
-    const newData= await ownerModel.findByIdAndUpdate({idOwner: ownerID},{$set:{...req.body, idOwner:"", idVet : uniqid("Vet-"), isVet: true}})
+    let newVeto = new ownerModel({ ...req.body });
+    newVeto.idVet = uniqid("Veto-"); //Create specific Id for Owner, not the mongoDB one
 
-    res.status(200).json({ msg: `Account created successfully!`, newData });
+    newVeto.password = passwordHash.generate(newVeto.password); //crypt password
+    await newVeto.save();
+
+    res.status(200).json({ msg: `Professional account created successfully!` });
   } catch (error) {
-    console.log(error)
-    res.status(500).send({ errors: [{ msg: "Can not register!" }] });
+    res.status(500).send({ errors: [{ msg: "Can not register Veto!" }] });
   }
 };
 
-// //login 1444
-// exports.VetLogin = async (req, res) => {
-//   var { password, email } = req.body;
-//   try {
-//     email = email.toLowerCase();
-//     let foundVet = await vetModel.findOne({ email });
-//     if (!foundVet)
-//       return res
-//         .status(404)
-//         .send({ errors: [{ msg: "Check your combination! " }] });
+//login
+exports.VetLogin = async (req, res) => {
+  var { password, email } = req.body;
+  try {
+    email = email.toLowerCase();
+    let foundVet = await vetModel.findOne({ email });
+    if (!foundVet)
+      return res
+        .status(404)
+        .send({ errors: [{ msg: "Check your combination! " }] });
 
-//     const pass = foundVet.password;
-//     const comparePass = passwordHash.verify(password, pass);
-//     if (!comparePass)
-//       return res
-//         .status(404)
-//         .send({ errors: [{ msg: "Check your combination! " }] });
+    const pass = foundVet.password;
+    const comparePass = passwordHash.verify(password, pass);
+    if (!comparePass)
+      return res
+        .status(404)
+        .send({ errors: [{ msg: "Check your combination! " }] });
 
-//     const token = jwt.sign(
-//       {
-//         id: foundVet.idVet,
-//       },
-//       process.env.SECRET_KEY,
-//       { expiresIn: "3h" }
-//     );
+    const token = jwt.sign(
+      {
+        id: foundVet.idVet,
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: "3h" }
+    );
 
-//     res.status(200).json({ msg: `Owner logged`, foundVet, token });
-//   } catch (error) {
-//     res.status(500).send({ errors: [{ msg: "Can not login!" }] });
-//   }
-// };
+    res.status(200).json({ msg: `Veto logged`, foundVet, token });
+  } catch (error) {
+    res.status(500).send({ errors: [{ msg: "Can not login!" }] });
+  }
+};
 
 // // //Send mail to reset password
 // exports.ResetPassword = async (req, res, next) => {
