@@ -18,7 +18,7 @@ exports.VetRegister = async (req, res) => {
   }
 };
 
-// //login
+// //login 1444
 // exports.VetLogin = async (req, res) => {
 //   var { password, email } = req.body;
 //   try {
