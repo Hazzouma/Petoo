@@ -41,12 +41,12 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 //   }
 //   next();
 // });
-// // Find Owner by idOwner && Send Full info
-// routerOwner.get("/find/:idOwner", async (req, res, next) => {
-//   const { idOwner } = req.params;
-//   console.log(idOwner);
+// // Find Owner by idUser && Send Full info
+// routerOwner.get("/find/:idUser", async (req, res, next) => {
+//   const { idUser } = req.params;
+//   console.log(idUser);
 //   try {
-//     const ownerFoundById = await ownerModel.find({ idOwner });
+//     const ownerFoundById = await ownerModel.find({ idUser });
 //     res.status(200).json({ msg: `Owner found`, ownerFoundById });
 //   } catch (error) {
 //     console.log(error);
@@ -54,10 +54,10 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 //   next();
 // });
 
-// // Modify Owner by idOwner
-// routerOwner.post("/modify/:idOwner", async (req, res, next) => {
-//   const { idOwner } = req.params;
-//   let ownerFoundById = ownerModel.find({ idOwner });
+// // Modify Owner by idUser
+// routerOwner.post("/modify/:idUser", async (req, res, next) => {
+//   const { idUser } = req.params;
+//   let ownerFoundById = ownerModel.find({ idUser });
 //   let {
 //     nom,
 //     prenom,
@@ -69,13 +69,13 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 //     codePostale,
 //   } = req.body;
 
-//   console.log(idOwner);
+//   console.log(idUser);
 //   try {
 //     if (req.body.password) {
 //       //if pass has ben changed
 //       password = passwordHash.generate(req.body.password); //crypt
 //       ownerFoundById = await ownerModel.findOneAndUpdate(
-//         { idOwner },
+//         { idUser },
 //         {
 //           $set: { ...req.body, password },
 //         }
@@ -83,7 +83,7 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 //     } else {
 //       //if NOT
 //       ownerFoundById = await ownerModel.findOneAndUpdate(
-//         { idOwner },
+//         { idUser },
 //         {
 //           $set: { ...req.body },
 //         }

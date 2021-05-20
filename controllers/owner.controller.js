@@ -14,7 +14,7 @@ exports.Register = async (req, res) => {
       return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
 
     let newOwner = new ownerModel({ ...req.body });
-    newOwner.idOwner = uniqid("Owner-"); //Create specific Id for Owner, not the mongoDB one
+    newOwner.idUser = uniqid("Owner-"); //Create specific Id for Owner, not the mongoDB one
 
     newOwner.password = passwordHash.generate(newOwner.password); //crypt password
     await newOwner.save();
@@ -45,7 +45,7 @@ exports.Login = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: foundOwner.idOwner,
+        id: foundOwner.idUser,
       },
       process.env.SECRET_KEY,
       { expiresIn: "3h" }

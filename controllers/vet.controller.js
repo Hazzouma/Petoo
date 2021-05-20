@@ -14,8 +14,7 @@ exports.VetRegister = async (req, res) => {
       return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
 
     let newVeto = new ownerModel({ ...req.body });
-    newVeto.idVet = uniqid("Veto-"); //Create specific Id for Veto, not the mongoDB one
-    newVeto.idOwner = "Veto";
+    newVeto.idUser = uniqid("Veto-"); //Create specific Id for Veto, not the mongoDB one
     newVeto.password = passwordHash.generate(newVeto.password); //crypt password
 
     console.log(newVeto);
