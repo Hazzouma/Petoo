@@ -10,7 +10,7 @@ description:{type: String, default:""},
 price:{type: Number, required: true},
 brand:{type: String, default:""},
 promoPrice:{type: Number, default: promo},
-productType:{type: string, default: ""}, //Food, accessoire, jeu.....
+productType:{type: String, default: ""}, //Food, accessoire, jeu.....
 
 })
 

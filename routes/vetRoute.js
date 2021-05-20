@@ -1,5 +1,7 @@
 const routerVet = require("express").Router();
 const vetModel = require("../models/Vet");
+const ownerModel = require("../models/owner");
+
 
 const {
   VetRegister,
@@ -10,12 +12,7 @@ const {
 const { loginValidate, validation, registerValidate, validReset, } = require("../middlewares/validateOwner");
 
 
-// const {
-//   validation,
-//   registerValidate,
-//   loginValidate,
-// 
-// } = require("../middlewares/validateOwner");
+
 const { isAuth, tokenValid } = require("../middlewares/validations");
 
 
