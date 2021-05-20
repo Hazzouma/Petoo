@@ -24,4 +24,6 @@ role:{ type: String, default: "vet" }
 })
 
 
-module.exports = Vet = model("vet", vetSchema);
+
+const vetModel = mongoose.model("Vet", vetSchema);
+module.exports = vetModel;
