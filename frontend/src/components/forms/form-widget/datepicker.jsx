@@ -2,8 +2,8 @@ import React, { Fragment, useState } from 'react';
 import Breadcrumb from '../../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, CardBody, Form, FormGroup } from 'reactstrap'
 import {DatePickers,SelectDateWithTime,CustomDateFormat,TodayButton,DisableDaysOfWeek,SpecificDateRange,MinDate,MaxDate,DateRange,InlineVersion,DisableDatepicker,SelectTimeOnly,Default} from "../../../constant";
-
 import DatePicker from "react-datepicker";
+
 const Datepicker = (props) => {
   const [startDate, setstartDate] = useState(new Date())
   const [endDate, setendDate] = useState(new Date())

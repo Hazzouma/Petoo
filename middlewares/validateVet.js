@@ -1,23 +1,27 @@
 const { validationResult, check } = require("express-validator");
 
 exports.registerValidate = () => [
+  check("email", "Enter a valid Email!").isEmail(),
+  check("password", "Password should contain at least 6 caracters!").isLength({
+    min: 6,
+  }),
   check("CIN", "Enter a valid Cin").isLength({
     min: 8,
   }),
   check("about", "Enter a small recap about your resume").isLength({
     min: 10,
   }),
-  check("proNumber", "Enter a professional Number").isLength({
+  check("proNumber", "Enter your professional Number").isLength({
     min: 3,
   }),
-  
-  check("adress", "Adress is required!").isLength({
+
+  check("adresse", "Adress is required!").isLength({
     min: 6,
   }),
   check("ville", "City is required").isLength({
     min: 4,
   }),
-  check("vcodePostale", "Postal Code is required").isLength({
+  check("codePostale", "Postal Code is required").isLength({
     min: 4,
   }),
 ];
@@ -28,4 +32,3 @@ exports.validation = (req, res, next) => {
   }
   next();
 };
-

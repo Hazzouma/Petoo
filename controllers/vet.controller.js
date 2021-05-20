@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
-const vetModel = require("../models/Vet");
+// const vetModel = require("../models/Vet");
 const ownerModel = require("../models/owner");
 const uniqid = require("uniqid");
+const passwordHash = require("password-hash");
 
 //register
 exports.VetRegister = async (req, res) => {
@@ -13,13 +14,17 @@ exports.VetRegister = async (req, res) => {
       return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
 
     let newVeto = new ownerModel({ ...req.body });
-    newVeto.idVet = uniqid("Veto-"); //Create specific Id for Owner, not the mongoDB one
-
+    newVeto.idVet = uniqid("Veto-"); //Create specific Id for Veto, not the mongoDB one
+    newVeto.idOwner = "Veto";
     newVeto.password = passwordHash.generate(newVeto.password); //crypt password
+
+    console.log(newVeto);
+
     await newVeto.save();
 
     res.status(200).json({ msg: `Professional account created successfully!` });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not register Veto!" }] });
   }
 };

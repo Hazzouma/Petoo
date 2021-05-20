@@ -31,6 +31,8 @@ import RegisterWithBgVideo from "./pages/authentication/registerWithBgVideo";
 import UnlockUser from "./pages/authentication/unlockUser";
 import Forgetpwd from "./pages/authentication/forgetpwd";
 import Resetpwd from "./pages/authentication/resetpwd";
+import registerVet from "./auth/registerVet/registerVet";
+
 
 // Error page
 import Error400 from "./pages/errors/error400";
@@ -88,6 +90,10 @@ const Root = (props) => {
       <Provider store={store}>
         <BrowserRouter basename={`/`}>
           <Switch>
+          <Route
+              path={`${process.env.PUBLIC_URL}/registerVet`}
+              component={registerVet}
+            />
             <Route
               path={`${process.env.PUBLIC_URL}/login`}
               component={Signin}

@@ -58,7 +58,9 @@ exports.PetCreate = async (req, res) => {
     foundOwner.maxPetNumber++;
 
     //initale some arrays
-    newPet.vaccines.push(vaccines);
+    if (vaccines !== {}) {
+      newPet.vaccines.push(vaccines);
+    }
     newPet.knownAllergies.push(knownAllergies);
     newPet.petPictures.push(petPictures);
 

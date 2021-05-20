@@ -6,7 +6,7 @@ const { loginValidate } = require("../middlewares/validateOwner");
 const { isAuth } = require("../middlewares/validations");
 
 //Vet register
-routerVet.put("/register", registerValidate(), validation, VetRegister);
+routerVet.post("/register", registerValidate(), validation, VetRegister);
 //Login
 routerVet.post("/login", loginValidate(), validation, VetLogin);
 //Veto authentifié

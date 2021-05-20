@@ -6,6 +6,6 @@ const { creationPet, validationPet } = require("../middlewares/validatePet");
 //Route of pet creation with some verification on inputs
 routerPet.post("/create", creationPet(), validationPet, PetCreate);
 
-routerPet.put("/:idPet", PetEdit);
+routerPet.post("/:idPet", PetEdit);
 
 module.exports = routerPet;
