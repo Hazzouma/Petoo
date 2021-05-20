@@ -1,25 +1,44 @@
 const {
-    ADD_PET, FAIL_PET
-  } = require("../actionTypes");
+  ADD_PET,
+  FAIL_PET,
+  LOAD_PET,
+  VIDE_ERRORS_MSG,
+} = require("../actionTypes");
 
 const initialState = {
-    pet: {},
-    errors: [],
-    msg: "",
-    pets:[],
-  };
+  load: false,
+  pet: {},
+  errors: {},
+  msg: "",
+  pets: [],
+};
 
- const petReducer = (state = initialState, { type, payload }) =>{
-        switch (type) {
-            case ADD_PET: 
-            return{ ...state, pet:payload.pet};
-                
-            case FAIL_PET: 
-            return{ ...state, errors: payload.errors };
-        
-            default:
-                return state
-                
-        }
-  };
-  export default petReducer
+const petReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case ADD_PET:
+      if (typeof payload.msg === "String") {
+        return {
+          ...state,
+          pet: payload.newPet,
+          load: false,
+          msg: payload.msg,
+          pets: state.pets.push(payload.newPet),
+        };
+      } else {
+        return { ...state, load: false, errors: payload.errors };
+      }
+
+    case FAIL_PET:
+      return { ...state, errors: payload.errors, load: false };
+
+    case LOAD_PET:
+      return { ...state, load: true };
+
+    case VIDE_ERRORS_MSG:
+      return { ...state, load: false, msg: "", errors: [] };
+
+    default:
+      return state;
+  }
+};
+export default petReducer;

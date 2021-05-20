@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
-import man from "../../assets/images/dashboard/profile.jpg";
+// import man from "../../assets/images/dashboard/profile.jpg";
 import {
   FileText,
   LogIn,
-  Mail,
+  // Mail,
   User,
-  MessageSquare,
+  // MessageSquare,
   Bell,
   Minimize,
   Search,
@@ -29,28 +29,28 @@ import {
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
 import {
-  English,
-  Deutsch,
-  Español,
-  Français,
-  Português,
-  简体中文,
+  // English,
+  // Deutsch,
+  // Español,
+  // Français,
+  // Português,
+  // 简体中文,
   Notification,
   DeliveryProcessing,
   OrderComplete,
   TicketsGenerated,
   DeliveryComplete,
   CheckAllNotification,
-  ViewAll,
-  MessageBox,
-  EricaHughes,
-  KoriThomas,
-  Admin,
-  Account,
-  Inbox,
-  Taskboard,
+  // ViewAll,
+  // MessageBox,
+  // EricaHughes,
+  // KoriThomas,
+  // Admin,
+  // Account,
+  // Inbox,
+  // Taskboard,
   LogOut,
-  AinChavez,
+  // AinChavez,
   CheckOut,
   ShopingBag,
   OrderTotal,
@@ -82,7 +82,7 @@ const Rightbar = (props) => {
   const [selected, setSelected] = useState("en");
   const [cartDropdown, setCartDropDown] = useState(false);
   const [notificationDropDown, setNotificationDropDown] = useState(false);
-  const [chatDropDown, setChatDropDown] = useState(false);
+  // const [chatDropDown, setChatDropDown] = useState(false);
 
   // auth0 profile
   // const { logout } = useAuth0();

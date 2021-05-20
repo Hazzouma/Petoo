@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import Dropzone from "react-dropzone-uploader";
 import DatePicker from "react-datepicker";
+import { toast } from "react-toastify";
 import {
   Container,
   Row,
@@ -18,34 +19,99 @@ import {
 } from "reactstrap";
 import { Submit, Cancel } from "../../constant";
 import { useSelector, useDispatch } from "react-redux";
-import { addPet } from "../../redux/petActions/action";
+import { addPet, videErrors } from "../../redux/petActions/action";
 
 const CreatePet = (props) => {
   const dispatch = useDispatch();
+
   const [pet, setPet] = useState({});
+  const [breed, setBreed] = useState("");
+  const [vaccineForm, setVaccineForm] = useState(true);
+  const [gender, setGender] = useState("");
   const [startDate, setstartDate] = useState(new Date()); //Date picker related
+  const [vac1Date, setVac1Date] = useState(new Date()); //Date vac1
+  const [vac2Date, setVac2Date] = useState(new Date()); //Date vac2
+  const [vaccin, setVaccin] = useState([]);
+  const [vac1, setVac1] = useState("");
+  const [vac2, setVac2] = useState("");
+
+  const getValueBreed = (e) => setBreed(e.target.value);
+
+  const checkVaccin = (state) => {
+    setVaccineForm(state);
+  };
+
   const handleChange = (date) => {
     //Date Picker related
     setstartDate(date);
   };
+  const handleChangeVac1Date = (date) => {
+    //Date Picker related
+    setVac1Date(date);
+  };
+  const handleChangeVac2Date = (date) => {
+    //Date Picker related
+    setVac2Date(date);
+  };
+  const getVac1 = (e) => setVac1(e.target.value);
+  const getVac2 = (e) => setVac2(e.target.value);
 
+  //get vaccines if pet is vaccinated
+
+  const FFFFFF = () => {
+    if (vaccineForm) {
+      setVaccin([
+        ...vaccin,
+        { vaccine: vac1, date: vac1Date.toString() },
+        { vaccine: vac2, date: vac2Date.toString() },
+      ]);
+    }
+  };
+
+  const getPet = (e) => {
+    FFFFFF();
+    setPet({
+      ...pet,
+      gender,
+      isVaccined: vaccineForm,
+      race: breed,
+      age: startDate.toString(),
+      vaccines: vaccin,
+      [e.target.name]: e.target.value,
+    });
+  };
   const ownerID = useSelector((state) => state.currentUser.user.idOwner); // GETTING THE ID OF THE OWNER TO CREATE THE PET
-  if (ownerID) {
-    dispatch(addPet(pet, props.history, ownerID));
-  }
+  const sendPet = () => {
+    if (ownerID) {
+      console.log(ownerID);
+      dispatch(addPet(pet, props.history, ownerID));
+    }
+  };
 
   const getUploadParams = ({ meta }) => {
     return { url: "https://httpbin.org/post" };
   }; // DropZone reltated
 
-
-
-
-  const [vaccineForm, setVaccineForm] = useState(false);
-
-  
-
-
+  //toast related states from response of backend via redux
+  const notification = useSelector((state) => state.petReducer.msg);
+  const arrErrors = useSelector((state) => state.petReducer.errors);
+  useEffect(() => {
+    if ((notification || "").length > 0) {
+      toast.success(notification, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 10000,
+      });
+      dispatch(videErrors());
+    } else if ((arrErrors || []).length > 0) {
+      arrErrors.forEach((element) => {
+        toast.error(element.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 10000,
+        });
+      });
+      dispatch(videErrors());
+    }
+  }, [arrErrors, notification]);
 
   const handleChangeStatus = ({ meta, file }, status) => {}; // DropZone reltated
   return (
@@ -57,7 +123,6 @@ const CreatePet = (props) => {
             <Card>
               <CardHeader>
                 <h5>Add My Pet</h5>
-                
               </CardHeader>
               <CardBody>
                 <Form className='theme-form mega-form'>
@@ -68,6 +133,8 @@ const CreatePet = (props) => {
                       className='form-control'
                       type='text'
                       placeholder='Name'
+                      name='name'
+                      onChange={(e) => getPet(e)}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -76,6 +143,8 @@ const CreatePet = (props) => {
                       className='form-control'
                       type='text'
                       placeholder='ex: cat, bird, dog...'
+                      name='petType'
+                      onChange={(e) => getPet(e)}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -87,7 +156,7 @@ const CreatePet = (props) => {
                           <DatePicker
                             className='form-control digits'
                             selected={startDate}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e)}
                           />
                         </div>
                       </div>
@@ -99,23 +168,37 @@ const CreatePet = (props) => {
                   </Col>
                   <Col>
                     <FormGroup className='m-t-15 custom-radio-ml'>
-
-                      <div className="radio radio-primary">
-                        <Input id="radio11" type="radio" name="radio1" value="option1"/>
-                        <Label for="radio11">Male</Label>
+                      <div className='radio radio-primary'>
+                        <Input
+                          id='radio11'
+                          type='radio'
+                          name='radio1'
+                          value='option1'
+                          onClick={() => setGender("Male")}
+                        />
+                        <Label for='radio11'>Male</Label>
                       </div>
-                      <div className="radio radio-secondary">
-                        <Input id="radio22" type="radio" name="radio1" value="option1"/>
-                        <Label for="radio22">Female</Label>
+                      <div className='radio radio-secondary'>
+                        <Input
+                          id='radio22'
+                          type='radio'
+                          name='radio1'
+                          value='option1'
+                          onClick={() => setGender("Female")}
+                        />
+                        <Label for='radio22'>Female</Label>
                       </div>
-                      
-
                     </FormGroup>
                   </Col>
 
                   <FormGroup>
                     <Label className='col-form-label'>Breed</Label>
-                    <Input type='select' className='custom-select' required=''>
+                    <Input
+                      type='select'
+                      className='custom-select'
+                      required=''
+                      onChange={(e) => getValueBreed(e)}
+                    >
                       <option value='affenpinscher'>affenpinscher</option>
                       <option value='african'>african</option>
                       <option value='airedale'>airedale</option>
@@ -310,6 +393,8 @@ const CreatePet = (props) => {
                       className='form-control'
                       type='text'
                       placeholder='Color'
+                      name='color'
+                      onChange={(e) => getPet(e)}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -320,6 +405,8 @@ const CreatePet = (props) => {
                       className='form-control'
                       type='text'
                       placeholder='ex: black tail/ dark spot on the back....'
+                      name='distinguishingMark'
+                      onChange={(e) => getPet(e)}
                     />
                   </FormGroup>
 
@@ -329,97 +416,107 @@ const CreatePet = (props) => {
                       className='form-control'
                       type='text'
                       placeholder='Allergies'
+                      name='knownAllergies'
+                      onChange={(e) => getPet(e)}
                     />
                   </FormGroup>
-                  </Form>
+                </Form>
 
-                  <Form>
+                <Form>
                   <Col sm='12'>
                     <h5>Vaccinated</h5>
                   </Col>
                   <Col>
                     <FormGroup className='m-t-15 custom-radio-ml'>
-                    <div className="radio radio-success">
-                        <Input id="radio55" type="radio" name="radio1" value="option2" onClick= {()=>setVaccineForm(true)}/>
-                        {console.log(vaccineForm)}
-                        <Label for="radio55">Yes </Label>
+                      <div className='radio radio-success'>
+                        <Input
+                          id='radio55'
+                          type='radio'
+                          name='radio2'
+                          value='option2'
+                          defaultChecked
+                          onClick={() => checkVaccin(true)}
+                        />
+                        <Label for='radio55'>Yes </Label>
                       </div>
-                      <div className="radio radio-danger">
-                        <Input id="radio66" type="radio" name="radio1" value="option2" defaultChecked  onClick= {()=>setVaccineForm(false)} />
-                        <Label for="radio66">No</Label>
+                      <div className='radio radio-danger'>
+                        <Input
+                          id='radio66'
+                          type='radio'
+                          name='radio2'
+                          value='option2'
+                          onClick={() => checkVaccin(false)}
+                        />
+                        <Label for='radio66'>No</Label>
                       </div>
                     </FormGroup>
                   </Col>
                   {/* Vaccines Statrs Here */}
-                
-                
-                <div>  
-                  {/* first Condition to show the form of vaccination details */}
-                  { (vaccineForm)?
-                  
-                  <div> 
-                    <label className='pb-4'>Vaccines done:</label>
-                  <div className='form-inline theme-form billing-form'>
-                    <FormGroup>
-                      <Input
-                        className='form-control'
-                        type='text'
-                        placeholder='Vaccine name'
-                      />
-                    </FormGroup>
-                    <FormGroup className='form-row'>
-                      <label className='col-sm-3 col-form-label text-right'>
-                        Date
-                      </label>
-                      <div className='col-xl-5 col-sm-9'>
-                        <div className='input-group'>
-                          <DatePicker
-                            className='form-control digits'
-                            selected={startDate}
-                            onChange={handleChange}
-                          />
+
+                  <div>
+                    {/* first Condition to show the form of vaccination details */}
+                    {vaccineForm ? (
+                      <div>
+                        <label className='pb-4'>Vaccines done:</label>
+                        <div className='form-inline theme-form billing-form'>
+                          <FormGroup>
+                            <Input
+                              className='form-control'
+                              type='text'
+                              placeholder='Vaccine name'
+                              name='vac1'
+                              onChange={(e) => getVac1(e)}
+                            />
+                          </FormGroup>
+                          <FormGroup className='form-row'>
+                            <label className='col-sm-3 col-form-label text-right'>
+                              Date
+                            </label>
+                            <div className='col-xl-5 col-sm-9'>
+                              <div className='input-group'>
+                                <DatePicker
+                                  className='form-control digits'
+                                  selected={vac1Date}
+                                  onChange={(e) => handleChangeVac1Date(e)}
+                                />
+                              </div>
+                            </div>
+                          </FormGroup>
+                        </div>
+
+                        <div className='form-inline theme-form billing-form'>
+                          <FormGroup>
+                            <Input
+                              className='form-control'
+                              type='text'
+                              placeholder='Vaccine name'
+                              name='vac2'
+                              onChange={(e) => getVac2(e)}
+                            />
+                          </FormGroup>
+                          <FormGroup className='form-row'>
+                            <label className='col-sm-3 col-form-label text-right'>
+                              Date
+                            </label>
+                            <div className='col-xl-5 col-sm-9'>
+                              <div className='input-group'>
+                                <DatePicker
+                                  className='form-control digits'
+                                  selected={vac2Date}
+                                  onChange={(e) => handleChangeVac2Date(e)}
+                                />
+                              </div>
+                            </div>
+                          </FormGroup>
                         </div>
                       </div>
-                    </FormGroup>
+                    ) : (
+                      <> </>
+                    )}
                   </div>
 
-                  <div className='form-inline theme-form billing-form'>
-                    <FormGroup>
-                      <Input
-                        className='form-control'
-                        type='text'
-                        placeholder='Vaccine name'
-                      />
-                    </FormGroup>
-                    <FormGroup className='form-row'>
-                      <label className='col-sm-3 col-form-label text-right'>
-                        Date
-                      </label>
-                      <div className='col-xl-5 col-sm-9'>
-                        <div className='input-group'>
-                          <DatePicker
-                            className='form-control digits'
-                            selected={startDate}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                    </FormGroup>
-                  </div>
-                  
-                  </div>  
-                    
-                    
-                    : <div> </div>}
-
-                </div>
-                  
-                {/* Vaccines Ends Here */}
+                  {/* Vaccines Ends Here */}
                 </Form>
-                
-                
-
-
 
                 <hr className='mt-4 mb-4' />
 
@@ -450,7 +547,11 @@ const CreatePet = (props) => {
                 {/* Drop ZOne Ends Here */}
               </CardBody>
               <CardFooter>
-                <Button color='primary' className='mr-1'>
+                <Button
+                  color='primary'
+                  className='mr-1'
+                  onClick={() => sendPet()}
+                >
                   {Submit}
                 </Button>
                 <Button color='secondary'>{Cancel}</Button>

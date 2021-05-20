@@ -101,4 +101,6 @@ export const VIDE_ERRORS = "VIDE_ERRORS";
 
 /* PetActions */
 export const ADD_PET = "ADD_PET";
-export const FAIL_PET ="FAIL_PET";
+export const FAIL_PET = "FAIL_PET";
+export const LOAD_PET = "LOAD_PET";
+export const VIDE_ERRORS_MSG = "VIDE_ERRORS_MSG";
