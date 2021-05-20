@@ -8,7 +8,7 @@ const ownerSchema = new Schema({
   prenom: { type: String, required: true, minlength: 2, maxlength: 20 }, //required prenom
   password: { type: String, required: true }, //required password
   email: { type: String, required: true }, //required email
-  phoneNumber: { type: Number, default: null },
+  phoneNumber: { type: String, default: null },
   dateNaissance: { type: String, minlength: 10, default: Date.now },
   gender: { type: String, default: null },
   adresse: { type: String, maxlength: 50, default: "" },
