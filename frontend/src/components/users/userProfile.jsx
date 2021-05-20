@@ -7,32 +7,12 @@ import {
   Card,
   CardHeader,
   Media,
-  FormGroup,
 } from "reactstrap";
-import { DDMMYY, Designer, MarkJecno } from "../../constant";
-import Rating from "react-rating";
-import axios from "axios";
-import DatePicker from "react-datepicker";
-
-import TimePickerFour from "../forms/form-widget/timepickerComponent/timepicker-four";
-
+import {useSelector} from 'react-redux';
 const UserProfile = (props) => {
-  // Date Picker States Starts Here
-  const [startDate, setstartDate] = useState(new Date());
-
-  const handleChange = (date) => {
-    setstartDate(date);
-  };
-  //Date Picker States Ends Here
-
-  const [rating, setRating] = useState(5); // Rating States
-
-  const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.PUBLIC_URL}/api/user-edit-table.json`)
-      .then((res) => setData(res.data));
+
   }, []);
   // eslint-disable-next-line
   const [url, setUrl] = useState();
@@ -50,6 +30,11 @@ const UserProfile = (props) => {
       setUrl(reader.result);
     };
   };
+ 
+  const { prenom,profilePicture, role,nom,email,dateNaissance,adresse,ville,codePostale,phoneNumber,bio } = useSelector((state) => state.currentUser.user);
+  const DOB=new Date(parseInt(dateNaissance,10)).toDateString()
+  console.log(DOB)
+ 
   return (
     <Fragment>
       <Breadcrumb parent='Users' title='My Profile' />
@@ -65,7 +50,7 @@ const UserProfile = (props) => {
                     <Media
                       body
                       alt=''
-                      src={require(`../../assets/images/user/3.png`)}
+                      src={profilePicture}
                       data-intro='This is Profile image'
                     />
                   </div>
@@ -91,16 +76,16 @@ const UserProfile = (props) => {
                             <h6>
                               <i className='fa fa-envelope mr-2'></i> Email
                             </h6>
-                            <span>Flén@gmail.com</span>
+                            <span>{email}</span>
                           </div>
                         </Col>
-                        >
+                        
                         <Col md='5'>
                           <div className='ttl-info text-left ttl-sm-mb-0'>
                             <h6>
                               <i className='fa fa-calendar'></i> DOB
                             </h6>
-                            <span>{DDMMYY}</span>
+                            <span>{DOB}</span>
                           </div>
                         </Col>
                       </Row>
@@ -110,10 +95,11 @@ const UserProfile = (props) => {
                       <div className='user-designation'>
                         <div className='title'>
                           <a target='_blank' href='#javascript'>
-                            {MarkJecno}
+                           {prenom} {''} {nom}
+                            
                           </a>
                         </div>
-                        <div className='desc mt-2'>{Designer} </div>
+                        <div className='desc mt-2'>{role} </div>
                       </div>
                     </Col>
 
@@ -124,7 +110,7 @@ const UserProfile = (props) => {
                             <h6>
                               <i className='fa fa-phone'></i>Phone
                             </h6>
-                            <span> 95989598</span>
+                            <span> {phoneNumber}</span>
                           </div>
                         </Col>
                         <Col md='6'>
@@ -133,7 +119,7 @@ const UserProfile = (props) => {
                               <i className='fa fa-location-arrow'></i>
                                  Location
                             </h6>
-                            <span>Rades </span>
+                            <span>{ville} {codePostale} </span>
                           </div>
                         </Col>
                       </Row>
@@ -146,18 +132,17 @@ const UserProfile = (props) => {
                         <div className='follow-num counter'>
                           {" "}
                           <h4>
-                            I'm flén falten, i love pets, i have 2 , zina w
-                            aziza{" "}
+                            {bio}{" "}
                           </h4>
                         </div>
-                        <span>Full Adress</span>
+                        <span>Bio</span>
                       </Col>
                       <Col col='6' className='text-md-left'>
                         <div className='follow-num counter'>
                           {" "}
-                          <h4>4 Immeuble Latin ,4 éme etage </h4>
+                          <h4>{adresse} </h4>
                         </div>
-                        <span>Bio</span>
+                        <span>Adresse</span>
                       </Col>
                     </Row>
                   </div>

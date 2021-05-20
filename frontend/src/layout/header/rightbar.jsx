@@ -93,13 +93,9 @@ const Rightbar = (props) => {
     setLanguage(key);
     setSelected(key);
   };
-  const { prenom, role } = useSelector((state) => state.currentUser.user);
+  const { prenom, role ,profilePicture} = useSelector((state) => state.currentUser.user);
   useEffect(() => {
-    // setProfile(localStorage.getItem("profileURL") || man);
-    // setName(localStorage.getItem("Name"));
-    // if (localStorage.getItem("layout_version") === "dark-only") {
-    //   setMoonlight(true);
-    // }
+
   }, []);
 
   // const Logout_From_Firebase = () => {
@@ -117,10 +113,6 @@ const Rightbar = (props) => {
   //   history.push(`${process.env.PUBLIC_URL}/login`);
   //   // logout();
   // };
-
-  const RedirectToChats = () => {
-    history.push(`${process.env.PUBLIC_URL}/app/chat-app`);
-  };
 
   const RedirectToCart = () => {
     history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
@@ -167,13 +159,13 @@ const Rightbar = (props) => {
     }
   };
 
-  const LanguageSelection = (language) => {
+/*   const LanguageSelection = (language) => {
     if (language) {
       setLangdropdown(!language);
     } else {
       setLangdropdown(!language);
     }
-  };
+  }; */
 
   const MoonlightToggle = (light) => {
     if (light) {
@@ -532,7 +524,7 @@ const Rightbar = (props) => {
             <div className='media profile-media'>
               <img
                 className='b-r-10'
-                // src={authenticated ? auth0_profile.picture : profile}
+                src={profilePicture}
                 alt=''
               />
               <div className='media-body'>
