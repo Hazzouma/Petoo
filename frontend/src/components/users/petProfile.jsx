@@ -34,11 +34,11 @@ useEffect(() => {
     <Fragment>
       <Breadcrumb parent="Users" title="My Pet" />
       <Container fluid={true}>
-        <div className="user-profile">
-          <Row>
+        <div className="user-profile" >
+          <Row className="justify-content-md-center"> 
 
             {/* The Profile Card Starts Here */}
-            <Col sm="12">
+            <Col sm={8}>
               <Card className="card hovercard text-center">
                 <CardHeader className="cardheader"></CardHeader>
                 <div className="user-image">
@@ -52,7 +52,7 @@ useEffect(() => {
                 <div className="info">
                   <Row>
 
-                    <Col sm="12" lg="4" className="order-sm-1 order-xl-0">
+                    <Col sm={8} lg="4" className="order-sm-1 order-xl-0">
                       <Row >
                         <Col md="5">
                           <div className="ttl-info text-left">
@@ -67,14 +67,14 @@ useEffect(() => {
                       </Row>
                     </Col>
 
-                    <Col sm="12" lg="4" className="order-sm-0 order-xl-1">
+                    <Col sm={8} lg="4" className="order-sm-0 order-xl-1">
                       <div className="user-designation">
                         <div className="title"><a target="_blank" href="#javascript">{MarkJecno}</a></div>
                         <div className="desc mt-2">{Designer} Dog</div>
                       </div>
                     </Col>
 
-                    <Col sm="12" lg="4" className="order-sm-2 order-xl-2">
+                    <Col sm={8} lg="4" className="order-sm-2 order-xl-2">
                       <Row>
                         <Col md="6">
                           <div className="ttl-info text-left ttl-xs-mt">
@@ -117,8 +117,8 @@ useEffect(() => {
 
 
           {/* Allergies Starts Here  */}
-            <Col sm="12" xl="12">
-            <Card>
+            <Col sm={8} xl="12">
+            <Card sm={8}  >
               <CardHeader>
                 <h5>Known Allergies</h5>
               </CardHeader>
@@ -135,7 +135,7 @@ useEffect(() => {
           {/* Allergies Endss Here  */}
 
             {/* Vaccination History Starts Here  */}
-            <Col sm="12">
+            <Col sm={8}>
               <Card>
               <CardHeader>
                   <h5>Vaccination History</h5>
@@ -174,7 +174,7 @@ useEffect(() => {
 
             
           {/* Medication History Starts Here ( Possible to change it like the vaccination Table (UI reason))  */}  
-            <Col sm="12">
+            <Col sm={8}>
                         <Card>
                             <CardHeader>
                                 <h5>Medication History</h5>

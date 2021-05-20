@@ -17,10 +17,10 @@ const registerVet = () => {
         ]
     return (
         <Fragment>
-            <Breadcrumb parent="Register As a Vet" />
-            <Container fluid={true}>
-                <Row>
-                    <Col sm="12">
+          
+            <Container fluid={true} fluid={true} className='p-0'>
+                <Row className="justify-content-md-center">
+                    <Col   sm={8}>
                         <Card>
                             <CardHeader>
                                 <h5>Register as a Vet</h5>

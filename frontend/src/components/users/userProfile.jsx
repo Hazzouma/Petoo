@@ -40,9 +40,9 @@ const UserProfile = (props) => {
       <Breadcrumb parent='Users' title='My Profile' />
       <Container fluid={true}>
         <div className='user-profile'>
-          <Row>
+          <Row className="justify-content-md-center">
             {/* The Profile Card Starts Here */}
-            <Col sm='12'>
+            <Col sm={8}>
               <Card className='card hovercard text-center'>
                 <CardHeader className='cardheader'></CardHeader>
                 <div className='user-image'>
@@ -83,7 +83,7 @@ const UserProfile = (props) => {
                         <Col md='5'>
                           <div className='ttl-info text-left ttl-sm-mb-0'>
                             <h6>
-                              <i className='fa fa-calendar'></i> DOB
+                              <i className='fa fa-calendar'></i> DOB
                             </h6>
                             <span>{DOB}</span>
                           </div>
@@ -117,7 +117,7 @@ const UserProfile = (props) => {
                           <div className='ttl-info text-left ttl-sm-mb-0'>
                             <h6>
                               <i className='fa fa-location-arrow'></i>
-                                 Location
+                                 Location
                             </h6>
                             <span>{ville} {codePostale} </span>
                           </div>

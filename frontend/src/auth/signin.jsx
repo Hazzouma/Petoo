@@ -50,6 +50,12 @@ const Logins = (props) => {
     dispatch(login(user));
   };
 
+ // On click on Enter button dispatch login action
+ const KeyEnter = (e) => {
+  if (e.key=='Enter')
+  dispatch(login(user));
+} 
+
   const enableSignIn = () => {
     (user.email || "").split("").includes("@") &&
     (user.password || "").length > 5
@@ -133,6 +139,7 @@ const Logins = (props) => {
                               placeholder='password'
                               required=''
                               onKeyUp={enableSignIn}
+                              onKeyPress={(e)=>KeyEnter(e)}
                             />
                             <div
                               className='show-hide'
@@ -185,6 +192,10 @@ const Logins = (props) => {
                               {CreateAccount}
                             </Link>
                           </p>
+
+                          <Link className='ml-2' to='/registerVet'>
+                          <button type="button" class="btn btn-info">Create a Vet Account</button>
+                          </Link>
                         </Form>
                       </TabPane>
                     </TabContent>
