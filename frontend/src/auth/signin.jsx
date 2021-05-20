@@ -15,14 +15,7 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
-// import {
-//   firebase_app,
-//   googleProvider,
-//   facebookProvider,
-//   Jwt_token,
-// } from "../data/config";
-// import { handleResponse } from "../services/fack.backend";
-// import { toast } from "react-toastify";
+
 import { withRouter } from "react-router-dom";
 import { Facebook } from "react-feather";
 import {
@@ -49,6 +42,11 @@ const Logins = (props) => {
   const loginBtn = () => {
     dispatch(login(user));
   };
+  // On click on Enter button dispatch login action
+  const KeyEnter = (e) => {
+    if (e.key=='Enter')
+    dispatch(login(user));
+  } 
 
   const enableSignIn = () => {
     (user.email || "").split("").includes("@") &&
@@ -133,6 +131,7 @@ const Logins = (props) => {
                               placeholder='password'
                               required=''
                               onKeyUp={enableSignIn}
+                              onKeyPress={(e)=>KeyEnter(e)}
                             />
                             <div
                               className='show-hide'
@@ -162,6 +161,7 @@ const Logins = (props) => {
                                 // loginWithJwt(email, password);
                                 loginBtn();
                               }}
+                              
                             >
                               {LoginWithJWT}
                             </Button>
