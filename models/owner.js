@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 //Ower Schema
 const ownerSchema = new Schema({
-  idOwner: { type: String, required: true }, //required ID
+  idUser: { type: String, required: true }, //required ID
   nom: { type: String, required: true, minlength: 2, maxlength: 20 }, //required nom
   prenom: { type: String, required: true, minlength: 2, maxlength: 20 }, //required prenom
   password: { type: String, required: true }, //required password

@@ -16,7 +16,7 @@ exports.PetCreate = async (req, res) => {
         .status(404)
         .send({ errors: [{ msg: "Error, try again later" }] });
     }
-    const foundOwner = await ownerModel.findOne({ idOwner: ownerID });
+    const foundOwner = await ownerModel.findOne({ idUser: ownerID });
     if (!foundOwner) {
       return res
         .status(404)
@@ -53,7 +53,7 @@ exports.PetCreate = async (req, res) => {
       });
     }
     newPet.idPet = uniqid("Pet-"); //Create specific Id for Pet, not the mongoDB one
-    newPet.idOwnerOfPet = ownerID; //Added the idOwner to the pet
+    newPet.idOwnerOfPet = ownerID; //Added the idUser to the pet
     foundOwner.ownedPets.push(newPet.idPet); //adding idPet to ownedPets table of owner
     foundOwner.maxPetNumber++;
 
@@ -85,7 +85,7 @@ exports.PetCreate = async (req, res) => {
       newNotification,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not create Pet!" }] });
   }
 };

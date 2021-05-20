@@ -9,7 +9,7 @@ exports.isAuth = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const userLogged = await userModel
-      .findOne({ idOwner: decoded.id })
+      .findOne({ idUser: decoded.id })
       .select("-password");
     if (!userLogged)
       return res.status(402).send({ errors: [{ msg: "No such account!" }] });
