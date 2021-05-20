@@ -21,7 +21,7 @@ import { Submit, Cancel } from "../../constant";
 import { useSelector, useDispatch } from "react-redux";
 import { addPet, videErrors } from "../../redux/petActions/action";
 
-const CreatePet = (props) => {
+const CreatePet = ({ history }) => {
   const dispatch = useDispatch();
 
   const [pet, setPet] = useState({});
@@ -80,11 +80,11 @@ const CreatePet = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  const ownerID = useSelector((state) => state.currentUser.user.idOwner); // GETTING THE ID OF THE OWNER TO CREATE THE PET
+  const ownerID = useSelector((state) => state.currentUser.user.idUser); // GETTING THE ID OF THE OWNER TO CREATE THE PET
   const sendPet = () => {
     if (ownerID) {
       console.log(ownerID);
-      dispatch(addPet(pet, props.history, ownerID));
+      dispatch(addPet(pet, history, ownerID));
     }
   };
 

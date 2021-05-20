@@ -7,12 +7,11 @@ export const addPet = (pet, history, ownerID) => async (dispatch) => {
   try {
     let result = await axios.post(`${process.env.PUBLIC_URL}/api/pet/create`, {
       pet,
-      ownerID,
+      ownerID, // fil back bsh twalli idUser
     });
     dispatch({ type: ADD_PET, payload: result.data });
-    history.push(`${process.env.PUBLIC_URL}/petList`);
+    // history.push(`${process.env.PUBLIC_URL}/app/users/petList`); FAMMMA GHALTA HOUNIIIIIIIIIIII
   } catch (error) {
-    // console.log(error.response.data);
     dispatch({ type: FAIL_PET, payload: error.response.data });
   }
 };

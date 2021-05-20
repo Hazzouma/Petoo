@@ -35,7 +35,7 @@ export const register = (user, history) => async (dispatch) => {
     dispatch({ type: REGISTER_USER, payload: result.data.msg }); // payload : {msg}
     history.push(`${process.env.PUBLIC_URL}/login`);
   } catch (error) {
-    console.log(error.response.data);
+    // console.log(error.response.data);
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };

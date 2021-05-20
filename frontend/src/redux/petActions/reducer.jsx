@@ -8,7 +8,7 @@ const {
 const initialState = {
   load: false,
   pet: {},
-  errors: {},
+  errors: [],
   msg: "",
   pets: [],
 };
@@ -16,7 +16,7 @@ const initialState = {
 const petReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_PET:
-      if (typeof payload.msg === "String") {
+      if (typeof payload.msg === "string") {
         return {
           ...state,
           pet: payload.newPet,
@@ -24,9 +24,10 @@ const petReducer = (state = initialState, { type, payload }) => {
           msg: payload.msg,
           pets: state.pets.push(payload.newPet),
         };
-      } else {
-        return { ...state, load: false, errors: payload.errors };
       }
+    // } else {
+    //   return { ...state, load: false, errors: payload.errors };
+    // }
 
     case FAIL_PET:
       return { ...state, errors: payload.errors, load: false };
