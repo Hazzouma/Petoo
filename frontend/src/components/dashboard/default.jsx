@@ -26,6 +26,7 @@ import {
   VenterLoren,
   Done,
   JohnLoren,
+  Padding,
 } from "../../constant";
 import Slider from "react-slick";
 import { current, videErrors } from "../../redux/currentUser/action";
@@ -50,6 +51,7 @@ const Default = (props) => {
   };
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.currentUser.msg);
+  const {profilePicture} = useSelector((state) => state.currentUser.user);
 
   useEffect(() => {
     if (curHr < 12) {
@@ -75,7 +77,12 @@ const Default = (props) => {
 
     // eslint-disable-next-line
   }, [notification]);
-
+  if (navigator.onLine) {
+    console.log('online');
+  } else {
+    console.log('offline');
+  }
+  
   return (
     <Fragment>
       <Breadcrumb parent='Dashboard' title='Home' />
@@ -100,7 +107,7 @@ const Default = (props) => {
                 </div>
                 <div className='greeting-user text-center'>
                   <div className='profile-vector'>
-                    <img className='img-fluid' src={userImg} alt='' />
+                    <img className='img-fluid' src={profilePicture} style={{border: '3px solid white', width: "100px", height: "100px",borderRadius:'50%'}} alt='Profile Pic :)' />
                   </div>
                   <h4 className='f-w-600'>
                     <span id='greeting'>{daytimes}</span>{" "}
@@ -116,6 +123,17 @@ const Default = (props) => {
                       }
                     </span>
                   </p>
+                  <Row style={{display:'flex',justifyContent:'center', paddingBottom:'2.5%'}}>
+                  <div style={{padding:'1%'}}>
+                    <img  src="https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg" style={{border: '3px solid white',overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
+                  </div>
+                  <div style={{padding:'1%'}}>
+                    <img  src="https://jardinage.lemonde.fr/images/dossiers/2019-10/cacatoes-1-094044.jpg" style={{border: '3px solid white', overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
+                  </div>
+                  <div style={{padding:'1%'}}>
+                    <img src="https://timesofindia.indiatimes.com/photo/67586673.cms" style={{border: '3px solid white',overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
+                  </div>
+                  </Row>
                   <div className='whatsnew-btn'>
                     <a className='btn btn-primary' href='#javascript'>
                       {"Whats New !"}
@@ -124,95 +142,7 @@ const Default = (props) => {
                 </div>
               </CardBody>
             </Card>
-          </Col>
-
-          {/* Pet Profile Starts Here */}
-          {/* <Col xl='4 xl-50' lg='12'>
-            <Card className='custom-card'>
-              <CardHeader>
-                {/* In the src add the pet picture  */}
-          {/* <Media
-                  body
-                  className='img-fluid'
-                  src='https://wallpaperaccess.com/full/367799.jpg'
-                  alt=''
-                />
-              </CardHeader>
-              <div className='card-profile'>
-                <Media
-                  body
-                  className='rounded-circle'
-                  src='https://wallpaperaccess.com/full/367799.jpg'
-                  alt=''
-                />
-              </div>
-              <div className='text-center profile-details'>
-                <h4>Pet Name </h4>
-                <h6>The Pet Type </h6>
-              </div>
-              <CardFooter className='row'>
-                <Col sm='4 col-4'>
-                  <h6>Age</h6>
-                  <h5 className='counter'>18 months</h5>
-                </Col>
-                <Col sm='4 col-4'>
-                  <h6>Vacinated</h6>
-                  <h5>Yes </h5>
-                </Col>
-                <Col sm='4 col-4'>
-                  <h6> Last Vet Visit</h6>
-                  <h5> 20/ 20 /2020 </h5>
-                </Col>
-              </CardFooter>
-            </Card> */}
-          {/* </Col> */}
-          {/* Pet Profile Ends Here */}
-
-          {/* News Box Starts Here */}
-          <Col xl='6 xl-50' className='news box-col-6'>
-            <Card>
-              <CardHeader>
-                <div className='header-top'>
-                  <h5 className='m-0'>{NewsUpdate}</h5>
-                  <div className='card-header-right-icon'>
-                    <select className='button btn btn-primary'>
-                      <option>{Today}</option>
-                      <option>{Tomorrow}</option>
-                      <option>{Yesterday}</option>
-                    </select>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardBody className='p-0'>
-                <div className='news-update'>
-                  <h6>{"36% off For pixel lights Couslations Types."}</h6>
-                  <span>{"Lorem Ipsum is simply dummy..."}</span>
-                </div>
-                <div className='news-update'>
-                  <h6>{"We are produce new product this"}</h6>
-                  <span>
-                    {" "}
-                    {"Lorem Ipsum is simply text of the printing... "}
-                  </span>
-                </div>
-                <div className='news-update'>
-                  <h6>{"50% off For COVID Couslations Types."}</h6>
-                  <span>{"Lorem Ipsum is simply dummy..."}</span>
-                </div>
-              </CardBody>
-              <div className='card-footer'>
-                <div className='bottom-btn'>
-                  <a href='#javascript'>{"More..."}</a>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          {/* New Box Ends Here */}
-
-          {/* The Row containing BOTH Appointments and Best Seller Starts Here */}
-          <Col xl='6 xl-50' className='appointment-sec box-col-6'>
-            <Row>
-              {/* Appointments Box Starts Here */}
+          </Col>{/* Appointments Box Starts Here */}
               <Col xl='12' className='appointment'>
                 <Card>
                   <CardHeader className='card-no-border'>
@@ -284,9 +214,53 @@ const Default = (props) => {
                 </Card>
               </Col>
               {/* Appointments Box Ends Here */}
+          <Col xl='6'>
+            <Card>
+              <CardHeader>
+                <div className='header-top'>
+                  <h5 className='m-0'>{NewsUpdate}</h5>
+                  <div className='card-header-right-icon'>
+                    <select className='button btn btn-primary'>
+                      <option>{Today}</option>
+                      <option>{Tomorrow}</option>
+                      <option>{Yesterday}</option>
+                    </select>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardBody className='p-0'>
+                <div className='news-update'>
+                  <h6>{"36% off For pixel lights Couslations Types."}</h6>
+                  <span>{"Lorem Ipsum is simply dummy..."}</span>
+                </div>
+                <div className='news-update'>
+                  <h6>{"We are produce new product this"}</h6>
+                  <span>
+                    {" "}
+                    {"Lorem Ipsum is simply text of the printing... "}
+                  </span>
+                </div>
+                <div className='news-update'>
+                  <h6>{"50% off For COVID Couslations Types."}</h6>
+                  <span>{"Lorem Ipsum is simply dummy..."}</span>
+                </div>
+              </CardBody>
+              <div className='card-footer'>
+                <div className='bottom-btn'>
+                  <a href='#javascript'>{"More..."}</a>
+                </div>
+              </div>
+            </Card>
+          </Col>
+          {/* New Box Ends Here */}
+
+          {/* The Row containing BOTH Appointments and Best Seller Starts Here */}
+          <Col xl='6 xl-50' className='appointment-sec box-col-6'>
+            <Row>
+              
 
               {/* best Seller Box Starts Here */}
-              <Col xl='12'>
+              <Col xl='12 xl-50' className='news box-col-6'>
                 <Card className='offer-box'>
                   <CardBody className='p-0'>
                     <div className='offer-slider'>
@@ -428,11 +402,16 @@ const Default = (props) => {
                 </Card>
               </Col>
               {/* best Seller Box Ends Here */}
+              
             </Row>
+
           </Col>
+          
           {/* The Row containing BOTH Appointments and Best Seller Ends Here */}
         </Row>
+        
       </Container>
+      
     </Fragment>
   );
 };
