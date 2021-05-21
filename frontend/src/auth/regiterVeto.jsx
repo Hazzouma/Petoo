@@ -2,11 +2,12 @@ import React, { Fragment } from 'react';
 import { Link} from "react-router-dom";
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Button,Form,FormGroup,Label,Input} from 'reactstrap'
 import {Submit,Cancel,} from '../../src/constant/index'
+import background from '../assets/images/background.png'
 
 const registerVet = () => {
   return (
     <Fragment >
-      <Container style={{backgroundImage: "url(" + "https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?size=626&ext=jpg" + ")", backgroundPosition: 'center',
+      <Container style={{backgroundImage: `url(${background})`, backgroundPosition: 'center',
                           backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}} fluid={true}>
         <Row  className="justify-content-md-center" >
           <Col sm={8}>
