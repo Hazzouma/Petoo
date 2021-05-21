@@ -137,7 +137,6 @@ import VetoList from "../components/users/vetoList";
 import VetCard from "../components/users/vetCard";
 import PetList from "../components/users/petList";
 import CreateShop from "../components/users/createShop";
-import CreateVet from "../components/users/createVet";
 import CreatePet from "../components/users/createPet";
 import UserProfile from "../components/users/userProfile";
 
@@ -328,7 +327,6 @@ export const routes = [
   { path: "/app/users/vetCard", Component: VetCard },
   { path: "/app/users/petList", Component: PetList },
   { path: "/app/users/CreateShop", Component: CreateShop },
-  { path: "/app/users/CreateVet", Component: CreateVet },
   { path: "/app/users/CreatePet", Component: CreatePet },
   { path: "/app/users/userProfile", Component: UserProfile },
 

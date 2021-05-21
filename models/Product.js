@@ -7,12 +7,13 @@ idShop: { type: String, required: true },
 name:{type: String, required: true},
 color:{type: String, default:""},
 description:{type: String, default:""},
-price:{type: Number, required: true},
+price:{type: String, required: true},
 brand:{type: String, default:""},
-promoPrice:{type: Number, default: promo},
+promoPrice:{type: String, default: ""},
 productType:{type: String, default: ""}, //Food, accessoire, jeu.....
 
 })
 
 
-module.exports = Product = model("product", productSchema);
+const productModel = mongoose.model("Product", productSchema);
+module.exports = productModel;

@@ -17,7 +17,7 @@ exports.creationPet = () => [
     min: 6,
   }),
   check("pet.isVaccined", "Please check if your pet is vaccinated!").notEmpty(),
-  check("pet.vaccines", "Please vaccin and the date").isArray(),
+  check("pet.vaccines", "Please add the vaccin and the date").isArray(),
 ];
 
 exports.validationPet = (req, res, next) => {

@@ -186,11 +186,7 @@ export const MENUITEMS = [
             type: "link",
             title: "Create Shop ",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/users/createVet`,
-            type: "link",
-            title: "Create/ Become a Vet ",
-          },
+          
           {
             path: `${process.env.PUBLIC_URL}/app/users/createPet`,
             type: "link",
