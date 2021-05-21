@@ -107,6 +107,11 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
+            path: `${process.env.PUBLIC_URL}/app/ecommerce/createProduct`,
+            title: "Create Product",
+            type: "link",
+          },
+          {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/product`,
             title: "Product",
             type: "link",

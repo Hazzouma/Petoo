@@ -31,7 +31,7 @@ import RegisterWithBgVideo from "./pages/authentication/registerWithBgVideo";
 import UnlockUser from "./pages/authentication/unlockUser";
 import Forgetpwd from "./pages/authentication/forgetpwd";
 import Resetpwd from "./pages/authentication/resetpwd";
-import registerVet from "./auth/registerVet/registerVet";
+import registerVet from "./auth/regiterVeto";
 
 
 // Error page

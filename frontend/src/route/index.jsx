@@ -177,6 +177,8 @@ import OrderHistory from "../components/application/ecommerce-app/orderHistory";
 import Checkout from "../components/application/ecommerce-app/checkout";
 import Invoice from "../components/application/ecommerce-app/invoice";
 import Pricing from "../components/application/ecommerce-app/pricing";
+import createProduct from "../components/application/ecommerce-app/createProduct/createProduct";
+
 
 // Email
 import Email from "../components/application/email-app/emailDefault";
@@ -356,6 +358,8 @@ export const routes = [
   { path: "/app/ecommerce/payment-details", Component: Paymentdetails },
   { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
   { path: "/app/ecommerce/pricing", Component: Pricing },
+  { path: "/app/ecommerce/createProduct", Component: createProduct },
+
 
   { path: "/app/email-app", Component: Email },
   { path: "/app/chat-app", Component: Chat },
