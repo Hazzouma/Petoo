@@ -39,14 +39,12 @@ const Birthdate = (props) => {
                             <Label className="col-form-label">About</Label>
                             <Input className="form-control" type="text" placeholder="About" />
                     </Col>
-
-                    
                         </Row>
-                        <Button color="primary"  className="pull-right" onClick={submitFun}>{Submit}</Button>
                         
                     </Form>
                 </Col>
             </Row>
+            <Button color="primary"  className="pull-right" onClick={submitFun}>{Submit}</Button>
         </Fragment>
     );
 };

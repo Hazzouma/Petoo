@@ -7,17 +7,17 @@ const passwordHash = require("password-hash");
 //register
 exports.VetRegister = async (req, res) => {
   try {
-    let { email } = req.body;
+    let { email, CIN } = req.body;
     email = email.toLowerCase();
-    const foundOwner = await ownerModel.findOne({ email });
-    if (foundOwner)
-      return res.status(400).send({ errors: [{ msg: "Email already exist" }] });
+    const foundOwnerByEmail = await ownerModel.findOne({ email });
+    const foundOwnerByCIN = await ownerModel.findOne({ CIN });
+    if (foundOwnerByEmail || foundOwnerByCIN)
+      //email and cin are unique
+      return res.status(400).send({ errors: [{ msg: "Vet already exist" }] });
 
     let newVeto = new ownerModel({ ...req.body });
     newVeto.idUser = uniqid("Veto-"); //Create specific Id for Veto, not the mongoDB one
     newVeto.password = passwordHash.generate(newVeto.password); //crypt password
-
-    console.log(newVeto);
 
     await newVeto.save();
 
@@ -48,13 +48,13 @@ exports.VetLogin = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: foundVet.idVet,
+        id: foundVet.idUser,
       },
       process.env.SECRET_KEY,
       { expiresIn: "3h" }
     );
 
-    res.status(200).json({ msg: `Veto logged`, foundVet, token });
+    res.status(200).json({ msg: `User logged`, foundVet, token });
   } catch (error) {
     res.status(500).send({ errors: [{ msg: "Can not login!" }] });
   }

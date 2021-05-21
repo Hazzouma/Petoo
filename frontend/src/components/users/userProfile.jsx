@@ -10,8 +10,6 @@ import {
 } from "reactstrap";
 import {useSelector} from 'react-redux';
 const UserProfile = (props) => {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
 
 
 

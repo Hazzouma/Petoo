@@ -177,6 +177,9 @@ const Register = ({ history }) => {
                       {SignIn}
                     </Link>
                   </p>
+                  <Link className='ml-2' to='/registerVet'>
+                          <button type="button" class="btn btn-info">Create a Vet Account</button>
+                          </Link>
                 </Form>
               </div>
             </div>

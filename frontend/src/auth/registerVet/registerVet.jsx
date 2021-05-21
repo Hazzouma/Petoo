@@ -2,9 +2,10 @@ import React, { Fragment } from 'react';
 import Breadcrumb from '../../../src/layout/breadcrumb'
 import StepZilla from "react-stepzilla";
 import Registration from './registration';
+import { Link} from "react-router-dom";
 import Email from './email';
 import Birthdate from './birthdate';
-import {Container,Row,Col,Card,CardHeader,CardBody} from 'reactstrap'
+import {Container,Row,Col,Card,CardHeader,CardBody, Button} from 'reactstrap'
 import { FormWizardWithIcon } from "../../constant/index";
 
 const registerVet = () => {
@@ -33,10 +34,17 @@ const registerVet = () => {
                                 stepsNavigation={true}
                                 prevBtnOnLastStep={true}
                                 dontValidate={true} />
+                                <Link className='ml-2' to='/register'>
+                        <Button color="danger"  className="pull-right" >Cancel</Button>
+                        </Link>
                             </CardBody>
+                            
                         </Card>
+                        
                     </Col>
+                    
                 </Row>
+                
             </Container>
 
 
