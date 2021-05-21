@@ -42,7 +42,7 @@ export const register = (user, history) => async (dispatch) => {
 
 // logout
 export const logout = (history) => {
-  history.push(`${process.env.PUBLIC_URL}/login`);
+  window.location.href = `${process.env.PUBLIC_URL}/login`;
   return {
     type: LOGOUT_USER,
   };
