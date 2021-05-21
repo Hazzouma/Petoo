@@ -7,14 +7,15 @@ const passwordHash = require("password-hash");
 //register
 exports.ShopRegister = async (req, res) => {
   try {
-    let { email, taxNumber} = req.body;
+    let { email, taxNumber, shopName} = req.body;
     email = email.toLowerCase();
     //Shop related
     const foundShopByEmail = await shopModel.findOne({ email });
-    const foundShopByTaxNumber = await shopModel.findOne({ taxNumber });$
+    const foundShopByTaxNumber = await shopModel.findOne({ taxNumber });
+    const foundShopByShopName = await shopModel.findOne({ shopName });$
 
     
-    if (foundShopByEmail || foundShopByTaxNumber )
+    if (foundShopByEmail || foundShopByTaxNumber ||foundShopByShopName)
       //email and cin and proNumber are unique
       return res.status(400).send({ errors: [{ msg: "Shop already exist" }] });
 
