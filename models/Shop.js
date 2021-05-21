@@ -8,7 +8,7 @@ email:{type:String, required:true, unique:true},
 password:{type:String, required:true},
 phoneNumber:{type:Number, required:true},
 taxNumber:{type:Number, required:true},
-adress:{type:String, required:true},
+adresse:{type:String, required:true},
 ville:{type:String, required:true},
 codePostale:{type:Number, required:true},
 shippingFees:{type:Number, default:0},
@@ -20,12 +20,11 @@ legalContact:{
     nom:{type: String, required: true},
     prenom:{type: String, required: true},
     email:{type:String, required:true, unique:true},
-    password:{type:String, required:true},
     phoneNumber:{type:Number, required:true},
-    adress:{type:String, required:true},
+    adresse:{type:String, required:true},
     ville:{type:String, required:true},
     codePostale:{type:Number, required:true},
-    cin:{type:Number, required:true}
+    CIN:{type:Number, required:true}
 
 },
 role:{ type: String, default: "shop" }
@@ -33,4 +32,7 @@ role:{ type: String, default: "shop" }
 })
 
 
-module.exports = Shop = model("shop", shopSchema);
+
+
+const shopModel = mongoose.model("Shop", shopSchema);
+module.exports = shopModel;

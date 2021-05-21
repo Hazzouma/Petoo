@@ -104,7 +104,7 @@ const Logins = (props) => {
                       />
                       <img
                         className='img-fluid for-dark'
-                        src={require("../assets/images/logo/logo_dark.png")}
+                        src={require("../assets/images/logo/login.png")}
                         alt=''
                       />
                     </a>

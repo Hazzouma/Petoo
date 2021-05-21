@@ -179,7 +179,7 @@ const Sidebar = (props) => {
             />
             <img
               className='img-fluid for-dark'
-              src={require("../../assets/images/logo/logo_dark.png")}
+              src={require("../../assets/images/logo/logo.png")}
               alt=''
             />
           </Link>
