@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Button,
-} from "reactstrap";
-import {
+import {Container,Row,Col,Button, Modal, ModalHeader, ModalBody, ModalFooter,Form, FormGroup, Label, Input} from 'reactstrap'
+
+import {SaveChanges,Close,ModalTitle,
   Password,
   SignIn,
   EmailAddress,
@@ -31,6 +23,10 @@ const Register = ({ history }) => {
   // const handleChange = (e) => {
   //   setPassword(e.target.value);
   // };
+  const toggle = () => setModal(!modal);
+  const Scrollmodaltoggle = () => setscrollingModal(!scrollingmodal);
+  const [modal, setModal] = useState(false);
+  const [scrollingmodal, setscrollingModal] = useState(false);
   const [userRegister, setUserRegister] = useState({});
   const getUserRegister = (e) =>
     setUserRegister({ ...userRegister, [e.target.name]: e.target.value });
@@ -143,10 +139,35 @@ const Register = ({ history }) => {
                   </FormGroup>
                   <div className='form-group mb-0'>
                     <div className='checkbox ml-3'>
+                <Modal isOpen={scrollingmodal} toggle={Scrollmodaltoggle}>
+                      <ModalHeader toggle={Scrollmodaltoggle}>
+                      Privacy Policy
+                      </ModalHeader>
+                      <ModalBody>
+                        <p>{"Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."}</p>
+                        <p>{"Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."}</p>
+                        <p>{"Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."}</p>
+                        <p>{"Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."}</p>
+                        <p>{"Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."}</p>
+                        <p>{"Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."}</p>
+                        <p>{"Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."}</p>
+                        <p>{"Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."}</p>
+                        <p>{"Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."}</p>
+                        <p>{"Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."}</p>
+                        <p>{"Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."}</p>
+                        <p>{"Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."}</p>
+                      </ModalBody>
+                      <div class="col-md-12 text-center">
+                      <ModalFooter>
+                        
+                        <Button type="button" class="btn btn-primary" color="primary"   onClick={Scrollmodaltoggle}>Accept</Button>
+                      </ModalFooter>
+                      </div>
+                </Modal>
                       <Input id='checkbox1' type='checkbox' required='' />
                       <Label className='text-muted' for='checkbox1'>
                         {"Agree with"}
-                        <a className='ml-2' href='#javascript'>
+                        <a className='ml-2' onClick={Scrollmodaltoggle}>
                           {PrivacyPolicy}
                         </a>
                       </Label>
