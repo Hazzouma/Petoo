@@ -99,8 +99,12 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const VALIDATE_OTP = "VALIDATE_OTP";
 export const VIDE_ERRORS = "VIDE_ERRORS";
 
-/* PetActions */
+/* PET ACTIONS */
 export const ADD_PET = "ADD_PET";
 export const FAIL_PET = "FAIL_PET";
 export const LOAD_PET = "LOAD_PET";
 export const VIDE_ERRORS_MSG = "VIDE_ERRORS_MSG";
+
+/* NOTIFICATIONS */
+export const FAIL_NOTIF = "FAIL_NOTIF";
+export const MARK_READ_NOTIF = "MARK_READ_NOTIF";

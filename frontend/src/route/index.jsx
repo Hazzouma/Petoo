@@ -177,7 +177,7 @@ import OrderHistory from "../components/application/ecommerce-app/orderHistory";
 import Checkout from "../components/application/ecommerce-app/checkout";
 import Invoice from "../components/application/ecommerce-app/invoice";
 import Pricing from "../components/application/ecommerce-app/pricing";
-import createProduct from "../components/application/ecommerce-app/createProduct/createProduct";
+import createProduct from "../components/application/ecommerce-app/createProduct";
 
 
 // Email

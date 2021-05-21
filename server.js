@@ -6,6 +6,7 @@ const cors = require("cors");
 const ownerRoute = require("./routes/ownerRoute");
 const routerVet = require("./routes/vetRoute");
 const petRoute = require("./routes/petRoute");
+const notifOwner = require("./routes/notifRouter");
 //environement
 require("dotenv").config({ path: "./config/.env" });
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use("/api", ownerRoute);
 app.use("/api/vet", routerVet);
 app.use("/api/pet", petRoute);
+app.use("/api/notif", notifOwner);
 
 //cors
 // if (process.env.NODE_ENVIRONMENT === "dev") {

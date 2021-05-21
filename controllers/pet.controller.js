@@ -103,6 +103,6 @@ exports.PetEdit = async (req, res) => {
     res.status(200).send({ msg: "Contact edited successfully", newData });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Cant' edit the Data");
+    res.status(500).send({ errors: [{ msg: "Can not modify Pet!" }] });
   }
 };

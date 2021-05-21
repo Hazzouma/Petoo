@@ -7,12 +7,14 @@ const passwordHash = require("password-hash");
 //register
 exports.VetRegister = async (req, res) => {
   try {
-    let { email, CIN } = req.body;
+    let { email, CIN, proNumber } = req.body;
     email = email.toLowerCase();
     const foundOwnerByEmail = await ownerModel.findOne({ email });
     const foundOwnerByCIN = await ownerModel.findOne({ CIN });
-    if (foundOwnerByEmail || foundOwnerByCIN)
-      //email and cin are unique
+    const foundOwnerByProNumber = await ownerModel.findOne({ proNumber });
+
+    if (foundOwnerByEmail || foundOwnerByCIN || foundOwnerByProNumber)
+      //email and cin and proNumber are unique
       return res.status(400).send({ errors: [{ msg: "Vet already exist" }] });
 
     let newVeto = new ownerModel({ ...req.body });
@@ -21,7 +23,9 @@ exports.VetRegister = async (req, res) => {
 
     await newVeto.save();
 
-    res.status(200).json({ msg: `Professional account created successfully!` });
+    res
+      .status(200)
+      .json({ msg: `Professional account created successfully!`, newVeto });
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not register Veto!" }] });
@@ -51,7 +55,7 @@ exports.VetLogin = async (req, res) => {
         id: foundVet.idUser,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "3h" }
+      { expiresIn: "24h" }
     );
 
     res.status(200).json({ msg: `User logged`, foundVet, token });

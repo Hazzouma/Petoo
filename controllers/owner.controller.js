@@ -48,7 +48,7 @@ exports.Login = async (req, res) => {
         id: foundOwner.idUser,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "3h" }
+      { expiresIn: "8h" }
     );
 
     res.status(200).json({ msg: `Owner logged`, foundOwner, token });
