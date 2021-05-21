@@ -5,8 +5,9 @@ import {Submit,Cancel,} from '../../src/constant/index'
 
 const registerVet = () => {
   return (
-    <Fragment>
-      <Container fluid={true}>
+    <Fragment >
+      <Container style={{backgroundImage: "url(" + "https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?size=626&ext=jpg" + ")", backgroundPosition: 'center',
+                          backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}} fluid={true}>
         <Row  className="justify-content-md-center" >
           <Col sm={8}>
             <Card>
