@@ -1,13 +1,23 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table } from 'reactstrap'
-import {DDMMYY,Designer,MarkJecno} from '../../constant'
+import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
+import {DDMMYY,Designer,MarkJecno, ModalTitle,Close,SaveChanges,} from '../../constant'
 import {  UsersTableHeader,Edit,Update,Delete} from '../../constant/index'
 import axios from 'axios'
+import DatePicker from "react-datepicker";
 
 
 
 const PetProfile = (props) => {
+  const [startDate, setstartDate] = useState(new Date()); //Date picker related
+  const handleChange = (date) => {
+    //Date Picker related
+    setstartDate(date);
+  };
+
+  const [modal, setModal] = useState(false); // Modal Related
+  const toggle = () => setModal(!modal);  // Modal Related
+
   const [data,setData] = useState([])
 
 useEffect(() => {
@@ -87,19 +97,94 @@ useEffect(() => {
                           </div>
                         </Col>
                       </Row>
+                      
                     </Col>
                   </Row>
+                  {/* Modal Starts Here */}
+                  <Button color="primary"
+                      onClick={toggle}
+                      >Edit Pet</Button>
+                      <Modal isOpen={modal} toggle={toggle} >
+                        <ModalHeader toggle={toggle}>Edit My Pet</ModalHeader>
+                        <ModalBody>
+                        
+                        <FormGroup>
+                        <Label className='form-label'>Name</Label>
+                        <Input
+                          className='form-control'
+                          type='text'
+                          placeholder='Name'
+                        />
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label className='form-label'>Distinguishing Mark</Label>
+                        <Input
+                          className='form-control'
+                          type='text'
+                          placeholder='Name'
+                        />
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label className='form-label'>Color</Label>
+                        <Input
+                          className='form-control'
+                          type='text'
+                          placeholder='Name'
+                        />
+                      </FormGroup>
+
+                      <Col>
+                    <FormGroup className='m-t-15 custom-radio-ml'>
+                      <div className='radio radio-primary'>
+                        <Input
+                          id='radio11'
+                          type='radio'
+                          name='radio1'
+                          value='option1'
+                          //onClick={() => setGender("Male")}
+                        />
+                        <Label for='radio11'>Male</Label>
+                      </div>
+                      <div className='radio radio-secondary'>
+                        <Input
+                          id='radio22'
+                          type='radio'
+                          name='radio1'
+                          value='option1'
+                          //onClick={() => setGender("Female")}
+                        />
+                        <Label for='radio22'>Female</Label>
+                      </div>
+                    </FormGroup>
+                  </Col>
+                        
+                        <FormGroup>
+                    <Label className='form-label'>Date Of Birth</Label>
+                    {/* Date Picker */}
+                      <FormGroup className='form-row'>
+                        <div className='input-group'>
+                          <DatePicker
+                            className='form-control digits'
+                            selected={startDate}
+                            onChange={(e) => handleChange(e)}
+                          />
+                      </div>
+                      </FormGroup>
+                      </FormGroup>
+                      
+
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button color="primary" onClick={toggle}>{Close}</Button>
+                        <Button color="secondary" onClick={toggle}>{SaveChanges}</Button>
+                        </ModalFooter>
+                    </Modal>
+                    {/* Modal Ends Here */}
                   <hr />
 
-                  {/* <div className="social-media step4" data-intro="This is your Social details">
-                    <ul className="list-inline">
-                      <li className="list-inline-item"><a href="#javascript"><i className="fa fa-facebook"></i></a></li>
-                      <li className="list-inline-item"><a href="#javascript"><i className="fa fa-google-plus"></i></a></li>
-                      <li className="list-inline-item"><a href="#javascript"><i className="fa fa-twitter"></i></a></li>
-                      <li className="list-inline-item"><a href="#javascript"><i className="fa fa-instagram"></i></a></li>
-                      <li className="list-inline-item"><a href="#javascript"><i className="fa fa-rss"></i></a></li>
-                    </ul>
-                  </div> */}
+               
                   <div className="follow">
                     <Row>
                       <Col col="6" className="text-md-right border-right">
@@ -118,7 +203,7 @@ useEffect(() => {
 
           {/* Allergies Starts Here  */}
             <Col sm={8} xl="12">
-            <Card sm={8}  >
+            <Card  >
               <CardHeader>
                 <h5>Known Allergies</h5>
               </CardHeader>

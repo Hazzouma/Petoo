@@ -37,7 +37,16 @@ import {
   Country,
   City,
 } from "../../constant";
+import DatePicker from "react-datepicker";
+
+
 const UserEdit = (props) => {
+  const [startDate, setstartDate] = useState(new Date()); //Date picker related
+  const handleChange = (date) => {
+    //Date Picker related
+    setstartDate(date);
+  };
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -148,7 +157,7 @@ const UserEdit = (props) => {
                         <Input
                           className='form-control'
                           type='text'
-                          placeholder='Company'
+                          placeholder='First Nae'
                         />
                       </FormGroup>
                     </Col>
@@ -182,7 +191,7 @@ const UserEdit = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col sm='6' md='4'>
+                    <Col sm='6' md='6'>
                       <FormGroup>
                         <Label className='form-label'>{City}</Label>
                         <Input
@@ -192,7 +201,7 @@ const UserEdit = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col sm='6' md='3'>
+                    <Col sm='6' md='6'>
                       <FormGroup>
                         <Label className='form-label'>{PostalCode}</Label>
                         <Input
@@ -202,7 +211,21 @@ const UserEdit = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md='5'></Col>
+                    <Col md='12'>
+                      <FormGroup className='form-row'>
+                      <Label className='form-label'>Date of Birth</Label>
+                      
+                        <div className='input-group'>
+                          <DatePicker
+                            className='form-control digits'
+                            selected={startDate}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        
+                      </div>
+                    </FormGroup>
+                  
+                  </Col>
                   </Row>
                 </CardBody>
                 <CardFooter className='text-right'>
