@@ -4341,6 +4341,7 @@
         .col-6 {
           &:first-child {
             display: block;
+            
 
             h3 {
               padding-right: 0;
@@ -4365,7 +4366,8 @@
     }
 
     .profile-nav {
-      display: none !important;
+      display: block;
+    position: relative;
     }
 
     .page-body-wrapper {
@@ -6037,9 +6039,11 @@
   .onhover-dropdown {
     &:hover {
       .onhover-show-div {
-        opacity: 0;
-        transform: none;
-        visibility: hidden;
+        opacity: 1;
+        transform: translateY(0px);
+        visibility: visible;
+        border-radius: 5px;
+        overflow: hidden;
 
         &.active {
           opacity: 1;
@@ -6060,17 +6064,19 @@
 
             &.profile-dropdown,
             &.chat-dropdown,
-            &.notification-dropdown {
+            &.notification-dropdown, 
+            &.cart-dropdown{
               width: calc(100vw - 30px);
               position: fixed;
               top: 60px;
-              left: 15px !important;
+              left: 15px ;
             }
           }
         }
 
         .profile-dropdown {
-          top: 43px;
+          top: 50px;
+
         }
       }
     }
