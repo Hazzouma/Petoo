@@ -87,9 +87,9 @@ const Default = (props) => {
     <Fragment>
       <Breadcrumb parent='Dashboard' title='Home' />
       <Container fluid={true}>
-        <Row className='second-chart-list third-news-update'>
+        <Row className='second-chart-list third-news-update justify-content-md-center ' >
           {/* Good Morning Components */}
-          <Col xl='12 xl-50' lg='12' className='morning-sec box-col-12'>
+          <Col xl='8 xl-10' lg='12' className='morning-sec box-col-12'>
             <Card className='o-hidden profile-greeting'>
               <CardBody>
                 <div className='media'>
@@ -188,7 +188,7 @@ const Default = (props) => {
                             <td>
                               <img
                                 className='img-fluid img-40 rounded-circle'
-                                src={require("../../assets/images/appointment/app-ent.jpg")}
+                                src={require("../../assets/images/appointment/app-ent.jpg").default}
                                 alt=''
                               />
                               <div className='status-circle bg-primary'></div>
@@ -293,7 +293,7 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png")}
+                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
                                       alt='...'
                                     />
                                   </div>
@@ -332,7 +332,7 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png")}
+                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
                                       alt='...'
                                     />
                                   </div>
@@ -374,7 +374,7 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png")}
+                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
                                       alt='...'
                                     />
                                   </div>
