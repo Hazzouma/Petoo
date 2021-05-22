@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { getALLNotif } from "../../redux/notification/action";
 // import man from "../../assets/images/dashboard/profile.jpg";
 import {
   FileText,
@@ -93,10 +94,10 @@ const Rightbar = (props) => {
     setLanguage(key);
     setSelected(key);
   };
-  const { prenom, role ,profilePicture} = useSelector((state) => state.currentUser.user);
-  useEffect(() => {
-
-  }, []);
+  const { prenom, role, profilePicture } = useSelector(
+    (state) => state.currentUser.user
+  );
+  useEffect(() => {}, []);
 
   // const Logout_From_Firebase = () => {
   //   localStorage.removeItem("profileURL");
@@ -159,7 +160,7 @@ const Rightbar = (props) => {
     }
   };
 
-/*   const LanguageSelection = (language) => {
+  /*   const LanguageSelection = (language) => {
     if (language) {
       setLangdropdown(!language);
     } else {
@@ -177,6 +178,13 @@ const Rightbar = (props) => {
       document.body.className = "dark-only";
       localStorage.setItem("layout_version", "dark-only");
     }
+  };
+  const notificationId = useSelector(
+    (state) => state.currentUser.user.notificationId
+  );
+  const idUser = useSelector((state) => state.currentUser.user.idUser);
+  const getAllNotifs = () => {
+    dispatch(getALLNotif(idUser));
   };
   const user = useSelector((state) => state.userReducer.user);
   return (
@@ -296,7 +304,10 @@ const Rightbar = (props) => {
                 </p>
               </li>
               <li>
-                <button className='btn btn-primary'>
+                <button
+                  className='btn btn-primary'
+                  onClick={() => getAllNotifs()}
+                >
                   {CheckAllNotification}
                 </button>
               </li>
@@ -522,11 +533,7 @@ const Rightbar = (props) => {
           </li>
           <li className='profile-nav onhover-dropdown p-0'>
             <div className='media profile-media'>
-              <img
-                className='b-r-10'
-                src={profilePicture}
-                alt=''
-              />
+              <img className='b-r-10' src={profilePicture} alt='' />
               <div className='media-body'>
                 {/* <span>{authenticated ? user.nom : user.nom}</span> */}
                 <span>{prenom}</span>

@@ -7,8 +7,8 @@ const ownerRoute = require("./routes/ownerRoute");
 const routerVet = require("./routes/vetRoute");
 const petRoute = require("./routes/petRoute");
 const notifOwner = require("./routes/notifRouter");
-const routerShop = require("./routes/shopRoute")
-const routerProduct = require ('./routes/productRoute')
+const routerShop = require("./routes/shopRoute");
+const routerProduct = require("./routes/productRoute");
 //environement
 require("dotenv").config({ path: "./config/.env" });
 

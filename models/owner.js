@@ -18,7 +18,7 @@ const ownerSchema = new Schema({
   profilePicture: { type: String, default: "" },
   ownedPets: { type: Array, default: [] },
   OTP: { type: String, default: "" },
-  notificationId: { type: Array, default: [] }, //
+  notificationId: { type: Array, default: [] }, // table of notifs
   orderId: { type: Array, default: [] }, //
   role: { type: String, default: "petOwner" },
   CIN: { type: String, default: "", length: 8 }, // vet realted

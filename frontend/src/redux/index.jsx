@@ -13,6 +13,7 @@ import Projectapp from "./project-app/reducer";
 import userReducer from "./authentification/reducer";
 import currentUser from "./currentUser/reducer";
 import petReducer from "./petActions/reducer";
+import notifReducer from "./notification/reducer";
 
 const reducers = combineReducers({
   Todoapp,
@@ -27,8 +28,9 @@ const reducers = combineReducers({
   Taskapp,
   Projectapp,
   userReducer, //authentification
-  currentUser,// current user when logged
-  petReducer// pet manipulation reducer
+  currentUser, // current user when logged
+  petReducer, // pet manipulation reducer
+  notifReducer, //notification reducer
 });
 
 export default reducers;
