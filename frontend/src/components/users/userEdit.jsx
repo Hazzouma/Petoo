@@ -15,32 +15,15 @@ import {
   Input,
 } from "reactstrap";
 import axios from "axios";
-import {
-  MyProfile,
-  Bio,
-  MarkJecno,
-  Designer,
-  Password,
-  Website,
-  Save,
-  EditProfile,
-  Company,
-  Username,
-  UsersCountryMenu,
-  AboutMe,
-  UpdateProfile,
-  FirstName,
-  LastName,
-  Address,
-  EmailAddress,
-  PostalCode,
-  Country,
-  City,
-} from "../../constant";
+import { Save,} from "../../constant";
 import DatePicker from "react-datepicker";
+import {useSelector} from 'react-redux';
+
 
 
 const UserEdit = (props) => {
+  const { prenom,profilePicture, role,nom,email,dateNaissance,adresse,ville,codePostale,phoneNumber,bio } = useSelector((state) => state.currentUser.user);
+
   const [startDate, setstartDate] = useState(new Date()); //Date picker related
   const handleChange = (date) => {
     //Date Picker related
@@ -65,7 +48,7 @@ const UserEdit = (props) => {
             <Col xl='4'>
               <Card>
                 <CardHeader>
-                  <h4 className='card-title mb-0'>{MyProfile}</h4>
+                  <h4 className='card-title mb-0'>MyProfile</h4>
                   <div className='card-options'>
                     <a className='card-options-collapse' href='#javascript'>
                       <i className='fe fe-chevron-up'></i>
@@ -82,16 +65,16 @@ const UserEdit = (props) => {
                         <Media
                           className='img-70 rounded-circle'
                           alt=''
-                          src={require("../../assets/images/user/7.jpg")}
+                          src={profilePicture}
                         />
                       </div>
                       <Col>
-                        <h3 className='mb-1'>{MarkJecno}</h3>
-                        <p className='mb-4'>{Designer}</p>
+                        <h3 className='mb-1'>{nom}</h3>
+                        <p className='mb-4'>{role}</p>
                       </Col>
                     </Row>
                     <FormGroup>
-                      <h6 className='form-label'>{Bio}</h6>
+                      <h6 className='form-label'>Bio</h6>
                       <Input
                         type='textarea'
                         className='form-control'
@@ -100,15 +83,15 @@ const UserEdit = (props) => {
                       />
                     </FormGroup>
                     <FormGroup>
-                      <Label className='form-label'>{EmailAddress}</Label>
+                      <Label className='form-label'>Email Adresss</Label>
                       <Input
                         className='form-control'
-                        placeholder='your-email@domain.com'
+                        placeholder={email}
                       />
                     </FormGroup>
 
                     <FormGroup>
-                      <Label className='form-label'>{Password}</Label>
+                      <Label className='form-label'>Password</Label>
                       <Input
                         className='form-control'
                         type='password'
@@ -139,7 +122,7 @@ const UserEdit = (props) => {
             <Col xl='8'>
               <Form className='card'>
                 <CardHeader>
-                  <h4 className='card-title mb-0'>{EditProfile}</h4>
+                  <h4 className='card-title mb-0'>EditProfile</h4>
                   <div className='card-options'>
                     <a className='card-options-collapse' href='#javascript'>
                       <i className='fe fe-chevron-up'></i>
@@ -153,61 +136,61 @@ const UserEdit = (props) => {
                   <Row>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{FirstName}</Label>
+                        <Label className='form-label'>FirstName</Label>
                         <Input
                           className='form-control'
                           type='text'
-                          placeholder='First Nae'
+                          placeholder={nom}
                         />
                       </FormGroup>
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{LastName}</Label>
+                        <Label className='form-label'>LastName</Label>
                         <Input
                           className='form-control'
                           type='text'
-                          placeholder='Last Name'
+                          placeholder={prenom}
                         />
                       </FormGroup>
                     </Col>
                     <Col md='12'>
                       <FormGroup>
-                        <Label className='form-label'>E-Adress</Label>
+                        <Label className='form-label'>Phone Number</Label>
                         <Input
                           className='form-control'
                           type='email'
-                          placeholder='Email Address'
+                          placeholder={phoneNumber}
                         />
                       </FormGroup>
                     </Col>
                     <Col md='12'>
                       <FormGroup>
-                        <Label className='form-label'>{Address}</Label>
+                        <Label className='form-label'>Adresse</Label>
                         <Input
                           className='form-control'
                           type='text'
-                          placeholder='Home Address'
+                          placeholder={adresse}
                         />
                       </FormGroup>
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{City}</Label>
+                        <Label className='form-label'>City</Label>
                         <Input
                           className='form-control'
                           type='text'
-                          placeholder='City'
+                          placeholder={ville}
                         />
                       </FormGroup>
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{PostalCode}</Label>
+                        <Label className='form-label'>Postal Code</Label>
                         <Input
                           className='form-control'
                           type='number'
-                          placeholder='ZIP Code'
+                          placeholder={codePostale}
                         />
                       </FormGroup>
                     </Col>
@@ -220,6 +203,7 @@ const UserEdit = (props) => {
                             className='form-control digits'
                             selected={startDate}
                             onChange={(e) => handleChange(e)}
+                            placeholder={dateNaissance}
                           />
                         
                       </div>
@@ -230,7 +214,7 @@ const UserEdit = (props) => {
                 </CardBody>
                 <CardFooter className='text-right'>
                   <button className='btn btn-primary' type='submit'>
-                    {UpdateProfile}
+                    UpdateProfile
                   </button>
                 </CardFooter>
               </Form>

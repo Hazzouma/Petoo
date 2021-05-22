@@ -15,7 +15,7 @@ exports.ShopRegister = async (req, res) => {
     const foundShopByShopName = await shopModel.findOne({ shopName });$
 
     
-    if (foundShopByEmail || foundShopByTaxNumber ||foundShopByShopName)
+    if (foundShopByEmail || foundShopByTaxNumber ||foundShopByShopName )
       //email and cin and proNumber are unique
       return res.status(400).send({ errors: [{ msg: "Shop already exist" }] });
 

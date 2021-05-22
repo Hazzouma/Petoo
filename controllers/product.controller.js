@@ -61,8 +61,49 @@ exports.ProductCreate = async (req, res) => {
 
 exports.ProductEdit = async (req, res) => {
   try {
-    const { idProduct } = req.params;
-    console.log(req.body);
+    const { idProduct , idShop} = req.body ;
+    
+    //check the product
+const foundProduct= await productModel.findOne({ idProduct: idProduct })
+if (!foundProduct){
+  return res
+  .status(404)
+  .send({ errors: [{ msg: "Error, can't find product" }] });
+}
+
+//check the shop
+const foundShop= await shoptModel.findOne({ idShop: idShop })
+if (!foundShop){
+  return res
+  .status(404)
+  .send({ errors: [{ msg: "Error, can't find your Shop" }] });
+}
+
+
+const { productIds } = foundShop;
+// Getting all names of pets that this SPECIFIC owner is already having
+const foundProductArray = await Promise.all(
+  // promise.all besh trod map method async khaterha mel man mahech async
+  productIds.map(async (el) => {
+    const product = await petModel.findOne({ idProduct: el });
+    const { name } = product;
+    return name;
+  })
+);
+//testing if the name of pet already existing is ownedPets of THAT SPECIFIC owner
+const foundProductOfShop = foundProductArray.includes(foundProduct.name);
+// console.log(foundPetOfOwner);
+if (!foundProductOfShop) {
+  return res.status(405).send({
+    errors: [
+      {
+        msg: "You cannot edit this product",
+      },
+    ],
+  });
+}
+
+
     let newData = await productModel.findOneAndUpdate(
       { idProduct: idProduct },
       { $set: { ...req.body } },
