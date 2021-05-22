@@ -42,11 +42,12 @@ export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
 // Get all notifs with full information (not just id of notif BUT ALL)
 export const getALLNotif = (idUser) => async (dispatch) => {
   try {
-    console.log(idUser);
+
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/getnotif`,
       idUser
     );
+    console.log(idUser)
     dispatch({ type: GET_ALL_NOTIFS, payload: result.data });
     console.log(result.data);
   } catch (error) {

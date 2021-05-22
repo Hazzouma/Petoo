@@ -174,13 +174,13 @@ const Sidebar = (props) => {
           <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
             <img
               className='img-fluid for-light'
-              src={require("../../assets/images/logo/logo.png")}
-              alt='AAA'
+              src={require("../../assets/images/logo/logo.png").default}
+              alt='Petoo'
             />
             <img
               className='img-fluid for-dark'
-              src={require("../../assets/images/logo/logo.png")}
-              alt=''
+              src={require("../../assets/images/logo/logo.png").default}
+              alt='Petoo'
             />
           </Link>
           <div className='back-btn' onClick={() => responsiveSidebar()}>
@@ -197,7 +197,7 @@ const Sidebar = (props) => {
           <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
             <img
               className='img-fluid'
-              src={require("../../assets/images/logo/logo-icon.png")}
+              src={require("../../assets/images/logo/logo-icon.png").default}
               alt=''
             />
           </Link>

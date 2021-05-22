@@ -56,6 +56,7 @@ exports.markReadNotif = async (req, res) => {
 //getting all notifs for the current user
 exports.getNotif = async (req, res) => {
   try {
+    console.log(req)
     const idUser = req.body;
     const foundOwner = await ownerModel.findOne(idUser);
 
@@ -67,7 +68,7 @@ exports.getNotif = async (req, res) => {
 
     const arrayOfNotifications = await Promise.all(
       await foundOwner.notificationId.map(async (notif) => {
-        const fn = await notification.findOne({ idNotification: notif });
+        const fn = await notification.findOne({ notif });
         return fn;
       })
     );

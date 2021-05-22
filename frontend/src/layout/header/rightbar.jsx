@@ -341,7 +341,7 @@ const Rightbar = (props) => {
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={require("../../assets//images/ecommerce/01.jpg")}
+                    src={require("../../assets//images/ecommerce/01.jpg").default}
                     alt=''
                   />
                   <div className='media-body'>
@@ -390,7 +390,7 @@ const Rightbar = (props) => {
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={require("../../assets/images/ecommerce/03.jpg")}
+                    src={require("../../assets/images/ecommerce/03.jpg").default}
                     alt=''
                   />
                   <div className='media-body'>

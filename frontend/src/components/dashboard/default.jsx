@@ -30,6 +30,7 @@ import {
 } from "../../constant";
 import Slider from "react-slick";
 import { current, videErrors } from "../../redux/currentUser/action";
+import {getALLNotif} from '../../redux/notification/action'
 
 const Default = (props) => {
   const [daytimes, setDayTimes] = useState();
@@ -51,9 +52,11 @@ const Default = (props) => {
   };
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.currentUser.msg);
-  const {profilePicture} = useSelector((state) => state.currentUser.user);
+  const {profilePicture,idUser} = useSelector((state) => state.currentUser.user);
+  console.log(idUser)
 
   useEffect(() => {
+    dispatch(getALLNotif(idUser))
     if (curHr < 12) {
       setDayTimes("Good Morning");
     } else if (curHr < 18) {
@@ -76,12 +79,8 @@ const Default = (props) => {
     }
 
     // eslint-disable-next-line
-  }, [notification]);
-  if (navigator.onLine) {
-    console.log('online');
-  } else {
-    console.log('offline');
-  }
+  }, [notification,idUser]);
+
   
   return (
     <Fragment>
@@ -260,7 +259,7 @@ const Default = (props) => {
               
 
               {/* best Seller Box Starts Here */}
-              <Col xl='12 xl-50' className='news box-col-6'>
+              <Col xl='12' className='news box-col-6'>
                 <Card className='offer-box'>
                   <CardBody className='p-0'>
                     <div className='offer-slider'>
@@ -401,6 +400,148 @@ const Default = (props) => {
                   </CardBody>
                 </Card>
               </Col>
+              <Col xl='12 ' className='news box-col-6'>
+                <Card className='offer-box'>
+                  <CardBody className='p-0'>
+                    <div className='offer-slider'>
+                      <div
+                        className='carousel slide'
+                        id='carouselExampleCaptions'
+                        data-ride='carousel'
+                      >
+                        <div className='carousel-inner'>
+                          <Slider {...settings}>
+                            <div className='carousel-item active'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
+                                      <p>{"Much More Selling product"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Best Selling Product"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"78% offer"}
+                                      </span>
+                                      <span className='badge badge-dotted badge-pill ml-2'>
+                                        {CouponCode} : {"12345"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
+                                    <img
+                                      className='img-fluid'
+                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      alt='...'
+                                    />
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
+                                      <p>{"Money back Guarrantee"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Women Straight Kurta"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"$100.00"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
+                                      <p>{"Money back Guarrantee"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Women Straight Kurta"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"$100.00"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
+                                    <img
+                                      className='img-fluid'
+                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      alt='...'
+                                    />
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
+                                      <p>{"Money back Guarrantee"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Nike Air Shoes"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"$120.55"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
+                                      <p>{"Maximum Selling product"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Best Selling Product"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"50% offer"}
+                                      </span>
+                                      <span className='badge badge-dotted badge-pill ml-2'>
+                                        {CouponCode} : {"21546"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
+                                    <img
+                                      className='img-fluid'
+                                      src="https://www.mercado24.com/wp-content/uploads/2020/07/61L4nrFQ0mL._SL1000_.jpg"
+                                      alt='...'
+                                    />
+                                  </div>
+                                </div>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
+                                      <p>{"Money back Guarrantee"}</p>
+                                      <h4 className='f-w-600'>
+                                        {"Nike Air Shoes"}
+                                      </h4>
+                                      <span className='badge badge-white badge-pill'>
+                                        {"$120.55"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Slider>
+                        </div>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+
               {/* best Seller Box Ends Here */}
               
             </Row>
