@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getALLNotif } from "../../redux/notification/action";
 // import man from "../../assets/images/dashboard/profile.jpg";
+import moment from 'moment'
 import {
   FileText,
   LogIn,
@@ -29,6 +30,7 @@ import {
   translate,
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
+import {checkALLNotif} from "../../redux/notification/action";
 import {
   // English,
   // Deutsch,
@@ -37,10 +39,6 @@ import {
   // Português,
   // 简体中文,
   Notification,
-  DeliveryProcessing,
-  OrderComplete,
-  TicketsGenerated,
-  DeliveryComplete,
   CheckAllNotification,
   // ViewAll,
   // MessageBox,
@@ -75,20 +73,12 @@ setLanguageCookie();
 const Rightbar = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [profile, setProfile] = useState("");
-  // const [name, setName] = useState("");
   const [searchresponsive, setSearchresponsive] = useState(false);
   const [langdropdown, setLangdropdown] = useState(false);
   const [moonlight, setMoonlight] = useState(false);
   const [selected, setSelected] = useState("en");
   const [cartDropdown, setCartDropDown] = useState(false);
   const [notificationDropDown, setNotificationDropDown] = useState(false);
-  // const [chatDropDown, setChatDropDown] = useState(false);
-
-  // auth0 profile
-  // const { logout } = useAuth0();
-  // const authenticated = JSON.parse(localStorage.getItem("authenticated"));
-  // const auth0_profile = JSON.parse(localStorage.getItem("auth0_profile"));
 
   const handleSetLanguage = (key) => {
     setLanguage(key);
@@ -97,23 +87,20 @@ const Rightbar = (props) => {
   const { prenom, role, profilePicture } = useSelector(
     (state) => state.currentUser.user
   );
-  useEffect(() => {}, []);
+  const idUser = useSelector((state) => state.currentUser.user.idUser);
+  useEffect(() => {
 
-  // const Logout_From_Firebase = () => {
-  //   localStorage.removeItem("profileURL");
-  //   localStorage.removeItem("token");
-  //   firebase_app.auth().signOut();
-  //   history.push(`${process.env.PUBLIC_URL}/login`);
-  // };
+    dispatch(getALLNotif(idUser));
+
+
+  }, [idUser]);
+  
+
+
   const logoutFromJWT = () => {
     dispatch(logout(history));
   };
-  // const Logout_From_Auth0 = () => {
-  //   localStorage.removeItem("auth0_profile");
-  //   localStorage.setItem("authenticated", false);
-  //   history.push(`${process.env.PUBLIC_URL}/login`);
-  //   // logout();
-  // };
+
 
   const RedirectToCart = () => {
     history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
@@ -178,80 +165,22 @@ const Rightbar = (props) => {
       localStorage.setItem("layout_version", "dark-only");
     }
   };
-  const notificationId = useSelector(
-    (state) => state.currentUser.user.notificationId
+  
+  const notifications = useSelector(
+    (state) => state.notifReducer.allNotifArray
   );
-  const idUser = useSelector((state) => state.currentUser.user.idUser);
-  const getAllNotifs = () => {
-    dispatch(getALLNotif(idUser));
-  };
-  const user = useSelector((state) => state.userReducer.user);
+  const notif =useSelector (
+    (state)=> state.currentUser.user.notificationId
+  );
+const NotifnotRead= notifications.map(x => notifications.isRead===false) 
+const num=NotifnotRead.length
+if (notificationDropDown && num>0 ){
+  dispatch(checkALLNotif(notif,idUser))
+}
   return (
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
         <ul className='nav-menus'>
-          {/* <li className='language-nav'>
-            <div
-              className={`translate_wrapper ${langdropdown ? "active" : ""}`}
-            >
-              <div className='current_lang'>
-                <div
-                  className='lang'
-                  onClick={() => LanguageSelection(langdropdown)}
-                >
-                  <i
-                    className={`flag-icon flag-icon-${
-                      selected === "en"
-                        ? "us"
-                        : selected === "du"
-                        ? "de"
-                        : selected
-                    }`}
-                  ></i>
-                  <span className='lang-txt'>{selected}</span>
-                </div>
-              </div>
-              <div className={`more_lang ${langdropdown ? "active" : ""}`}>
-                <div className='lang' onClick={() => handleSetLanguage("en")}>
-                  <i className='flag-icon flag-icon-us'></i>
-                  <span className='lang-txt'>
-                    {English}
-                    <span> {"(US)"}</span>
-                  </span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("du")}>
-                  <i className='flag-icon flag-icon-de'></i>
-                  <span className='lang-txt'>{Deutsch}</span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("es")}>
-                  <i className='flag-icon flag-icon-es'></i>
-                  <span className='lang-txt'>{Español}</span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("fr")}>
-                  <i className='flag-icon flag-icon-fr'></i>
-                  <span className='lang-txt'>{Français}</span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("pt")}>
-                  <i className='flag-icon flag-icon-pt'></i>
-                  <span className='lang-txt'>
-                    {Português}
-                    <span> {"(BR)"}</span>
-                  </span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("cn")}>
-                  <i className='flag-icon flag-icon-cn'></i>
-                  <span className='lang-txt'>{简体中文}</span>
-                </div>
-                <div className='lang' onClick={() => handleSetLanguage("ae")}>
-                  <i className='flag-icon flag-icon-ae'></i>
-                  <span className='lang-txt'>
-                    {"لعربية"}
-                    <span> {"(ae)"}</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </li> */}
           <li>
             <span className='header-search'>
               <Search onClick={() => SeacrhResposive(searchresponsive)} />
@@ -263,7 +192,7 @@ const Rightbar = (props) => {
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
               <Bell />
-              <span className='badge badge-pill badge-secondary'></span>
+              <span className='badge badge-pill badge-secondary'>{num}</span>
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
@@ -274,38 +203,19 @@ const Rightbar = (props) => {
                 <Bell />
                 <h6 className='f-18 mb-0'>{Notification}</h6>
               </li>
+              {notifications.slice(0).reverse().map((n, i) => //hedhi a9ba7 hkeya tnajem tchoufha :) ken tala3 aaleh aamalt slice hehehe
               <li>
-                <p>
+                <p style={{fontWeight:(!n.isRead ? "bold": "normal")}}>
                   <i className='fa fa-circle-o mr-3 font-primary'> </i>
-                  {DeliveryProcessing}{" "}
-                  <span className='pull-right'>{"10 min."}</span>
+                  {n.msg}
+                  <span className='pull-right'>{moment(parseInt(n.creationDate,10)).fromNow()}</span>
                 </p>
               </li>
+              )} 
               <li>
-                <p>
-                  <i className='fa fa-circle-o mr-3 font-success'></i>
-                  {OrderComplete}
-                  <span className='pull-right'>{"1 hr"}</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <i className='fa fa-circle-o mr-3 font-info'></i>
-                  {TicketsGenerated}
-                  <span className='pull-right'>{"3 hr"}</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <i className='fa fa-circle-o mr-3 font-danger'></i>
-                  {DeliveryComplete}
-                  <span className='pull-right'>{"6 hr"}</span>
-                </p>
-              </li>
-              <li>
+                
                 <button
                   className='btn btn-primary'
-                  onClick={() => getAllNotifs()}
                 >
                   {CheckAllNotification}
                 </button>

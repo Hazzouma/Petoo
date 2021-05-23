@@ -53,10 +53,8 @@ const Default = (props) => {
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.currentUser.msg);
   const {profilePicture,idUser} = useSelector((state) => state.currentUser.user);
-  console.log(idUser)
 
   useEffect(() => {
-    dispatch(getALLNotif(idUser))
     if (curHr < 12) {
       setDayTimes("Good Morning");
     } else if (curHr < 18) {

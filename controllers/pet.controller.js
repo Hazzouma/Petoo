@@ -9,6 +9,7 @@ exports.PetCreate = async (req, res) => {
   // we have name of pet to create
   try {
     const { pet, ownerID } = req.body;
+    console.log(req.body)
     const newPet = new petModel(pet);
     const { vaccines, knownAllergies, petPictures } = pet;
     if (!ownerID) {
@@ -30,12 +31,13 @@ exports.PetCreate = async (req, res) => {
         ],
       });
     }
-    const { ownedPets } = foundOwner;
+    const { ownedPets } = foundOwner; // ====== Houniii fama mochkla quelques part marakeztech maaha ======== ..
     // Getting all names of pets that this SPECIFIC owner is already having
     const foundPetArray = await Promise.all(
       // promise.all besh trod map method async khaterha mel man mahech async
       ownedPets.map(async (el) => {
         const pet = await petModel.findOne({ idPet: el });
+        console.log(pet)
         const { name } = pet;
         return name;
       })

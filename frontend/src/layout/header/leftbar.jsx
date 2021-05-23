@@ -147,8 +147,8 @@ const Leftbar = (props) => {
       <div className="header-logo-wrapper" id="out_side_click">
         <div className="logo-wrapper">
           <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
-            <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png")} alt="" />
-            <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png")} alt="" />
+            <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png").default} alt="" />
+            <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png").default} alt="" />
           </Link>
         </div>
         <div className="toggle-sidebar" onClick={() => responsive_openCloseSidebar(sidebartoggle)} style={window.innerWidth <= 991 ? {display:"block"} : {display:"none"}}>
@@ -221,19 +221,7 @@ const Leftbar = (props) => {
             </div>
           </li>
           <li className="level-menu outside"><a className={levelMenu ? "nav-link active" : "nav-link"} href="#javascript" onClick={() => OnLevelMenu(levelMenu)}><Inbox/><span>{LevelMenu}</span></a>
-            <ul className="header-level-menu menu-to-be-close" style={levelMenu ? { display: "" } : { display: "none" }}>
-              <li><Link to={`${process.env.PUBLIC_URL}/app/file-manager`}><GitPullRequest/><span>{FileManager}</span></Link></li>
-              <li><a href="#javascript"><Users/><span>{"Users"}</span></a>
-                <ul className="header-level-sub-menu">
-                  <li><Link to={`${process.env.PUBLIC_URL}/app/users/userProfile`}><User/><span>{UserProfile}</span></Link></li>
-                  <li><Link to={`${process.env.PUBLIC_URL}/app/users/userEdit`}><UserMinus/><span>{UserEdit}</span></Link></li>
-                  <li><Link to={`${process.env.PUBLIC_URL}/app/users/userCards`}><UserCheck/><span>{UsersCards}</span></Link></li>
-                </ul>
-              </li>
-              <li><Link to={`${process.env.PUBLIC_URL}/app/kanban-board`}><Airplay/><span>{KanbanBoard}</span></Link></li>
-              <li><Link to={`${process.env.PUBLIC_URL}/app/bookmark`}><Heart/><span>{Bookmark}</span></Link></li>
-              <li><Link to={`${process.env.PUBLIC_URL}/app/social-app`}><Zap/><span>{SocialApp}</span></Link></li>
-            </ul>
+           
           </li>
         </ul>
       </Col>

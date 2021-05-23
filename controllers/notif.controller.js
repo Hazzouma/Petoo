@@ -56,9 +56,8 @@ exports.markReadNotif = async (req, res) => {
 //getting all notifs for the current user
 exports.getNotif = async (req, res) => {
   try {
-    console.log(req)
     const idUser = req.body;
-    const foundOwner = await ownerModel.findOne(idUser);
+    const foundOwner = await ownerModel.findOne(idUser); //hatitha entre () mich {} khater ena badalt fel redux ki nab3athha b3aththa men ghadi objet , kenet ghalta khater
 
     if (!foundOwner)
       //check owner exists
@@ -68,7 +67,8 @@ exports.getNotif = async (req, res) => {
 
     const arrayOfNotifications = await Promise.all(
       await foundOwner.notificationId.map(async (notif) => {
-        const fn = await notification.findOne({ notif });
+        const fn = await notification.findOne({idNotification:notif});
+
         return fn;
       })
     );
@@ -86,9 +86,11 @@ exports.getNotif = async (req, res) => {
 // check all notifs all at once
 exports.checkAllAtOnce = async (req, res) => {
   const { idUser, notificationId } = req.body;
+  console.log(idUser)
+  console.log(notificationId)
   try {
     const foundNotifOwner = await ownerModel.findOne({ idUser });
-
+    
     if (!foundNotifOwner)
       //check owner exists
       return res
@@ -112,6 +114,7 @@ exports.checkAllAtOnce = async (req, res) => {
       arrayOfNotifications.map(async (notif) => {
         if (notif !== null || notif !== undefined) {
           notif.isRead = true;
+          console.log(notif)
           await notif.save();
           return notif;
         }

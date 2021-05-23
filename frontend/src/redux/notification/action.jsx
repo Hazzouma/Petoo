@@ -1,5 +1,4 @@
 import axios from "axios";
-import http from "http";
 import {
   FAIL_NOTIF,
   MARK_READ_NOTIF,
@@ -25,6 +24,7 @@ export const checkNotif = (idNotif, idUser) => async (dispatch) => {
 
 // Check ALL notifs at once
 export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
+  console.log(notificationId)
   try {
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/checkAllAtOnce`,
@@ -42,14 +42,12 @@ export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
 // Get all notifs with full information (not just id of notif BUT ALL)
 export const getALLNotif = (idUser) => async (dispatch) => {
   try {
-
+const s={idUser:idUser} // hay l format eli lezem takhlet lel back
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/getnotif`,
-      idUser
+      s
     );
-    console.log(idUser)
     dispatch({ type: GET_ALL_NOTIFS, payload: result.data });
-    console.log(result.data);
   } catch (error) {
     console.log(error.response.data.errors);
     dispatch({ type: FAIL_NOTIF, payload: error.response.data.errors });
