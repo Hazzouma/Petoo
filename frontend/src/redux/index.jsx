@@ -14,6 +14,7 @@ import userReducer from "./authentification/reducer";
 import currentUser from "./currentUser/reducer";
 import petReducer from "./petActions/reducer";
 import notifReducer from "./notification/reducer";
+import populationReducer from "./population/reducer";
 
 const reducers = combineReducers({
   Todoapp,
@@ -31,6 +32,7 @@ const reducers = combineReducers({
   currentUser, // current user when logged
   petReducer, // pet manipulation reducer
   notifReducer, //notification reducer
+  populationReducer, // getting all users and pets
 });
 
 export default reducers;

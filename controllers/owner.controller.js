@@ -119,3 +119,16 @@ exports.validateOTP = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not reset password" }] });
   }
 };
+
+//getting all Owners
+exports.allOwners = async (req, res) => {
+  try {
+    const foundAllOwners = await ownerModel.find({
+      idUser: { $regex: "Owner-" },
+    });
+    res.status(200).send({ msg: "all owners", foundAllOwners });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get All owners" }] });
+  }
+};

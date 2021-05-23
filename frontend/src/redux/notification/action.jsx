@@ -24,7 +24,7 @@ export const checkNotif = (idNotif, idUser) => async (dispatch) => {
 
 // Check ALL notifs at once
 export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
-  console.log(notificationId)
+  // console.log(notificationId)
   try {
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/checkAllAtOnce`,
@@ -42,7 +42,7 @@ export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
 // Get all notifs with full information (not just id of notif BUT ALL)
 export const getALLNotif = (idUser) => async (dispatch) => {
   try {
-const s={idUser:idUser} // hay l format eli lezem takhlet lel back
+    const s = { idUser: idUser }; // hay l format eli lezem takhlet lel back
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/getnotif`,
       s

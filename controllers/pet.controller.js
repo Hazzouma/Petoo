@@ -9,7 +9,7 @@ exports.PetCreate = async (req, res) => {
   // we have name of pet to create
   try {
     const { pet, ownerID } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     const newPet = new petModel(pet);
     const { vaccines, knownAllergies, petPictures } = pet;
     if (!ownerID) {
@@ -37,7 +37,7 @@ exports.PetCreate = async (req, res) => {
       // promise.all besh trod map method async khaterha mel man mahech async
       ownedPets.map(async (el) => {
         const pet = await petModel.findOne({ idPet: el });
-        console.log(pet)
+        console.log(pet);
         const { name } = pet;
         return name;
       })
@@ -106,5 +106,16 @@ exports.PetEdit = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not modify Pet!" }] });
+  }
+};
+
+//getting all Pets
+exports.allPets = async (req, res) => {
+  try {
+    const foundAllPets = await petModel.find();
+    res.status(200).send({ msg: "all pets", foundAllPets });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get All owners" }] });
   }
 };

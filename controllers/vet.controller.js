@@ -63,6 +63,18 @@ exports.VetLogin = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not login!" }] });
   }
 };
+//getting all vetos
+exports.allVets = async (req, res) => {
+  try {
+    const foundAllVetos = await ownerModel.find({
+      idUser: { $regex: "Veto-" },
+    });
+    res.status(200).send({ msg: "all vets", foundAllVetos });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get All Vetos" }] });
+  }
+};
 
 // // //Send mail to reset password
 // exports.ResetPassword = async (req, res, next) => {

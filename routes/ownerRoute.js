@@ -5,6 +5,7 @@ const {
   Login,
   ResetPassword,
   validateOTP,
+  allOwners,
 } = require("../controllers/owner.controller");
 const {
   validation,
@@ -32,15 +33,8 @@ routerOwner.post("/forgetPwd/otp", ResetPassword);
 routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 
 // //Get all Owners
-// routerOwner.get("/getAllOwners", async (request, response, next) => {
-//   try {
-//     const allOwners = await ownerModel.find();
-//     response.status(200).json({ msg: "All Owners", allOwners });
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   next();
-// });
+routerOwner.get("/getAllOwners", allOwners);
+
 // // Find Owner by idUser && Send Full info
 // routerOwner.get("/find/:idUser", async (req, res, next) => {
 //   const { idUser } = req.params;

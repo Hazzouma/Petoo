@@ -110,3 +110,9 @@ export const FAIL_NOTIF = "FAIL_NOTIF";
 export const MARK_READ_NOTIF = "MARK_READ_NOTIF";
 export const CHECK_ALL_NOTIFS = "CHECK_ALL_NOTIFS";
 export const GET_ALL_NOTIFS = "GET_ALL_NOTIFS";
+
+/* POPULATION */
+export const FAIL_POPULATION = "FAIL_POPULATION";
+export const GET_PETS = "GET_PETS";
+export const GET_VETOS = "GET_VETOS";
+export const GET_OWNERS = "GET_OWNERS";
