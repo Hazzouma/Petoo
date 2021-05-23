@@ -169,11 +169,15 @@ const Rightbar = (props) => {
   const notifications = useSelector(
     (state) => state.notifReducer.allNotifArray
   );
+
   const notif =useSelector (
     (state)=> state.currentUser.user.notificationId
   );
-const NotifnotRead= notifications.map(x => notifications.isRead===false) 
-const num=NotifnotRead.length
+let num = "0"
+const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
+  num++
+}); 
+
 if (notificationDropDown && num>0 ){
   dispatch(checkALLNotif(notif,idUser))
 }
