@@ -24,6 +24,7 @@ const ownerSchema = new Schema({
   CIN: { type: String, default: "", length: 8 }, // vet realted
   about: { type: String, default: "" },
   proNumber: { type: String, default: "" },
+  appointmentId: { type: Array, default: [] },
 });
 
 //Owner model

@@ -59,12 +59,14 @@ exports.ProductCreate = async (req, res) => {
   }
 };
 
+
+
 exports.ProductEdit = async (req, res) => {
   try {
-    const { idProduct , idShop} = req.body ;
+    const { productID , shopID} = req.body ;
     
     //check the product
-const foundProduct= await productModel.findOne({ idProduct: idProduct })
+const foundProduct= await productModel.findOne({ idProduct: productID })
 if (!foundProduct){
   return res
   .status(404)
@@ -72,7 +74,7 @@ if (!foundProduct){
 }
 
 //check the shop
-const foundShop= await shoptModel.findOne({ idShop: idShop })
+const foundShop= await shoptModel.findOne({ idShop: shopID })
 if (!foundShop){
   return res
   .status(404)
@@ -81,18 +83,17 @@ if (!foundShop){
 
 
 const { productIds } = foundShop;
-// Getting all names of pets that this SPECIFIC owner is already having
-const foundProductArray = await Promise.all(
-  // promise.all besh trod map method async khaterha mel man mahech async
+// Getting all products that this SPECIFIC shop has
+const foundProductinArray = await Promise.all(
   productIds.map(async (el) => {
     const product = await petModel.findOne({ idProduct: el });
-    const { name } = product;
-    return name;
+    const { idProduct } = product;
+    return idProduct;
   })
 );
-//testing if the name of pet already existing is ownedPets of THAT SPECIFIC owner
-const foundProductOfShop = foundProductArray.includes(foundProduct.name);
-// console.log(foundPetOfOwner);
+//testing if the product id already existing in owned product of THAT SPECIFIC shop
+const foundProductOfShop = foundProductinArray.includes(foundProduct.idProduct);
+
 if (!foundProductOfShop) {
   return res.status(405).send({
     errors: [
@@ -102,7 +103,6 @@ if (!foundProductOfShop) {
     ],
   });
 }
-
 
     let newData = await productModel.findOneAndUpdate(
       { idProduct: idProduct },

@@ -9,6 +9,7 @@ const petRoute = require("./routes/petRoute");
 const notifOwner = require("./routes/notifRouter");
 const routerShop = require("./routes/shopRoute");
 const routerProduct = require("./routes/productRoute");
+const routerAppointment = require("./routes/appointmentRouter");
 //environement
 require("dotenv").config({ path: "./config/.env" });
 
@@ -30,6 +31,7 @@ app.use("/api/pet", petRoute);
 app.use("/api/notif", notifOwner);
 app.use("/api/shop", routerShop);
 app.use("/api/product", routerProduct);
+app.use("/api/appointment", routerAppointment);
 
 //cors
 // if (process.env.NODE_ENVIRONMENT === "dev") {

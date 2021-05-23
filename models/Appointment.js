@@ -4,12 +4,13 @@ const {Schema, model}= mongoose
 const appointmentSchema = new Schema ({
 idAppointment: { type: String, required: true },
 date:{type: String, default: Date.now},
-confirmedByOwner:{type:boolean, default:false },
-confirmedByVet:{type:boolean, default:false},
-isDone:{type:boolean, default:false},
-petId:{type:String , default:""},
-vetId:{type:String, default:""},
-ownerId:{type:String, default:""},
+confirmedByOwner:{type:Boolean, default:false },
+confirmedByVet:{type:Boolean, default:false},
+isDone:{type:Boolean, default:false},
+idPet:{type:String , default:""},
+idVet:{type:String, default:""},
+idOwner:{type:String, default:""},
 description:{type:String, default:""},
 })
-module.exports = Appointment = model("appointment", appointmentSchema);
+const appointmentModel = mongoose.model("Appointment", appointmentSchema);
+module.exports = appointmentModel;
