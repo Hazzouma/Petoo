@@ -5,9 +5,10 @@ const { creationAppointment, validationAppointment } = require("../middlewares/v
 
 //Route of Appointment creation with some verification on inputs
 routerAppointment.post("/createByOwner", 
-// creationAppointment(), 
-// validationAppointment, 
+creationAppointment(), 
+validationAppointment, 
 AppointmentCreateByOwner);
+
 routerAppointment.post("/createByVet", creationAppointment(), validationAppointment, AppointmentCreateByVet);
 
 //Edit

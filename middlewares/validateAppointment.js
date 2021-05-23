@@ -1,8 +1,8 @@
 const { validationResult, check } = require("express-validator");
 
 exports.creationAppointment = () => [
-  check("date", "choose a date for you appointment").isLength({ min: 2 }),
-  check("description", "Please enter a description for this apointment(ex: reason)").isLength({ min: 2 }),
+  check("appointment.date", "choose a date for you appointment").isLength({ min: 2 }),
+  check("appointment.description", "Please enter a description for this apointment(ex: reason)").isLength({ min: 2 }),
    
 ];
 

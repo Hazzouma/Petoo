@@ -1,5 +1,6 @@
 const appointmentModel = require("../models/Appointment");
 const ownerModel = require("../models/owner");
+const petModel = require("../models/pet");
 const Notification = require("../models/Notification");
 const uniqid = require("uniqid");
 
@@ -7,9 +8,9 @@ const uniqid = require("uniqid");
 exports.AppointmentCreateByOwner = async (req, res) => {
 
   try {
-    const { vetID, petID, ownerID, appointment } = req.body;
+    const { vetID, petID, ownerID, appointment} = req.body;
 
-    const newAppointment = new appointmentModel(appointment);
+    const newAppointment = new appointmentModel( appointment);
     newAppointment.idAppointment = uniqid("App-"); //Create specific Id for Appointment, not the mongoDB one
 
   //Security procedures
