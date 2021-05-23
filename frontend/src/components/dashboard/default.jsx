@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
-import userImg from "../../assets/images/dashboard/welcome.png";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {

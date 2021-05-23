@@ -202,7 +202,7 @@ useEffect(() => {
 
 
           {/* Allergies Starts Here  */}
-            <Col sm={8} xl="12">
+            <Col sm={8} >
             <Card  >
               <CardHeader>
                 <h5>Known Allergies</h5>

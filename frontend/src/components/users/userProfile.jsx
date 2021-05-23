@@ -1,13 +1,25 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
+import cat from "../../assets/images/appointment/app-ent.jpg";
 import {
   Container,
   Row,
   Col,
   Card,
+  CardBody,
   CardHeader,
   Media,
 } from "reactstrap";
+import {
+  Appointment,
+  Tomorrow,
+  Yesterday,
+  Pending,
+  Today,
+  VenterLoren,
+  Done,
+  JohnLoren,
+} from "../../constant";
 import {useSelector} from 'react-redux';
 const UserProfile = (props) => {
 
@@ -152,6 +164,76 @@ const UserProfile = (props) => {
               </Card>
             </Col>
             {/* The Profile Card Ends Here */}
+            
+
+      
+            
+            {/* Appointments Box Starts Here */}
+              <Col sm={8} className='appointment'>
+                <Card>
+                  <CardHeader className='card-no-border'>
+                    <div className='header-top'>
+                      <h5 className='m-0'>Appointments:</h5>
+                      
+                    </div>
+                  </CardHeader>
+                  <CardBody className='pt-0'>
+                    <div className='appointment-table table-responsive'>
+                      <table className='table table-bordernone'>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                className='img-fluid img-40 rounded-circle mb-3'
+                                src={cat}
+                                alt=''
+                              />
+                              <div className='status-circle bg-primary'></div>
+                            </td>
+                            <td className='img-content-box'>
+                              <span className='d-block'>Foulén faltén</span>
+                              <span className='font-roboto'>Now</span>
+                            </td>
+                            <td>
+                              <p className='m-0 font-primary'>{"28 Sept"}</p>
+                            </td>
+                            <td className='text-right'>
+                              <div className='button btn btn-primary'>
+                                {Done}
+                                <i className='fa fa-check-circle ml-2'></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img
+                                className='img-fluid img-40 rounded-circle'
+                                src={require("../../assets/images/appointment/app-ent.jpg").default}
+                                alt=''
+                              />
+                              <div className='status-circle bg-primary'></div>
+                            </td>
+                            <td className='img-content-box'>
+                              <span className='d-block'>Dra Chkoun</span>
+                              <span className='font-roboto'>11:00"</span>
+                            </td>
+                            <td>
+                              <p className='m-0 font-primary'>22 Sept</p>
+                            </td>
+                            <td className='text-right'>
+                              <div className='button btn btn-danger'>
+                                {Pending}
+                                <i className='fa fa-check-circle ml-2'></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              {/* Appointments Box Ends Here */}
           </Row>
         </div>
       </Container>
