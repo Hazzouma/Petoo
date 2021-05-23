@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
+import {useSelector} from "react-redux";
 import {
   Container,
   Row,
@@ -18,24 +19,18 @@ import axios from "axios";
 import {
   MyProfile,
   Bio,
+  City,
   MarkJecno,
   Designer,
   Password,
-  Website,
   Save,
   EditProfile,
-  Company,
-  Username,
-  UsersCountryMenu,
-  AboutMe,
   UpdateProfile,
   FirstName,
   LastName,
   Address,
   EmailAddress,
   PostalCode,
-  Country,
-  City,
 } from "../../constant";
 import DatePicker from "react-datepicker";
 
@@ -46,13 +41,9 @@ const UserEdit = (props) => {
     //Date Picker related
     setstartDate(date);
   };
-
-  const [data, setData] = useState([]);
-
+const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,ville,role} = useSelector(state => state.currentUser.user)
   useEffect(() => {
-    axios
-      .get(`${process.env.PUBLIC_URL}/api/user-edit-table.json`)
-      .then((res) => setData(res.data));
+
   }, []);
 
   return (
@@ -82,12 +73,12 @@ const UserEdit = (props) => {
                         <Media
                           className='img-70 rounded-circle'
                           alt=''
-                          src={require("../../assets/images/user/7.jpg")}
+                          src={profilePicture}
                         />
                       </div>
                       <Col>
-                        <h3 className='mb-1'>{MarkJecno}</h3>
-                        <p className='mb-4'>{Designer}</p>
+                        <h3 className='mb-1'>{prenom} {nom} </h3>
+                        <p className='mb-4'>{role}</p>
                       </Col>
                     </Row>
                     <FormGroup>
@@ -96,7 +87,7 @@ const UserEdit = (props) => {
                         type='textarea'
                         className='form-control'
                         rows='5'
-                        defaultValue='On the other hand, we denounce with righteous indignation'
+                        defaultValue={Bio}
                       />
                     </FormGroup>
                     <FormGroup>
@@ -104,6 +95,7 @@ const UserEdit = (props) => {
                       <Input
                         className='form-control'
                         placeholder='your-email@domain.com'
+                        defaultValue={email}
                       />
                     </FormGroup>
 
@@ -112,7 +104,7 @@ const UserEdit = (props) => {
                       <Input
                         className='form-control'
                         type='password'
-                        defaultValue='password'
+                        placeholder='*******'
                       />
                     </FormGroup>
                     <FormGroup>
@@ -120,7 +112,7 @@ const UserEdit = (props) => {
                       <Input
                         className='form-control'
                         type='password'
-                        defaultValue='password'
+                        placeholder='*******'
                       />
                     </FormGroup>
 
@@ -158,6 +150,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='text'
                           placeholder='First Nae'
+                          defaultValue={prenom}
                         />
                       </FormGroup>
                     </Col>
@@ -168,6 +161,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='text'
                           placeholder='Last Name'
+                          defaultValue={nom}
                         />
                       </FormGroup>
                     </Col>
@@ -178,6 +172,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='email'
                           placeholder='Email Address'
+                          defaultValue={email}
                         />
                       </FormGroup>
                     </Col>
@@ -188,6 +183,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='text'
                           placeholder='Home Address'
+                          defaultValue={adresse}
                         />
                       </FormGroup>
                     </Col>
@@ -198,6 +194,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='text'
                           placeholder='City'
+                          defaultValue={ville}
                         />
                       </FormGroup>
                     </Col>
@@ -208,6 +205,7 @@ const UserEdit = (props) => {
                           className='form-control'
                           type='number'
                           placeholder='ZIP Code'
+                          defaultValue={codePostale}
                         />
                       </FormGroup>
                     </Col>
