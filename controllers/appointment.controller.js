@@ -188,8 +188,8 @@ if (!foundAppOfVet) {
   });
 }
 
-    let newData = await productModel.findOneAndUpdate(
-      { idProduct: idProduct },
+    let newData = await appointmentModel.findOneAndUpdate(
+      { idAppointment: appointmentID },
       { $set: { ...req.body } },
       { new: true }
     );
