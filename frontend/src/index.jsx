@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 // import { auth0 } from "./data/config";
@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./components/app";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { routes } from "./route";
+import { routesAdmin, routesOwner, routesShop, routesVet } from "./route";
 // import ConfigDB from "./data/customizer/config";
 // import {
 //   configureFakeBackend,
@@ -22,33 +22,32 @@ import Signin from "./auth/signin";
 
 // Authentication
 // import Login from "./pages/authentication/login";
-import LoginWithBgImage from "./pages/authentication/loginWithBgImage";
-import LoginWithBgVideo from "./pages/authentication/loginWithBgVideo";
-import LoginWithValidation from "./pages/authentication/loginwithValidation";
+// import LoginWithBgImage from "./pages/authentication/loginWithBgImage";
+// import LoginWithBgVideo from "./pages/authentication/loginWithBgVideo";
+// import LoginWithValidation from "./pages/authentication/loginwithValidation";
 import Register from "./pages/authentication/register";
-import RegisterWithBgImage from "./pages/authentication/registerWithBgImage";
-import RegisterWithBgVideo from "./pages/authentication/registerWithBgVideo";
-import UnlockUser from "./pages/authentication/unlockUser";
+// import RegisterWithBgImage from "./pages/authentication/registerWithBgImage";
+// import RegisterWithBgVideo from "./pages/authentication/registerWithBgVideo";
+// import UnlockUser from "./pages/authentication/unlockUser";
 import Forgetpwd from "./pages/authentication/forgetpwd";
-import Resetpwd from "./pages/authentication/resetpwd";
+// import Resetpwd from "./pages/authentication/resetpwd";
 import registerVet from "./auth/regiterVeto";
 
-
 // Error page
-import Error400 from "./pages/errors/error400";
-import Error401 from "./pages/errors/error401";
-import Error403 from "./pages/errors/error403";
+// import Error400 from "./pages/errors/error400";
+// import Error401 from "./pages/errors/error401";
+// import Error403 from "./pages/errors/error403";
 import Error404 from "./pages/errors/error404";
-import Error500 from "./pages/errors/error500";
-import Error503 from "./pages/errors/error503";
+// import Error500 from "./pages/errors/error500";
+// import Error503 from "./pages/errors/error503";
 
 // Comming soo
-import Comingsoon from "./pages/comingSoon/comingsoon";
-import ComingsoonImg from "./pages/comingSoon/comingsoonImg";
-import ComingsoonVideo from "./pages/comingSoon/comingsoonVideo";
+// import Comingsoon from "./pages/comingSoon/comingsoon";
+// import ComingsoonImg from "./pages/comingSoon/comingsoonImg";
+// import ComingsoonVideo from "./pages/comingSoon/comingsoonVideo";
 
 // Maintenanc
-import Maintenance from "./pages/maintenance";
+// import Maintenance from "./pages/maintenance";
 
 import Callback from "./auth/callback";
 
@@ -65,6 +64,9 @@ const Root = (props) => {
   // const [currentUser, setCurrentUser] = useState(false);
   // const [authenticated, setAuthenticated] = useState(false);
   const jwt_token = localStorage.getItem("token");
+
+  const [role, setRole] = useState("");
+  const getWhichUser = (roleUser) => setRole(roleUser);
 
   useEffect(() => {
     // const requestOptions = { method: "GET", headers: authHeader() };
@@ -90,7 +92,7 @@ const Root = (props) => {
       <Provider store={store}>
         <BrowserRouter basename={`/`}>
           <Switch>
-          <Route
+            <Route
               path={`${process.env.PUBLIC_URL}/registerVet`}
               component={registerVet}
             />
@@ -106,7 +108,7 @@ const Root = (props) => {
               path={`${process.env.PUBLIC_URL}/forgetpwd`}
               component={Forgetpwd}
             ></Route>
-            <Route
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/loginWithBgImg1`}
               component={LoginWithBgImage}
             ></Route>
@@ -117,29 +119,29 @@ const Root = (props) => {
             <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/loginWithValidation`}
               component={LoginWithValidation}
-            ></Route>
+            ></Route> */}
             {/* <Route         na7it hetha khater duplicated (lookup)
                 path={`${process.env.PUBLIC_URL}/pages/auth/signup`}
                 component={Register}
               ></Route> */}
-            <Route
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/signupWithImg1`}
               component={RegisterWithBgImage}
             ></Route>
             <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/signupWithImg2`}
               component={RegisterWithBgVideo}
-            ></Route>
-            <Route
+            ></Route> */}
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/unlockUser`}
               component={UnlockUser}
-            ></Route>
-            <Route
+            ></Route> */}
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/auth/resetPwd`}
               component={Resetpwd}
-            ></Route>
+            ></Route> */}
 
-            <Route
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/errors/error400`}
               component={Error400}
             ></Route>
@@ -150,12 +152,12 @@ const Root = (props) => {
             <Route
               path={`${process.env.PUBLIC_URL}/pages/errors/error403`}
               component={Error403}
-            ></Route>
+            ></Route> */}
             <Route
               path={`${process.env.PUBLIC_URL}/pages/errors/error404`}
               component={Error404}
             ></Route>
-            <Route
+            {/* <Route
               path={`${process.env.PUBLIC_URL}/pages/errors/error500`}
               component={Error500}
             ></Route>
@@ -163,7 +165,6 @@ const Root = (props) => {
               path={`${process.env.PUBLIC_URL}/pages/errors/error503`}
               component={Error503}
             ></Route>
-
             <Route
               path={`${process.env.PUBLIC_URL}/pages/comingsoon/comingsoon`}
               component={Comingsoon}
@@ -176,11 +177,10 @@ const Root = (props) => {
               path={`${process.env.PUBLIC_URL}/pages/comingsoon/comingsoonVideo`}
               component={ComingsoonVideo}
             ></Route>
-
             <Route
               path={`${process.env.PUBLIC_URL}/pages/maintenance`}
               component={Maintenance}
-            ></Route>
+            ></Route> */}
 
             <Route
               path={`${process.env.PUBLIC_URL}/callback`}
@@ -188,7 +188,8 @@ const Root = (props) => {
             />
 
             {jwt_token ? (
-              <App>
+              <App getWhichUser={getWhichUser}>
+                {/* {console.log(role)} */}
                 <Route
                   exact
                   path={`${process.env.PUBLIC_URL}/`}
@@ -201,26 +202,59 @@ const Root = (props) => {
                   }}
                 />
                 <TransitionGroup>
-                  {routes.map(({ path, Component }) => (
-                    <Route
-                      key={path}
-                      exact
-                      path={`${process.env.PUBLIC_URL}${path}`}
-                    >
-                      {({ match }) => (
-                        <CSSTransition
-                          in={match != null}
-                          timeout={100}
-                          // classNames={anim}
-                          unmountOnExit
-                        >
-                          <div>
-                            <Component />
-                          </div>
-                        </CSSTransition>
+                  <Switch>
+                    {console.log(role)}
+                    {role === "petOwner" &&
+                      (role === "petOwner" && routesOwner).map(
+                        ({ path, Component }) => (
+                          <Route
+                            key={path}
+                            exact
+                            path={`${process.env.PUBLIC_URL}${path}`}
+                          >
+                            {({ match }) => (
+                              <CSSTransition
+                                in={match != null}
+                                timeout={100}
+                                // classNames={anim}
+                                unmountOnExit
+                              >
+                                <div>
+                                  <Component />
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </Route>
+                        )
                       )}
-                    </Route>
-                  ))}
+                    {role === "Admin" &&
+                      (role === "Admin" && routesAdmin).map(
+                        ({ path, Component }) => (
+                          <Route
+                            key={path}
+                            exact
+                            path={`${process.env.PUBLIC_URL}${path}`}
+                          >
+                            {({ match }) => (
+                              <CSSTransition
+                                in={match != null}
+                                timeout={100}
+                                // classNames={anim}
+                                unmountOnExit
+                              >
+                                <div>
+                                  <Component />
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </Route>
+                        )
+                      )}
+                    <Route
+                      path={`${process.env.PUBLIC_URL}/*`}
+                      component={Error404}
+                    />
+                  </Switch>
                 </TransitionGroup>
               </App>
             ) : (

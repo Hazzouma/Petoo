@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
 import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import {
   Container,
   Row,
@@ -28,8 +27,6 @@ import {
   Padding,
 } from "../../constant";
 import Slider from "react-slick";
-import { current, videErrors } from "../../redux/currentUser/action";
-import {getALLNotif} from '../../redux/notification/action'
 
 const Default = (props) => {
   const [daytimes, setDayTimes] = useState();
@@ -50,8 +47,9 @@ const Default = (props) => {
     slidesToScroll: 1,
   };
   const dispatch = useDispatch();
-  const notification = useSelector((state) => state.currentUser.msg);
-  const {profilePicture,idUser} = useSelector((state) => state.currentUser.user);
+  const { profilePicture, idUser } = useSelector(
+    (state) => state.currentUser.user
+  );
 
   useEffect(() => {
     if (curHr < 12) {
@@ -67,23 +65,15 @@ const Default = (props) => {
     } else {
       setMeridiem("AM");
     }
-    if (notification) {
-      toast.success(notification, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 10000, //stay 10 secondes
-      });
-      dispatch(videErrors());
-    }
 
     // eslint-disable-next-line
-  }, [notification,idUser]);
+  }, [idUser]);
 
-  
   return (
     <Fragment>
       <Breadcrumb parent='Dashboard' title='Home' />
       <Container fluid={true}>
-        <Row className='second-chart-list third-news-update justify-content-md-center ' >
+        <Row className='second-chart-list third-news-update justify-content-md-center '>
           {/* Good Morning Components */}
           <Col xl='8 xl-10' lg='12' className='morning-sec box-col-12'>
             <Card className='o-hidden profile-greeting'>
@@ -103,7 +93,17 @@ const Default = (props) => {
                 </div>
                 <div className='greeting-user text-center'>
                   <div className='profile-vector'>
-                    <img className='img-fluid' src={profilePicture} style={{border: '3px solid white', width: "100px", height: "100px",borderRadius:'50%'}} alt='Profile Pic :)' />
+                    <img
+                      className='img-fluid'
+                      src={profilePicture}
+                      style={{
+                        border: "3px solid white",
+                        width: "100px",
+                        height: "100px",
+                        borderRadius: "50%",
+                      }}
+                      alt='Profile Pic :)'
+                    />
                   </div>
                   <h4 className='f-w-600'>
                     <span id='greeting'>{daytimes}</span>{" "}
@@ -119,16 +119,55 @@ const Default = (props) => {
                       }
                     </span>
                   </p>
-                  <Row style={{display:'flex',justifyContent:'center', paddingBottom:'2.5%'}}>
-                  <div style={{padding:'1%'}}>
-                    <img  src="https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg" style={{border: '3px solid white',overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
-                  </div>
-                  <div style={{padding:'1%'}}>
-                    <img  src="https://jardinage.lemonde.fr/images/dossiers/2019-10/cacatoes-1-094044.jpg" style={{border: '3px solid white', overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
-                  </div>
-                  <div style={{padding:'1%'}}>
-                    <img src="https://timesofindia.indiatimes.com/photo/67586673.cms" style={{border: '3px solid white',overflow: "hidden", position: "relative", width: "80px", height: "80px",borderRadius:'50%'}} alt='Pet Pic :)' />
-                  </div>
+                  <Row
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      paddingBottom: "2.5%",
+                    }}
+                  >
+                    <div style={{ padding: "1%" }}>
+                      <img
+                        src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
+                        style={{
+                          border: "3px solid white",
+                          overflow: "hidden",
+                          position: "relative",
+                          width: "80px",
+                          height: "80px",
+                          borderRadius: "50%",
+                        }}
+                        alt='Pet Pic :)'
+                      />
+                    </div>
+                    <div style={{ padding: "1%" }}>
+                      <img
+                        src='https://jardinage.lemonde.fr/images/dossiers/2019-10/cacatoes-1-094044.jpg'
+                        style={{
+                          border: "3px solid white",
+                          overflow: "hidden",
+                          position: "relative",
+                          width: "80px",
+                          height: "80px",
+                          borderRadius: "50%",
+                        }}
+                        alt='Pet Pic :)'
+                      />
+                    </div>
+                    <div style={{ padding: "1%" }}>
+                      <img
+                        src='https://timesofindia.indiatimes.com/photo/67586673.cms'
+                        style={{
+                          border: "3px solid white",
+                          overflow: "hidden",
+                          position: "relative",
+                          width: "80px",
+                          height: "80px",
+                          borderRadius: "50%",
+                        }}
+                        alt='Pet Pic :)'
+                      />
+                    </div>
                   </Row>
                   <div className='whatsnew-btn'>
                     <a className='btn btn-primary' href='#javascript'>
@@ -138,78 +177,82 @@ const Default = (props) => {
                 </div>
               </CardBody>
             </Card>
-          </Col>{/* Appointments Box Starts Here */}
-              <Col xl='12' className='appointment'>
-                <Card>
-                  <CardHeader className='card-no-border'>
-                    <div className='header-top'>
-                      <h5 className='m-0'>{Appointment}</h5>
-                      <div className='card-header-right-icon'>
-                        <select className='button btn btn-primary'>
-                          <option>{Today}</option>
-                          <option>{Tomorrow}</option>
-                          <option>{Yesterday}</option>
-                        </select>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardBody className='pt-0'>
-                    <div className='appointment-table table-responsive'>
-                      <table className='table table-bordernone'>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <img
-                                className='img-fluid img-40 rounded-circle mb-3'
-                                src={cat}
-                                alt=''
-                              />
-                              <div className='status-circle bg-primary'></div>
-                            </td>
-                            <td className='img-content-box'>
-                              <span className='d-block'>{VenterLoren}</span>
-                              <span className='font-roboto'>Now</span>
-                            </td>
-                            <td>
-                              <p className='m-0 font-primary'>{"28 Sept"}</p>
-                            </td>
-                            <td className='text-right'>
-                              <div className='button btn btn-primary'>
-                                {Done}
-                                <i className='fa fa-check-circle ml-2'></i>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img
-                                className='img-fluid img-40 rounded-circle'
-                                src={require("../../assets/images/appointment/app-ent.jpg").default}
-                                alt=''
-                              />
-                              <div className='status-circle bg-primary'></div>
-                            </td>
-                            <td className='img-content-box'>
-                              <span className='d-block'>{JohnLoren}</span>
-                              <span className='font-roboto'>{"11:00"}</span>
-                            </td>
-                            <td>
-                              <p className='m-0 font-primary'>{"22 Sept"}</p>
-                            </td>
-                            <td className='text-right'>
-                              <div className='button btn btn-danger'>
-                                {Pending}
-                                <i className='fa fa-check-circle ml-2'></i>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Col>
-              {/* Appointments Box Ends Here */}
+          </Col>
+          {/* Appointments Box Starts Here */}
+          <Col xl='12' className='appointment'>
+            <Card>
+              <CardHeader className='card-no-border'>
+                <div className='header-top'>
+                  <h5 className='m-0'>{Appointment}</h5>
+                  <div className='card-header-right-icon'>
+                    <select className='button btn btn-primary'>
+                      <option>{Today}</option>
+                      <option>{Tomorrow}</option>
+                      <option>{Yesterday}</option>
+                    </select>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardBody className='pt-0'>
+                <div className='appointment-table table-responsive'>
+                  <table className='table table-bordernone'>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img
+                            className='img-fluid img-40 rounded-circle mb-3'
+                            src={cat}
+                            alt=''
+                          />
+                          <div className='status-circle bg-primary'></div>
+                        </td>
+                        <td className='img-content-box'>
+                          <span className='d-block'>{VenterLoren}</span>
+                          <span className='font-roboto'>Now</span>
+                        </td>
+                        <td>
+                          <p className='m-0 font-primary'>{"28 Sept"}</p>
+                        </td>
+                        <td className='text-right'>
+                          <div className='button btn btn-primary'>
+                            {Done}
+                            <i className='fa fa-check-circle ml-2'></i>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            className='img-fluid img-40 rounded-circle'
+                            src={
+                              require("../../assets/images/appointment/app-ent.jpg")
+                                .default
+                            }
+                            alt=''
+                          />
+                          <div className='status-circle bg-primary'></div>
+                        </td>
+                        <td className='img-content-box'>
+                          <span className='d-block'>{JohnLoren}</span>
+                          <span className='font-roboto'>{"11:00"}</span>
+                        </td>
+                        <td>
+                          <p className='m-0 font-primary'>{"22 Sept"}</p>
+                        </td>
+                        <td className='text-right'>
+                          <div className='button btn btn-danger'>
+                            {Pending}
+                            <i className='fa fa-check-circle ml-2'></i>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          {/* Appointments Box Ends Here */}
           <Col xl='6'>
             <Card>
               <CardHeader>
@@ -253,8 +296,6 @@ const Default = (props) => {
           {/* The Row containing BOTH Appointments and Best Seller Starts Here */}
           <Col xl='6 xl-50' className='appointment-sec box-col-6'>
             <Row>
-              
-
               {/* best Seller Box Starts Here */}
               <Col xl='12' className='news box-col-6'>
                 <Card className='offer-box'>
@@ -289,7 +330,10 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      src={
+                                        require("../../assets/images/dashboard-2/offer-shoes-3.png")
+                                          .default
+                                      }
                                       alt='...'
                                     />
                                   </div>
@@ -328,7 +372,10 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      src={
+                                        require("../../assets/images/dashboard-2/offer-shoes-3.png")
+                                          .default
+                                      }
                                       alt='...'
                                     />
                                   </div>
@@ -370,7 +417,10 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      src={
+                                        require("../../assets/images/dashboard-2/offer-shoes-3.png")
+                                          .default
+                                      }
                                       alt='...'
                                     />
                                   </div>
@@ -430,7 +480,10 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      src={
+                                        require("../../assets/images/dashboard-2/offer-shoes-3.png")
+                                          .default
+                                      }
                                       alt='...'
                                     />
                                   </div>
@@ -469,7 +522,10 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src={require("../../assets/images/dashboard-2/offer-shoes-3.png").default}
+                                      src={
+                                        require("../../assets/images/dashboard-2/offer-shoes-3.png")
+                                          .default
+                                      }
                                       alt='...'
                                     />
                                   </div>
@@ -511,7 +567,7 @@ const Default = (props) => {
                                   <div className='center-img'>
                                     <img
                                       className='img-fluid'
-                                      src="https://www.mercado24.com/wp-content/uploads/2020/07/61L4nrFQ0mL._SL1000_.jpg"
+                                      src='https://www.mercado24.com/wp-content/uploads/2020/07/61L4nrFQ0mL._SL1000_.jpg'
                                       alt='...'
                                     />
                                   </div>
@@ -540,16 +596,12 @@ const Default = (props) => {
               </Col>
 
               {/* best Seller Box Ends Here */}
-              
             </Row>
-
           </Col>
-          
+
           {/* The Row containing BOTH Appointments and Best Seller Ends Here */}
         </Row>
-        
       </Container>
-      
     </Fragment>
   );
 };

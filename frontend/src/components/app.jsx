@@ -7,16 +7,27 @@ import Footer from "../layout/footer";
 import ThemeCustomize from "../layout/theme-customizer";
 import { ToastContainer } from "react-toastify";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { current } from "../redux/currentUser/action";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { current, videErrors } from "../redux/currentUser/action";
 
-const App = ({ children }) => {
+const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
   let token = localStorage.getItem("token");
+  const role = useSelector((state) => state.currentUser.user.role);
+  const notification = useSelector((state) => state.currentUser.msg);
   useEffect(() => {
     dispatch(current());
+    getWhichUser(role);
+    if (notification) {
+      toast.success(notification, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 10000, //stay 10 secondes
+      });
+      dispatch(videErrors());
+    }
     // eslint-disable-next-line
-  }, [token]);
+  }, [token, role]);
   return (
     <Fragment>
       <Loader />

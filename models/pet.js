@@ -11,7 +11,11 @@ const petSchema = new Schema({
   age: { type: String, default: Date.now },
   gender: { type: String, default: null },
   petPictures: { type: Array, default: [] },
-  petProfilePicture: { type: String, default: "" },
+  petProfilePicture: {
+    type: String,
+    default:
+      "https://halepetdoorsofaz.com/wp-content/uploads/2019/03/Dog-and-Cat-Silhouette.png",
+  },
   isVaccined: { type: Boolean, default: false },
   isDead: { type: Boolean, default: false },
   isOwned: { type: Boolean, default: true },

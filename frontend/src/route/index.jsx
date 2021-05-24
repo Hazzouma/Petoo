@@ -180,7 +180,6 @@ import createProduct from "../components/application/ecommerce-app/createProduct
 //Notifications and appoiments
 import Notifndapp from "../components/notifications/Notificationsndapp"
 
-
 // Email
 import Email from "../components/application/email-app/emailDefault";
 
@@ -211,8 +210,9 @@ import Todo from "../components/application/todo-app";
 
 // todo-firebase-app
 import TodoFirebase from "../components/application/todo-firebase-app";
+import Error404 from "../pages/errors/error404";
 
-export const routes = [
+export const routesAdmin = [
   { path: "/dashboard/default", Component: Default },
   { path: "/dashboard/ecommerce", Component: Ecommerce },
 
@@ -362,7 +362,6 @@ export const routes = [
   { path: "/appoiments", Component: Notifndapp },
 
 
-
   { path: "/app/email-app", Component: Email },
   { path: "/app/chat-app", Component: Chat },
   { path: "/app/bookmark", Component: Bookmark },
@@ -378,4 +377,85 @@ export const routes = [
 
   { path: "/app/todo-app/todo", Component: Todo },
   { path: "/app/todo-app/todo-firebase", Component: TodoFirebase },
+];
+//---------------OWNER
+export const routesOwner = [
+  { path: "/dashboard/default", Component: Default },
+  //ecommerce
+  { path: "/app/ecommerce/product", Component: Product },
+  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
+  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
+  { path: "/app/ecommerce/invoice", Component: Invoice },
+  { path: "/app/ecommerce/checkout", Component: Checkout },
+  { path: "/app/ecommerce/cart", Component: Cart },
+  //users + pet
+  { path: "/app/users/userProfile", Component: UserProfile },
+  { path: "/app/users/petProfile", Component: PetProfile },
+  { path: "/app/users/userEdit", Component: UserEdit },
+  { path: "/app/users/vetoList", Component: VetoList },
+  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/petList", Component: PetList },
+  { path: "/app/users/CreatePet", Component: CreatePet },
+  //gallery
+  { path: "/app/gallery", Component: ImageGallery },
+  //blog
+  { path: "/app/blog/blogDetail", Component: BlogDetail },
+  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  //Notification
+  { path: "/myNotifications", Component: DataTable },
+];
+
+// --------------VET
+export const routesVet = [
+  { path: "/dashboard/default", Component: Default },
+  //ecommerce
+  { path: "/app/ecommerce/product", Component: Product },
+  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
+  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
+  { path: "/app/ecommerce/invoice", Component: Invoice },
+  { path: "/app/ecommerce/checkout", Component: Checkout },
+  { path: "/app/ecommerce/cart", Component: Cart },
+  //users + pet
+  { path: "/app/users/userProfile", Component: UserProfile },
+  { path: "/app/users/petProfile", Component: PetProfile },
+  { path: "/app/users/userEdit", Component: UserEdit },
+  { path: "/app/users/vetoList", Component: VetoList },
+  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/petList", Component: PetList },
+  { path: "/app/users/CreatePet", Component: CreatePet },
+  //gallery
+  { path: "/app/gallery", Component: ImageGallery },
+  //blog
+  { path: "/app/blog/blogDetail", Component: BlogDetail },
+  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  //Notification
+  { path: "/myNotifications", Component: DataTable },
+  // Appointments & more infos
+  { path: "/app/task", Component: TaskApp },
+];
+//-------------SHOP
+export const routesShop = [
+  { path: "/dashboard/default", Component: Default },
+  //ecommerce
+  { path: "/app/ecommerce/product", Component: Product },
+  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
+  { path: "/app/ecommerce/cart", Component: Cart },
+  { path: "/app/ecommerce/wishlist", Component: Wishlist },
+  { path: "/app/ecommerce/invoice", Component: Invoice },
+  { path: "/app/ecommerce/product-list", Component: Productlist },
+  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
+  { path: "/app/ecommerce/createProduct", Component: createProduct },
+  //users + pet
+  { path: "/app/users/userProfile", Component: UserProfile },
+  { path: "/app/users/userEdit", Component: UserEdit },
+  { path: "/app/users/vetCard", Component: VetCard },
+  //gallery
+  { path: "/app/gallery", Component: ImageGallery },
+  //blog
+  { path: "/app/blog/blogDetail", Component: BlogDetail },
+  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  //Notification
+  { path: "/myNotifications", Component: DataTable },
+  // Appointments & more infos
+  { path: "/app/task", Component: TaskApp },
 ];
