@@ -195,8 +195,12 @@ if (notificationDropDown && num>0 ){
               className='notification-box'
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
-              <Bell />
-              <span className='badge badge-pill badge-secondary'>{num}</span>
+              <Bell /> 
+              {num===0 ? (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
+              <span className='badge badge-pill badge-secondary'>{num}</span>)
+              :
+              <span className='badge badge-pill badge-secondary'></span> 
+}
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
