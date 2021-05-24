@@ -31,6 +31,7 @@ const userReducer = (state = initialState, { type, payload }) => {
         load: false,
         isAuth: false,
         msg: payload,
+        errors: [],
       };
     //   payload: {token , msg , user}
     case LOGIN_USER:
