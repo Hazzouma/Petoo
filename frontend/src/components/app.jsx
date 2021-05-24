@@ -6,7 +6,7 @@ import Sidebar from "../layout/sidebar";
 import Footer from "../layout/footer";
 import ThemeCustomize from "../layout/theme-customizer";
 import { ToastContainer } from "react-toastify";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { current, videErrors } from "../redux/currentUser/action";

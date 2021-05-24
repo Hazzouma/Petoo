@@ -50,7 +50,7 @@ exports.AppointmentCreateByOwner = async (req, res) => {
      //Create a  notification  for the VET
       const newVetNotification = new Notification({
       idNotification: uniqid("Notif-"),
-      msg: `An appointment has been booked with you for ${foundOwner.prenom} and his pet ${foundPet.name} on ${newAppointment.date}!`,
+      msg: `An appointment has been booked with you for ${foundOwner.prenom} and his pet ${foundPet.name} on ${newAppointment.date}, please confirm , cancel or edit time!`,
     });
     //adding the notif id to the VET
     foundVet.notificationId.push(newVetNotification.idNotification);
