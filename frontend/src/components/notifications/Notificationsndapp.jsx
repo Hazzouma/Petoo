@@ -202,22 +202,72 @@ const Notifndapp = (props) => {
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {newtaskdata.length ?
-                                      newtaskdata.map((taskdata, index) => {
+                                    {notifications.length  ?
+                                      notifications.map((taskdata, index) => {
                                         return (
-                                          <tr key={index}>
-                                            <td>
-                                              <h6 className="task_title_0">{taskdata.title}</h6>
-                                              <p className="project_name_0">{taskdata.collection}</p>
-                                            </td>
-                                            <td>
-                                              <p className="task_desc_0">{taskdata.desc}</p>
-                                            </td>
-                                            <td>
-                                              <a className="mr-2" href="#javascript"><Link /></a>
-                                              <a href="#javascript"><MoreHorizontal /></a>
-                                            </td>
-                                          </tr>
+                                              
+                                               <CardBody className='pt-0'>
+                <div className='appointment-table table-responsive'>
+                  <table className='table table-bordernone'>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img
+                            className='img-fluid img-40 rounded-circle mb-3'
+                            src={profilePicture}
+                            alt=''
+                          />
+                        </td>
+                        <td className='img-content-box'>
+                          <span className='d-block'>Vet falten</span>
+                          <span className='font-roboto'>Now</span>
+                        </td>
+                        <td>
+                          <p className='m-0 font-primary'>{"28 Sept"}</p>
+                        </td>
+                        <td className='text-center'>
+                             Pet Name
+                        </td>
+                        <td className='text-right'>
+                          <div className='button btn btn-primary'>
+                            done
+                            <i className='fa fa-check-circle ml-2'></i>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            className='img-fluid img-40 rounded-circle'
+                            src={
+                              require("../../assets/images/appointment/app-ent.jpg")
+                                .default
+                            }
+                            alt=''
+                          />
+                        </td>
+                        <td className='img-content-box'>
+                          <span className='d-block'>Vet Foulen</span>
+                          <span className='font-roboto'>{"11:00"}</span>
+                        </td>
+                        <td>
+                          <p className='m-0 font-primary'>{"22 Sept"}</p>
+                        </td>
+                        <td className='text-center'>
+                             Pet Name
+                        </td>
+                        <td className='text-right'>
+                          <div className='button btn btn-danger'>
+                            Cancelled
+                            <i className='fa fa-check-circle ml-2'></i>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardBody>
+
                                         )
                                       })
                                       : <tr><td><div className="no-favourite"><span>No Appoiments for you :(</span></div></td></tr>
@@ -346,22 +396,45 @@ const Notifndapp = (props) => {
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {newtaskdata.length ?
-                                      newtaskdata.map((taskdata, index) => {
+                                    {notifications.length ?
+                                      notifications.map((taskdata, index) => {
                                         return (
-                                          <tr key={index}>
-                                            <td>
-                                              <h6 className="task_title_0">{taskdata.title}</h6>
-                                              <p className="project_name_0">{taskdata.collection}</p>
-                                            </td>
-                                            <td>
-                                              <p className="task_desc_0">{taskdata.desc}</p>
-                                            </td>
-                                            <td>
-                                              <a className="mr-2" href="#javascript"><Link /></a>
-                                              <a href="#javascript"><MoreHorizontal /></a>
-                                            </td>
-                                          </tr>
+                                            <CardBody className='pt-0'>
+                                            <div className='appointment-table table-responsive'>
+                                              <table className='table table-bordernone'>
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <img
+                                                        className='img-fluid img-40 rounded-circle'
+                                                        src={
+                                                          require("../../assets/images/appointment/app-ent.jpg")
+                                                            .default
+                                                        }
+                                                        alt=''
+                                                      />
+                                                    </td>
+                                                    <td className='img-content-box'>
+                                                      <span className='d-block'>Vet Foulen</span>
+                                                      <span className='font-roboto'>{"11:00"}</span>
+                                                    </td>
+                                                    <td>
+                                                      <p className='m-0 font-primary'>{"22 Sept"}</p>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                         Pet Name
+                                                    </td>
+                                                    <td className='text-right'>
+                                                      <div className='button btn btn-danger'>
+                                                        Cancelled
+                                                        <i className='fa fa-check-circle ml-2'></i>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </CardBody>
                                         )
                                       })
                                       : <tr><td><div className="no-favourite"><span>No Canceled Appoiments </span></div></td></tr>

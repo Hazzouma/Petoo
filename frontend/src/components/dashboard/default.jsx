@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
 import { useSelector, useDispatch } from "react-redux";
+import {Link} from "react-router-dom"
 import {
   Container,
   Row,
@@ -115,7 +116,7 @@ const Default = (props) => {
                     <span>
                       {" "}
                       {
-                        "Today's earrning is $405 & your sales increase rate is 3.7 over the last 24 hours"
+                        "You can click on your pet picture to access his profile"
                       }
                     </span>
                   </p>
@@ -169,11 +170,13 @@ const Default = (props) => {
                       />
                     </div>
                   </Row>
+                  <Link to="/app/blog/blogDetail">
                   <div className='whatsnew-btn'>
-                    <a className='btn btn-primary' href='#javascript'>
+                    <button className='btn btn-primary'>
                       {"Whats New !"}
-                    </a>
+                    </button>
                   </div>
+                  </Link>
                 </div>
               </CardBody>
             </Card>
@@ -185,11 +188,7 @@ const Default = (props) => {
                 <div className='header-top'>
                   <h5 className='m-0'>{Appointment}</h5>
                   <div className='card-header-right-icon'>
-                    <select className='button btn btn-primary'>
-                      <option>{Today}</option>
-                      <option>{Tomorrow}</option>
-                      <option>{Yesterday}</option>
-                    </select>
+
                   </div>
                 </div>
               </CardHeader>
