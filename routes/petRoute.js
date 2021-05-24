@@ -18,6 +18,6 @@ routerPet.post("/modif/:idPet", PetEdit);
 routerPet.get("/getAllPets", allPets);
 
 //get pets of that specific owner
-routerPet.post("/getYourPets", getPetsOfOwner);
+// routerPet.post("/getYourPets", getPetsOfOwner);
 
 module.exports = routerPet;

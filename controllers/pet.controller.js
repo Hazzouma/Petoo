@@ -119,3 +119,34 @@ exports.allPets = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not get All owners" }] });
   }
 };
+
+exports.getPetsOfOwner = async (req, res) => {
+  try {
+    const { idUser } = req.body;
+    const foundOwner = await ownerModel.findOne({ idUser });
+
+    if (!foundOwner)
+      //check owner exists
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "Login first, please!" }] });
+
+    if (foundOwner.ownedPets.length === 0) {
+      // checking if he has pets
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "Create a pet first please!" }] });
+    }
+
+    const arrayOfPets = await Promise.all(
+      await foundOwner.ownedPets.map(async (pet) => {
+        const hisPet = await petModel.findOne({ idPet: pet });
+        return hisPet;
+      })
+    );
+    res.status(200).send({ msg: "All your Pets", arr: await arrayOfPets });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get your pets!" }] });
+  }
+};
