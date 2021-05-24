@@ -16,6 +16,7 @@ import petReducer from "./petActions/reducer";
 import notifReducer from "./notification/reducer";
 import populationReducer from "./population/reducer";
 
+
 const reducers = combineReducers({
   Todoapp,
   data: Ecommerce,
@@ -33,6 +34,7 @@ const reducers = combineReducers({
   petReducer, // pet manipulation reducer
   notifReducer, //notification reducer
   populationReducer, // getting all users and pets
+  
 });
 
 export default reducers;

@@ -16,6 +16,7 @@ productId:{type:Array,default:[]},
 notificationId:{type:Array, default:[]},
 orderId:{type:Array, default:[]},
 about:{type:String, default:""},
+role:{ type: String, default: "shop" },
 legalContact:{
     nom:{type: String, required: true},
     prenom:{type: String, required: true},
@@ -27,7 +28,7 @@ legalContact:{
     CIN:{type:Number, required:true}
 
 },
-role:{ type: String, default: "shop" }
+
 
 })
 

@@ -18,7 +18,7 @@ exports.registerValidate = () => [
   }),
 
   check("adresse", "Adress is required!").isLength({
-    min: 6,
+    min: 4,
   }),
   check("ville", "City is required").isLength({
     min: 4,

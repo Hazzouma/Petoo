@@ -116,3 +116,8 @@ export const FAIL_POPULATION = "FAIL_POPULATION";
 export const GET_PETS = "GET_PETS";
 export const GET_VETOS = "GET_VETOS";
 export const GET_OWNERS = "GET_OWNERS";
+
+/* VET*/ 
+export const FAIL_VET = "FAIL_VET";
+export const LOAD_VET= "LOAD_VET";
+export const REGISTER_VET= "REGISTER_VET";

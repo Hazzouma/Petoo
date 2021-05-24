@@ -19,6 +19,7 @@ exports.VetRegister = async (req, res) => {
 
     let newVeto = new ownerModel({ ...req.body });
     newVeto.idUser = uniqid("Veto-"); //Create specific Id for Veto, not the mongoDB one
+    newVeto.role = "Veterinary"
     newVeto.password = passwordHash.generate(newVeto.password); //crypt password
 
     await newVeto.save();

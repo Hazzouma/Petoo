@@ -40,6 +40,22 @@ export const register = (user, history) => async (dispatch) => {
   }
 };
 
+export const registerVet = (vet, history) => async (dispatch) => {
+  dispatch({ type: LOAD_USER });
+  try {
+    let result = await axios.post(
+      `${process.env.PUBLIC_URL}/api/vet/register`,
+      vet
+    );
+    dispatch({ type: REGISTER_USER, payload: result.data.msg }); 
+    history.push(`${process.env.PUBLIC_URL}/login`);
+  } catch (error) {
+    // console.log(error.response.data);
+    dispatch({ type: FAIL_USER, payload: error.response.data.errors });
+  }
+};
+
+
 // logout
 export const logout = (history) => {
   window.location.href = `${process.env.PUBLIC_URL}/login`;

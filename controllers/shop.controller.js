@@ -12,7 +12,7 @@ exports.ShopRegister = async (req, res) => {
     //Shop related
     const foundShopByEmail = await shopModel.findOne({ email });
     const foundShopByTaxNumber = await shopModel.findOne({ taxNumber });
-    const foundShopByShopName = await shopModel.findOne({ shopName });$
+    const foundShopByShopName = await shopModel.findOne({ shopName });
 
     
     if (foundShopByEmail || foundShopByTaxNumber ||foundShopByShopName )
@@ -21,6 +21,7 @@ exports.ShopRegister = async (req, res) => {
 
     let newShop = new shopModel({ ...req.body });
     newShop.idShop = uniqid("Shop-"); //Create specific Id for Shop, not the mongoDB one
+    newShop.role= "Shop"
     newShop.password = passwordHash.generate(newShop.password); //crypt password
 
     await newShop.save();             
