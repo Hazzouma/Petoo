@@ -16,12 +16,11 @@ import {
   Plus,
   X,
 } from "react-feather";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 // import { firebase_app } from "../../data/config";
 import { useSelector, useDispatch } from "react-redux";
 // import { useAuth0 } from "@auth0/auth0-react";
 // import Bookmark from "../../layout/bookmark";
-import { Link } from "react-router-dom";
 import {
   setTranslations,
   setDefaultLanguage,
@@ -167,7 +166,7 @@ const Rightbar = (props) => {
   };
   
   const notifications = useSelector(
-    (state) => state.notifReducer.allNotifArray
+    (state) => state.notifReducer.allNotifArray.reverse().slice(0,6) //showing only 5 Notifications 
   );
 
   const notif =useSelector (
@@ -211,7 +210,7 @@ if (notificationDropDown && num>0 ){
                 <Bell />
                 <h6 className='f-18 mb-0'>{Notification}</h6>
               </li>
-              {notifications.slice(0).reverse().map((n, i) => //hedhi a9ba7 hkeya tnajem tchoufha :) ken tala3 aaleh aamalt slice hehehe
+              {notifications.map((n, i) =>
               <li>
                 <p style={{fontWeight:(!n.isRead ? "bold": "normal")}}>
                   <i className='fa fa-circle-o mr-3 font-primary'> </i>
@@ -221,12 +220,13 @@ if (notificationDropDown && num>0 ){
               </li>
               )} 
               <li>
-                
+                <Link to="/appoiments">
                 <button
                   className='btn btn-primary'
                 >
                   {CheckAllNotification}
                 </button>
+                </Link>
               </li>
             </ul>
           </li>

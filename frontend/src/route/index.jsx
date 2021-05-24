@@ -177,6 +177,8 @@ import Checkout from "../components/application/ecommerce-app/checkout";
 import Invoice from "../components/application/ecommerce-app/invoice";
 import Pricing from "../components/application/ecommerce-app/pricing";
 import createProduct from "../components/application/ecommerce-app/createProduct";
+//Notifications and appoiments
+import Notifndapp from "../components/notifications/Notificationsndapp"
 
 
 // Email
@@ -357,6 +359,8 @@ export const routes = [
   { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
   { path: "/app/ecommerce/pricing", Component: Pricing },
   { path: "/app/ecommerce/createProduct", Component: createProduct },
+  { path: "/appoiments", Component: Notifndapp },
+
 
 
   { path: "/app/email-app", Component: Email },
