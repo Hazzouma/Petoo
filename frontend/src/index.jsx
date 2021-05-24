@@ -165,7 +165,6 @@ const Root = (props) => {
               path={`${process.env.PUBLIC_URL}/pages/errors/error503`}
               component={Error503}
             ></Route>
-
             <Route
               path={`${process.env.PUBLIC_URL}/pages/comingsoon/comingsoon`}
               component={Comingsoon}
@@ -178,7 +177,6 @@ const Root = (props) => {
               path={`${process.env.PUBLIC_URL}/pages/comingsoon/comingsoonVideo`}
               component={ComingsoonVideo}
             ></Route>
-
             <Route
               path={`${process.env.PUBLIC_URL}/pages/maintenance`}
               component={Maintenance}
@@ -204,36 +202,59 @@ const Root = (props) => {
                   }}
                 />
                 <TransitionGroup>
-                  {console.log(role)}
-                  {role === "petOwner" ? (
-                    (role === "petOwner" ? routesOwner : routesAdmin).map(
-                      ({ path, Component }) => (
-                        <Route
-                          key={path}
-                          exact
-                          path={`${process.env.PUBLIC_URL}${path}`}
-                        >
-                          {({ match }) => (
-                            <CSSTransition
-                              in={match != null}
-                              timeout={100}
-                              // classNames={anim}
-                              unmountOnExit
-                            >
-                              <div>
-                                <Component />
-                              </div>
-                            </CSSTransition>
-                          )}
-                        </Route>
-                      )
-                    )
-                  ) : (
+                  <Switch>
+                    {console.log(role)}
+                    {role === "petOwner" &&
+                      (role === "petOwner" && routesOwner).map(
+                        ({ path, Component }) => (
+                          <Route
+                            key={path}
+                            exact
+                            path={`${process.env.PUBLIC_URL}${path}`}
+                          >
+                            {({ match }) => (
+                              <CSSTransition
+                                in={match != null}
+                                timeout={100}
+                                // classNames={anim}
+                                unmountOnExit
+                              >
+                                <div>
+                                  <Component />
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </Route>
+                        )
+                      )}
+                    {role === "Admin" &&
+                      (role === "Admin" && routesAdmin).map(
+                        ({ path, Component }) => (
+                          <Route
+                            key={path}
+                            exact
+                            path={`${process.env.PUBLIC_URL}${path}`}
+                          >
+                            {({ match }) => (
+                              <CSSTransition
+                                in={match != null}
+                                timeout={100}
+                                // classNames={anim}
+                                unmountOnExit
+                              >
+                                <div>
+                                  <Component />
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </Route>
+                        )
+                      )}
                     <Route
                       path={`${process.env.PUBLIC_URL}/*`}
                       component={Error404}
                     />
-                  )}
+                  </Switch>
                 </TransitionGroup>
               </App>
             ) : (

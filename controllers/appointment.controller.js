@@ -81,9 +81,9 @@ exports.AppointmentCreateByOwner = async (req, res) => {
 exports.AppointmentCreateByVet = async (req, res) => {
 
   try {
-    const { vetID, petID, ownerID, appointment } = req.body;
+    const { vetID, petID, ownerID, appointment} = req.body;
 
-    const newAppointment = new appointmentModel(appointment);
+    const newAppointment = new appointmentModel( appointment);
     newAppointment.idAppointment = uniqid("App-"); //Create specific Id for Appointment, not the mongoDB one
 
   //Security procedures
@@ -107,23 +107,23 @@ exports.AppointmentCreateByVet = async (req, res) => {
     newAppointment.idVet = vetID; //Added the idVet to the Appointment
     newAppointment.idPet = petID; //Added the idPet to the Appointment
     newAppointment.idOwner = ownerID; //Added the idPOwner to the Appointment
-    newAppointment.confirmedByVet= true;// since it's created by the Vet it's confirmed by him 
+    newAppointment.confirmedByVet= true;// since it's created by the owner it's confirmed by him 
 
     foundVet.appointmentId.push(newAppointment.idAppointment); //adding idApp to Vet's product table 
     foundOwner.appointmentId.push(newAppointment.idAppointment); //adding idApp to owners's product table 
     
-    //Create success notification of appointment creation for the VET
+    //Create success notification of appointment creation for the Vet
     const newVetNotification = new Notification({
       idNotification: uniqid("Notif-"),
-      msg: `you have booked an appointment for ${foundOwner.prenom} and his pet ${foundPet.name}  on ${newAppointment.date}, wait the confimation!`,
+      msg: `you have booked an appointment with ${foundOwner.prenom} and his pet ${foundPet.name} on ${newAppointment.date}, wait the confimation!`,
     });
-    //adding the notif id to the VET
+    //adding the notif id to the Vet
     foundVet.notificationId.push(newVetNotification.idNotification);
 
      //Create a  notification  for the OWNER
       const newOwnerNotification = new Notification({
       idNotification: uniqid("Notif-"),
-      msg: `An appointment has been booked for you and ${foundPet.name} with ${foundVet.prenom} on ${newAppointment.date}!`,
+      msg: `An appointment has been booked with you for and ${foundPet.name} with ${foundVet.prenom} ${foundVet.nom} on ${newAppointment.date}! , please confirm.`,
     });
     //adding the notif id to the Owner
     foundOwner.notificationId.push(newOwnerNotification.idNotification);
@@ -133,16 +133,17 @@ exports.AppointmentCreateByVet = async (req, res) => {
     await foundVet.save();
     await foundPet.save();
     await foundOwner.save();
-    await newNotification.save();
+    await newOwnerNotification.save();
+    await newVetNotification.save();
     
     res.status(200).json({
       msg: `Appointment created successfully!`,
       newAppointment,
-      newVetNotification,
-      newOwnerNotification
+      newOwnerNotification,
+      newVetNotification
     });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not create Appointment" }] });
   }
 };

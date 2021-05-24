@@ -4,10 +4,7 @@ const { AppointmentCreateByOwner, AppointmentCreateByVet , AppointmenttEditbyVet
 const { creationAppointment, validationAppointment } = require("../middlewares/validateAppointment");
 
 //Route of Appointment creation with some verification on inputs
-routerAppointment.post("/createByOwner", 
-creationAppointment(), 
-validationAppointment, 
-AppointmentCreateByOwner);
+routerAppointment.post("/createByOwner",  creationAppointment(),  validationAppointment,  AppointmentCreateByOwner);
 
 routerAppointment.post("/createByVet", creationAppointment(), validationAppointment, AppointmentCreateByVet);
 
