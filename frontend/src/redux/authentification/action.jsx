@@ -63,9 +63,9 @@ export const registerShop = (shop, history) => async (dispatch) => {
       shop
     );
     dispatch({ type: REGISTER_USER, payload: result.data.msg }); 
-    history.push(`${process.env.PUBLIC_URL}/login`);
+    // history.push(`${process.env.PUBLIC_URL}/dashboard/default`);
   } catch (error) {
-    // console.log(error.response.data);
+      console.log(error.response.data);
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };

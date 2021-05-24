@@ -8,7 +8,7 @@ import { registerShop, videErrors } from "../../redux/authentification/action";
 import { toast } from "react-toastify";
 
 
-const CreateShop = () => { 
+const CreateShop = ({history}) => { 
   const dispatch = useDispatch()
   const [shopRegister, setShopRegister] = useState({});
   const [legalContact, setLegalContact] = useState({});
@@ -17,6 +17,10 @@ const CreateShop = () => {
 
   const getShopRegister = (e) =>
 setShopRegister({ ...shopRegister, legalContact, [e.target.name]: e.target.value });
+
+const registerUser = () => {
+  dispatch(registerShop(shopRegister, history));
+};
 
   const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } } // DropZone reltated
   const handleChangeStatus = ({ meta, file }, status) => {
@@ -102,19 +106,24 @@ const successRegister = useSelector((state) => state.userReducer.msg);
                       <h6>Shop Information</h6>
                       <FormGroup>
                         <Label className="col-form-label">Shop Name</Label>
-                        <Input className="form-control" type="text" placeholder="Shop Name"   name='CIN' onChange={getShopRegister}/>
+                        <Input className="form-control" type="text" placeholder="Shop Name"   name='shopName' onChange={getShopRegister}/>
                       </FormGroup>
                       {/* <FormGroup>
                         <Label className="col-form-label">{Website}</Label>
                         <Input className="form-control" type="text" placeholder="Website" />
                       </FormGroup> */}
+                      
+                      <FormGroup>
+                        <Label className="col-form-label">Phone Number</Label>
+                        <Input className="form-control" type="text" placeholder="Phone " name='phoneNumber' onChange={getShopRegister}/>
+                      </FormGroup>
                       <FormGroup>
                         <Label className="col-form-label">Email</Label>
                         <Input className="form-control" type="text" placeholder="Email" name='email' onChange={getShopRegister}/>
                       </FormGroup>
                       <FormGroup>
                         <Label className="col-form-label">Password</Label>
-                        <Input className="form-control" type="text" placeholder="Website" name='password' onChange={getShopRegister}/>
+                        <Input className="form-control" type="password" placeholder="******" name='password' onChange={getShopRegister}/>
                       </FormGroup>
 
                       
@@ -181,7 +190,7 @@ const successRegister = useSelector((state) => state.userReducer.msg);
                         {/* Drop ZOne Ends Here */}
                   </CardBody>
                   <CardFooter>
-                      <Button color="primary" className="mr-1">{Submit}</Button>
+                      <Button color="primary" className="mr-1" onClick={() => registerUser()}>{Submit}</Button>
                       <Button color="secondary">{Cancel}</Button>
                   </CardFooter>
                 </Card>

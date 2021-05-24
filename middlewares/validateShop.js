@@ -1,7 +1,9 @@
 const { validationResult, check } = require("express-validator");
 
 exports.registerValidate = () => [
-  check("shopName", "The Shop Name is required").notEmpty(),
+  check("shopName", "The Shop Name is required").isLength({
+    min: 3,
+  }),
   check("email", "Enter a valid Email!").isEmail(),
   check("password", "Password should contain at least 6 caracters!").isLength({
     min: 6,
@@ -12,10 +14,10 @@ exports.registerValidate = () => [
     min: 3,
   }),
   check("adresse", "Adress is required!").isLength({
-    min: 6,
+    min: 3,
   }),
   check("ville", "City is required").isLength({
-    min: 4,
+    min: 3,
   }),
   check("codePostale", "Postal Code is required").isLength({
     min: 4,
@@ -32,10 +34,10 @@ exports.registerValidate = () => [
   check("legalContact.phoneNumber", "The legal contact's phone number is required").isLength({
     min: 8,}),
   check("legalContact.adresse", "The legal contact's adress is required!").isLength({
-    min: 6,
+    min: 3,
   }),
   check("legalContact.ville", "The legal contact's city is required").isLength({
-    min: 4,
+    min: 3,
   }),
   check("legalContact.codePostale", "The legal contact's postal Code is required").isLength({
     min: 4,

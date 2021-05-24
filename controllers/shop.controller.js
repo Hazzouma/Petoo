@@ -22,13 +22,15 @@ exports.ShopRegister = async (req, res) => {
     let newShop = new shopModel({ ...req.body });
     newShop.idShop = uniqid("Shop-"); //Create specific Id for Shop, not the mongoDB one
     newShop.role= "Shop"
-    newShop.password = passwordHash.generate(newShop.password); //crypt password
 
+    newShop.password = passwordHash.generate(newShop.password); //crypt password
+console.log(newShop)
     await newShop.save();             
-  
+ 
     res
       .status(200)
       .json({ msg: `Shop Professional account created successfully!`, newShop });
+      console.log(125)
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not register Shop!" }] });
