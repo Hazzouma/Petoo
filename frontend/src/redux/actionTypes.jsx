@@ -121,5 +121,11 @@ export const GET_OWNERS = "GET_OWNERS";
 /* APP*/ 
 export const FAIL_APP = "FAIL_VET";
 export const LOAD_APP= "LOAD_VET";
-export const ADD_VET= "REGISTER_VET";
+export const ADD_VET= "ADD_VET";
 export const VIDE_ERRORS_MSGS = "VIDE_ERRORS_MSGS";
+
+/* PRODUCT*/  
+export const FAIL_PRODUCT = "FAIL_PRODUCT";
+export const LOAD_PRODUCT= "LOAD_PRODUCT";
+export const ADD_PRODUCT= "ADD_PRODUCT";
+export const VIDE_ERRORS_MSG_ = "VIDE_ERRORS_MSG_";

@@ -1,23 +1,58 @@
-import React, { Fragment , useState} from 'react';
+import React, { Fragment , useState,  useEffect} from 'react';
 import Breadcrumb from '../../../layout/breadcrumb'
 import Dropzone from 'react-dropzone-uploader';
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Form,FormGroup,Label,Input,Button} from 'reactstrap'
 import {Submit,Cancel} from "../../../constant";
-
 import { ToastContainer, toast} from 'react-toastify';
-const CreateProduct = () => { 
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, videErrors } from "../redux/authentification/action";
+import { toast } from "react-toastify";
+
+const CreateProduct = ({history}) => { 
+  const dispatch = useDispatch()
+  const [productCreate, setProductCreate] = useState({});
+
+const getProductCreate = (e) =>
+setProductCreate({ ...productCreate, [e.target.name]: e.target.value });
+
+const createProduct = () => {
+  dispatch(addProduct(productCreate, history));
+};
+
 
   const handleSubmit = (files, allFiles) => {
     allFiles.forEach(f => f.remove())
     toast.success("Dropzone successfully submitted !");
 } // DropZone related
-  
-  
-
-
   const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } } // Image DropZone reltated
   const handleChangeStatus = ({ meta, file }, status) => {
   }  // Image DropZone reltated
+
+
+  //managing errors if exist
+  const arrErrors = useSelector((state) => state.userReducer.errors);
+  //sucess register
+  const successRegister = useSelector((state) => state.userReducer.msg);
+  
+  useEffect(() => {
+    if (arrErrors.length > 0) {
+      arrErrors.forEach((el) => {
+        toast.error(el.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+      });
+    } else if (successRegister) {
+      toast.success(successRegister, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      dispatch(videErrors());
+    }
+    // eslint-disable-next-line
+  }, [arrErrors, successRegister]);
+  
+
   return (
     <Fragment>
       <Breadcrumb parent="E-commerce" title="Create Product" />

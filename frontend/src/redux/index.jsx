@@ -16,6 +16,7 @@ import petReducer from "./petActions/reducer";
 import notifReducer from "./notification/reducer";
 import populationReducer from "./population/reducer";
 import appReducer from "./appointmentAction/reducer"
+import productReducer from "./productAction/reducer"
 
 const reducers = combineReducers({
   Todoapp,
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   notifReducer, //notification reducer
   populationReducer, // getting all users and pets
   appReducer,//create appointment so far 
+  productReducer,//create product so far
   
 });
 
