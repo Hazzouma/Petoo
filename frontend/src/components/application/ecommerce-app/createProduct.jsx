@@ -5,8 +5,8 @@ import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Form,FormGroup,Lab
 import {Submit,Cancel} from "../../../constant";
 import { ToastContainer, toast} from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, videErrors } from "../redux/authentification/action";
-import { toast } from "react-toastify";
+import { addProduct, videErrors } from "../../../redux/productAction/action";
+
 
 const CreateProduct = ({history}) => { 
   const dispatch = useDispatch()
