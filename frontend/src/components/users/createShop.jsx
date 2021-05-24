@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone-uploader';
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Form,FormGroup,Label,Input,Button} from 'reactstrap'
 import { EmailAddress,Website,BillingInformation,Submit,Cancel,ContactNumber} from "../../constant";
 import { useDispatch, useSelector } from "react-redux";
-import { registerShop, videErrors } from "../../redux/authentification/action";
+import { registerShop, videErrors, resetUserReducer } from "../../redux/authentification/action";
 import { toast } from "react-toastify";
 
 
@@ -20,6 +20,7 @@ setShopRegister({ ...shopRegister, legalContact, [e.target.name]: e.target.value
 
 const registerUser = () => {
   dispatch(registerShop(shopRegister, history));
+  dispatch(resetUserReducer)
 };
 
   const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } } // DropZone reltated

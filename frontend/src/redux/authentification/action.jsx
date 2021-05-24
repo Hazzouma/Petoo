@@ -4,6 +4,7 @@ import {
   LOAD_USER,
   LOGIN_USER,
   REGISTER_USER,
+  RESET_USER,
   RESET_PASSWORD,
   VALIDATE_OTP,
   VIDE_ERRORS,
@@ -54,6 +55,9 @@ export const registerVet = (vet, history) => async (dispatch) => {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
 };
+export const resetUserReducer = (dispatch) =>{
+  dispatch ({ type: RESET_USER})
+}
 
 export const registerShop = (shop, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });

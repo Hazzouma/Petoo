@@ -1,10 +1,11 @@
 const { validationResult, check } = require("express-validator");
 
 exports.creationProduct = () => [
-  check("name", "Enter your product's name").isLength({ min: 2 }),
-  check("description", "Please give a small description for you product").isLength({ min: 5 }),
-  check("price", "Please specify your product's price").notEmpty(),
-  check("brand", "Please specify the brand of your product!").isLength({
+  check("product.name", "Enter your product's name").isLength({ min: 2 }),
+  check("product.description", "Please give a small description for you product").isLength({ min: 5 }),
+  check("product.price", "Please specify your product's price").isLength({
+    min: 3,}),
+  check("product.brand", "Please specify the brand of your product!").isLength({
     min: 3,
   }),
   check("productType", "Please specify the type of your product!").isLength({ min: 3 }),
