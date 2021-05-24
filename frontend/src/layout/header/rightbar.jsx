@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getALLNotif } from "../../redux/notification/action";
 // import man from "../../assets/images/dashboard/profile.jpg";
-import moment from "moment";
+import moment from 'moment'
 import {
   FileText,
   LogIn,
@@ -16,12 +16,11 @@ import {
   Plus,
   X,
 } from "react-feather";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 // import { firebase_app } from "../../data/config";
 import { useSelector, useDispatch } from "react-redux";
 // import { useAuth0 } from "@auth0/auth0-react";
 // import Bookmark from "../../layout/bookmark";
-import { Link } from "react-router-dom";
 import {
   setTranslations,
   setDefaultLanguage,
@@ -30,7 +29,7 @@ import {
   translate,
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
-import { checkALLNotif } from "../../redux/notification/action";
+import {checkALLNotif} from "../../redux/notification/action";
 import {
   // English,
   // Deutsch,
@@ -89,12 +88,18 @@ const Rightbar = (props) => {
   );
   const idUser = useSelector((state) => state.currentUser.user.idUser);
   useEffect(() => {
+
     dispatch(getALLNotif(idUser));
+
+
   }, [idUser]);
+  
+
 
   const logoutFromJWT = () => {
     dispatch(logout(history));
   };
+
 
   const RedirectToCart = () => {
     history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
@@ -159,20 +164,22 @@ const Rightbar = (props) => {
       localStorage.setItem("layout_version", "dark-only");
     }
   };
-
+  
   const notifications = useSelector(
-    (state) => state.notifReducer.allNotifArray
+    (state) => state.notifReducer.allNotifArray.reverse().slice(0,6) //showing only 5 Notifications 
   );
 
-  const notif = useSelector((state) => state.currentUser.user.notificationId);
-  let num = "0";
-  const NotifnotRead = notifications.map((x) => {
-    if (x.isRead === false) num++;
-  });
+  const notif =useSelector (
+    (state)=> state.currentUser.user.notificationId
+  );
+let num = "0"
+const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
+  num++
+}); 
 
-  if (notificationDropDown && num > 0) {
-    dispatch(checkALLNotif(notif, idUser));
-  }
+if (notificationDropDown && num>0 ){
+  dispatch(checkALLNotif(notif,idUser))
+}
   return (
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
@@ -203,29 +210,23 @@ const Rightbar = (props) => {
                 <Bell />
                 <h6 className='f-18 mb-0'>{Notification}</h6>
               </li>
-              {notifications
-                .slice(0)
-                .reverse()
-                .map(
-                  (
-                    n,
-                    i //hedhi a9ba7 hkeya tnajem tchoufha :) ken tala3 aaleh aamalt slice hehehe
-                  ) => (
-                    <li key={i}>
-                      <p style={{ fontWeight: !n.isRead ? "bold" : "normal" }}>
-                        <i className='fa fa-circle-o mr-3 font-primary'> </i>
-                        {n.msg}
-                        <span className='pull-right'>
-                          {moment(parseInt(n.creationDate, 10)).fromNow()}
-                        </span>
-                      </p>
-                    </li>
-                  )
-                )}
+              {notifications.map((n, i) =>
               <li>
-                <button className='btn btn-primary'>
+                <p style={{fontWeight:(!n.isRead ? "bold": "normal")}}>
+                  <i className='fa fa-circle-o mr-3 font-primary'> </i>
+                  {n.msg}
+                  <span className='pull-right'>{moment(parseInt(n.creationDate,10)).fromNow()}</span>
+                </p>
+              </li>
+              )} 
+              <li>
+                <Link to="/appoiments">
+                <button
+                  className='btn btn-primary'
+                >
                   {CheckAllNotification}
                 </button>
+                </Link>
               </li>
             </ul>
           </li>
@@ -258,9 +259,7 @@ const Rightbar = (props) => {
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={
-                      require("../../assets//images/ecommerce/01.jpg").default
-                    }
+                    src={require("../../assets//images/ecommerce/01.jpg").default}
                     alt=''
                   />
                   <div className='media-body'>
@@ -309,9 +308,7 @@ const Rightbar = (props) => {
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={
-                      require("../../assets/images/ecommerce/03.jpg").default
-                    }
+                    src={require("../../assets/images/ecommerce/03.jpg").default}
                     alt=''
                   />
                   <div className='media-body'>
