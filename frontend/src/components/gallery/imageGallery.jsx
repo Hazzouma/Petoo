@@ -1,20 +1,32 @@
 import React,{Fragment,useState,useEffect} from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import Lightbox from "react-image-lightbox";
-import {Container,Row,Col,Card,CardHeader,CardBody,Media} from 'reactstrap'
+import {Container,Row,Col,Card,CardHeader,CardBody,Media, Form} from 'reactstrap'
 import axios from 'axios'
 import {IMAGE_GALLERY} from "../../constant";
+import { ToastContainer, toast } from 'react-toastify';
+import Dropzone from 'react-dropzone-uploader';
 
 const ImageGallery = () => {
-    
+    //DropZone related
+    const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
+    const handleChangeStatus = ({ meta, file }, status) => {
+    }
+    const handleSubmit = (files, allFiles) => {
+        allFiles.forEach(f => f.remove())
+        toast.success("Dropzone successfully submitted !");
+    } 
+    //DropZone ends
+
+
         const [images,setImage] = useState([]) 
         const [smallImages,setsmallImages] = useState([])
         
         const initilindex = {index:0,isOpen:false}
         const[photoIndex,setPhotoIndex] = useState(initilindex)
         const onMovePrev = () => {
-           const prev = (photoIndex.index + images.length - 1) % images.length
-           setPhotoIndex({...photoIndex,index:prev})
+        const prev = (photoIndex.index + images.length - 1) % images.length
+        setPhotoIndex({...photoIndex,index:prev})
         }
         const  onMoveNext = () => {
             const next = (photoIndex.index + 1) % images.length
@@ -35,11 +47,29 @@ const ImageGallery = () => {
         
         return(
             <Fragment>
-                <Breadcrumb parent="Gallery" title="Gallery Grid"/>
+                <Breadcrumb parent="Gallery" title="My pets Photos" />
                 <Container fluid={true}>
                     <Row>
                         {smallImages.length > 0 ? 
                         <Col sm="12">
+                            <Card>
+                            <CardHeader>
+                                <h5>Add photos here</h5>
+                            </CardHeader>
+                            <CardBody>
+                                <Form>
+                                    <ToastContainer />
+                                    <div className="dz-message needsclick">
+                                        <Dropzone
+                                            getUploadParams={getUploadParams}
+                                            onChangeStatus={handleChangeStatus}
+                                            onSubmit={handleSubmit}
+                                            accept="image/*"
+                                        />
+                                    </div>
+                                </Form>
+                            </CardBody>
+                        </Card>
                             <Card>
                                 <CardHeader>
                                     <h5>{IMAGE_GALLERY}</h5>

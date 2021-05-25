@@ -1,25 +1,7 @@
-import {
-  Home,
-  FileText,
-  Server,
-  Users,
-  ShoppingBag,
-  Image,
-  Film,
-  Monitor,
+import { Home, Users, ShoppingBag, Image, Film,
 
 } from "react-feather";
 export const MENUITEMS = [
-
-
- 
-  // {
-  //   path: `${process.env.PUBLIC_URL}/app/task`,
-  //   icon: CheckSquare,
-  //   type: "link",
-  //   title: "Task",
-  // },
-  
   {
     menutitle: "General",
     menucontent: "Dashboards,Widgets",
@@ -37,11 +19,6 @@ export const MENUITEMS = [
             title: "Default",
             type: "link",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/ecommerce`,
-            title: "Ecommerce",
-            type: "link",
-          },
         ],
       },
     ],
@@ -52,24 +29,11 @@ export const MENUITEMS = [
     menucontent: "Ready to use Apps",
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/app/users/createShop`,
-        icon: Monitor,
-        badge: "badge badge-info",
-        badgetxt: "Admin",
-        title: "Create Shop ",
-        type: "link",
-      },
-      {
         title: "Ecommerce",
         icon: ShoppingBag,
         type: "sub",
         active: false,
         children: [
-          {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/createProduct`,
-            title: "Create Product",
-            type: "link",
-          },
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/product`,
             title: "Product",
@@ -93,11 +57,6 @@ export const MENUITEMS = [
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
             title: "Order History",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/pricing`,
-            title: "Pricing",
             type: "link",
           },
         ],
@@ -141,7 +100,6 @@ export const MENUITEMS = [
             title: "Pet List ",
           },
           
-          
           {
             path: `${process.env.PUBLIC_URL}/app/users/createPet`,
             type: "link",
@@ -149,14 +107,14 @@ export const MENUITEMS = [
           },
         ],
       },
-  
     ],
   },
 
 
+
   {
     menutitle: "Miscellaneous",
-    menucontent: "Extras",
+    menucontent: "Bouns Pages & Apps",
     Items: [
       {
         title: "Gallery",
@@ -167,11 +125,6 @@ export const MENUITEMS = [
           {
             path: `${process.env.PUBLIC_URL}/app/gallery/imageGallery`,
             title: "Gallery Grid ",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/app/gallery/imageWithDesc`,
-            title: "Gallery Grid  Desc ",
             type: "link",
           },
         ],
@@ -193,15 +146,9 @@ export const MENUITEMS = [
             title: "Blog Single",
             type: "link",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogPost`,
-            title: "Add Post",
-            type: "link",
-          },
+        
         ],
       },
-      
-    
     ],
   },
 ];
