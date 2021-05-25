@@ -2,7 +2,7 @@ import React, { Fragment , useState,  useEffect} from 'react';
 import Breadcrumb from '../../../layout/breadcrumb'
 import Dropzone from 'react-dropzone-uploader';
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Form,FormGroup,Label,Input,Button} from 'reactstrap'
-
+import { Link} from "react-router-dom";
 import { ToastContainer, toast} from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, videErrors } from "../../../redux/productAction/action";
@@ -143,8 +143,11 @@ const createProduct = () => {
                     {/* Drop ZOne Ends Here */}
                   </CardBody>
                   <CardFooter>
+
                       <Button color="primary" className="mr-1" onClick={() => createProduct()}>Submit</Button>
+                      <Link className='ml-2' to='/dashboard/ecommerce'>
                       <Button color="secondary">Cancel </Button>
+                      </Link >
                   </CardFooter>
                 </Card>
               </Col>

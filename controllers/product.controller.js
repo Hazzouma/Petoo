@@ -74,7 +74,7 @@ if (!foundProduct){
 }
 
 //check the shop
-const foundShop= await shoptModel.findOne({ idShop: shopID })
+const foundShop= await shopModel.findOne({ idShop: shopID })
 if (!foundShop){
   return res
   .status(404)
@@ -82,11 +82,11 @@ if (!foundShop){
 }
 
 
-const { productIds } = foundShop;
+const { productId } = foundShop;
 // Getting all products that this SPECIFIC shop has
 const foundProductinArray = await Promise.all(
-  productIds.map(async (el) => {
-    const product = await petModel.findOne({ idProduct: el });
+  productId.map(async (el) => {
+    const product = await productModel.findOne({ idProduct: el });
     const { idProduct } = product;
     return idProduct;
   })
@@ -105,8 +105,8 @@ if (!foundProductOfShop) {
 }
 
     let newData = await productModel.findOneAndUpdate(
-      { idProduct: idProduct },
-      { $set: { ...req.body } },
+      { idProduct: productID },
+      { $set: { ...req.body} },
       { new: true }
     );
     console.log(newData);
