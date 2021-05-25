@@ -99,6 +99,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const VALIDATE_OTP = "VALIDATE_OTP";
 export const VIDE_ERRORS = "VIDE_ERRORS";
 export const RESET_USER = "RESET_USER";
+export const ADD_VET = "ADD_VET";
 
 /* PET ACTIONS */
 export const ADD_PET = "ADD_PET";
@@ -119,11 +120,15 @@ export const GET_PETS = "GET_PETS";
 export const GET_VETOS = "GET_VETOS";
 export const GET_OWNERS = "GET_OWNERS";
 
-/* APP*/
+/* APPOINTMENTS */
 export const FAIL_APP = "FAIL_VET";
 export const LOAD_APP = "LOAD_VET";
-export const ADD_VET = "ADD_VET";
+export const ADD_APP = "ADD_APP";
 export const VIDE_ERRORS_MSGS = "VIDE_ERRORS_MSGS";
+export const EDIT_BY_OWNER = "EDIT_BY_OWNER";
+export const EDIT_BY_VET = "EDIT_BY_VET";
+export const ACCEPT_BY_VET = "ACCEPT_BY_VET";
+export const ACCEPT_BY_OWNER = "ACCEPT_BY_OWNER";
 
 /* PRODUCT*/
 export const FAIL_PRODUCT = "FAIL_PRODUCT";

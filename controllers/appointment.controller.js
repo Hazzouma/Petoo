@@ -62,14 +62,16 @@ exports.AppointmentCreateByOwner = async (req, res) => {
     await newVetNotification.save();
 
     res.status(200).json({
-      msg: `Appointment created successfully!`,
+      msg: `Appointment created successfully by owner!`,
       newAppointment,
       newOwnerNotification,
       newVetNotification,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not create Appointment" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not create Appointment by owner" }] });
   }
 };
 
@@ -131,14 +133,16 @@ exports.AppointmentCreateByVet = async (req, res) => {
     await newVetNotification.save();
 
     res.status(200).json({
-      msg: `Appointment created successfully!`,
+      msg: `Appointment created successfully by vet!`,
       newAppointment,
       newOwnerNotification,
       newVetNotification,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not create Appointment" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not create Appointment by vet!" }] });
   }
 };
 
@@ -227,14 +231,16 @@ exports.AppointmenttEditbyVet = async (req, res) => {
 
     //send 200
     res.status(200).send({
-      msg: "Appointment edited successfully",
+      msg: "Appointment edited successfully by vet!",
       foundAppointment,
       // newOwnerNotification,
       // newVetNotification,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not modify Appointment!" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not modify Appointment by vet!" }] });
   }
 };
 
@@ -322,12 +328,15 @@ exports.AppointmenttEditbyOwner = async (req, res) => {
     await foundAppointment.save();
 
     //send 200
-    res
-      .status(200)
-      .send({ msg: "Appointment edited successfully", foundAppointment });
+    res.status(200).send({
+      msg: "Appointment edited by owner successfully",
+      foundAppointment,
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not modify Appointment!" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not modify Appointment by owner!" }] });
   }
 };
 
@@ -376,12 +385,14 @@ exports.AppointmentAcceptbyOwner = async (req, res) => {
     await newNotificationOwner.save();
 
     res.status(200).json({
-      msg: `Appointment accepted!`,
+      msg: `Appointment accepted by owner successfully!`,
       foundApp,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not accept Appointment!" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not accept Appointment by owner!" }] });
   }
 };
 
@@ -430,12 +441,14 @@ exports.AppointmentAcceptbyVet = async (req, res) => {
     await newNotificationVet.save();
 
     res.status(200).json({
-      msg: `Appointment accepted!`,
+      msg: `Appointment accepted by vet successfully!`,
       foundApp,
       newNotification,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ errors: [{ msg: "Can not accept Appointment!" }] });
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not accept Appointment by vet!" }] });
   }
 };

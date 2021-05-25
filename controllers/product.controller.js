@@ -59,8 +59,6 @@ exports.ProductCreate = async (req, res) => {
   }
 };
 
-
-
 exports.ProductEdit = async (req, res) => {
   try {
     const { productID , shopID} = req.body ;
@@ -114,5 +112,16 @@ if (!foundProductOfShop) {
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not modify Product!" }] });
+  }
+};
+
+
+exports.allProduct = async (req, res) => {
+  try {
+    const foundAllProducts = await productModel.find();
+    res.status(200).send({ msg: "all products", foundAllProducts });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get All products" }] });
   }
 };
