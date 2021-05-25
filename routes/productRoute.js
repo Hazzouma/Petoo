@@ -7,6 +7,6 @@ const { creationProduct, validationProduct } = require("../middlewares/validateP
 routerProduct.post("/create", creationProduct(), validationProduct, ProductCreate);
 
 routerProduct.post("/edit", ProductEdit);
-routerProduct.post("/allProducts", allProduct);
+routerProduct.get("/allProducts", allProduct);
 
 module.exports = routerProduct;
