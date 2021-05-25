@@ -94,8 +94,8 @@ exports.allOrders = async (req, res) => {
 
 exports.getOrdersOfOwner = async (req, res) => {
   try {
-    const { idUser } = req.body;
-    const foundOwner = await ownerModel.findOne({ idUser });
+    const { idOwner } = req.body;
+    const foundOwner = await ownerModel.findOne({ idOwner});
 
     if (!foundOwner)
       //check owner exists
@@ -126,7 +126,7 @@ exports.getOrdersOfOwner = async (req, res) => {
 
 exports.getOrdersOfShop = async (req, res) => {
   try {
-    const { idUser } = req.body;
+    const { idShop } = req.body;
     const foundShop = await shopModel.findOne({ idShop });
 
     if (!foundShop)

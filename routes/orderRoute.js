@@ -11,9 +11,9 @@ routerOrder.post("/create", creationOrder(), validationOrder, OrderCreate);
 
 routerOrder.put("/edit",OrderEdit );
 
-routerOrder.get("/ownerOrders",getOrdersOfOwner );
+routerOrder.post("/ownerOrders",getOrdersOfOwner );
 
-routerOrder.get("/shopOrders",getOrdersOfShop );
+routerOrder.post("/shopOrders",getOrdersOfShop );
 
 
 
