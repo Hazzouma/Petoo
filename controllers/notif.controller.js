@@ -67,7 +67,7 @@ exports.getNotif = async (req, res) => {
 
     const arrayOfNotifications = await Promise.all(
       await foundOwner.notificationId.map(async (notif) => {
-        const fn = await notification.findOne({idNotification:notif});
+        const fn = await notification.findOne({ idNotification: notif });
 
         return fn;
       })
@@ -85,39 +85,45 @@ exports.getNotif = async (req, res) => {
 
 // check all notifs all at once
 exports.checkAllAtOnce = async (req, res) => {
-  const { idUser, notificationId } = req.body;
-  console.log(idUser)
-  console.log(notificationId)
+  const { idUser } = req.body;
+  // console.log(idUser);
+  // console.log(notificationId);
   try {
     const foundNotifOwner = await ownerModel.findOne({ idUser });
-    
+
     if (!foundNotifOwner)
       //check owner exists
       return res
         .status(400)
         .send({ errors: [{ msg: "Login first, please!" }] });
 
-    if (!notificationId) {
+    if (!foundNotifOwner.notificationId) {
       //check notif exists
       return res
         .status(400)
         .send({ errors: [{ msg: "Login first, please!" }] });
     }
 
+    const { notificationId } = foundNotifOwner;
     const arrayOfNotifications = await Promise.all(
-      foundNotifOwner.notificationId.map(
-        async () => await notification.findOne({ isRead: false })
-      )
+      notificationId.map(async (notif) => {
+        const nn = await notification.findOne({
+          isRead: false,
+          idNotification: notif,
+        });
+        console.log(nn);
+        return nn;
+      })
     );
-
+    // console.log(arrayOfNotifications);
     const changedArray = await Promise.all(
       arrayOfNotifications.map(async (notif) => {
-        if (notif !== null || notif !== undefined) {
+        if (notif !== null && notif !== undefined && notif.isRead !== true) {
           notif.isRead = true;
-          console.log(notif)
+          // console.log(notif);
           await notif.save();
-          return notif;
         }
+        return notif;
       })
     );
     // console.log(changedArray);
