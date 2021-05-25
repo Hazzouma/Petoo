@@ -125,3 +125,34 @@ exports.allProduct = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not get All products" }] });
   }
 };
+
+exports.getProductsOfShop = async (req, res) => {
+  try {
+    const { idShop } = req.body;
+    const foundShop = await shopModel.findOne({ idShop });
+
+    if (!foundShop)
+      //check Shop exists
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "Login first, please!" }] });
+
+    if (foundShop.orderId.length === 0) {
+      // checking if he has pets
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "No products available yet!" }] });
+    }
+
+    const arrayOfProducts = await Promise.all(
+      await foundShop.oorderId.map(async (product) => {
+        const hisProducts = await productModel.findOne({ idProduct: product });
+        return hisProducts;
+      })
+    );
+    res.status(200).send({ msg: "All Products", arr: await arrayOfProducts });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get the products" }] });
+  }
+};
