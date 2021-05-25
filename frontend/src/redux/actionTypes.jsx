@@ -129,6 +129,7 @@ export const EDIT_BY_OWNER = "EDIT_BY_OWNER";
 export const EDIT_BY_VET = "EDIT_BY_VET";
 export const ACCEPT_BY_VET = "ACCEPT_BY_VET";
 export const ACCEPT_BY_OWNER = "ACCEPT_BY_OWNER";
+export const GET_MY_APPOINTMENTS = "GET_MY_APPOINTMENTS";
 
 /* PRODUCT*/
 export const FAIL_PRODUCT = "FAIL_PRODUCT";
