@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+//Clean : /menu
+//Owner: /menuOwner
+//All: /menuCuba
 import { MENUITEMS } from "./menu";
 import { ArrowRight, ArrowLeft, Grid } from "react-feather";
 import { Link } from "react-router-dom";

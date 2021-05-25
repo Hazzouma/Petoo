@@ -69,21 +69,13 @@ export const MENUITEMS = [
         bookmark: true,
         active: false,
         children: [
-          {
-            path: `${process.env.PUBLIC_URL}/app/users/userProfile`,
-            type: "link",
-            title: "My profile",
-          },
+          
           {
             path: `${process.env.PUBLIC_URL}/app/users/petProfile`,
             type: "link",
             title: "Pet Profile ",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/users/userEdit`,
-            type: "link",
-            title: "Users Edit",
-          },
+          
           {
             path: `${process.env.PUBLIC_URL}/app/users/vetoList`,
             type: "link",

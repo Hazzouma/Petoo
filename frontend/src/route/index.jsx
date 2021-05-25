@@ -148,7 +148,7 @@ import CkEditor from "../components/editor/ckEditor";
 import MdeEditor from "../components/editor/mdeEditor";
 
 // Social App
-import SocialApp from "../components/social-app";
+// import SocialApp from "../components/social-app";
 
 // FAQ page
 import FaqComponent from "../components/faq";
@@ -340,7 +340,7 @@ export const routesAdmin = [
   { path: "/app/editor/ckEditor", Component: CkEditor },
   { path: "/app/editor/mdeEditor", Component: MdeEditor },
 
-  { path: "/app/social-app", Component: SocialApp },
+  // { path: "/app/social-app", Component: SocialApp },
   { path: "/app/faq", Component: FaqComponent },
   { path: "/app/knowledgebase", Component: KnowledgebaseComponent },
   { path: "/app/support-ticket", Component: SupportTicket },
