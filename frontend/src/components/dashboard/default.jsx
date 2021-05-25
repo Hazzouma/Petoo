@@ -25,7 +25,6 @@ import {
   VenterLoren,
   Done,
   JohnLoren,
-  Padding,
 } from "../../constant";
 import Slider from "react-slick";
 
@@ -47,12 +46,11 @@ const Default = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const dispatch = useDispatch();
   const { profilePicture, idUser } = useSelector(
     (state) => state.currentUser.user
   );
-
   useEffect(() => {
+
     if (curHr < 12) {
       setDayTimes("Good Morning");
     } else if (curHr < 18) {

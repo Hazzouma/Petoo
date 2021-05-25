@@ -326,7 +326,7 @@ export const routesAdmin = [
   { path: "/app/users/userEdit", Component: UserEdit },
   { path: "/app/users/userCards", Component: UserCards },
   { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/vetCard/:Veto", Component: VetCard },
   { path: "/app/users/petList", Component: PetList },
   { path: "/app/users/CreateShop", Component: CreateShop },
   { path: "/app/users/CreatePet", Component: CreatePet },
@@ -393,7 +393,7 @@ export const routesOwner = [
   { path: "/app/users/petProfile", Component: PetProfile },
   { path: "/app/users/userEdit", Component: UserEdit },
   { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/vetCard/:Veto", Component: VetCard },
   { path: "/app/users/petList", Component: PetList },
   { path: "/app/users/CreatePet", Component: CreatePet },
   //gallery
@@ -420,7 +420,7 @@ export const routesVet = [
   { path: "/app/users/petProfile", Component: PetProfile },
   { path: "/app/users/userEdit", Component: UserEdit },
   { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/vetCard/:Veto", Component: VetCard },
   { path: "/app/users/petList", Component: PetList },
   { path: "/app/users/CreatePet", Component: CreatePet },
   //gallery
@@ -448,7 +448,7 @@ export const routesShop = [
   //users + pet
   { path: "/app/users/userProfile", Component: UserProfile },
   { path: "/app/users/userEdit", Component: UserEdit },
-  { path: "/app/users/vetCard", Component: VetCard },
+  { path: "/app/users/vetCard/:Veto", Component: VetCard },
   //gallery
   { path: "/app/gallery", Component: ImageGallery },
   //blog

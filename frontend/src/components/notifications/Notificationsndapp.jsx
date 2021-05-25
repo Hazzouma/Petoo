@@ -1,6 +1,6 @@
 import React, { Fragment, useState,useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardBody, CardHeader, Nav, NavItem, TabContent, TabPane, Table } from 'reactstrap'
+import { Container, Row, Col, Card, CardBody, CardHeader, Nav, NavItem, TabContent, TabPane, Table,Badge } from 'reactstrap'
 import { useSelector} from 'react-redux'
 import { Link, MoreHorizontal} from 'react-feather';
 import moment from 'moment'
@@ -229,10 +229,7 @@ const Notifndapp = (props) => {
                              Pet Name
                         </td>
                         <td className='text-right'>
-                          <div className='button btn btn-primary'>
-                            done
-                            <i className='fa fa-check-circle ml-2'></i>
-                          </div>
+                        <Badge color="primary">Done</Badge>
                         </td>
                       </tr>
                       <tr>
@@ -257,10 +254,8 @@ const Notifndapp = (props) => {
                              Pet Name
                         </td>
                         <td className='text-right'>
-                          <div className='button btn btn-danger'>
-                            Cancelled
-                            <i className='fa fa-check-circle ml-2'></i>
-                          </div>
+                        <Badge color="danger">Canceled</Badge>
+
                         </td>
                       </tr>
                     </tbody>
@@ -425,10 +420,8 @@ const Notifndapp = (props) => {
                                                          Pet Name
                                                     </td>
                                                     <td className='text-right'>
-                                                      <div className='button btn btn-danger'>
-                                                        Cancelled
-                                                        <i className='fa fa-check-circle ml-2'></i>
-                                                      </div>
+                                                    <Badge color="danger">Canceled</Badge>
+
                                                     </td>
                                                   </tr>
                                                 </tbody>

@@ -1,15 +1,21 @@
 import React, { Fragment,useState,useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, CardFooter, Media } from 'reactstrap'
-import axios from 'axios'
-import Rating from 'react-rating'
+import {getVets} from '../../redux/population/action'
+import { useSelector, useDispatch } from "react-redux";
+import {Link} from 'react-router-dom'
+
+
+
 
 const VetoList = (props) => {
-  const [rating, setRating] = useState(5)
-  const [cards,setCards] = useState([])
+  const dispatch = useDispatch();
+  const vetos = useSelector(state => state.populationReducer.vetos)
+
 
   useEffect(() => {
-    axios.get(`${process.env.PUBLIC_URL}/api/usercard.json`).then(res => setCards(res.data))
+    dispatch(getVets())
+
   },[])
 
   return (
@@ -18,36 +24,40 @@ const VetoList = (props) => {
       <Container fluid={true}>
         
         <Row>
-          {cards.map((cardItem, i) => 
+          {vetos.map((info, i) => 
           <Col md="6" lg="6" xl="4" className="box-col-6" key={i}>
+           
+            <Link to={`/app/users/vetCard/${info.idUser}`}>
             <Card className="custom-card">
               <CardHeader>
-                <Media body className="img-fluid" src={require(`../../assets/images/${cardItem.card_bg}`)} alt="" />
+                <Media body className="img-fluid" src={info.profilePicture} alt="" />
               </CardHeader>
               <div className="card-profile">
-                <Media body className="rounded-circle" src={require(`../../assets/images/user/3.png`)} alt="" />
+                <Media body className="rounded-circle" src={info.profilePicture} alt="" />
               </div>
               <div className="text-center profile-details">
-                <h4>{cardItem.name}</h4>
-                <h6>{cardItem.post}</h6>
+                <h4>{info.prenom} {info.nom}</h4>
+                <h6>{info.role}</h6>
               </div>
               <CardFooter className="row">
 
               <Col sm="4 col-4">
-                  <h6>Location</h6>
+                  <h7>Location</h7>
                   <h5><span className="counter">Rades</span></h5>
                 </Col>
 
                 <Col sm="4 col-4">
-                  <h6>Phone Number</h6>
-                  <h5><span className="counter">{cardItem.following}******</span></h5>
+                  <h7>Phone Number</h7>
+                  <h5><span className="counter">{info.phoneNumber}</span></h5>
                 </Col>
                 <Col sm="4 col-4">
-                  <h6>Working Hours </h6>
-                  <h3><span className="counter">{cardItem.totalPost}-18h</span></h3>
+                  <h7>Working Hours </h7>
+                  <h5><span className="counter">9Am-4Pm</span></h5>
                 </Col>
               </CardFooter>
-            </Card>
+            </Card> 
+            </Link>
+           
           </Col>
           )}
         </Row>
