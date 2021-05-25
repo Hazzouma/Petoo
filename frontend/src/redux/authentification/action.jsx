@@ -19,7 +19,7 @@ export const login = (user) => async (dispatch) => {
     // console.log(result.data);
     // console.log(`${process.env.PUBLIC_URL}`);
     dispatch({ type: LOGIN_USER, payload: result.data }); // payload : {msg,token,user}
-    window.location.href = `${process.env.PUBLIC_URL}/dashboard/default`; //Nice Samuuu
+    window.location.href = `${process.env.PUBLIC_URL}/dashboard/`; //Nice Samuuu
   } catch (error) {
     console.log(error.response.data.errors);
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
@@ -67,7 +67,7 @@ export const registerShop = (shop, history) => async (dispatch) => {
       shop
     );
     dispatch({ type: REGISTER_USER, payload: result.data.msg }); 
-    // history.push(`${process.env.PUBLIC_URL}/dashboard/default`);
+    // history.push(`${process.env.PUBLIC_URL}/dashboard/`);
   } catch (error) {
       console.log(error.response.data);
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });

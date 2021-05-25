@@ -44,7 +44,7 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/dashboard/default`,
+            path: `${process.env.PUBLIC_URL}/dashboard/`,
             title: "Default",
             type: "link",
           },
@@ -146,49 +146,49 @@ export const MENUITEMS = [
       {
         title: "Users",
         icon: Users,
-        path: `${process.env.PUBLIC_URL}/app/users/userProfile`,
+        path: `${process.env.PUBLIC_URL}/dashboard/userProfile`,
         type: "sub",
         bookmark: true,
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/app/users/userProfile`,
+            path: `${process.env.PUBLIC_URL}/dashboard/userProfile`,
             type: "link",
             title: "My profile",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/petProfile`,
+            path: `${process.env.PUBLIC_URL}/dashboard/petProfile`,
             type: "link",
             title: "Pet Profile ",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/userEdit`,
+            path: `${process.env.PUBLIC_URL}/dashboard/userEdit`,
             type: "link",
             title: "Users Edit",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/vetoList`,
+            path: `${process.env.PUBLIC_URL}/dashboard/vetoList`,
             type: "link",
             title: "Vet List",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/vetCard`,
+            path: `${process.env.PUBLIC_URL}/dashboard/vetCard`,
             type: "link",
             title: "Vet Card",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/petList`,
+            path: `${process.env.PUBLIC_URL}/dashboard/petList`,
             type: "link",
             title: "Pet List ",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/users/createShop`,
+            path: `${process.env.PUBLIC_URL}/dashboard/createShop`,
             type: "link",
             title: "Create Shop ",
           },
           
           {
-            path: `${process.env.PUBLIC_URL}/app/users/createPet`,
+            path: `${process.env.PUBLIC_URL}/dashboard/createPet`,
             type: "link",
             title: "Create Pet ",
           },

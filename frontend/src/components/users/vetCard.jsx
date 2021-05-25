@@ -1,11 +1,9 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, Media , FormGroup} from 'reactstrap'
-import {DDMMYY,Designer,MarkJecno} from '../../constant'
-import Rating from 'react-rating'
 import DatePicker from "react-datepicker";
 import {useSelector} from "react-redux";
-import {useParams,useHistory} from "react-router"
+import {useParams} from "react-router"
 
 import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-four';
 

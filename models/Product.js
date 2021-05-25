@@ -15,5 +15,4 @@ productType:{type: String, default: ""}, //Food, accessoire, jeu.....
 })
 
 
-const productModel = mongoose.model("Product", productSchema);
-module.exports = productModel;
+module.exports = mongoose.model("Product", productSchema);

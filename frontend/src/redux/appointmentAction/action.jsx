@@ -56,11 +56,7 @@ export const addAppointmentByVet =
     }
   };
 
-export const videErrors = () => {
-  return {
-    type: VIDE_ERRORS_MSGS,
-  };
-};
+
 //Edit appointment by Vet
 export const editAppointmentByVet =
   (vetID, newDateOfAppointment, ownerID, appointmentID, history) =>
@@ -82,11 +78,7 @@ export const editAppointmentByVet =
     }
   };
 
-export const videErrors = () => {
-  return {
-    type: VIDE_ERRORS_MSGS,
-  };
-};
+
 //Edit appointment by Owner
 export const editAppointmentByOwner =
   (vetID, newDateOfAppointment, ownerID, appointmentID, history) =>
@@ -108,11 +100,7 @@ export const editAppointmentByOwner =
     }
   };
 
-export const videErrors = () => {
-  return {
-    type: VIDE_ERRORS_MSGS,
-  };
-};
+
 //Edit appointment by Owner
 export const acceptAppointmentByOwner =
   (vetID, petID, ownerID, appointmentID, history) => async (dispatch) => {
@@ -133,11 +121,7 @@ export const acceptAppointmentByOwner =
     }
   };
 
-export const videErrors = () => {
-  return {
-    type: VIDE_ERRORS_MSGS,
-  };
-};
+
 //Edit appointment by Owner
 export const acceptAppointmentByVet =
   (vetID, petID, ownerID, appointmentID, history) => async (dispatch) => {
@@ -157,9 +141,3 @@ export const acceptAppointmentByVet =
       dispatch({ type: FAIL_APP, payload: error.response.data.errors });
     }
   };
-
-export const videErrors = () => {
-  return {
-    type: VIDE_ERRORS_MSGS,
-  };
-};

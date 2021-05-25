@@ -1,14 +1,27 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
-import {DDMMYY,Designer,MarkJecno, ModalTitle,Close,SaveChanges,} from '../../constant'
+import {Designer,MarkJecno,Close,SaveChanges,} from '../../constant'
 import {  UsersTableHeader,Edit,Update,Delete} from '../../constant/index'
-import axios from 'axios'
 import DatePicker from "react-datepicker";
+import {useParams} from "react-router"
+import {getMyPets} from "../../redux/currentUser/action"
+
+import {useSelector,useDispatch} from "react-redux";
+import moment from "moment"
 
 
 
 const PetProfile = (props) => {
+  const dispatch = useDispatch()
+  let idPet  = useParams()
+  const pets = useSelector(state => state.currentUser.myPets)
+  const idUser = useSelector(state=> state.currentUser.user.idUser)
+  const petinfos = pets.find( (pets, index) => {
+    if(pets.idPet === idPet.id)
+      return true;
+  });
+
   const [startDate, setstartDate] = useState(new Date()); //Date picker related
   const handleChange = (date) => {
     //Date Picker related
@@ -17,12 +30,11 @@ const PetProfile = (props) => {
 
   const [modal, setModal] = useState(false); // Modal Related
   const toggle = () => setModal(!modal);  // Modal Related
+  dispatch(getMyPets(idUser))
 
-  const [data,setData] = useState([])
 
 useEffect(() => {
-    axios.get(`${process.env.PUBLIC_URL}/api/user-edit-table.json`).then(res => setData(res.data))
-},[])
+},[idPet,idUser])
    // eslint-disable-next-line 
   const [url, setUrl] = useState();
 
@@ -48,11 +60,11 @@ useEffect(() => {
           <Row className="justify-content-md-center"> 
 
             {/* The Profile Card Starts Here */}
-            <Col sm={8}>
+            <Col sm="12">
               <Card className="card hovercard text-center">
                 <CardHeader className="cardheader"></CardHeader>
                 <div className="user-image">
-                  <div className="avatar"><Media body alt="" src="https://assets.onbuy.com/i25/product/472997d46ab2427aa073a372eb55eca7-m30519038/golden-retriever-dog-square-6x6-greeting-card.jpg" data-intro="This is Profile image" /></div>
+                  <div className="avatar"><Media body alt="" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg" data-intro="This is Profile image" /></div>
                   <div className="icon-wrapper" data-intro="Change Profile image here">
                     <i className="icofont icofont-pencil-alt-5">
                       <input className="upload" type="file" onChange={(e) => readUrl(e)} />
@@ -66,12 +78,12 @@ useEffect(() => {
                       <Row >
                         <Col md="5">
                           <div className="ttl-info text-left">
-                            <h6><i className="fa fa-envelope mr-2"></i> Gender</h6><span>Male</span>
+                            <h6><i className="fa fa-envelope mr-2"></i> Gender</h6><span>{petinfos.gender}</span>
                           </div>
                         </Col>
                         <Col md="5">
                           <div className="ttl-info text-left ttl-sm-mb-0">
-                            <h6><i className="fa fa-calendar"></i> DOB</h6><span>{DDMMYY}</span>
+                            <h6><i className="fa fa-calendar"></i> DOB</h6><span>{moment(petinfos.age).format('LL')}</span>
                           </div>
                         </Col>
                       </Row>
@@ -79,8 +91,8 @@ useEffect(() => {
 
                     <Col sm={8} lg="4" className="order-sm-0 order-xl-1">
                       <div className="user-designation">
-                        <div className="title"><a target="_blank" href="#javascript">{MarkJecno}</a></div>
-                        <div className="desc mt-2">{Designer} Dog</div>
+                        <div className="title"><a target="_blank" href="#javascript">{petinfos.name}</a></div>
+                        <div className="desc mt-2">{petinfos.petType}</div>
                       </div>
                     </Col>
 
@@ -88,12 +100,12 @@ useEffect(() => {
                       <Row>
                         <Col md="6">
                           <div className="ttl-info text-left ttl-xs-mt">
-                            <h6><i className="fa fa-phone"></i>   Distinguishing Mark</h6><span> black dot</span>
+                            <h6><i className="fa fa-phone"></i>   Marks</h6><span>{petinfos.distinguishingMark}</span>
                           </div>
                         </Col>
                         <Col md="6">
                           <div className="ttl-info text-left ttl-sm-mb-0">
-                            <h6><i className="fa fa-location-arrow"></i>   Color</h6><span>Gold </span>
+                            <h6><i className="fa fa-location-arrow"></i>   Color</h6><span>{petinfos.color} </span>
                           </div>
                         </Col>
                       </Row>
@@ -187,11 +199,8 @@ useEffect(() => {
                
                   <div className="follow">
                     <Row>
-                      <Col col="6" className="text-md-right border-right">
-                        <div className="follow-num counter">Labrador</div><span> Breed</span>
-                      </Col>
-                      <Col col="6" className="text-md-left">
-                        <div className="follow-num counter"> 6 Months </div><span>Age</span>
+                      <Col col="6" className="text-md-center">
+                      <span>Age</span>   <div className="follow-num counter">{moment(petinfos.age).fromNow(true)}</div>
                       </Col>
                     </Row>
                   </div>
@@ -209,9 +218,10 @@ useEffect(() => {
               </CardHeader>
               <CardBody>
                 <ListGroup>
-                  <ListGroupItem className="list-group-item-action" tag="a" href="#javascript"><i className="icon-target"></i>{"Cras justo odio"}</ListGroupItem>
-                  <ListGroupItem className="list-group-item-action" tag="a" href="#javascript"><i className="icon-target"></i>{"Dapibus ac facilisis in"}</ListGroupItem>
-                  <ListGroupItem className="list-group-item-action" tag="a" href="#javascript"><i className="icon-target"></i>{"Morbi leo risus"}</ListGroupItem>
+                  {petinfos.knownAllergies.map((pet,i) => 
+                       <ListGroupItem className="list-group-item-action" tag="a" ><i className="icon-target"></i>{pet}</ListGroupItem>
+
+                  )}
                   
                 </ListGroup>
               </CardBody>
@@ -236,19 +246,19 @@ useEffect(() => {
                     </thead>
                     <tbody>
 
-                      {data.map((items,i) => 
-                        <tr key={i}>
-                          <td><a className="text-inherit" href="#javascript">{items.projectName} </a></td>
-                          <td>{items.date}</td>
-                          <td><span className="status-icon bg-success"></span>{items.status}</td>
-                          <td>{items.price}</td>
+                      {/* {data.map((items,i) =>  */}
+                        <tr >
+                          <td><a className="text-inherit" href="#javascript">dsdsds  </a></td>
+                          <td>jksa</td>
+                          <td><span className="status-icon bg-success"></span>bla</td>
+                          <td>asakj</td>
                           <td className="text-right">
                             <Button color="primary" size="sm"><i className="fa fa-pencil"></i> {Edit}</Button>
                             <Button color="transparent" size="sm"><i className="fa fa-link"></i> {Update}</Button>
                             <Button color="danger" size="sm"><i className="fa fa-trash"></i> {Delete}</Button>
                           </td>
                         </tr>
-                      )}
+                      {/* )} */}
                       
                     </tbody>
                   </table>

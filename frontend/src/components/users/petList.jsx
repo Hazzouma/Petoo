@@ -1,14 +1,14 @@
-import React, { Fragment,useState,useEffect } from 'react';
+import React, { Fragment,useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardHeader, CardFooter, Media } from 'reactstrap'
-import axios from 'axios'
-
+import { Container, Row, Col, Card, CardFooter, Media } from 'reactstrap'
+import {useSelector} from 'react-redux';
+import {Link} from "react-router-dom";
+import moment from "moment";
 const PetList = (props) => {
-  const [cards,setCards] = useState([])
+  const pets = useSelector(state => state.currentUser.myPets)
 
   useEffect(() => {
-    axios.get(`${process.env.PUBLIC_URL}/api/usercard.json`).then(res => setCards(res.data))
-  },[])
+  },[pets])
 
   return (
     <Fragment>
@@ -16,18 +16,18 @@ const PetList = (props) => {
       <Container fluid={true}>
         
         <Row>
-          {cards.map((cardItem, i) => 
-          <Col md="6" lg="6" xl="4" className="box-col-6" key={i}>
+          {pets.map((pet, i) => 
+          
+
+          <Col md="6" lg="8" xl="6" className="box-col-6" key={i}>
             <Card className="custom-card">
-              <CardHeader>
-                <Media body className="img-fluid" src={require(`../../assets/images/${cardItem.card_bg}`)} alt="" />
-              </CardHeader>
+            <Link to={`/dashboard/petProfile/${pet.idPet}`}>
               <div className="card-profile">
-                <Media body className="rounded-circle" src="https://i.pinimg.com/originals/97/2f/1b/972f1b8aca65479e3c401b800a4bd76a.jpg" alt="" />
+                <Media body className="rounded-circle" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg"  width="100px" alt="" />
               </div>
               <div className="text-center profile-details">
-                <h4>{cardItem.name}</h4>
-                <h6>{cardItem.post}/Cat</h6>
+                <h4>{pet.name}</h4>
+                <h6>{pet.race}</h6>
               </div>
               <CardFooter className="row">
 
@@ -35,7 +35,7 @@ const PetList = (props) => {
                 <Col sm="4 col-4">
                   <h6>Gender</h6>
                   <h5>
-                    Male
+                  {pet.gender}
                     
                     </h5>
                 </Col>
@@ -43,15 +43,17 @@ const PetList = (props) => {
 
                 <Col sm="4 col-4">
                   <h6>Age</h6>
-                  <h5><span className="counter">{cardItem.following}</span></h5>
+                  <h5><span className="counter">{moment(pet.age).fromNow(true)}</span></h5>
                 </Col>
                 <Col sm="4 col-4">
-                  <h6>Owner </h6>
-                  <h3><span className="counter">Flen</span></h3>
+                  <h6>Vaccines</h6>
+                  <h3><span className="counter">{[pet.vaccines].length}</span></h3>
                 </Col>
               </CardFooter>
+              </Link>
             </Card>
           </Col>
+          
           )}
         </Row>
       </Container>

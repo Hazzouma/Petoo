@@ -27,7 +27,7 @@ const VetoList = (props) => {
           {vetos.map((info, i) => 
           <Col md="6" lg="6" xl="4" className="box-col-6" key={i}>
            
-            <Link to={`/app/users/vetCard/${info.idUser}`}>
+            <Link to={`/dashboard/vetCard/${info.idUser}`}>
             <Card className="custom-card">
               <CardHeader>
                 <Media body className="img-fluid" src={info.profilePicture} alt="" />
@@ -43,7 +43,7 @@ const VetoList = (props) => {
 
               <Col sm="4 col-4">
                   <h7>Location</h7>
-                  <h5><span className="counter">Rades</span></h5>
+                  <h5><span className="counter">{info.ville}</span></h5>
                 </Col>
 
                 <Col sm="4 col-4">

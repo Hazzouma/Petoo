@@ -41,7 +41,7 @@ export const getMyPets = (idUser) => async (dispatch) => {
       s
     );
     dispatch({ type: GET_MY_PETS, payload: result.data });
-  } catch (error) {
-    dispatch({ type: FAIL_PET, payload: error.response.data.errors });
-  }
+  } catch (errors) {
+/*     dispatch({ type: FAIL_PET, payload: errors.response.data.errors });
+ */  }
 };

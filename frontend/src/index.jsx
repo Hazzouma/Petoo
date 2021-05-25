@@ -196,7 +196,7 @@ const Root = (props) => {
                   render={() => {
                     return (
                       <Redirect
-                        to={`${process.env.PUBLIC_URL}/dashboard/default`}
+                        to={`${process.env.PUBLIC_URL}/dashboard/`}
                       />
                     );
                   }}
