@@ -22,12 +22,12 @@ const {
             products: state.products.push(payload.newProduct),
           };
         }
-      // } else {
-      //   return { ...state, load: false, errors: payload.errors };
-      // }
-  
+        else {
+          return { ...state, errors: payload, load: false }
+        }
+      
       case FAIL_PRODUCT:
-        return { ...state, errors: payload.errors, load: false };
+        return { ...state, errors: payload, load: false };
   
       case LOAD_PRODUCT:
         return { ...state, load: true };

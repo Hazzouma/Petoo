@@ -6,6 +6,6 @@ const { creationProduct, validationProduct } = require("../middlewares/validateP
 //Route of product creation with some verification on inputs
 routerProduct.post("/create", creationProduct(), validationProduct, ProductCreate);
 
-routerProduct.post("/:idProduct", ProductEdit);
+routerProduct.post("/edit", ProductEdit);
 
 module.exports = routerProduct;

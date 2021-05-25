@@ -1,4 +1,9 @@
-import { CURRENT_USER, VIDE_ERRORS } from "../actionTypes";
+import {
+  CURRENT_USER,
+  VIDE_ERRORS,
+  FAIL_PET,
+  GET_MY_PETS,
+} from "../actionTypes";
 
 import axios from "axios";
 
@@ -24,5 +29,19 @@ export const current = () => async (dispatch) => {
   } catch (error) {
     localStorage.removeItem("token");
     window.location.href = `${process.env.PUBLIC_URL}/login`;
+  }
+};
+
+//get current owner pets
+export const getMyPets = (idUser) => async (dispatch) => {
+  try {
+    const s = { idUser: idUser };
+    let result = await axios.post(
+      `${process.env.PUBLIC_URL}/api/pet/getYourPets`,
+      s
+    );
+    dispatch({ type: GET_MY_PETS, payload: result.data });
+  } catch (error) {
+    dispatch({ type: FAIL_PET, payload: error.response.data.errors });
   }
 };

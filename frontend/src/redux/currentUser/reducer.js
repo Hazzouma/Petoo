@@ -1,4 +1,9 @@
-import { CURRENT_USER, VIDE_ERRORS } from "../actionTypes";
+import {
+  CURRENT_USER,
+  VIDE_ERRORS,
+  GET_MY_PETS,
+  FAIL_PET,
+} from "../actionTypes";
 
 //Initale States
 const initialState = {
@@ -7,6 +12,7 @@ const initialState = {
   isAuth: false,
   load: false,
   msg: "",
+  myPets: [],
 };
 
 //current user reducer
@@ -21,6 +27,10 @@ const currentUser = (state = initialState, { type, payload }) => {
       };
     case VIDE_ERRORS:
       return { ...state, errors: [], msg: "" };
+    case GET_MY_PETS:
+      return { ...state, myPets: payload.myPets, msg: payload.msg };
+    case FAIL_PET:
+      return { ...state, errors: payload };
     default:
       return state;
   }

@@ -98,13 +98,14 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RESET_PASSWORD = "RESET_PASSWORD";
 export const VALIDATE_OTP = "VALIDATE_OTP";
 export const VIDE_ERRORS = "VIDE_ERRORS";
-export const  RESET_USER= "RESET_USER"
+export const RESET_USER = "RESET_USER";
 
 /* PET ACTIONS */
 export const ADD_PET = "ADD_PET";
 export const FAIL_PET = "FAIL_PET";
 export const LOAD_PET = "LOAD_PET";
 export const VIDE_ERRORS_MSG = "VIDE_ERRORS_MSG";
+export const GET_MY_PETS = "GET_MY_PETS";
 
 /* NOTIFICATIONS */
 export const FAIL_NOTIF = "FAIL_NOTIF";
@@ -118,14 +119,14 @@ export const GET_PETS = "GET_PETS";
 export const GET_VETOS = "GET_VETOS";
 export const GET_OWNERS = "GET_OWNERS";
 
-/* APP*/ 
+/* APP*/
 export const FAIL_APP = "FAIL_VET";
-export const LOAD_APP= "LOAD_VET";
-export const ADD_VET= "ADD_VET";
+export const LOAD_APP = "LOAD_VET";
+export const ADD_VET = "ADD_VET";
 export const VIDE_ERRORS_MSGS = "VIDE_ERRORS_MSGS";
 
-/* PRODUCT*/  
+/* PRODUCT*/
 export const FAIL_PRODUCT = "FAIL_PRODUCT";
-export const LOAD_PRODUCT= "LOAD_PRODUCT";
-export const ADD_PRODUCT= "ADD_PRODUCT";
+export const LOAD_PRODUCT = "LOAD_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIDE_ERRORS_MSG_ = "VIDE_ERRORS_MSG_";
