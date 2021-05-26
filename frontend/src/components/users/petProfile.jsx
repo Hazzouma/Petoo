@@ -15,6 +15,7 @@ import moment from "moment"
 const PetProfile = (props) => {
   const dispatch = useDispatch()
   let idPet  = useParams()
+  const role = useSelector((state) => state.currentUser.user.role)
   const pets = useSelector(state => state.currentUser.myPets)
   const idUser = useSelector(state=> state.currentUser.user.idUser)
   const petinfos = pets.find( (pets, index) => {
@@ -30,7 +31,8 @@ const PetProfile = (props) => {
 
   const [modal, setModal] = useState(false); // Modal Related
   const toggle = () => setModal(!modal);  // Modal Related
-  dispatch(getMyPets(idUser))
+  const [modal1, setModal2] = useState(false);
+  const toggle1 =() => setModal2(!modal1)
 
 
 useEffect(() => {
@@ -113,6 +115,8 @@ useEffect(() => {
                     </Col>
                   </Row>
                   {/* Modal Starts Here */}
+                  { role==="Owner" ? (
+                    <>
                   <Button color="primary"
                       onClick={toggle}
                       >Edit Pet</Button>
@@ -192,7 +196,9 @@ useEffect(() => {
                         <Button color="primary" onClick={toggle}>{Close}</Button>
                         <Button color="secondary" onClick={toggle}>{SaveChanges}</Button>
                         </ModalFooter>
-                    </Modal>
+                    </Modal> 
+                    </>
+                  ): ''}
                     {/* Modal Ends Here */}
                   <hr />
 
@@ -237,28 +243,14 @@ useEffect(() => {
               </CardHeader>
             <div className="table-responsive">
                   <table className="table card-table table-vcenter text-nowrap">
-                    <thead>
-                      <tr>
-                        {UsersTableHeader.map((items,i) => 
-                          <th key={i}>{items}</th>
-                        )}
-                      </tr>
-                    </thead>
                     <tbody>
 
-                      {/* {data.map((items,i) =>  */}
+                      {petinfos.vaccines.map((pet,i) => 
                         <tr >
-                          <td><a className="text-inherit" href="#javascript">dsdsds  </a></td>
-                          <td>jksa</td>
-                          <td><span className="status-icon bg-success"></span>bla</td>
-                          <td>asakj</td>
-                          <td className="text-right">
-                            <Button color="primary" size="sm"><i className="fa fa-pencil"></i> {Edit}</Button>
-                            <Button color="transparent" size="sm"><i className="fa fa-link"></i> {Update}</Button>
-                            <Button color="danger" size="sm"><i className="fa fa-trash"></i> {Delete}</Button>
-                          </td>
+                          <td><a className="text-inherit " role="button" onClick={ () => {window.open(`https://en.wikipedia.org/w/index.php?search=${pet.vaccine}`).focus()}}>{pet.vaccine}</a></td>
+                          <td>{moment(pet.date).format('LL')}</td>
                         </tr>
-                      {/* )} */}
+                      )}
                       
                     </tbody>
                   </table>
@@ -272,7 +264,54 @@ useEffect(() => {
             <Col sm={8}>
                         <Card>
                             <CardHeader>
-                                <h5>Medication History</h5>
+                                <h5 className="float-left">Medication History</h5>
+                               {role==="Veterinary" ? (
+                                 <div className="float-right">
+                               <Button color="primary"
+                               
+                      onClick={toggle1}
+                      >Add Medicine</Button>
+                      <Modal isOpen={modal1} toggle={toggle1} >
+                        <ModalHeader toggle={toggle1}>Add Medicine</ModalHeader>
+                        <ModalBody>
+
+                      <FormGroup>
+                        <Label className='form-label'>Medicine Name</Label>
+                        <Input
+                          className='form-control'
+                          type='text'
+                          placeholder='Medicine'
+                        />
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="reason" className='form-label'>Reason</Label>
+                        <textarea class="form-control" id="reason" rows="3"></textarea>
+                      </FormGroup>               
+                        <FormGroup>
+                    <Label className='form-label'>Duration</Label>
+                    {/* Date Picker */}
+                      <FormGroup className='form-row'>
+                        <div className='input-group'>
+                        <Input
+                          className='form-control'
+                          type='text'
+                          placeholder='Duration'
+                        />
+                      </div>
+                      </FormGroup>
+                      </FormGroup>
+                      
+
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button color="primary" onClick={toggle1}>{Close}</Button>
+                        <Button color="secondary" onClick={toggle1}>{SaveChanges}</Button>
+                        </ModalFooter>
+                    </Modal>
+                    </div>
+                      ): '' }
+
                             </CardHeader>
                             <div className="table-responsive">
                                 <Table>
@@ -285,42 +324,15 @@ useEffect(() => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="border-bottom-secondary">
-                                            <th scope="row">{"3"}</th>
-                                            <td>{"Jacob"}</td>
-                                            <td>{"Thornton"}</td>
-                                            <td>{"@fat"}</td>
-                                        </tr>
-                                        <tr className="border-bottom-success">
-                                            <th scope="row">{"3"}</th>
-                                            <td>{"Jacob"}</td>
-                                            <td>{"Thornton"}</td>
-                                            <td>{"@fat"}</td>
-                                        </tr>
-                                        <tr className="border-bottom-info">
-                                            <th scope="row">{"3"}</th>
-                                            <td>{"Jacob"}</td>
-                                            <td>{"Thornton"}</td>
-                                            <td>{"@fat"}</td>
-                                        </tr>
-                                        <tr className="border-bottom-warning">
-                                            <th scope="row">{"3"}</th>
-                                            <td>{"Jacob"}</td>
-                                            <td>{"Thornton"}</td>
-                                            <td>{"@fat"}</td>
-                                        </tr>
-                                        <tr className="border-bottom-danger">
-                                            <th scope="row">{"3"}</th>
-                                            <td>{"Jacob"}</td>
-                                            <td>{"Thornton"}</td>
-                                            <td>{"@fat"}</td>
-                                        </tr>
+                                    {petinfos.medecines.map((pet,i) => 
+                                    {pet ?
                                         <tr>
                                             <th scope="row">{"3"}</th>
                                             <td>{"Jacob"}</td>
                                             <td>{"Thornton"}</td>
                                             <td>{"@fat"}</td>
-                                        </tr>
+                                        </tr> : <h3>No medecines found</h3>}
+                                    )}
                                     </tbody>
                                 </Table>
                             </div>

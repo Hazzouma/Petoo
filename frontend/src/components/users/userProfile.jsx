@@ -47,7 +47,6 @@ const UserProfile = (props) => {
  
   const { prenom,profilePicture, role,nom,email,dateNaissance,adresse,ville,codePostale,phoneNumber,bio } = useSelector((state) => state.currentUser.user);
   const DOB=new Date(parseInt(dateNaissance,10)).toDateString()
-  console.log(DOB)
  
   return (
     <Fragment>
@@ -56,7 +55,7 @@ const UserProfile = (props) => {
         <div className='user-profile'>
           <Row className="justify-content-md-center">
             {/* The Profile Card Starts Here */}
-            <Col sm={8}>
+            <Col sm={12}>
               <Card className='card hovercard text-center'>
                 <CardHeader className='cardheader'></CardHeader>
                 <div className='user-image'>

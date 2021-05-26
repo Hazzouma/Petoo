@@ -220,7 +220,7 @@ if (notificationDropDown && num>0 ){
               </li>
               )} 
               <li>
-                <Link to="dashboard/appoiments">
+                <Link to="/dashboard/appoiments">
                 <button
                   className='btn btn-primary'
                 >

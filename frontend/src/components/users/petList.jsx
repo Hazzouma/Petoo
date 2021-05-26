@@ -19,11 +19,11 @@ const PetList = (props) => {
           {pets.map((pet, i) => 
           
 
-          <Col md="6" lg="8" xl="6" className="box-col-6" key={i}>
+          <Col md="6" lg="4" xl="4" className="box-col-6" key={i}>
             <Card className="custom-card">
             <Link to={`/dashboard/petProfile/${pet.idPet}`}>
               <div className="card-profile">
-                <Media body className="rounded-circle" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg"  width="100px" alt="" />
+                <Media body className="rounded-circle" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg" fluid={true} alt="" />
               </div>
               <div className="text-center profile-details">
                 <h4>{pet.name}</h4>

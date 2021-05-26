@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardBody,
   // CardFooter,
-  // Media,
+  Media
 } from "reactstrap";
 import { Clock } from "react-feather";
 import {
@@ -49,6 +49,8 @@ const Default = (props) => {
   const { profilePicture, idUser } = useSelector(
     (state) => state.currentUser.user
   );
+  const pets = useSelector(state => state.currentUser.myPets)
+
   useEffect(() => {
     if (curHr < 12) {
       setDayTimes("Good Morning");
@@ -90,18 +92,8 @@ const Default = (props) => {
                   </div>
                 </div>
                 <div className="greeting-user text-center">
-                  <div className="profile-vector">
-                    <img
-                      className="img-fluid"
-                      src={profilePicture}
-                      style={{
-                        border: "3px solid white",
-                        width: "100px",
-                        height: "100px",
-                        borderRadius: "50%",
-                      }}
-                      alt="Profile Pic :)"
-                    />
+                  <div className="profile-vector d-flex justify-content-center">
+                  <Media className="rounded-circle border border-5 border-white" src={profilePicture} fluid={true} height="130px" width="130px" alt="" />
                   </div>
                   <h4 className="f-w-600">
                     <span id="greeting">{daytimes}</span>{" "}
@@ -124,7 +116,10 @@ const Default = (props) => {
                       paddingBottom: "2.5%",
                     }}
                   >
+                    {pets.map((pet, i) =>
+                    <Link to={`/dashboard/petProfile/${pet.idPet}`}>
                     <div style={{ padding: "1%" }}>
+                    <h6 className="text-white">{pet.name}</h6>
                       <img
                         src="https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg"
                         style={{
@@ -137,37 +132,12 @@ const Default = (props) => {
                         }}
                         alt="Pet Pic :)"
                       />
+                      
                     </div>
-                    <div style={{ padding: "1%" }}>
-                      <img
-                        src="https://jardinage.lemonde.fr/images/dossiers/2019-10/cacatoes-1-094044.jpg"
-                        style={{
-                          border: "3px solid white",
-                          overflow: "hidden",
-                          position: "relative",
-                          width: "80px",
-                          height: "80px",
-                          borderRadius: "50%",
-                        }}
-                        alt="Pet Pic :)"
-                      />
-                    </div>
-                    <div style={{ padding: "1%" }}>
-                      <img
-                        src="https://timesofindia.indiatimes.com/photo/67586673.cms"
-                        style={{
-                          border: "3px solid white",
-                          overflow: "hidden",
-                          position: "relative",
-                          width: "80px",
-                          height: "80px",
-                          borderRadius: "50%",
-                        }}
-                        alt="Pet Pic :)"
-                      />
-                    </div>
+                    </Link>
+                    )}
                   </Row>
-                  <Link to="/app/blog/blogDetail">
+                  <Link to="/dashboard/blogDetail">
                     <div className="whatsnew-btn">
                       <button className="btn btn-primary">
                         {"Whats New !"}

@@ -30,7 +30,7 @@ const App = ({ children, getWhichUser }) => {
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [token, role,idUser]);
+  }, [token,role,idUser,]);
   return (
     <Fragment>
       <Loader />
