@@ -168,7 +168,8 @@ import FileManager from "../components/application/file-manager/file-manager";
 // Kanban Board
 import kanbanBoard from "../components/application/kanban-board/kanbanBoard";
 
-
+// Task
+import TaskApp from "../components/application/task-app";
 
 // Contact app
 import ContactApp from "../components/application/contact-app";
@@ -381,7 +382,8 @@ export const routesVet = [
   { path: "/app/blog/blogSingle", Component: BlogSingle },
   //Notification
   { path: "/myNotifications", Component: DataTable },
-  
+  // Appointments & more infos
+  { path: "/app/task", Component: TaskApp },
 ];
 //-------------SHOP
 export const routesShop = [
@@ -406,5 +408,6 @@ export const routesShop = [
   { path: "/app/blog/blogSingle", Component: BlogSingle },
   //Notification
   { path: "/myNotifications", Component: DataTable },
-  
+  // Appointments & more infos
+  { path: "/app/task", Component: TaskApp },
 ];
