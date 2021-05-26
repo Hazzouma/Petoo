@@ -15,23 +15,8 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import axios from "axios";
-import {
-  MyProfile,
-  Bio,
-  City,
-  MarkJecno,
-  Designer,
-  Password,
-  Save,
-  EditProfile,
-  UpdateProfile,
-  FirstName,
-  LastName,
-  Address,
-  EmailAddress,
-  PostalCode,
-} from "../../constant";
+
+import {Bio, Save, UpdateProfile,} from "../../constant";
 import DatePicker from "react-datepicker";
 
 
@@ -41,7 +26,7 @@ const UserEdit = (props) => {
     //Date Picker related
     setstartDate(date);
   };
-const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,ville,role} = useSelector(state => state.currentUser.user)
+const {email,nom,prenom,adresse,profilePicture,codePostale,ville,role} = useSelector(state => state.currentUser.user)
   useEffect(() => {
 
   }, []);
@@ -56,7 +41,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
             <Col xl='4'>
               <Card>
                 <CardHeader>
-                  <h4 className='card-title mb-0'>{MyProfile}</h4>
+                  <h4 className='card-title mb-0'>My Profile </h4>
                   <div className='card-options'>
                     <a className='card-options-collapse' href='#javascript'>
                       <i className='fe fe-chevron-up'></i>
@@ -82,7 +67,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                       </Col>
                     </Row>
                     <FormGroup>
-                      <h6 className='form-label'>{Bio}</h6>
+                      <h6 className='form-label'>Bio</h6>
                       <Input
                         type='textarea'
                         className='form-control'
@@ -91,7 +76,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                       />
                     </FormGroup>
                     <FormGroup>
-                      <Label className='form-label'>{EmailAddress}</Label>
+                      <Label className='form-label'>E-mail Adress</Label>
                       <Input
                         className='form-control'
                         placeholder='your-email@domain.com'
@@ -100,7 +85,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                     </FormGroup>
 
                     <FormGroup>
-                      <Label className='form-label'>{Password}</Label>
+                      <Label className='form-label'>Password</Label>
                       <Input
                         className='form-control'
                         type='password'
@@ -131,7 +116,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
             <Col xl='8'>
               <Form className='card'>
                 <CardHeader>
-                  <h4 className='card-title mb-0'>{EditProfile}</h4>
+                  <h4 className='card-title mb-0'>Edit Profile</h4>
                   <div className='card-options'>
                     <a className='card-options-collapse' href='#javascript'>
                       <i className='fe fe-chevron-up'></i>
@@ -145,7 +130,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                   <Row>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{FirstName}</Label>
+                        <Label className='form-label'>First Name</Label>
                         <Input
                           className='form-control'
                           type='text'
@@ -156,7 +141,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{LastName}</Label>
+                        <Label className='form-label'>Last Name</Label>
                         <Input
                           className='form-control'
                           type='text'
@@ -178,7 +163,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                     </Col>
                     <Col md='12'>
                       <FormGroup>
-                        <Label className='form-label'>{Address}</Label>
+                        <Label className='form-label'>Adress</Label>
                         <Input
                           className='form-control'
                           type='text'
@@ -189,7 +174,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{City}</Label>
+                        <Label className='form-label'>City</Label>
                         <Input
                           className='form-control'
                           type='text'
@@ -200,7 +185,7 @@ const {email,nom,prenom,adresse,dateNaissance,about,profilePicture,codePostale,v
                     </Col>
                     <Col sm='6' md='6'>
                       <FormGroup>
-                        <Label className='form-label'>{PostalCode}</Label>
+                        <Label className='form-label'>Postal Code</Label>
                         <Input
                           className='form-control'
                           type='number'

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {Container,Row,Col,Button, Modal, ModalHeader, ModalBody, ModalFooter,Form, FormGroup, Label, Input} from 'reactstrap'
 
-import {SaveChanges,Close,ModalTitle,
+import {
   Password,
   SignIn,
   EmailAddress,
@@ -23,9 +23,11 @@ const Register = ({ history }) => {
   // const handleChange = (e) => {
   //   setPassword(e.target.value);
   // };
-  const toggle = () => setModal(!modal);
+
+  
+  
   const Scrollmodaltoggle = () => setscrollingModal(!scrollingmodal);
-  const [modal, setModal] = useState(false);
+
   const [scrollingmodal, setscrollingModal] = useState(false);
   const [userRegister, setUserRegister] = useState({});
   const getUserRegister = (e) =>
@@ -167,7 +169,7 @@ const Register = ({ history }) => {
                       <Input id='checkbox1' type='checkbox' required='' />
                       <Label className='text-muted' for='checkbox1'>
                         {"Agree with"}
-                        <a className='ml-2' onClick={Scrollmodaltoggle}>
+                        <a className='ml-2' href="/" onClick={Scrollmodaltoggle}>
                           {PrivacyPolicy}
                         </a>
                       </Label>

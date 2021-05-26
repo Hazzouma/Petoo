@@ -6,6 +6,7 @@ const {
   ResetPassword,
   validateOTP,
   allOwners,
+  OwnerEdit
 } = require("../controllers/owner.controller");
 const {
   validation,
@@ -34,6 +35,9 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 
 // //Get all Owners
 routerOwner.get("/getAllOwners", allOwners);
+
+//EditOwer
+routerOwner.get("/edit", OwnerEdit)
 
 // // Find Owner by idUser && Send Full info
 // routerOwner.get("/find/:idUser", async (req, res, next) => {

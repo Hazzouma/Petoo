@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 //Clean : /menu
 //Owner: /menuOwner
 //All: /menuCuba
-import { MENUITEMS } from "./menu";
+import { MENUITEMS } from "./menuOwner";
 import { ArrowRight, ArrowLeft, Grid } from "react-feather";
 import { Link } from "react-router-dom";
 import { translate } from "react-switch-lang";

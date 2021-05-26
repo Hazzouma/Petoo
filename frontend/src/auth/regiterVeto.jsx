@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link} from "react-router-dom";
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Button,Form,FormGroup,Label,Input} from 'reactstrap'
-import {Submit,Cancel,} from '../../src/constant/index'
+
 import background from '../assets/images/background.png'
 import { useDispatch, useSelector } from "react-redux";
 import { registerVet, videErrors } from "../redux/authentification/action";

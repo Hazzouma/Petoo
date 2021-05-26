@@ -17,6 +17,15 @@ import {
   Calendar,
   Image,
   Film,
+  // Mail,
+  // MessageCircle,
+  // Command,
+  // HelpCircle,
+  // Radio,
+  // Map,
+  // Edit,
+  // Sunrise,
+  // Package,
 } from "react-feather";
 export const MENUITEMS = [
   {

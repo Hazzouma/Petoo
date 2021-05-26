@@ -1,11 +1,9 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, Media , FormGroup} from 'reactstrap'
-import {DDMMYY,Designer,MarkJecno} from '../../constant'
-import Rating from 'react-rating'
 import DatePicker from "react-datepicker";
 import {useSelector} from "react-redux";
-import {useParams,useHistory} from "react-router"
+import {useParams,} from "react-router"
 
 import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-four';
 
@@ -13,8 +11,10 @@ import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-
 const VetCard = (props) => {
   let idVet  = useParams()
 const vets = useSelector(state => state.populationReducer.vetos)
+// eslint-disable-next-line
 const vetinfos = vets.find( (vet, index) => {
 	if(vet.idUser === idVet.Veto)
+  // eslint-disable-next-line
 		return true;
 });
   // Date Picker States Starts Here
@@ -26,7 +26,6 @@ const vetinfos = vets.find( (vet, index) => {
   //Date Picker States Ends Here
   
 
-  const [rating, setRating] = useState(5) // Rating States
 
 
 useEffect(() => {

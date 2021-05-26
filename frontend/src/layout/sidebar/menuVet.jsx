@@ -1,8 +1,26 @@
-import { Home, Users, ShoppingBag, Image, Film, Sunrise, HelpCircle, Command,
+import {
+  Home,
+  FileText,
+  Server,
+  Users,
+  ShoppingBag,
+  Image,
+  Film,
+  Monitor,
+  Command,
+  Box,
 
 } from "react-feather";
 export const MENUITEMS = [
 
+
+ 
+  // {
+  //   path: `${process.env.PUBLIC_URL}/app/task`,
+  //   icon: CheckSquare,
+  //   type: "link",
+  //   title: "Task",
+  // },
   {
     menutitle: "Applications",
     menucontent: "Ready to use Apps",
@@ -15,6 +33,7 @@ export const MENUITEMS = [
         title: "Dashboard ",
         type: "link",
       },
+      
       {
         title: "Shop",
         icon: ShoppingBag,
@@ -36,22 +55,30 @@ export const MENUITEMS = [
             title: "Product List",
             type: "link",
           },
-          
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
             title: "Order History",
             type: "link",
           },
+          // {
+          //   path: `${process.env.PUBLIC_URL}/app/ecommerce/pricing`,
+          //   title: "Pricing",
+          //   type: "link",
+          // },
         ],
       },
-
       {
         path: `${process.env.PUBLIC_URL}/app/users/vetoList`,
         icon: Users,
         title: "Vet List ",
         type: "link",
       },
-      
+      {
+        path: `${process.env.PUBLIC_URL}/app/users/petList`,
+        icon: Box,
+        title: "Pet List ",
+        type: "link",
+      },
       {
         path: `${process.env.PUBLIC_URL}/app/users/createPet`,
         icon: Command,
@@ -60,41 +87,30 @@ export const MENUITEMS = [
       },
 
       {
-        path: `${process.env.PUBLIC_URL}/app/gallery/imageGallery`,
-        icon: Image,
-        title: "Gallery Grid ",
-        type: "link",
-      },
-
-      {
-        title: "Users (to be deleted)",
+        title: "Users",
         icon: Users,
         path: `${process.env.PUBLIC_URL}/app/users/userProfile`,
         type: "sub",
         bookmark: true,
         active: false,
         children: [
-          
+
           {
             path: `${process.env.PUBLIC_URL}/app/users/petProfile`,
             type: "link",
             title: "Pet Profile ",
           },
-          
           {
             path: `${process.env.PUBLIC_URL}/app/users/vetCard`,
             type: "link",
             title: "Vet Card",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/users/petList`,
-            type: "link",
-            title: "Pet List ",
-          },
           
-          
+        
         ],
       },
+    
+
       {
         title: "Blog",
         icon: Film,
@@ -111,13 +127,13 @@ export const MENUITEMS = [
             title: "Blog Single",
             type: "link",
           },
-        
+          {
+            path: `${process.env.PUBLIC_URL}/app/blog/blogPost`,
+            title: "Add Post",
+            type: "link",
+          },
         ],
       },
     ],
   },
-
-
-
-  
 ];

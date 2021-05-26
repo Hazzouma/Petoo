@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import {Link} from "react-router-dom"
 import {
   Container,

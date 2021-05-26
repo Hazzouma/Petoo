@@ -1,13 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getALLNotif } from "../../redux/notification/action";
-// import man from "../../assets/images/dashboard/profile.jpg";
+
 import moment from 'moment'
 import {
   FileText,
   LogIn,
-  // Mail,
   User,
-  // MessageSquare,
   Bell,
   Minimize,
   Search,
@@ -17,38 +15,21 @@ import {
   X,
 } from "react-feather";
 import { useHistory,Link } from "react-router-dom";
-// import { firebase_app } from "../../data/config";
 import { useSelector, useDispatch } from "react-redux";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import Bookmark from "../../layout/bookmark";
 import {
   setTranslations,
   setDefaultLanguage,
   setLanguageCookie,
-  setLanguage,
+  
   translate,
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
 import {checkALLNotif} from "../../redux/notification/action";
 import {
-  // English,
-  // Deutsch,
-  // Español,
-  // Français,
-  // Português,
-  // 简体中文,
+  
   Notification,
   CheckAllNotification,
-  // ViewAll,
-  // MessageBox,
-  // EricaHughes,
-  // KoriThomas,
-  // Admin,
-  // Account,
-  // Inbox,
-  // Taskboard,
   LogOut,
-  // AinChavez,
   CheckOut,
   ShopingBag,
   OrderTotal,
@@ -73,16 +54,17 @@ const Rightbar = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchresponsive, setSearchresponsive] = useState(false);
-  const [langdropdown, setLangdropdown] = useState(false);
+  // const [langdropdown, setLangdropdown] = useState(false);
   const [moonlight, setMoonlight] = useState(false);
+  // eslint-disable-next-line
   const [selected, setSelected] = useState("en");
   const [cartDropdown, setCartDropDown] = useState(false);
   const [notificationDropDown, setNotificationDropDown] = useState(false);
 
-  const handleSetLanguage = (key) => {
-    setLanguage(key);
-    setSelected(key);
-  };
+  // const handleSetLanguage = (key) => {
+  //   setLanguage(key);
+  //   setSelected(key);
+  // };
   const { prenom, role, profilePicture } = useSelector(
     (state) => state.currentUser.user
   );
@@ -91,7 +73,7 @@ const Rightbar = (props) => {
 
     dispatch(getALLNotif(idUser));
 
-
+// eslint-disable-next-line
   }, [idUser]);
   
 
@@ -173,9 +155,9 @@ const Rightbar = (props) => {
     (state)=> state.currentUser.user.notificationId
   );
 let num = "0"
-const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
-  num++
-}); 
+// const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
+//   num++
+// }); 
 
 if (notificationDropDown && num>0 ){
   dispatch(checkALLNotif(notif,idUser))
@@ -211,7 +193,7 @@ if (notificationDropDown && num>0 ){
                 <h6 className='f-18 mb-0'>{Notification}</h6>
               </li>
               {notifications.map((n, i) =>
-              <li>
+              <li key={i}>
                 <p style={{fontWeight:(!n.isRead ? "bold": "normal")}}>
                   <i className='fa fa-circle-o mr-3 font-primary'> </i>
                   {n.msg}

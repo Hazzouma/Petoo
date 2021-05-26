@@ -1,7 +1,5 @@
 import {
   Home,
-  FileText,
-  Server,
   Users,
   ShoppingBag,
   Image,
@@ -51,6 +49,14 @@ export const MENUITEMS = [
     menutitle: "Applications",
     menucontent: "Ready to use Apps",
     Items: [
+      {
+        path: `${process.env.PUBLIC_URL}/dashboard/default`,
+        icon: Home,
+        badge:"badge badge-primary",
+        badgetxt: "Home",
+        title: "Dashboard ",
+        type: "link",
+      },
       {
         path: `${process.env.PUBLIC_URL}/app/users/createShop`,
         icon: Monitor,

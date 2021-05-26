@@ -10,7 +10,7 @@ import {
   Label,
   Input,
   Button,
-  CardImg,
+
 } from "reactstrap";
 import {
   NewPassword,

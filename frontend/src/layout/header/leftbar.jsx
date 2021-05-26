@@ -1,17 +1,28 @@
 import React, { Fragment, useState, useLayoutEffect, useEffect } from 'react';
-import { Container, Row, Col } from 'reactstrap'
-import { X, Layers, GitPullRequest, User, Users, UserMinus, UserCheck, Airplay, Zap,Heart,Inbox, Sliders } from 'react-feather'
-import { Link } from 'react-router-dom'
-import { errorPages, authPages, usefullPages, comingsoonPages } from './pages'
-import {BonusUi,MegaMenu,ErrorPage,Authentication,UsefullPages,ComingSoon, FileManager,SocialApp,UserEdit,UsersCards,UserProfile,KanbanBoard,Bookmark,LevelMenu} from '../../constant'
-const Leftbar = (props) => {
+import { 
+  // Container, Row, 
+  Col } from 'reactstrap'
 
+import { 
+  // X, Layers,Inbox,
+   Sliders } from 'react-feather'
+
+import { Link } from 'react-router-dom'
+// import { errorPages, authPages, usefullPages, comingsoonPages } from './pages'
+// import {BonusUi,MegaMenu,ErrorPage,Authentication,UsefullPages,ComingSoon, LevelMenu} from '../../constant'
+const Leftbar = (props) => {
+// eslint-disable-next-line
   const [bonusui, setBonusUI] = useState(false)
+  // eslint-disable-next-line
   const [levelMenu, setLevelMenu] = useState(false)
   const [sidebartoggle, setSidebartoggle] = useState(true)
+  // eslint-disable-next-line
   const [megaboxtoggle1, setMegaboxtoggle1] = useState(true)
+  // eslint-disable-next-line
   const [megaboxtoggle2, setMegaboxtoggle2] = useState(true)
+  // eslint-disable-next-line
   const [megaboxtoggle3, setMegaboxtoggle3] = useState(true)
+  // eslint-disable-next-line
   const [megaboxtoggle4, setMegaboxtoggle4] = useState(true)
   const width = useWindowSize()
 
@@ -57,27 +68,27 @@ const Leftbar = (props) => {
 
   }, [width])
 
-  const responsiveMegaMenuclose = () => {
-    setBonusUI(false)
-    document.querySelector(".mega-menu-container").classList.remove("d-block")
-  }
+  // const responsiveMegaMenuclose = () => {
+  //   setBonusUI(false)
+  //   document.querySelector(".mega-menu-container").classList.remove("d-block")
+  // }
 
-  const ToggleBonusUI = (value) => {
-    setLevelMenu(false)
-    if (value) {
-      setBonusUI(!value)
-      document.querySelector(".mega-menu-container").classList.remove("d-block")
-    } else {
-      setBonusUI(!value)
-      if (width <= 991) {
-        document.querySelector(".page-header").className = "page-header close_icon";
-        document.querySelector(".sidebar-wrapper").className = "sidebar-wrapper close_icon "
-        document.querySelector(".mega-menu-container").classList.add("d-block")
-      } else {
-        document.querySelector(".mega-menu-container").classList.add("d-block")
-      }
-    }
-  }
+  // const ToggleBonusUI = (value) => {
+  //   setLevelMenu(false)
+  //   if (value) {
+  //     setBonusUI(!value)
+  //     document.querySelector(".mega-menu-container").classList.remove("d-block")
+  //   } else {
+  //     setBonusUI(!value)
+  //     if (width <= 991) {
+  //       document.querySelector(".page-header").className = "page-header close_icon";
+  //       document.querySelector(".sidebar-wrapper").className = "sidebar-wrapper close_icon "
+  //       document.querySelector(".mega-menu-container").classList.add("d-block")
+  //     } else {
+  //       document.querySelector(".mega-menu-container").classList.add("d-block")
+  //     }
+  //   }
+  // }
 
   const responsive_openCloseSidebar = (toggle) => {
     if(width <= 991){
@@ -99,48 +110,48 @@ const Leftbar = (props) => {
   };
 
 
-  const responsiveMegaBox1 = (megabox) => {
-    if(width <= 1199){
-      if (megabox) {
-        setMegaboxtoggle1(!megabox);
-      } else {
-        setMegaboxtoggle1(!megabox);
-      }
-    }
-  }
-  const responsiveMegaBox2 = (megabox) => {
-    if(width <= 1199){
-      if (megabox) {
-        setMegaboxtoggle2(!megabox);
-      } else {
-        setMegaboxtoggle2(!megabox);
-      }
-    }
-  }
-  const responsiveMegaBox3 = (megabox) => {
-    if(width <= 1199){
-      if (megabox) {
-        setMegaboxtoggle3(!megabox);
-      } else {
-        setMegaboxtoggle3(!megabox);
-      }
-    }
-  }
-  const responsiveMegaBox4 = (megabox) => {
-    if(width <= 1199){
-      if (megabox) {
-        setMegaboxtoggle4(!megabox);
-      } else {
-        setMegaboxtoggle4(!megabox);
-      }
-    }
-  }
+  // const responsiveMegaBox1 = (megabox) => {
+  //   if(width <= 1199){
+  //     if (megabox) {
+  //       setMegaboxtoggle1(!megabox);
+  //     } else {
+  //       setMegaboxtoggle1(!megabox);
+  //     }
+  //   }
+  // }
+  // const responsiveMegaBox2 = (megabox) => {
+  //   if(width <= 1199){
+  //     if (megabox) {
+  //       setMegaboxtoggle2(!megabox);
+  //     } else {
+  //       setMegaboxtoggle2(!megabox);
+  //     }
+  //   }
+  // }
+  // const responsiveMegaBox3 = (megabox) => {
+  //   if(width <= 1199){
+  //     if (megabox) {
+  //       setMegaboxtoggle3(!megabox);
+  //     } else {
+  //       setMegaboxtoggle3(!megabox);
+  //     }
+  //   }
+  // }
+  // const responsiveMegaBox4 = (megabox) => {
+  //   if(width <= 1199){
+  //     if (megabox) {
+  //       setMegaboxtoggle4(!megabox);
+  //     } else {
+  //       setMegaboxtoggle4(!megabox);
+  //     }
+  //   }
+  // }
 
-  const OnLevelMenu = (menu) => {
-    setBonusUI(false)
-    document.querySelector(".mega-menu-container").classList.remove("d-block")
-    setLevelMenu(!menu)
-  }
+  // const OnLevelMenu = (menu) => {
+  //   setBonusUI(false)
+  //   document.querySelector(".mega-menu-container").classList.remove("d-block")
+  //   setLevelMenu(!menu)
+  // }
 
   return (
     <Fragment>
@@ -156,7 +167,7 @@ const Leftbar = (props) => {
         </div>
       </div>
       <Col className="left-header horizontal-wrapper pl-0">
-        <ul className="horizontal-menu">
+        {/* <ul className="horizontal-menu">
           <li className="mega-menu outside">
           <a className={`nav-link ${bonusui ? 'active' : ''}`} href="#javascript" onClick={() => ToggleBonusUI(bonusui)}><Layers /><span>{BonusUi}</span></a>
             <div className="mega-menu-container nav-submenu menu-to-be-close" style={bonusui ? { display: "" } : { display: "none" }}>
@@ -223,7 +234,7 @@ const Leftbar = (props) => {
           <li className="level-menu outside"><a className={levelMenu ? "nav-link active" : "nav-link"} href="#javascript" onClick={() => OnLevelMenu(levelMenu)}><Inbox/><span>{LevelMenu}</span></a>
            
           </li>
-        </ul>
+        </ul> */}
       </Col>
     </Fragment>
   );

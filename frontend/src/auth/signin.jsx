@@ -52,6 +52,7 @@ const Logins = (props) => {
 
  // On click on Enter button dispatch login action
  const KeyEnter = (e) => {
+   // eslint-disable-next-line
   if (e.key=='Enter')
   dispatch(login(user));
 } 

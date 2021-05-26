@@ -5,7 +5,7 @@ import { getCartTotal } from "../../../services/ecommerce.service";
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { BillingDetails, FirstName, LastName, Phone, EmailAddress, Country, CountryMenu, Address,TownCity,StateCountry,PostalCode,Product,Total,Subtotal,Shipping,Option1,Option2,PlaceOrder,CheckMeOut,CheckPayments,CashOnDelivery,PayPal,ContinueShopping } from '../../../constant';
+import { Product,Total,Subtotal,Shipping,PlaceOrder,CheckMeOut,ContinueShopping } from '../../../constant';
 
 const Checkout = (props) => {
   

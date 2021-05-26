@@ -28,7 +28,7 @@ const petReducer = (state = initialState, { type, payload }) => {
     // } else {
     //   return { ...state, load: false, errors: payload.errors };
     // }
-
+// eslint-disable-next-line
     case FAIL_PET:
       return { ...state, errors: payload.errors, load: false };
 

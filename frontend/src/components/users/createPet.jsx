@@ -111,6 +111,7 @@ const CreatePet = ({ history }) => {
       });
       dispatch(videErrors());
     }
+    // eslint-disable-next-line
   }, [arrErrors, notification]);
 
   const handleChangeStatus = ({ meta, file }, status) => {}; // DropZone reltated
