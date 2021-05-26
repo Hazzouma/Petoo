@@ -1,18 +1,11 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-<<<<<<< HEAD
 import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
 import DatePicker from "react-datepicker";
 import {useSelector,useDispatch} from "react-redux";
 import {useParams} from "react-router";
 import moment from "moment"
 import {addAppointmentByOwner} from "../../redux/appointmentAction/action"
-=======
-import { Container, Row, Col, Card, CardHeader, Media , FormGroup} from 'reactstrap'
-import DatePicker from "react-datepicker";
-import {useSelector} from "react-redux";
-import {useParams,} from "react-router"
->>>>>>> master
 
 import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-four';
 
@@ -22,11 +15,7 @@ const VetCard = (props) => {
   let idVet  = useParams()
   const idOwner = useSelector(state => state.currentUser.user.idUser)
 const vets = useSelector(state => state.populationReducer.vetos)
-<<<<<<< Updated upstream
 // eslint-disable-next-line
-=======
-const role=useSelector(state => state.currentUser.user.role)
->>>>>>> Stashed changes
 const vetinfos = vets.find( (vet, index) => {
 	if(vet.idUser === idVet.Veto)
   // eslint-disable-next-line
@@ -44,7 +33,6 @@ const ownerID=idOwner
     const [startDate, setstartDate] = useState(new Date())
     const [description,setdescription] = useState('')
   //Date Picker States Ends Here
-<<<<<<< HEAD
   const pets = useSelector(state => state.currentUser.myPets)
   const handlechange = (e) =>{
     setdescription(e.target.value)
@@ -58,12 +46,6 @@ const ownerID=idOwner
     console.log(vetID,petID,ownerID,appointment)
     setModal(!modal)
   }
-=======
-  
-
-
-
->>>>>>> master
 useEffect(() => {
 
 

@@ -273,16 +273,7 @@ export const routesAdmin = [
   { path: "/charts/chartJs", Component: Chartsjs },
   { path: "/charts/chartistComponent", Component: Chartist },
 
-<<<<<<< HEAD
   { path: "/dashboard/imageGallery", Component: ImageGallery },
-  { path: "/dashboard/imageWithDesc", Component: ImageWithDesc },
-  { path: "/dashboard/mesonryGallery", Component: MesonryGallery },
-  { path: "/dashboard/mesonryDesc", Component: MesonryDesc },
-  { path: "/dashboard/imageHover", Component: ImageHover },
-=======
-  { path: "/app/gallery/imageGallery", Component: ImageGallery },
-
->>>>>>> master
 
   { path: "/dashboard/blogDetail", Component: BlogDetail },
   { path: "/dashboard/blogSingle", Component: BlogSingle },
@@ -356,12 +347,7 @@ export const routesOwner = [
   { path: "/dashboard/petList", Component: PetList },
   { path: "/dashboard/CreatePet", Component: CreatePet },
   //gallery
-<<<<<<< HEAD
   { path: "/dashboard/gallery", Component: ImageGallery },
-=======
-  { path: "/app/gallery", Component: ImageGallery },
-  
->>>>>>> master
   //blog
   { path: "/dashboard/blogDetail", Component: BlogDetail },
   { path: "/dashboard/blogSingle", Component: BlogSingle },

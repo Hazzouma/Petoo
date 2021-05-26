@@ -155,21 +155,9 @@ const Rightbar = (props) => {
     (state)=> state.currentUser.user.notificationId
   );
 let num = "0"
-<<<<<<< Updated upstream
 // const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
 //   num++
 // }); 
-=======
-
-notifications.forEach((x) =>{if(x.isRead===false)
-  {num++
-    console.log(x.isRead)
-    console.log(num)}
-  else  console.log(x.isRead)
-  
- 
-}); 
->>>>>>> Stashed changes
 
 
   return (

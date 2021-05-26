@@ -146,15 +146,14 @@ export const MENUITEMS = [
             type: "link",
             title: "Pet List ",
           },
-<<<<<<< HEAD
+
           {
             path: `${process.env.PUBLIC_URL}/dashboard/createShop`,
             type: "link",
             title: "Create Shop ",
           },
-=======
+
           
->>>>>>> master
           
           {
             path: `${process.env.PUBLIC_URL}/dashboard/createPet`,
