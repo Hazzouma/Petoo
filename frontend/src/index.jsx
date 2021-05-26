@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./components/app";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { routesAdmin, routesOwner, routesShop, routesVet } from "./route";
+import { routesAdmin, routesOwner } from "./route";
 // import ConfigDB from "./data/customizer/config";
 // import {
 //   configureFakeBackend,

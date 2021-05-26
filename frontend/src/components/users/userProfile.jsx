@@ -11,14 +11,8 @@ import {
   Media,
 } from "reactstrap";
 import {
-  Appointment,
-  Tomorrow,
-  Yesterday,
   Pending,
-  Today,
-  VenterLoren,
   Done,
-  JohnLoren,
 } from "../../constant";
 import {useSelector} from 'react-redux';
 const UserProfile = (props) => {

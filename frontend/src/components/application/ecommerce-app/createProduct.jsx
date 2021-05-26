@@ -16,7 +16,7 @@ const CreateProduct = ({history}) => {
 const getProductCreate = (e) =>
 setProductCreate({ ...productCreate, [e.target.name]: e.target.value });
 
-const shopID = useSelector((state) => state.currentUser.user.idShop)
+
 const shop="Shop-2l8co204kp32i9k1"
 
 const createProduct = () => {
@@ -52,6 +52,7 @@ const createProduct = () => {
       });
       dispatch(videErrors());
     }
+    // eslint-disable-next-line
   }, [arrErrors, notification]);
   
 
@@ -92,26 +93,26 @@ const createProduct = () => {
 
                       <FormGroup>
                           <Label>Brand</Label>
-                            <Input className="form-control"  name="lastName" type="text" placeholder="The product's brand"  name='brand' onChange={getProductCreate} />
+                            <Input className="form-control"  type="text" placeholder="The product's brand"  name='brand' onChange={getProductCreate} />
                       </FormGroup>
 
                       <FormGroup>
                           <Label> Product Description</Label>
-                            <Input className="form-control"  name="lastName" type="text" placeholder="The product's description: for which pet, what is used for..... " name='description' onChange={getProductCreate} />
+                            <Input className="form-control" type="text" placeholder="The product's description: for which pet, what is used for..... " name='description' onChange={getProductCreate} />
                       </FormGroup>
                       
                       <FormGroup>
                           <Label>Color (or colors available)</Label> 
-                            <Input className="form-control" name="firstName" type="text" placeholder="The product's color" name='color' onChange={getProductCreate} />
+                            <Input className="form-control" type="text" placeholder="The product's color" name='color' onChange={getProductCreate} />
                       </FormGroup>
                       <FormGroup>
                         <Label>Product Price</Label>
-                            <Input className="form-control" name="firstName" type="Number" placeholder="10.00 DT / 45.00 DT / 35.00 DT / 00.50DT "  name='price' onChange={getProductCreate}/>
+                            <Input className="form-control" type="Number" placeholder="10.00 DT / 45.00 DT / 35.00 DT / 00.50DT "  name='price' onChange={getProductCreate}/>
                       </FormGroup>
                       
                       <FormGroup>
                         <Label>Product Promo Price</Label>
-                            <Input className="form-control" name="firstName" type="Number" placeholder="5.00 DT / 35.00 DT / 22.50 DT / 00.50DT " name='promoPrice' onChange={getProductCreate} />
+                            <Input className="form-control" type="Number" placeholder="5.00 DT / 35.00 DT / 22.50 DT / 00.50DT " name='promoPrice' onChange={getProductCreate} />
                       </FormGroup> 
 
                   

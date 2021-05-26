@@ -2,7 +2,7 @@ import React, { Fragment,useState, useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import Dropzone from 'react-dropzone-uploader';
 import {Container,Row,Col,Card,CardHeader,CardBody,CardFooter,Form,FormGroup,Label,Input,Button} from 'reactstrap'
-import { EmailAddress,Website,BillingInformation,Submit,Cancel,ContactNumber} from "../../constant";
+import { Submit,Cancel,} from "../../constant";
 import { useDispatch, useSelector } from "react-redux";
 import { registerShop, videErrors, resetUserReducer } from "../../redux/authentification/action";
 import { toast } from "react-toastify";
@@ -81,10 +81,10 @@ const successRegister = useSelector((state) => state.userReducer.msg);
                         <Input className="form-control" type="text" placeholder="Adress"  name='adresse' onChange={getLegalContact}/>
                       </FormGroup>
                       <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="City/State" name='ville' onChange={getLegalContact}/>
+                        <Input className="form-control" type="text"  placeholder="City/State" name='ville' onChange={getLegalContact}/>
                       </FormGroup>
                       <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="Postal Code" name='codePostale' onChange={getLegalContact}/>
+                        <Input className="form-control" type="text" placeholder="Postal Code" name='codePostale' onChange={getLegalContact}/>
                       </FormGroup>
                     </div>
 
@@ -134,10 +134,10 @@ const successRegister = useSelector((state) => state.userReducer.msg);
                         <Input className="form-control" type="text" placeholder="Adress" name='adresse' onChange={getShopRegister}/>
                       </FormGroup>
                       <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="City/State"  name='ville' onChange={getShopRegister}/>
+                        <Input className="form-control" type="text"  placeholder="City/State"  name='ville' onChange={getShopRegister}/>
                       </FormGroup>
                       <FormGroup>
-                        <Input className="form-control" type="text" name="inputPassword" placeholder="Postal Code" name='codePostale' onChange={getShopRegister}/>
+                        <Input className="form-control" type="text"  placeholder="Postal Code" name='codePostale' onChange={getShopRegister}/>
                       </FormGroup>
                     </div>
 

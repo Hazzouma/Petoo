@@ -1,4 +1,4 @@
-import React, { Fragment,useState,useEffect } from 'react';
+import React, { Fragment,useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, CardFooter, Media } from 'reactstrap'
 import {getVets} from '../../redux/population/action'
@@ -15,7 +15,7 @@ const VetoList = (props) => {
 
   useEffect(() => {
     dispatch(getVets())
-
+// eslint-disable-next-line
   },[])
 
   return (

@@ -2,7 +2,9 @@ import {
   CURRENT_USER,
   VIDE_ERRORS,
   FAIL_PET,
+  FAIL_APP,
   GET_MY_PETS,
+  GET_MY_APPOINTMENTS,
 } from "../actionTypes";
 
 import axios from "axios";
@@ -44,4 +46,19 @@ export const getMyPets = (idUser) => async (dispatch) => {
   } catch (errors) {
 /*     dispatch({ type: FAIL_PET, payload: errors.response.data.errors });
  */  }
+};
+
+//get current user appointments
+export const getMyAppointments = (idUser) => async (dispatch) => {
+  try {
+    const s = { idUser: idUser };
+    let result = await axios.post(
+      `${process.env.PUBLIC_URL}/api/appointment/getMyAppointments`,
+      s
+    );
+    dispatch({ type: GET_MY_APPOINTMENTS, payload: result.data });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_APP, payload: error.response.data.errors });
+  }
 };

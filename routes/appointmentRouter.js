@@ -7,6 +7,7 @@ const {
   AppointmenttEditbyOwner,
   AppointmentAcceptbyOwner,
   AppointmentAcceptbyVet,
+  getMyAppointments,
 } = require("../controllers/appointment.controller");
 const {
   creationAppointment,
@@ -35,5 +36,8 @@ routerAppointment.post("/editByOwner", AppointmenttEditbyOwner);
 //Accept
 routerAppointment.post("/AcceptbyOwner", AppointmentAcceptbyOwner);
 routerAppointment.post("/AcceptbyVet", AppointmentAcceptbyVet);
+
+//get currentUser appointments
+routerAppointment.post("/getMyAppointments", getMyAppointments);
 
 module.exports = routerAppointment;

@@ -1,80 +1,76 @@
-import React, { Fragment } from 'react';
+import React, { Fragment ,useState, useEffect} from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import Ckeditor from 'react-ckeditor-component'
-import { Typeahead } from 'react-bootstrap-typeahead';
+// import Ckeditor from 'react-ckeditor-component'
 import Dropzone from 'react-dropzone-uploader'
+import {addBlog, videErrors} from '../../redux/blogActions/action'
 import { Container, Row, Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from "reactstrap"
-import {PostEdit,Title,Type,Category,Content,Post,Discard,Text,Audio,Video,Image} from "../../constant";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+//import {Link} from "react-router-dom";
 
-const BlogPost = (props) => {
+const BlogPost = ({history}) => {  
+  const dispatch = useDispatch()
+  const userID= useSelector((state)=> state.currentUser.user.idUser)
+  const[blog, setBlog ] = useState({})
 
-  const data = [
-    { name: 'Lifestyle' },
-    { name: 'Travel' }
-  ]
+  const getBlogContent =(e)=> {
+    setBlog({...blog, [e.target.name]: e.target.value})
+  }
+  
+  const sendBlog =()=> {
+    dispatch(addBlog(blog,history, userID))
+  }
 
   const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
   const handleChangeStatus = ({ meta, file }, status) => { }
+
+  //managing errors if exist
+const arrErrors = useSelector((state) => state.blogReducer.errors);
+//sucess register
+const successRegister = useSelector((state) => state.blogReducer.msg);
+
+useEffect(() => {
+  if (arrErrors.length > 0) {
+    arrErrors.forEach((el) => {
+      toast.error(el.msg, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    });
+  } else if (successRegister) {
+    toast.success(successRegister, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
+    dispatch(videErrors());
+  }
+  // eslint-disable-next-line
+}, [arrErrors, successRegister]);
+
   
   return (
     <Fragment>
-      <Breadcrumb parent="Blog" title="Add Post" />
+      <Breadcrumb parent="Blog" title="Add A Blog" />
       <Container fluid={true}>
         <Row>
           <Col sm="12">
             <Card>
               <CardHeader>
-                <h5>{PostEdit}</h5>
+                <h5>Blog details:</h5>
               </CardHeader>
               <CardBody className="add-post">
                 <Form className="row needs-validation">
                   <Col sm="12">
                     <FormGroup>
-                      <Label for="validationCustom01">{Title}:</Label>
-                      <Input className="form-control" id="validationCustom01" type="text" placeholder="Post Title" required="" />
+                      <Label for="validationCustom01">Tiltle:</Label>
+                      <Input className="form-control" id="validationCustom01" type="text" placeholder="Blog Title" required="" name="title" onChange={getBlogContent}/>
                       <div className="valid-feedback">{"Looks good!"}</div>
                     </FormGroup>
-                    <FormGroup>
-                      <Label>{Type}:</Label>
-                      <div className="m-checkbox-inline">
-                        <Label for="edo-ani">
-                          <Input className="radio_animated" id="edo-ani" type="radio" name="rdo-ani" />{Text}
-                            </Label>
-                        <Label for="edo-ani1">
-                          <Input className="radio_animated" id="edo-ani1" type="radio" name="rdo-ani" />{Image}
-                            </Label>
-                        <Label for="edo-ani2">
-                          <Input className="radio_animated" id="edo-ani2" type="radio" name="rdo-ani" defaultChecked />{Audio}
-                            </Label>
-                        <Label for="edo-ani3">
-                          <Input className="radio_animated" id="edo-ani3" type="radio" name="rdo-ani" />{Video}
-                            </Label>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className="col-form-Label">{Category}:
-                            <Typeahead
-                              id="multiple-typeahead"
-                              className="mt-2"
-                              clearButton
-                              defaultSelected={data.slice(0, 5)}
-                              labelKey="name"
-                              multiple
-                              options={data}
-                              placeholder="Select Your Name...."
-                            />
-                      </div>
-                    </FormGroup>
-                    <div className="email-wrapper">
-                      <div className="theme-form">
+                  
                         <FormGroup>
-                          <Label>{Content}:</Label>
-                          <Ckeditor
-                            activeclassName="p10"
-                          />
+                          <Label>Content:</Label>
+                          <textarea className="form-control" rows="5" cols="5" placeholder="Blog Content " name='content' onChange={getBlogContent}></textarea>
                         </FormGroup>
-                      </div>
-                    </div>
                   </Col>
                 </Form>
                 <Form className="m-b-20">
@@ -94,8 +90,10 @@ const BlogPost = (props) => {
                   </div>
                 </Form>
                 <div className="btn-showcase">
-                  <Button color="primary" type="submit">{Post}</Button>
-                  <Button color="light" type="reset">{Discard}</Button>
+                  
+                  <Button color="primary" type="submit" onClick={()=>sendBlog()}>Post</Button>
+                  
+                  <Button color="light" type="reset" >Discard</Button>
                 </div>
               </CardBody>
             </Card>

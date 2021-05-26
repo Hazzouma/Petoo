@@ -1,8 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import cat from "../../assets/images/appointment/app-ent.jpg";
+<<<<<<< HEAD:frontend/src/components/dashboard/owner.jsx
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+=======
+import { useSelector} from "react-redux";
+import {Link} from "react-router-dom"
+>>>>>>> master:frontend/src/components/dashboard/default.jsx
 import {
   Container,
   Row,

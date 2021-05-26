@@ -132,3 +132,20 @@ exports.allOwners = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not get All owners" }] });
   }
 };
+
+exports.OwnerEdit = async (req, res) => {
+  try {
+    const { idOwner } = req.params;
+  
+    let newData = await ownerModel.findOneAndUpdate(
+      { idUser: idOwner  },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    console.log(newData);
+    res.status(200).send({ msg: "Profile edited successfully", newData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not modify!" }] });
+  }
+};

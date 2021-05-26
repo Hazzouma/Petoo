@@ -1,7 +1,11 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
+<<<<<<< HEAD
 import {Designer,MarkJecno,Close,SaveChanges,} from '../../constant'
+=======
+import {DDMMYY,Designer,MarkJecno, Close,SaveChanges,} from '../../constant'
+>>>>>>> master
 import {  UsersTableHeader,Edit,Update,Delete} from '../../constant/index'
 import DatePicker from "react-datepicker";
 import {useParams} from "react-router"

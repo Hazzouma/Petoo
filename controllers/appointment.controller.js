@@ -452,3 +452,30 @@ exports.AppointmentAcceptbyVet = async (req, res) => {
       .send({ errors: [{ msg: "Can not accept Appointment by vet!" }] });
   }
 };
+
+exports.getMyAppointments = async (req, res) => {
+  try {
+    const { idUser } = req.body;
+    if (!idUser) {
+      return res.status(404).send({ errors: [{ msg: "No user found!" }] });
+    }
+    const foundUser = await ownerModel.findOne({ idUser });
+
+    if (!foundUser) {
+      return res.status(404).send({ errors: [{ msg: "No user found 2!" }] });
+    }
+    const arrayOfAppointments = await Promise.all(
+      foundUser.appointmentId.map(async (appointment) => {
+        const app = await appointmentModel.findOne({
+          idAppointment: appointment,
+        });
+        return app;
+      })
+    );
+    // console.log(arrayOfAppointments);
+    res.status(200).send({ msg: "your appointments", arrayOfAppointments });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ errors: [{ msg: "Can not get My appointments!" }] });
+  }
+};

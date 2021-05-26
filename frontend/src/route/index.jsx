@@ -105,25 +105,14 @@ import Chartist from "../components/charts/chartistCharts";
 
 // Gallary
 import ImageGallery from "../components/gallery/imageGallery";
-import ImageWithDesc from "../components/gallery/imageWithDesc";
-import MesonryGallery from "../components/gallery/mesonryGallery";
-import MesonryDesc from "../components/gallery/mesonryDesc";
-import ImageHover from "../components/gallery/imageHover";
+
 
 // Blog
 import BlogDetail from "../components/blog/blogDetail";
 import BlogSingle from "../components/blog/blogSingle";
 import BlogPost from "../components/blog/blogPost";
 
-// Job Search
-import CardView from "../components/jobSearch/cardView";
-import JobList from "../components/jobSearch/job-list";
-import JobDetail from "../components/jobSearch/job-detail";
-import JobApply from "../components/jobSearch/job-apply";
 
-// Learning
-import Learninglist from "../components/learning/learning-list";
-import LearningDeatil from "../components/learning/learning-deatil";
 
 // Calendar
 import BasicCalender from "../components/calendar/basicCalendar";
@@ -140,30 +129,18 @@ import CreateShop from "../components/users/createShop";
 import CreatePet from "../components/users/createPet";
 import UserProfile from "../components/users/userProfile";
 
-// Maps
-import GoogleMap from "../components/map/googleMap";
+
 
 // Editor
 import CkEditor from "../components/editor/ckEditor";
 import MdeEditor from "../components/editor/mdeEditor";
 
-// Social App
-import SocialApp from "../components/social-app";
 
 // FAQ page
 import FaqComponent from "../components/faq";
 
 // knowledgebase page
 import KnowledgebaseComponent from "../components/knowledgebase";
-
-// Support Ticket
-import SupportTicket from "../components/support-ticket";
-
-// Sample page
-import Sample from "../components/sample";
-
-// Search page
-import Search from "../components/search";
 
 // E-commerce-app
 import Product from "../components/application/ecommerce-app/product";
@@ -180,14 +157,6 @@ import createProduct from "../components/application/ecommerce-app/createProduct
 //Notifications and appoiments
 import Notifndapp from "../components/notifications/Notificationsndapp"
 
-// Email
-import Email from "../components/application/email-app/emailDefault";
-
-// Chat
-import Chat from "../components/application/chat-app";
-
-// Bookmark
-import Bookmark from "../components/application/bookmark";
 
 // Project app
 import ProjectList from "../components/application/project/project";
@@ -210,7 +179,7 @@ import Todo from "../components/application/todo-app";
 
 // todo-firebase-app
 import TodoFirebase from "../components/application/todo-firebase-app";
-import Error404 from "../pages/errors/error404";
+
 
 export const routesAdmin = [
   { path: "/dashboard/", Component: Default },
@@ -304,23 +273,22 @@ export const routesAdmin = [
   { path: "/charts/chartJs", Component: Chartsjs },
   { path: "/charts/chartistComponent", Component: Chartist },
 
+<<<<<<< HEAD
   { path: "/dashboard/imageGallery", Component: ImageGallery },
   { path: "/dashboard/imageWithDesc", Component: ImageWithDesc },
   { path: "/dashboard/mesonryGallery", Component: MesonryGallery },
   { path: "/dashboard/mesonryDesc", Component: MesonryDesc },
   { path: "/dashboard/imageHover", Component: ImageHover },
+=======
+  { path: "/app/gallery/imageGallery", Component: ImageGallery },
+
+>>>>>>> master
 
   { path: "/dashboard/blogDetail", Component: BlogDetail },
   { path: "/dashboard/blogSingle", Component: BlogSingle },
   { path: "/dashboard/blogPost", Component: BlogPost },
 
-  { path: "/app/jobSearch/cardView", Component: CardView },
-  { path: "/app/jobSearch/job-list", Component: JobList },
-  { path: "/app/jobSearch/job-detail", Component: JobDetail },
-  { path: "/app/jobSearch/job-apply", Component: JobApply },
 
-  { path: "/app/learning/learning-list", Component: Learninglist },
-  { path: "/app/learning/learning-detail", Component: LearningDeatil },
 
   { path: "/dashboard/petProfile/:id", Component: PetProfile },
   { path: "/dashboard/userEdit", Component: UserEdit },
@@ -335,18 +303,13 @@ export const routesAdmin = [
   { path: "/app/calendar/basic-calendar", Component: BasicCalender },
   { path: "/app/calendar/draggable-calendar", Component: DraggableCalendar },
 
-  { path: "/app/map/googleMap", Component: GoogleMap },
 
   { path: "/app/editor/ckEditor", Component: CkEditor },
   { path: "/app/editor/mdeEditor", Component: MdeEditor },
 
-  { path: "/app/social-app", Component: SocialApp },
+  // { path: "/app/social-app", Component: SocialApp },
   { path: "/app/faq", Component: FaqComponent },
   { path: "/app/knowledgebase", Component: KnowledgebaseComponent },
-  { path: "/app/support-ticket", Component: SupportTicket },
-
-  { path: "/pages/samplepage", Component: Sample },
-  { path: "/pages/searchpage", Component: Search },
 
   { path: "/app/ecommerce/product", Component: Product },
   { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
@@ -362,10 +325,6 @@ export const routesAdmin = [
   { path: "/dashboard/appoiments", Component: Notifndapp },
 
 
-  { path: "/app/email-app", Component: Email },
-  { path: "/app/chat-app", Component: Chat },
-  { path: "/app/bookmark", Component: Bookmark },
-  { path: "/app/task", Component: TaskApp },
 
   { path: "/app/project/project-list", Component: ProjectList },
   { path: "/app/project/new-project", Component: NewProject },
@@ -397,7 +356,12 @@ export const routesOwner = [
   { path: "/dashboard/petList", Component: PetList },
   { path: "/dashboard/CreatePet", Component: CreatePet },
   //gallery
+<<<<<<< HEAD
   { path: "/dashboard/gallery", Component: ImageGallery },
+=======
+  { path: "/app/gallery", Component: ImageGallery },
+  
+>>>>>>> master
   //blog
   { path: "/dashboard/blogDetail", Component: BlogDetail },
   { path: "/dashboard/blogSingle", Component: BlogSingle },

@@ -5,7 +5,7 @@ import { getCartTotal } from "../../../services/ecommerce.service";
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { BillingDetails, FirstName, LastName, Phone, EmailAddress, Country, CountryMenu, Address,TownCity,StateCountry,PostalCode,Product,Total,Subtotal,Shipping,Option1,Option2,PlaceOrder,CheckMeOut,CheckPayments,CashOnDelivery,PayPal,ContinueShopping } from '../../../constant';
+import { Product,Total,Subtotal,Shipping,PlaceOrder,CheckMeOut,ContinueShopping } from '../../../constant';
 
 const Checkout = (props) => {
   
@@ -31,7 +31,7 @@ const Checkout = (props) => {
           <Col>
             <Card className="checkout">
               <CardHeader>
-                <h5>{BillingDetails}</h5>
+                <h5>Billing Details</h5>
               </CardHeader>
               <CardBody>
                 <Row>
@@ -39,53 +39,41 @@ const Checkout = (props) => {
                     <Form onSubmit={handleSubmit(onSubmit)} className="needs-validation">
                       <div className="form-row">
                         <FormGroup className="col-sm-6">
-                          <Label>{FirstName}</Label>
+                          <Label>First Number</Label>
                           <Input type="text" name="firstName" innerRef={register({ required: true })} />
                           <span style={{ color: '#ff5370' }}>{errors.firstName && 'First name is required'}</span>
                         </FormGroup>
                         <FormGroup className="col-sm-6">
-                          <Label>{LastName}</Label>
+                          <Label>Last Name</Label>
                           <Input type="text" name="lastName" innerRef={register({ required: true })} />
                           <span style={{ color: '#ff5370' }}>{errors.lastName && 'Last name is required'}</span>
                         </FormGroup>
                       </div>
                       <div className="form-row">
                         <FormGroup className="col-sm-6">
-                          <Label>{Phone}</Label>
+                          <Label>Phone Number</Label>
                           <Input type="text" name="phone" innerRef={register({ pattern: /\d+/ })} />
                           <span style={{ color: '#ff5370' }}>{errors.phone && 'Please enter number for phone.'}</span>
                         </FormGroup>
                         <FormGroup className="col-sm-6">
-                          <Label>{EmailAddress}</Label>
+                          <Label>E-mail</Label>
                           <Input type="text" name="email" innerRef={register({ required: true, pattern: /^\S+@\S+$/i })} />
                           <span style={{ color: '#ff5370' }}>{errors.email && 'Please enter proper email address .'}</span>
                         </FormGroup>
                       </div>
+      
                       <FormGroup>
-                        <Label>{Country}</Label>
-                        <Input type="select" name="selectMulti">
-                          {CountryMenu.map((items,i) => 
-                            <option key={i}>{items}</option>
-                          )}
-                        </Input>
-                      </FormGroup>
-                      <FormGroup>
-                          <Label for="inputAddress5">{Address}</Label>
+                          <Label for="inputAddress5">Adresse</Label>
                         <Input type="text" name="address" innerRef={register({ required: true, min: 20, max: 120 })} />
                         <span style={{ color: '#ff5370' }}>{errors.address && 'Please right your address .'}</span>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="inputCity">{TownCity}</Label>
-                        <Input type="text" name="city" innerRef={register({ required: true })} />
-                        <span style={{ color: '#ff5370' }}>{errors.city && 'select one city'}</span>
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="inputAddress2">{StateCountry}</Label>
+                        <Label for="inputAddress2">City</Label>
                         <Input type="text" name="state" innerRef={register({ required: true })} />
                         <span style={{ color: '#ff5370' }}>{errors.state && 'select one state'}</span>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="inputAddress6">{PostalCode}</Label>
+                        <Label for="inputAddress6">Postal Code</Label>
                         <Input type="text" name="pincode" innerRef={register({ pattern: /\d+/ })} />
                         <span style={{ color: '#ff5370' }}>{errors.pincode && 'Required integer'}</span>
                       </FormGroup>
@@ -117,33 +105,15 @@ const Checkout = (props) => {
                           <li className="shipping-class">{Shipping}
                             <div className="shopping-checkout-option">
                               <Label className="d-block">
-                                <Input className="checkbox_animated" type="checkbox" />{Option1}
+                                <Input className="checkbox_animated" type="checkbox" />Home Delivery
                               </Label>
-                              <Label className="d-block">
-                                <Input className="checkbox_animated" type="checkbox" defaultChecked />{Option2}
-                              </Label>
+                            
                             </div>
                           </li>
                         </ul>
                         <ul className="sub-total total">
                           <li>{Total} <span className="count">{symbol} {getCartTotal(cart)}</span></li>
                         </ul>
-                        <div className="animate-chk">
-                          <Row>
-                            <Col>
-                              <Label className="d-block">
-                                <Input className="radio_animated" type="radio" name="rdo-ani" />{CheckPayments}
-                              </Label>
-                              <Label className="d-block">
-                                <Input className="radio_animated" type="radio" name="rdo-ani" />{CashOnDelivery}
-                              </Label>
-                              <Label className="d-block">
-                                <Input className="radio_animated" type="radio" name="rdo-ani" defaultChecked />{PayPal}
-                                <img className="img-paypal" src={require("../../../assets/images/checkout/paypal.png")} alt="" />
-                              </Label>
-                            </Col>
-                          </Row>
-                        </div>
                         <div className="text-right mt-2">
                           <Link
                             to={`${process.env.PUBLIC_URL}/app/ecommerce/product`}
