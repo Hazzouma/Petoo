@@ -17,6 +17,9 @@ routerPet.post("/modif/:idPet", PetEdit);
 //get all pets
 routerPet.get("/getAllPets", allPets);
 
+//get all pets of owner
+routerPet.post("/getYourPets" ,getPetsOfOwner);
+
 //get pets of that specific owner
 // routerPet.post("/getYourPets", getPetsOfOwner);
 

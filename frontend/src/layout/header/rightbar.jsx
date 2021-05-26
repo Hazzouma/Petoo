@@ -159,9 +159,7 @@ let num = "0"
 //   num++
 // }); 
 
-if (notificationDropDown && num>0 ){
-  dispatch(checkALLNotif(notif,idUser))
-}
+
   return (
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
@@ -177,11 +175,9 @@ if (notificationDropDown && num>0 ){
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
               <Bell /> 
-              {num===0 ? (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
+              {num>0 &&  (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
               <span className='badge badge-pill badge-secondary'>{num}</span>)
-              :
-              <span className='badge badge-pill badge-secondary'></span> 
-}
+              }
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
@@ -202,8 +198,9 @@ if (notificationDropDown && num>0 ){
               </li>
               )} 
               <li>
-                <Link to="/appoiments">
+                <Link to="/dashboard/appoiments">
                 <button
+                onClick={()=>dispatch(checkALLNotif(notif,idUser))}
                   className='btn btn-primary'
                 >
                   {CheckAllNotification}
@@ -344,12 +341,12 @@ if (notificationDropDown && num>0 ){
                 </div>
               </li>
               <li>
-                <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/product`}>
+                <Link to={`${process.env.PUBLIC_URL}/dashboard/product`}>
                   <Button color='primary' className='btn btn-block view-cart'>
                     {GoToShopingBag}
                   </Button>
                 </Link>
-                <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/checkout`}>
+                <Link to={`${process.env.PUBLIC_URL}/dashboard/checkout`}>
                   <Button
                     color='secondary'
                     className='btn-block view-cart mt-2'
@@ -445,7 +442,7 @@ if (notificationDropDown && num>0 ){
               <li
                 onClick={() =>
                   UserMenuRedirect(
-                    `${process.env.PUBLIC_URL}/app/users/userProfile`
+                    `${process.env.PUBLIC_URL}/dashboard/userProfile`
                   )
                 }
               >
@@ -456,7 +453,7 @@ if (notificationDropDown && num>0 ){
               <li
                 onClick={() =>
                   UserMenuRedirect(
-                    `${process.env.PUBLIC_URL}/app/users/userEdit`
+                    `${process.env.PUBLIC_URL}/dashboard/userEdit`
                   )
                 }
               >

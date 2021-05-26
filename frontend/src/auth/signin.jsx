@@ -207,7 +207,7 @@ const Logins = (props) => {
           </Row>
         </Container>
       ) : (
-        <Redirect to={`${process.env.PUBLIC_URL}/dashboard/default`} />
+        <Redirect to={`${process.env.PUBLIC_URL}/dashboard/`} />
       )}
     </>
   );

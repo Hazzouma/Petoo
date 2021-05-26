@@ -25,9 +25,14 @@ const petReducer = (state = initialState, { type, payload }) => {
           pets: state.pets.push(payload.newPet),
         };
       }
+      break
+    
     // } else {
     //   return { ...state, load: false, errors: payload.errors };
     // }
+
+    /* case FAIL_PET:
+      return { ...state, errors: payload.errors, load: false }; */ // Fama mochkla houni quelque part 
 // eslint-disable-next-line
     case FAIL_PET:
       return { ...state, errors: payload.errors, load: false };

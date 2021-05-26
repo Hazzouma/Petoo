@@ -1,15 +1,19 @@
 import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardHeader, Media , FormGroup} from 'reactstrap'
+import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
 import DatePicker from "react-datepicker";
-import {useSelector} from "react-redux";
-import {useParams,} from "react-router"
+import {useSelector,useDispatch} from "react-redux";
+import {useParams} from "react-router";
+import moment from "moment"
+import {addAppointmentByOwner} from "../../redux/appointmentAction/action"
 
 import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-four';
 
 
 const VetCard = (props) => {
+  const dispatch=useDispatch()
   let idVet  = useParams()
+  const idOwner = useSelector(state => state.currentUser.user.idUser)
 const vets = useSelector(state => state.populationReducer.vetos)
 // eslint-disable-next-line
 const vetinfos = vets.find( (vet, index) => {
@@ -17,36 +21,37 @@ const vetinfos = vets.find( (vet, index) => {
   // eslint-disable-next-line
 		return true;
 });
+const [modal, setModal] = useState(false);
+const toggle = () => setModal(!modal);
+const [Petselected,setPetselected] = useState('')
+const [Petid,setPetid] = useState('')
+const [appointment,setappointment] = useState()
+const vetID = idVet.Veto
+const petID = Petid
+const ownerID=idOwner
   // Date Picker States Starts Here
     const [startDate, setstartDate] = useState(new Date())
-
-    const handleChange = date => {
-    setstartDate(date);
-    };
+    const [description,setdescription] = useState('')
   //Date Picker States Ends Here
-  
-
-
-
-useEffect(() => {
-},[])
-   // eslint-disable-next-line 
-  const [url, setUrl] = useState();
-
-  const readUrl = (event) => {
-    if (event.target.files.length === 0)
-      return;
-    var mimeType = event.target.files[0].type;
-
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      setUrl(reader.result)
-    }
+  const pets = useSelector(state => state.currentUser.myPets)
+  const handlechange = (e) =>{
+    setdescription(e.target.value)
   }
+  const nchallah = (e)=> {
+    setappointment({date:moment(startDate).format("LLLL"),description:description})
+
+  }
+  const set = () => {
+    dispatch(addAppointmentByOwner(vetID,petID,ownerID,appointment,))
+    console.log(vetID,petID,ownerID,appointment)
+    setModal(!modal)
+  }
+useEffect(() => {
+
+
+},[vetinfos,pets])
+   // eslint-disable-next-line 
+
   return (
     <Fragment>
       <Breadcrumb parent="Users" title="Vet Profile" />
@@ -60,11 +65,6 @@ useEffect(() => {
                 <CardHeader className="cardheader"></CardHeader>
                 <div className="user-image">
                   <div className="avatar"><Media body alt="" src={vetinfos.profilePicture} data-intro="This is Profile image" /></div>
-                  <div className="icon-wrapper" data-intro="Change Profile image here">
-                    <i className="icofont icofont-pencil-alt-5">
-                      <input className="upload" type="file" onChange={(e) => readUrl(e)} />
-                    </i>
-                  </div>
                 </div>
                 <div className="info">
                   <Row>
@@ -109,8 +109,8 @@ useEffect(() => {
                   <hr />
                   <div className="follow">
                     <Row>
-                      <Col col="6" className="text-md-left">
-                        <div className="follow-num counter"> <h4>{vetinfos.adresse}  , {vetinfos.codePostale} , Tunisia  </h4></div><span>Full Adress</span>
+                      <Col col="6" className="text-md-center">
+                      <span>Full Adress</span>  <div className="follow-num counter"> <h4>{vetinfos.adresse}  , {vetinfos.codePostale} , Tunisia  </h4></div>
                       </Col>
                     </Row>
                   </div>
@@ -125,24 +125,79 @@ useEffect(() => {
                 
                       <Card>
                           <CardHeader> 
-                          <h5> Book An Appointment</h5>
+                          <h5> Book An Appointment For {<span className='txt-primary'> {Petselected}</span>} </h5>
                           </CardHeader>
-                          <FormGroup className="form-row mb-0">
-                          <label className="col-sm-3 col-form-label text-right">Choose a day </label>
-                          <div className="col-sm-3">
-                            <div className="datepicker-here" data-language="en">
-                              <DatePicker className="form-control digits"
-                                selected={startDate}
-                                onChange={handleChange}
-                                inline
-                              />
-                            </div>
-                          </div>
-                        </FormGroup>
+
+<Row
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      paddingBottom: "2.5%",
+                    }}
+                  >
+                    {/* {role==="petOwner" ? ( */}
+                    {pets.map((pet, i) =>
+                    <div style={{ padding: "1%" }}
+                    onClick ={ () => {(setPetselected(pet.name)); (setPetid(pet.idPet)) ;(setModal(true))}}
+                    role="button"
+                    >
+                    <h6 className="txt-primary">{pet.name}</h6>
+                      <img
+                        src="https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg"
+                        style={{
+                          border: "3px solid white",
+                          overflow: "hidden",
+                          position: "relative",
+                          width: "80px",
+                          height: "80px",
+                          borderRadius: "50%",
+                        }}
+                        alt="Pet Pic :)"
+                      />
+                      
+                    </div>
+                    )}
+                  </Row>
                       </Card>
-                
-                
-                <div> Choose Time 6<TimePickerFour/></div>
+                      { Petselected ? (
+                    <>
+                      <Modal isOpen={modal} toggle={toggle} >
+                        <ModalHeader toggle={toggle}>Add appoiment to {<span className='txt-primary'> {Petselected}</span>} </ModalHeader>
+                        <ModalBody>
+                        
+                        <FormGroup>
+                    <Label className='form-label'>Please choose time and date of the appoiment</Label>
+                    {/* Date Picker */}
+                    <FormGroup className="form-row">
+                          
+                            <DatePicker className="form-control digits" showPopperArrow={true} defaultValut={new Date()} selected={startDate}
+                            
+                                  onChange={date => (e)=>{setstartDate(date);nchallah(e)}}
+                                  minDate={new Date()}
+                                  showTimeSelect
+                                  dateFormat="Pp" />
+                          
+                        </FormGroup>
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label className='form-label' for="desc">Description</Label>
+                        <Input type="textarea" name="text" id="desc" placeholder='My pet acting weird lately ...' onChange={(e)=>{handlechange(e);nchallah(e)}}/>
+                      </FormGroup>
+
+
+                        
+
+                      
+
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button color="primary" onClick={toggle}>Close</Button>
+                        <Button color="secondary" onClick={set}>Confirm appoiment</Button>
+                        </ModalFooter>
+                    </Modal> 
+                    </>
+                  ): ''}
                   
                 
                 
@@ -152,7 +207,7 @@ useEffect(() => {
         </Row>
           </div>
       </Container>
-    </Fragment>
+    </Fragment> 
   );
 }
 

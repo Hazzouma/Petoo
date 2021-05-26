@@ -9,25 +9,32 @@ import { ToastContainer } from "react-toastify";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { current, videErrors } from "../redux/currentUser/action";
+import { current, videErrors,getMyPets } from "../redux/currentUser/action";
+import {getALLNotif} from "../redux/notification/action"
+import {getVets} from '../redux/population/action'
 
 const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
   let token = localStorage.getItem("token");
   const role = useSelector((state) => state.currentUser.user.role);
+  const idUser=useSelector((state) => state.currentUser.user.idUser);
   const notification = useSelector((state) => state.currentUser.msg);
   useEffect(() => {
+    dispatch(getVets())
     dispatch(current());
     getWhichUser(role);
+    dispatch(getALLNotif(idUser))
+    dispatch(getMyPets(idUser))
     if (notification) {
       toast.success(notification, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 10000, //stay 10 secondes
       });
+      
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [token, role]);
+  }, [token,role,idUser,]);
   return (
     <Fragment>
       <Loader />

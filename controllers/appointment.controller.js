@@ -68,7 +68,6 @@ exports.AppointmentCreateByOwner = async (req, res) => {
       newVetNotification,
     });
   } catch (error) {
-    console.log(error);
     res
       .status(500)
       .send({ errors: [{ msg: "Can not create Appointment by owner" }] });

@@ -38,14 +38,9 @@ const currentUser = (state = initialState, { type, payload }) => {
     case VIDE_ERRORS:
       return { ...state, errors: [], msg: "", load: false };
     case GET_MY_PETS:
-      return {
-        ...state,
-        myPets: payload.arrayOfPets,
-        msg: payload.msg,
-        load: false,
-      };
+      return { ...state, myPets: payload.arr, msg: payload.msg };
     case FAIL_PET:
-      return { ...state, errors: payload, load: false };
+      return { ...state, errors: payload.errors };
     default:
       return state;
   }

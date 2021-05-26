@@ -1,5 +1,5 @@
 // dashbaord
-import Default from "../components/dashboard/default";
+import Default from "../components/dashboard/owner";
 import Ecommerce from "../components/dashboard/ecommerce";
 
 // widgets
@@ -182,7 +182,7 @@ import TodoFirebase from "../components/application/todo-firebase-app";
 
 
 export const routesAdmin = [
-  { path: "/dashboard/default", Component: Default },
+  { path: "/dashboard/", Component: Default },
   { path: "/dashboard/ecommerce", Component: Ecommerce },
 
   { path: "/widgets/general", Component: GeneralWidget },
@@ -273,24 +273,23 @@ export const routesAdmin = [
   { path: "/charts/chartJs", Component: Chartsjs },
   { path: "/charts/chartistComponent", Component: Chartist },
 
-  { path: "/app/gallery/imageGallery", Component: ImageGallery },
+  { path: "/dashboard/imageGallery", Component: ImageGallery },
+
+  { path: "/dashboard/blogDetail", Component: BlogDetail },
+  { path: "/dashboard/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogPost", Component: BlogPost },
 
 
-  { path: "/app/blog/blogDetail", Component: BlogDetail },
-  { path: "/app/blog/blogSingle", Component: BlogSingle },
-  { path: "/app/blog/blogPost", Component: BlogPost },
 
-
-
-  { path: "/app/users/petProfile", Component: PetProfile },
-  { path: "/app/users/userEdit", Component: UserEdit },
-  { path: "/app/users/userCards", Component: UserCards },
-  { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard/:Veto", Component: VetCard },
-  { path: "/app/users/petList", Component: PetList },
-  { path: "/app/users/CreateShop", Component: CreateShop },
-  { path: "/app/users/CreatePet", Component: CreatePet },
-  { path: "/app/users/userProfile", Component: UserProfile },
+  { path: "/dashboard/petProfile/:id", Component: PetProfile },
+  { path: "/dashboard/userEdit", Component: UserEdit },
+  { path: "/dashboard/userCards", Component: UserCards },
+  { path: "/dashboard/vetoList", Component: VetoList },
+  { path: "/dashboard/vetCard/:Veto", Component: VetCard },
+  { path: "/dashboard/petList", Component: PetList },
+  { path: "/dashboard/CreateShop", Component: CreateShop },
+  { path: "/dashboard/CreatePet", Component: CreatePet },
+  { path: "/dashboard/userProfile", Component: UserProfile },
 
   { path: "/app/calendar/basic-calendar", Component: BasicCalender },
   { path: "/app/calendar/draggable-calendar", Component: DraggableCalendar },
@@ -314,7 +313,7 @@ export const routesAdmin = [
   { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
   { path: "/app/ecommerce/pricing", Component: Pricing },
   { path: "/app/ecommerce/createProduct", Component: createProduct },
-  { path: "/appoiments", Component: Notifndapp },
+  { path: "/dashboard/appoiments", Component: Notifndapp },
 
 
 
@@ -331,83 +330,82 @@ export const routesAdmin = [
 ];
 //---------------OWNER
 export const routesOwner = [
-  { path: "/dashboard/default", Component: Default },
+  { path: "/dashboard/", Component: Default },
   //ecommerce
-  { path: "/app/ecommerce/product", Component: Product },
-  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
-  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
-  { path: "/app/ecommerce/invoice", Component: Invoice },
-  { path: "/app/ecommerce/checkout", Component: Checkout },
-  { path: "/app/ecommerce/cart", Component: Cart },
+  { path: "/dashboard/product", Component: Product },
+  { path: "/dashboard/product-page/:id", Component: ProductDetail },
+  { path: "/dashboard/orderhistory", Component: OrderHistory },
+  { path: "/dashboard/invoice", Component: Invoice },
+  { path: "/dashboard/checkout", Component: Checkout },
+  { path: "/dashboard/cart", Component: Cart },
   //users + pet
-  { path: "/app/users/userProfile", Component: UserProfile },
-  { path: "/app/users/petProfile", Component: PetProfile },
-  { path: "/app/users/userEdit", Component: UserEdit },
-  { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard/:Veto", Component: VetCard },
-  { path: "/app/users/petList", Component: PetList },
-  { path: "/app/users/CreatePet", Component: CreatePet },
+  { path: "/dashboard/userProfile", Component: UserProfile },
+  { path: "/dashboard/petProfile/:id", Component: PetProfile },
+  { path: "/dashboard/userEdit", Component: UserEdit },
+  { path: "/dashboard/vetoList", Component: VetoList },
+  { path: "/dashboard/vetCard/:Veto", Component: VetCard },
+  { path: "/dashboard/petList", Component: PetList },
+  { path: "/dashboard/CreatePet", Component: CreatePet },
   //gallery
-  { path: "/app/gallery", Component: ImageGallery },
-  
+  { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
-  { path: "/app/blog/blogDetail", Component: BlogDetail },
-  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogDetail", Component: BlogDetail },
+  { path: "/dashboard/blogSingle", Component: BlogSingle },
   //Notification
   { path: "/myNotifications", Component: DataTable },
 ];
 
 // --------------VET
 export const routesVet = [
-  { path: "/dashboard/default", Component: Default },
+  { path: "/dashboard/", Component: Default },
   //ecommerce
-  { path: "/app/ecommerce/product", Component: Product },
-  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
-  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
-  { path: "/app/ecommerce/invoice", Component: Invoice },
-  { path: "/app/ecommerce/checkout", Component: Checkout },
-  { path: "/app/ecommerce/cart", Component: Cart },
+  { path: "/dashboard/product", Component: Product },
+  { path: "/dashboard/product-page/:id", Component: ProductDetail },
+  { path: "/dashboard/orderhistory", Component: OrderHistory },
+  { path: "/dashboard/invoice", Component: Invoice },
+  { path: "/dashboard/checkout", Component: Checkout },
+  { path: "/dashboard/cart", Component: Cart },
   //users + pet
-  { path: "/app/users/userProfile", Component: UserProfile },
-  { path: "/app/users/petProfile", Component: PetProfile },
-  { path: "/app/users/userEdit", Component: UserEdit },
-  { path: "/app/users/vetoList", Component: VetoList },
-  { path: "/app/users/vetCard/:Veto", Component: VetCard },
-  { path: "/app/users/petList", Component: PetList },
-  { path: "/app/users/CreatePet", Component: CreatePet },
+  { path: "/dashboard/userProfile", Component: UserProfile },
+  { path: "/dashboard/petProfile/:id", Component: PetProfile },
+  { path: "/dashboard/userEdit", Component: UserEdit },
+  { path: "/dashboard/vetoList", Component: VetoList },
+  { path: "/dashboard/vetCard/:Veto", Component: VetCard },
+  { path: "/dashboard/petList", Component: PetList },
+  { path: "/dashboard/CreatePet", Component: CreatePet },
   //gallery
-  { path: "/app/gallery", Component: ImageGallery },
+  { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
-  { path: "/app/blog/blogDetail", Component: BlogDetail },
-  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogDetail", Component: BlogDetail },
+  { path: "/dashboard/blogSingle", Component: BlogSingle },
   //Notification
-  { path: "/myNotifications", Component: DataTable },
+  { path: "/dashboard/myNotifications", Component: DataTable },
   // Appointments & more infos
-  { path: "/app/task", Component: TaskApp },
+  { path: "/dashboard/task", Component: TaskApp },
 ];
 //-------------SHOP
 export const routesShop = [
-  { path: "/dashboard/default", Component: Default },
+  { path: "/dashboard/", Component: Default },
   //ecommerce
-  { path: "/app/ecommerce/product", Component: Product },
-  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
-  { path: "/app/ecommerce/cart", Component: Cart },
-  { path: "/app/ecommerce/wishlist", Component: Wishlist },
-  { path: "/app/ecommerce/invoice", Component: Invoice },
-  { path: "/app/ecommerce/product-list", Component: Productlist },
-  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
-  { path: "/app/ecommerce/createProduct", Component: createProduct },
+  { path: "/dashboard/product", Component: Product },
+  { path: "/dashboard/product-page/:id", Component: ProductDetail },
+  { path: "/dashboard/cart", Component: Cart },
+  { path: "/dashboard/wishlist", Component: Wishlist },
+  { path: "/dashboard/invoice", Component: Invoice },
+  { path: "/dashboard/product-list", Component: Productlist },
+  { path: "/dashboard/orderhistory", Component: OrderHistory },
+  { path: "/dashboard/createProduct", Component: createProduct },
   //users + pet
-  { path: "/app/users/userProfile", Component: UserProfile },
-  { path: "/app/users/userEdit", Component: UserEdit },
-  { path: "/app/users/vetCard/:Veto", Component: VetCard },
+  { path: "/dashboard/userProfile", Component: UserProfile },
+  { path: "/dashboard/userEdit", Component: UserEdit },
+  { path: "/dashboard/vetCard/:Veto", Component: VetCard },
   //gallery
-  { path: "/app/gallery", Component: ImageGallery },
+  { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
-  { path: "/app/blog/blogDetail", Component: BlogDetail },
-  { path: "/app/blog/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogDetail", Component: BlogDetail },
+  { path: "/dashboard/blogSingle", Component: BlogSingle },
   //Notification
-  { path: "/myNotifications", Component: DataTable },
+  { path: "/dashboard/myNotifications", Component: DataTable },
   // Appointments & more infos
-  { path: "/app/task", Component: TaskApp },
+  { path: "/dashboard/task", Component: TaskApp },
 ];

@@ -60,7 +60,6 @@ const CreatePet = ({ history }) => {
   const FFFFFF = () => {
     if (vaccineForm) {
       setVaccin([
-        ...vaccin,
         { vaccine: vac1, date: vac1Date.toString() },
         { vaccine: vac2, date: vac2Date.toString() },
       ]);
