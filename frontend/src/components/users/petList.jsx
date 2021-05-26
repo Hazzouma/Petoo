@@ -47,7 +47,7 @@ const PetList = (props) => {
                 </Col>
                 <Col sm="4 col-4">
                   <h6>Vaccines</h6>
-                  <h3><span className="counter">{[pet.vaccines].length}</span></h3>
+                  <h3><span className="counter">{pet.vaccines.length}</span></h3>
                 </Col>
               </CardFooter>
               </Link>

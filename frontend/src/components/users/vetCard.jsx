@@ -2,14 +2,16 @@ import React, { Fragment,useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, Media,CardBody, ListGroupItem,ListGroup, Button,Table,  Modal, ModalHeader, ModalBody, ModalFooter,  Input,FormGroup,Label,} from 'reactstrap'
 import DatePicker from "react-datepicker";
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import {useParams} from "react-router";
 import moment from "moment"
+import {addAppointmentByOwner} from "../../redux/appointmentAction/action"
 
 import TimePickerFour from '../forms/form-widget/timepickerComponent/timepicker-four';
 
 
 const VetCard = (props) => {
+  const dispatch=useDispatch()
   let idVet  = useParams()
   const idOwner = useSelector(state => state.currentUser.user.idUser)
 const vets = useSelector(state => state.populationReducer.vetos)
@@ -21,25 +23,23 @@ const [modal, setModal] = useState(false);
 const toggle = () => setModal(!modal);
 const [Petselected,setPetselected] = useState('')
 const [Petid,setPetid] = useState('')
-const [Appoiment,setAppoiment] = useState('')
-console.log(Petid ,"   " ,idVet.Veto,"      " , idOwner)
+const [appointment,setappointment] = useState()
+const vetID = idVet.Veto
+const petID = Petid
+const ownerID=idOwner
   // Date Picker States Starts Here
     const [startDate, setstartDate] = useState(new Date())
-    const handleChange = date => {
-      setstartDate(date);
-    };
-    const addDays = date => {
-      setstartDate(date, 30);
-    };
-    console.log(moment(startDate).format("x"))
-    console.log(moment("1624476600000" , "DD MM YYYY hh:mm"))
+    const [description,setdescription] = useState('')
   //Date Picker States Ends Here
   const pets = useSelector(state => state.currentUser.myPets)
-
-
-  const [rating, setRating] = useState(5) // Rating States
-
-
+  const handlechange = (e) =>{
+    setdescription(e.target.value)
+  }
+  const set = async () => {
+    await setappointment({date:moment(startDate).format("x"),description:description})
+    dispatch(addAppointmentByOwner(appointment,vetID,petID,ownerID))
+    setModal(!modal)
+  }
 useEffect(() => {
 },[pets])
    // eslint-disable-next-line 
@@ -193,7 +193,7 @@ useEffect(() => {
 
                       <FormGroup>
                         <Label className='form-label' for="desc">Description</Label>
-                        <Input type="textarea" name="text" id="desc" placeholder='My pet acting weird lately ...' />
+                        <Input type="textarea" name="text" id="desc" placeholder='My pet acting weird lately ...' onChange={handlechange}/>
                       </FormGroup>
 
 
@@ -204,7 +204,7 @@ useEffect(() => {
                         </ModalBody>
                         <ModalFooter>
                         <Button color="primary" onClick={toggle}>Close</Button>
-                        <Button color="secondary" onClick={toggle}>Confirm appoiment</Button>
+                        <Button color="secondary" onClick={set}>Confirm appoiment</Button>
                         </ModalFooter>
                     </Modal> 
                     </>
