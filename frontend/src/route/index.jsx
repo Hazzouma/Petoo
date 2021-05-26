@@ -105,21 +105,14 @@ import Chartist from "../components/charts/chartistCharts";
 
 // Gallary
 import ImageGallery from "../components/gallery/imageGallery";
-import ImageWithDesc from "../components/gallery/imageWithDesc";
-import MesonryGallery from "../components/gallery/mesonryGallery";
-import MesonryDesc from "../components/gallery/mesonryDesc";
-import ImageHover from "../components/gallery/imageHover";
+
 
 // Blog
 import BlogDetail from "../components/blog/blogDetail";
 import BlogSingle from "../components/blog/blogSingle";
 import BlogPost from "../components/blog/blogPost";
 
-// Job Search
-import CardView from "../components/jobSearch/cardView";
-import JobList from "../components/jobSearch/job-list";
-import JobDetail from "../components/jobSearch/job-detail";
-import JobApply from "../components/jobSearch/job-apply";
+
 
 // Learning
 import Learninglist from "../components/learning/learning-list";
@@ -305,19 +298,11 @@ export const routesAdmin = [
   { path: "/charts/chartistComponent", Component: Chartist },
 
   { path: "/app/gallery/imageGallery", Component: ImageGallery },
-  { path: "/app/gallery/imageWithDesc", Component: ImageWithDesc },
-  { path: "/app/gallery/mesonryGallery", Component: MesonryGallery },
-  { path: "/app/gallery/mesonryDesc", Component: MesonryDesc },
-  { path: "/app/gallery/imageHover", Component: ImageHover },
+
 
   { path: "/app/blog/blogDetail", Component: BlogDetail },
   { path: "/app/blog/blogSingle", Component: BlogSingle },
   { path: "/app/blog/blogPost", Component: BlogPost },
-
-  { path: "/app/jobSearch/cardView", Component: CardView },
-  { path: "/app/jobSearch/job-list", Component: JobList },
-  { path: "/app/jobSearch/job-detail", Component: JobDetail },
-  { path: "/app/jobSearch/job-apply", Component: JobApply },
 
   { path: "/app/learning/learning-list", Component: Learninglist },
   { path: "/app/learning/learning-detail", Component: LearningDeatil },
@@ -398,6 +383,7 @@ export const routesOwner = [
   { path: "/app/users/CreatePet", Component: CreatePet },
   //gallery
   { path: "/app/gallery", Component: ImageGallery },
+  
   //blog
   { path: "/app/blog/blogDetail", Component: BlogDetail },
   { path: "/app/blog/blogSingle", Component: BlogSingle },
