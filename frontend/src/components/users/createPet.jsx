@@ -17,7 +17,6 @@ import {
   Input,
   Button,
 } from "reactstrap";
-import { Submit, Cancel } from "../../constant";
 import { useSelector, useDispatch } from "react-redux";
 import { addPet, videErrors } from "../../redux/petActions/action";
 
@@ -553,9 +552,9 @@ const CreatePet = ({ history }) => {
                   className='mr-1'
                   onClick={() => sendPet()}
                 >
-                  {Submit}
+                  Submit
                 </Button>
-                <Button color='secondary'>{Cancel}</Button>
+                <Button color='secondary'>Cancel</Button>
               </CardFooter>
             </Card>
           </Col>

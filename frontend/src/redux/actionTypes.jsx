@@ -136,3 +136,10 @@ export const FAIL_PRODUCT = "FAIL_PRODUCT";
 export const LOAD_PRODUCT = "LOAD_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIDE_ERRORS_MSG_ = "VIDE_ERRORS_MSG_";
+
+/*Blog*/
+  
+export const ADD_BLOG = "ADD_BLOG";
+export const FAIL_BLOG = "FAIL_BLOG";
+export const LOAD_BLOG = "LOAD_BLOG";
+export const VIDE_ERRORS_ = "VIDE_ERRORS_";

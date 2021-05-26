@@ -42,7 +42,7 @@ exports.BlogCreate = async (req, res) => {
   }
 };
 
-
+//Edit
 exports.BlogEdit = async (req, res) => {
   try {
     const { blogID, userID } = req.body;
