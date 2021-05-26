@@ -49,7 +49,6 @@ export const getALLNotif = (idUser) => async (dispatch) => {
     );
     dispatch({ type: GET_ALL_NOTIFS, payload: result.data });
   } catch (error) {
-    console.log(error.response.data.errors);
     dispatch({ type: FAIL_NOTIF, payload: error.response.data.errors });
   }
 };

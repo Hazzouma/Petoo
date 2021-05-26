@@ -111,7 +111,6 @@ exports.checkAllAtOnce = async (req, res) => {
           isRead: false,
           idNotification: notif,
         });
-        console.log(nn);
         return nn;
       })
     );

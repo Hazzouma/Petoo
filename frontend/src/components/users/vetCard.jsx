@@ -22,7 +22,11 @@ const VetCard = (props) => {
   let idVet  = useParams()
   const idOwner = useSelector(state => state.currentUser.user.idUser)
 const vets = useSelector(state => state.populationReducer.vetos)
+<<<<<<< Updated upstream
 // eslint-disable-next-line
+=======
+const role=useSelector(state => state.currentUser.user.role)
+>>>>>>> Stashed changes
 const vetinfos = vets.find( (vet, index) => {
 	if(vet.idUser === idVet.Veto)
   // eslint-disable-next-line
@@ -45,9 +49,13 @@ const ownerID=idOwner
   const handlechange = (e) =>{
     setdescription(e.target.value)
   }
-  const set = async () => {
-    await setappointment({date:moment(startDate).format("x"),description:description})
-    dispatch(addAppointmentByOwner(appointment,vetID,petID,ownerID))
+  const nchallah = (e)=> {
+    setappointment({date:moment(startDate).format("LLLL"),description:description})
+
+  }
+  const set = () => {
+    dispatch(addAppointmentByOwner(vetID,petID,ownerID,appointment,))
+    console.log(vetID,petID,ownerID,appointment)
     setModal(!modal)
   }
 =======
@@ -57,24 +65,11 @@ const ownerID=idOwner
 
 >>>>>>> master
 useEffect(() => {
-},[pets])
+
+
+},[vetinfos,pets])
    // eslint-disable-next-line 
-  const [url, setUrl] = useState();
 
-  const readUrl = (event) => {
-    if (event.target.files.length === 0)
-      return;
-    var mimeType = event.target.files[0].type;
-
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      setUrl(reader.result)
-    }
-  }
   return (
     <Fragment>
       <Breadcrumb parent="Users" title="Vet Profile" />
@@ -88,11 +83,6 @@ useEffect(() => {
                 <CardHeader className="cardheader"></CardHeader>
                 <div className="user-image">
                   <div className="avatar"><Media body alt="" src={vetinfos.profilePicture} data-intro="This is Profile image" /></div>
-                  <div className="icon-wrapper" data-intro="Change Profile image here">
-                    <i className="icofont icofont-pencil-alt-5">
-                      <input className="upload" type="file" onChange={(e) => readUrl(e)} />
-                    </i>
-                  </div>
                 </div>
                 <div className="info">
                   <Row>
@@ -163,6 +153,7 @@ useEffect(() => {
                       paddingBottom: "2.5%",
                     }}
                   >
+                    {/* {role==="petOwner" ? ( */}
                     {pets.map((pet, i) =>
                     <div style={{ padding: "1%" }}
                     onClick ={ () => {(setPetselected(pet.name)); (setPetid(pet.idPet)) ;(setModal(true))}}
@@ -199,7 +190,7 @@ useEffect(() => {
                           
                             <DatePicker className="form-control digits" showPopperArrow={true} defaultValut={new Date()} selected={startDate}
                             
-                                  onChange={date => setstartDate(date)}
+                                  onChange={date => (e)=>{setstartDate(date);nchallah(e)}}
                                   minDate={new Date()}
                                   showTimeSelect
                                   dateFormat="Pp" />
@@ -209,7 +200,7 @@ useEffect(() => {
 
                       <FormGroup>
                         <Label className='form-label' for="desc">Description</Label>
-                        <Input type="textarea" name="text" id="desc" placeholder='My pet acting weird lately ...' onChange={handlechange}/>
+                        <Input type="textarea" name="text" id="desc" placeholder='My pet acting weird lately ...' onChange={(e)=>{handlechange(e);nchallah(e)}}/>
                       </FormGroup>
 
 
@@ -234,7 +225,7 @@ useEffect(() => {
         </Row>
           </div>
       </Container>
-    </Fragment>
+    </Fragment> 
   );
 }
 

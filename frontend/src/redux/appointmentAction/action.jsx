@@ -24,7 +24,9 @@ export const addAppointmentByOwner =
           ownerID,
         }
       );
+      console.log(result.data)
       dispatch({ type: ADD_APP, payload: result.data });
+    
     } catch (error) {
       dispatch({ type: FAIL_APP, payload: error.response.data.errors });
     }

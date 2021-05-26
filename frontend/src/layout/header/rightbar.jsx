@@ -155,13 +155,23 @@ const Rightbar = (props) => {
     (state)=> state.currentUser.user.notificationId
   );
 let num = "0"
+<<<<<<< Updated upstream
 // const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
 //   num++
 // }); 
+=======
 
-if (notificationDropDown && num>0 ){
-  dispatch(checkALLNotif(notif,idUser))
-}
+notifications.forEach((x) =>{if(x.isRead===false)
+  {num++
+    console.log(x.isRead)
+    console.log(num)}
+  else  console.log(x.isRead)
+  
+ 
+}); 
+>>>>>>> Stashed changes
+
+
   return (
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
@@ -177,11 +187,9 @@ if (notificationDropDown && num>0 ){
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
               <Bell /> 
-              {num===0 ? (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
+              {num>0 &&  (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
               <span className='badge badge-pill badge-secondary'>{num}</span>)
-              :
-              <span className='badge badge-pill badge-secondary'></span> 
-}
+              }
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
@@ -204,6 +212,7 @@ if (notificationDropDown && num>0 ){
               <li>
                 <Link to="/dashboard/appoiments">
                 <button
+                onClick={()=>dispatch(checkALLNotif(notif,idUser))}
                   className='btn btn-primary'
                 >
                   {CheckAllNotification}

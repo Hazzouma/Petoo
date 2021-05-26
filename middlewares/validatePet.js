@@ -12,9 +12,9 @@ exports.creationPet = () => [
   check(
     "pet.distinguishingMark",
     "Please describe distinguishing mark of Pet!"
-  ).isLength({ min: 6 }),
+  ).isLength({ min: 2 }),
   check("pet.knownAllergies", "Please describe your pet Allergy!").isLength({
-    min: 6,
+    min: 2,
   }),
   check("pet.isVaccined", "Please check if your pet is vaccinated!").notEmpty(),
   check("pet.vaccines", "Please add the vaccin and the date").isArray(),

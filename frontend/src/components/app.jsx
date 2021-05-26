@@ -10,6 +10,8 @@ import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { current, videErrors,getMyPets } from "../redux/currentUser/action";
+import {getALLNotif} from "../redux/notification/action"
+import {getVets} from '../redux/population/action'
 
 const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
@@ -18,8 +20,10 @@ const App = ({ children, getWhichUser }) => {
   const idUser=useSelector((state) => state.currentUser.user.idUser);
   const notification = useSelector((state) => state.currentUser.msg);
   useEffect(() => {
+    dispatch(getVets())
     dispatch(current());
     getWhichUser(role);
+    dispatch(getALLNotif(idUser))
     dispatch(getMyPets(idUser))
     if (notification) {
       toast.success(notification, {
