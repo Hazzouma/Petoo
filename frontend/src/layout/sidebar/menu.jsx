@@ -50,7 +50,7 @@ export const MENUITEMS = [
     menucontent: "Ready to use Apps",
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/dashboard/default`,
+        path: `${process.env.PUBLIC_URL}/dashboard/`,
         icon: Home,
         badge:"badge badge-primary",
         badgetxt: "Home",
@@ -58,7 +58,7 @@ export const MENUITEMS = [
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/app/users/createShop`,
+        path: `${process.env.PUBLIC_URL}/dashboard/createShop`,
         icon: Monitor,
         badge: "badge badge-info",
         badgetxt: "Admin",
@@ -72,37 +72,37 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/createProduct`,
+            path: `${process.env.PUBLIC_URL}/dashboard/createProduct`,
             title: "Create Product",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product`,
+            path: `${process.env.PUBLIC_URL}/dashboard/product`,
             title: "Product",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product-page/1`,
+            path: `${process.env.PUBLIC_URL}/dashboard/product-page/1`,
             title: "Product Page",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product-list`,
+            path: `${process.env.PUBLIC_URL}/dashboard/product-list`,
             title: "Product List",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/payment-details`,
+            path: `${process.env.PUBLIC_URL}/dashboard/payment-details`,
             title: "Payment Detail",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
+            path: `${process.env.PUBLIC_URL}/dashboard/orderhistory`,
             title: "Order History",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/pricing`,
+            path: `${process.env.PUBLIC_URL}/dashboard/pricing`,
             title: "Pricing",
             type: "link",
           },
@@ -178,12 +178,12 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/app/gallery/imageGallery`,
+            path: `${process.env.PUBLIC_URL}/dashboard/imageGallery`,
             title: "Gallery Grid ",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/gallery/imageWithDesc`,
+            path: `${process.env.PUBLIC_URL}/dashboard/imageWithDesc`,
             title: "Gallery Grid  Desc ",
             type: "link",
           },
@@ -197,17 +197,17 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogDetail`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
             title: "Blog Details",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogSingle`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogSingle`,
             title: "Blog Single",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogPost`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogPost`,
             title: "Add Post",
             type: "link",
           },
