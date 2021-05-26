@@ -1,4 +1,4 @@
-import { Home, Users, ShoppingBag, Image, Film, Sunrise, HelpCircle, Command,
+import { Home, Users, ShoppingBag, Image, Film, Command,
 
 } from "react-feather";
 export const MENUITEMS = [
