@@ -325,13 +325,13 @@ useEffect(() => {
                                     </thead>
                                     <tbody>
                                     {petinfos.medecines.map((pet,i) => 
-                                    {pet ?
+                                    
                                         <tr>
                                             <th scope="row">{"3"}</th>
                                             <td>{"Jacob"}</td>
                                             <td>{"Thornton"}</td>
                                             <td>{"@fat"}</td>
-                                        </tr> : <h3>No medecines found</h3>}
+                                        </tr> 
                                     )}
                                     </tbody>
                                 </Table>
