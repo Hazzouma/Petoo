@@ -14,35 +14,27 @@ const initialState = {
   appointment: {},
   errors: [],
   msg: "",
-  appointments: [],
   confirmed: false,
 };
 
 const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_APP:
-      if (typeof payload.msg === "string") {
-        return {
-          ...state,
-          appointment: payload.newAppointment,
-          load: false,
-          msg: payload.msg,
-          appointments: state.appointments.push(payload.newAppointment),
-          confirmed:
-            payload.newAppointment.confirmedByVet &&
-            payload.newAppointment.confirmedByOwner,
-        };
-      } else {
-        return { ...state, load: false, errors: payload };
-      }
+      return {
+        ...state,
+        appointment: payload.newAppointment,
+        load: false,
+        msg: payload.msg,
+        confirmed:
+          payload.newAppointment.confirmedByVet &&
+          payload.newAppointment.confirmedByOwner,
+      };
     case FAIL_APP:
       return { ...state, errors: payload, load: false };
-
     case LOAD_APP:
       return { ...state, load: true };
-
     case VIDE_ERRORS_MSGS:
-      return { ...state, load: false, msg: "", errors: [] };
+      return { ...state, load: false, msg: "", errors: [], appointment: {} };
 
     case EDIT_BY_OWNER:
       if (typeof payload.msg === "string") {

@@ -15,7 +15,8 @@ export const addAppointmentByOwner =
   (vetID, petID, ownerID, appointment, history) => async (dispatch) => {
     dispatch({ type: LOAD_APP });
     try {
-      let result = await axios.post(
+      console.log(vetID, petID, ownerID, appointment);
+      const result = await axios.post(
         `${process.env.PUBLIC_URL}/api/appointment/createByOwner`,
         {
           appointment,
@@ -24,9 +25,7 @@ export const addAppointmentByOwner =
           ownerID,
         }
       );
-      console.log(result.data)
       dispatch({ type: ADD_APP, payload: result.data });
-    
     } catch (error) {
       dispatch({ type: FAIL_APP, payload: error.response.data.errors });
     }
@@ -58,7 +57,6 @@ export const addAppointmentByVet =
     }
   };
 
-
 //Edit appointment by Vet
 export const editAppointmentByVet =
   (vetID, newDateOfAppointment, ownerID, appointmentID, history) =>
@@ -79,7 +77,6 @@ export const editAppointmentByVet =
       dispatch({ type: FAIL_APP, payload: error.response.data.errors });
     }
   };
-
 
 //Edit appointment by Owner
 export const editAppointmentByOwner =
@@ -102,7 +99,6 @@ export const editAppointmentByOwner =
     }
   };
 
-
 //Edit appointment by Owner
 export const acceptAppointmentByOwner =
   (vetID, petID, ownerID, appointmentID, history) => async (dispatch) => {
@@ -122,7 +118,6 @@ export const acceptAppointmentByOwner =
       dispatch({ type: FAIL_APP, payload: error.response.data.errors });
     }
   };
-
 
 //Edit appointment by Owner
 export const acceptAppointmentByVet =

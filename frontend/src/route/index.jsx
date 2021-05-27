@@ -57,12 +57,6 @@ import SizingTable from "../components/tables/sizingTable";
 import StylingTable from "../components/tables/stylingTable";
 import DataTable from "../components/tables/dataTable";
 
-// Charts
-import Apexcharts from "../components/charts/apexCharts";
-import GoogleCharts from "../components/charts/googleCharts";
-import KnobChart from "../components/charts/knobChart";
-import Chartsjs from "../components/charts/chartsjs";
-import Chartist from "../components/charts/chartistCharts";
 
 // Gallary
 import ImageGallery from "../components/gallery/imageGallery";
@@ -73,11 +67,6 @@ import BlogDetail from "../components/blog/blogDetail";
 import BlogSingle from "../components/blog/blogSingle";
 import BlogPost from "../components/blog/blogPost";
 
-
-
-// Calendar
-import BasicCalender from "../components/calendar/basicCalendar";
-import DraggableCalendar from "../components/calendar/draggableCalendar";
 
 // Users
 import PetProfile from "../components/users/petProfile";
@@ -95,8 +84,7 @@ import UserProfile from "../components/users/userProfile";
 
 
 
-// knowledgebase page
-import KnowledgebaseComponent from "../components/knowledgebase";
+
 
 // E-commerce-app
 import Product from "../components/application/ecommerce-app/product";
@@ -175,11 +163,6 @@ export const routesAdmin = [
   { path: "/table/styling", Component: StylingTable },
   { path: "/table/datatable", Component: DataTable },
 
-  { path: "/charts/apexCharts", Component: Apexcharts },
-  { path: "/charts/googleChart", Component: GoogleCharts },
-  { path: "/charts/knobChart", Component: KnobChart },
-  { path: "/charts/chartJs", Component: Chartsjs },
-  { path: "/charts/chartistComponent", Component: Chartist },
 
   { path: "/dashboard/imageGallery", Component: ImageGallery },
 
@@ -199,15 +182,13 @@ export const routesAdmin = [
   { path: "/dashboard/CreatePet", Component: CreatePet },
   { path: "/dashboard/userProfile", Component: UserProfile },
 
-  { path: "/app/calendar/basic-calendar", Component: BasicCalender },
-  { path: "/app/calendar/draggable-calendar", Component: DraggableCalendar },
 
 
 
 
 
- 
-  { path: "/app/knowledgebase", Component: KnowledgebaseComponent },
+
+
 
   { path: "/app/ecommerce/product", Component: Product },
   { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
