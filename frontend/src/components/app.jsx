@@ -8,36 +8,37 @@ import { ToastContainer } from "react-toastify";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { current, videErrors,getMyPets, getMyAppointments } from "../redux/currentUser/action";
-import {getALLNotif} from "../redux/notification/action"
-import {getVets} from '../redux/population/action'
+import {
+  current,
+  videErrors,
+  getMyPets,
+  getMyAppointments,
+} from "../redux/currentUser/action";
+import { getALLNotif } from "../redux/notification/action";
+import { getVets } from "../redux/population/action";
 
 const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
   let token = localStorage.getItem("token");
   const role = useSelector((state) => state.currentUser.user.role);
-  const vets = useSelector(state => state.populationReducer.vetos)
-  const appo = useSelector((state) => state.currentUser.myAppointments);
-  const pets = useSelector((state)=> state.currentUser.myPets)
-  const idUser=useSelector((state) => state.currentUser.user.idUser);
+  const idUser = useSelector((state) => state.currentUser.user.idUser);
   const notification = useSelector((state) => state.currentUser.msg);
   useEffect(() => {
     dispatch(current());
-    dispatch(getVets())
     getWhichUser(role);
-    dispatch(getMyAppointments(idUser))
-    dispatch(getALLNotif(idUser))
-    dispatch(getMyPets(idUser))
+    dispatch(getVets()); //get all Vets
+    dispatch(getMyAppointments(idUser)); //get my appointments
+    dispatch(getALLNotif(idUser)); // get my notifications
+    dispatch(getMyPets(idUser)); //get my pets
     if (notification) {
       toast.success(notification, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 10000, //stay 10 secondes
       });
-      
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [token,role,idUser,]);
+  }, [token, role, idUser]);
   return (
     <Fragment>
       <Loader />
@@ -50,7 +51,7 @@ const App = ({ children, getWhichUser }) => {
           <Footer />
         </div>
       </div>
-      
+
       <ToastContainer />
     </Fragment>
   );

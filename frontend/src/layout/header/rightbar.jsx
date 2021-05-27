@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getALLNotif } from "../../redux/notification/action";
 
-import moment from 'moment'
+import moment from "moment";
 import {
   FileText,
   LogIn,
@@ -14,19 +14,17 @@ import {
   Plus,
   X,
 } from "react-feather";
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setTranslations,
   setDefaultLanguage,
   setLanguageCookie,
-  
   translate,
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
-import {checkALLNotif} from "../../redux/notification/action";
+import { checkALLNotif } from "../../redux/notification/action";
 import {
-  
   Notification,
   CheckAllNotification,
   LogOut,
@@ -69,19 +67,10 @@ const Rightbar = (props) => {
     (state) => state.currentUser.user
   );
   const idUser = useSelector((state) => state.currentUser.user.idUser);
-  useEffect(() => {
-
-    dispatch(getALLNotif(idUser));
-
-// eslint-disable-next-line
-  }, [idUser]);
-  
-
 
   const logoutFromJWT = () => {
     dispatch(logout(history));
   };
-
 
   const RedirectToCart = () => {
     history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
@@ -146,19 +135,16 @@ const Rightbar = (props) => {
       localStorage.setItem("layout_version", "dark-only");
     }
   };
-  
+
   const notifications = useSelector(
-    (state) => state.notifReducer.allNotifArray.reverse().slice(0,6) //showing only 5 Notifications 
+    (state) => state.notifReducer.allNotifArray.reverse().slice(0, 6) //showing only 5 Notifications
   );
 
-  const notif =useSelector (
-    (state)=> state.currentUser.user.notificationId
-  );
-let num = "0"
-// const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
-//   num++
-// }); 
-
+  const notif = useSelector((state) => state.currentUser.user.notificationId);
+  let num = "0";
+  // const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
+  //   num++
+  // });
 
   return (
     <Fragment>
@@ -174,10 +160,10 @@ let num = "0"
               className='notification-box'
               onClick={() => setNotificationDropDown(!notificationDropDown)}
             >
-              <Bell /> 
-              {num>0 &&  (                                   // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
-              <span className='badge badge-pill badge-secondary'>{num}</span>)
-              }
+              <Bell />
+              {num > 0 && ( // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
+                <span className='badge badge-pill badge-secondary'>{num}</span>
+              )}
             </div>
             <ul
               className={`notification-dropdown onhover-show-div ${
@@ -188,23 +174,25 @@ let num = "0"
                 <Bell />
                 <h6 className='f-18 mb-0'>{Notification}</h6>
               </li>
-              {notifications.map((n, i) =>
-              <li key={i}>
-                <p style={{fontWeight:(!n.isRead ? "bold": "normal")}}>
-                  <i className='fa fa-circle-o mr-3 font-primary'> </i>
-                  {n.msg}
-                  <span className='pull-right'>{moment(parseInt(n.creationDate,10)).fromNow()}</span>
-                </p>
-              </li>
-              )} 
+              {notifications.map((n, i) => (
+                <li key={i}>
+                  <p style={{ fontWeight: !n.isRead ? "bold" : "normal" }}>
+                    <i className='fa fa-circle-o mr-3 font-primary'> </i>
+                    {n.msg}
+                    <span className='pull-right'>
+                      {moment(parseInt(n.creationDate, 10)).fromNow()}
+                    </span>
+                  </p>
+                </li>
+              ))}
               <li>
-                <Link to="/dashboard/appoiments">
-                <button
-                onClick={()=>dispatch(checkALLNotif(notif,idUser))}
-                  className='btn btn-primary'
-                >
-                  {CheckAllNotification}
-                </button>
+                <Link to='/dashboard/appoiments'>
+                  <button
+                    onClick={() => dispatch(checkALLNotif(notif, idUser))}
+                    className='btn btn-primary'
+                  >
+                    {CheckAllNotification}
+                  </button>
                 </Link>
               </li>
             </ul>
@@ -238,7 +226,9 @@ let num = "0"
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={require("../../assets//images/ecommerce/01.jpg").default}
+                    src={
+                      require("../../assets//images/ecommerce/01.jpg").default
+                    }
                     alt=''
                   />
                   <div className='media-body'>
@@ -287,7 +277,9 @@ let num = "0"
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
-                    src={require("../../assets/images/ecommerce/03.jpg").default}
+                    src={
+                      require("../../assets/images/ecommerce/03.jpg").default
+                    }
                     alt=''
                   />
                   <div className='media-body'>
