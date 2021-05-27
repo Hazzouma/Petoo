@@ -6,26 +6,6 @@ import Ecommerce from "../components/dashboard/ecommerce";
 import GeneralWidget from "../components/widgets/general";
 import ChartsWidget from "../components/widgets/charts";
 
-// ui-kits
-import StateColor from "../components/ui-kits/statecolor";
-import Typography from "../components/ui-kits/typography";
-import Avatars from "../components/ui-kits/avatars";
-import HelperClasses from "../components/ui-kits/helperClasses";
-import Grid from "../components/ui-kits/grid";
-import TagAndPills from "../components/ui-kits/tagAndPills";
-import Progress from "../components/ui-kits/progress";
-import Modal from "../components/ui-kits/modal";
-import Alert from "../components/ui-kits/alert";
-import Popover from "../components/ui-kits/popover";
-import Tooltip from "../components/ui-kits/tooltip";
-import Spinner from "../components/ui-kits/spinner";
-import Dropdown from "../components/ui-kits/dropDown";
-import TabBootstrap from "../components/ui-kits/tabs/tabBootstrap";
-import TabLine from "../components/ui-kits/tabs/tabLine";
-import Accordian from "../components/ui-kits/accordian";
-import Shadow from "../components/ui-kits/shadow";
-import List from "../components/ui-kits/list";
-
 // bonus-ui
 import Scrolling from "../components/bonus_ui/scrolling";
 import BootstrapNotify from "../components/bonus_ui/bootstrapNotify";
@@ -52,19 +32,6 @@ import DraggingCards from "../components/bonus_ui/cards/draggingCards";
 // Timeline
 import Timeline1 from "../components/bonus_ui/timelines/timeline";
 
-// Icons
-import FlagIcons from "../components/icons/flagIcons";
-import FontAwsomeIcon from "../components/icons/fontAwsomeIcon";
-import IcoIcons from "../components/icons/icoIcons";
-import ThemifyIcons from "../components/icons/themifyIcons";
-import FeatherIcons from "../components/icons/featherIcons";
-import WeatherIcons from "../components/icons/weatherIcons";
-
-import Materialdesignicon from "../components/icons/materialdesignicon";
-import Pe7icons from "../components/icons/pe7icons";
-import Typicon from "../components/icons/typicon";
-import Simplelineicon from "../components/icons/simplelineicon";
-import Ionicicon from "../components/icons/ionic-icon";
 
 // Buttons
 import DefaultButton from "../components/buttons/default-Button";
@@ -188,25 +155,6 @@ export const routesAdmin = [
   { path: "/widgets/general", Component: GeneralWidget },
   { path: "/widgets/chart", Component: ChartsWidget },
 
-  { path: "/ui-kits/statecolor", Component: StateColor },
-  { path: "/ui-kits/typography", Component: Typography },
-  { path: "/ui-kits/avatar", Component: Avatars },
-  { path: "/ui-kits/helperclass", Component: HelperClasses },
-  { path: "/ui-kits/grid", Component: Grid },
-  { path: "/ui-kits/tagsandpills", Component: TagAndPills },
-  { path: "/ui-kits/progress-bar", Component: Progress },
-  { path: "/ui-kits/modal", Component: Modal },
-  { path: "/ui-kits/alert", Component: Alert },
-  { path: "/ui-kits/popover", Component: Popover },
-  { path: "/ui-kits/tooltips", Component: Tooltip },
-  { path: "/ui-kits/spinner", Component: Spinner },
-  { path: "/ui-kits/dropdown", Component: Dropdown },
-  { path: "/ui-kits/tab-bootstrap", Component: TabBootstrap },
-  { path: "/ui-kits/tab-line", Component: TabLine },
-  { path: "/ui-kits/accordion", Component: Accordian },
-  { path: "/ui-kits/shadow", Component: Shadow },
-  { path: "/ui-kits/list", Component: List },
-
   { path: "/bonus-ui/scrollable", Component: Scrolling },
   { path: "/bonus-ui/bootstrap-notify", Component: BootstrapNotify },
   { path: "/bonus-ui/rating", Component: Rating },
@@ -230,19 +178,7 @@ export const routesAdmin = [
 
   { path: "/bonus-ui/timelines/timeline1", Component: Timeline1 },
 
-  { path: "/icons/flagIcons", Component: FlagIcons },
-  { path: "/icons/fontAwsomeIcon", Component: FontAwsomeIcon },
-  { path: "/icons/icoIcons", Component: IcoIcons },
-  { path: "/icons/featherIcons", Component: FeatherIcons },
-  { path: "/icons/themifyIcons", Component: ThemifyIcons },
-  { path: "/icons/weatherIcons", Component: WeatherIcons },
-
-  { path: "/icons/material-design-icon", Component: Materialdesignicon },
-  { path: "/icons/pe7-icon", Component: Pe7icons },
-  { path: "/icons/typicons-icon", Component: Typicon },
-  { path: "/icons/simplelineIcon", Component: Simplelineicon },
-  { path: "/icons/ionic-icon", Component: Ionicicon },
-
+  
   { path: "/buttons/default-btn", Component: DefaultButton },
   { path: "/buttons/flatBtn", Component: FlatButton },
   { path: "/buttons/edgeBtn", Component: EdgeButton },
