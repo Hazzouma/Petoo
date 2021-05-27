@@ -12,7 +12,7 @@ const dispatch = useDispatch()
         (state) => state.notifReducer.allNotifArray);
   const newtaskdata = useSelector(content => content.Taskapp.newtaskdata);
   const [activeTab, setActiveTab] = useState('0');
-  const { prenom,nom,email,profilePicture } = useSelector((state) => state.currentUser.user);
+  const { prenom,nom,email,profilePicture,idUser} = useSelector((state) => state.currentUser.user);
   const vets = useSelector(state => state.populationReducer.vetos)
   const appo = useSelector((state) => state.currentUser.myAppointments);
   const pets = useSelector((state)=> state.currentUser.myPets)
@@ -21,7 +21,7 @@ const dispatch = useDispatch()
 
 
   useEffect(() => {
-  },[])
+  },[vets,pets,appo])
 
 
 
@@ -220,7 +220,7 @@ const dispatch = useDispatch()
                                         });
                                         return (
                                               
-                                               <CardBody className='pt-0'>
+                                    <CardBody className='pt-0'>
                 <div className='appointment-table table-responsive'>
                   <table className='table table-bordernone'>
                     <tbody>
@@ -228,28 +228,28 @@ const dispatch = useDispatch()
                         <td>
                           <img
                             className='img-fluid img-40 rounded-circle mb-3'
-                            src={vetinfos.profilePicture}
+                            src={vetinfos && vetinfos.profilePicture}
                             alt=''
                           />
                         </td>
                         <td className='img-content-box'>
-                          <Link to={`/dashboard/vetCard/${vetinfos.idUser}`}>
-                          <span className="d-block txt-dark">{vetinfos.prenom}</span>
+                          <Link to={`/dashboard/vetCard/${vetinfos && vetinfos.idUser}`}>
+                          <span className="d-block txt-dark">{vetinfos && vetinfos.prenom}</span>
                           </Link>
                           
                         </td>
                         <td>
-                          <p className='m-0 font-primary'>{appo.date}</p>
+                          <p className='m-0 font-primary'>{appo && appo.date}</p>
                         </td>
                         <td className='text-center'>
-                        <Link to={`/dashboard/petProfile/${petinfo.idPet}`}>
+                        <Link to={`/dashboard/petProfile/${petinfo && petinfo.idPet}`}>
                           <span className="d-block txt-dark">
-                             {petinfo.name}
+                             {petinfo && petinfo.name}
                              </span>
                              </Link>
                         </td>
                         <td className='text-right'>
-                        <Badge color="primary">{appo.isDone ? 'Done': (appo.confirmedByVet && appo.confirmedByOwner ) ? 'Confirmed' : 'Pending' }
+                        <Badge color="primary">{appo && appo.isDone ? 'Done': (appo && appo.confirmedByVet && appo && appo.confirmedByOwner ) ? 'Confirmed' : 'Pending' }
 
                                                 
                         
@@ -420,13 +420,10 @@ const dispatch = useDispatch()
                                                       <p className='m-0 font-primary'>{"22 Sept"}</p>
                                                     </td>
                                                     <td className='text-center'>
-                                                         Pet Name
+                                                    Pet Name
                                                     </td>
                                                     <td className='text-right'>
                                                     <Badge color="danger">Canceled</Badge>
-
-                                                 
-
                                                     </td>
                                                   </tr>
                                                 </tbody>

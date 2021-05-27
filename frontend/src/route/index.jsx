@@ -244,6 +244,8 @@ export const routesOwner = [
   { path: "/dashboard/blogSingle", Component: BlogSingle },
   //Notification
   { path: "/myNotifications", Component: DataTable },
+  { path: "/dashboard/appoiments", Component: Notifndapp },
+
 ];
 
 
@@ -279,6 +281,8 @@ export const routesVet = [
   { path: "/dashboard/myNotifications", Component: DataTable },
   // Appointments & more infos
   { path: "/dashboard/task", Component: TaskApp },
+  { path: "/dashboard/appoiments", Component: Notifndapp },
+
 ];
 
 
@@ -312,6 +316,7 @@ export const routesShop = [
   { path: "/dashboard/blogSingle", Component: BlogSingle },
   //Notification
   { path: "/dashboard/myNotifications", Component: DataTable },
+  { path: "/dashboard/appoiments", Component: Notifndapp },
   // Appointments & more infos
   { path: "/dashboard/task", Component: TaskApp },
 ];

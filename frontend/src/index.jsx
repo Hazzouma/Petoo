@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./components/app";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { routesAdmin, routesOwner } from "./route";
+import { routesAdmin, routesOwner ,routesVet} from "./route";
 // import ConfigDB from "./data/customizer/config";
 // import {
 //   configureFakeBackend,
@@ -229,6 +229,29 @@ const Root = (props) => {
                       )}
                     {role === "Admin" &&
                       (role === "Admin" && routesAdmin).map(
+                        ({ path, Component }) => (
+                          <Route
+                            key={path}
+                            exact
+                            path={`${process.env.PUBLIC_URL}${path}`}
+                          >
+                            {({ match }) => (
+                              <CSSTransition
+                                in={match != null}
+                                timeout={100}
+                                // classNames={anim}
+                                unmountOnExit
+                              >
+                                <div>
+                                  <Component />
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </Route>
+                        )
+                      )}
+                      {role === "Veterinary" &&
+                      (role === "Veterinary" && routesVet).map(
                         ({ path, Component }) => (
                           <Route
                             key={path}

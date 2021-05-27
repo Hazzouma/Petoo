@@ -21,7 +21,7 @@ const dispatch = useDispatch()
 
 
   useEffect(() => {
-  },[pets,appo,vets])
+  },[idUser,vets,pets,appo])
 
 
 
@@ -228,23 +228,23 @@ const dispatch = useDispatch()
                         <td>
                           <img
                             className='img-fluid img-40 rounded-circle mb-3'
-                            src={vetinfos.profilePicture}
+                            src={vetinfos && vetinfos.profilePicture}
                             alt=''
                           />
                         </td>
                         <td className='img-content-box'>
-                          <Link to={`/dashboard/vetCard/${vetinfos.idUser}`}>
-                          <span className="d-block txt-dark">{vetinfos.prenom}</span>
+                          <Link to={`/dashboard/vetCard/${vetinfos && vetinfos.idUser}`}>
+                          <span className="d-block txt-dark">{vetinfos && vetinfos.prenom}</span>
                           </Link>
                           
                         </td>
                         <td>
-                          <p className='m-0 font-primary'>{appo.date}</p>
+                          <p className='m-0 font-primary'>{appo && appo.date}</p>
                         </td>
                         <td className='text-center'>
-                        <Link to={`/dashboard/petProfile/${petinfo.idPet}`}>
+                        <Link to={`/dashboard/petProfile/${petinfo && petinfo.idPet}`}>
                           <span className="d-block txt-dark">
-                             {petinfo.name}
+                             {petinfo && petinfo.name}
                              </span>
                              </Link>
                         </td>
@@ -256,7 +256,7 @@ const dispatch = useDispatch()
                         </Badge>
                         </td>
                         <td>
-                          { (!appo.confirmedByVet && appo.confirmedByOwner && !appo.isDone) ? 
+                          { (appo.confirmedByVet && !appo.confirmedByOwner && !appo.isDone) ? 
                           <Button onClick={()=>acceptAppointmentByOwner(idUser,)}>Confirm</Button>
                           : ''}
                         </td>

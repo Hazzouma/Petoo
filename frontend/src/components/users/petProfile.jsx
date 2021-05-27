@@ -81,12 +81,12 @@ useEffect(() => {
                       <Row >
                         <Col md="5">
                           <div className="ttl-info text-left">
-                            <h6><i className="fa fa-envelope mr-2"></i> Gender</h6><span>{petinfos.gender}</span>
+                            <h6><i className="fa fa-envelope mr-2"></i> Gender</h6><span>{petinfos && petinfos.gender}</span>
                           </div>
                         </Col>
                         <Col md="5">
                           <div className="ttl-info text-left ttl-sm-mb-0">
-                            <h6><i className="fa fa-calendar"></i> DOB</h6><span>{moment(petinfos.age).format('LL')}</span>
+                            <h6><i className="fa fa-calendar"></i> DOB</h6><span>{petinfos && moment(petinfos.age).format('LL')}</span>
                           </div>
                         </Col>
                       </Row>
@@ -94,8 +94,8 @@ useEffect(() => {
 
                     <Col sm={8} lg="4" className="order-sm-0 order-xl-1">
                       <div className="user-designation">
-                        <div className="title"><a target="_blank" href="#javascript">{petinfos.name}</a></div>
-                        <div className="desc mt-2">{petinfos.petType}</div>
+                        <div className="title"><a target="_blank" href="#javascript">{petinfos && petinfos.name}</a></div>
+                        <div className="desc mt-2">{petinfos && petinfos.petType}</div>
                       </div>
                     </Col>
 
@@ -103,12 +103,12 @@ useEffect(() => {
                       <Row>
                         <Col md="6">
                           <div className="ttl-info text-left ttl-xs-mt">
-                            <h6><i className="fa fa-phone"></i>   Marks</h6><span>{petinfos.distinguishingMark}</span>
+                            <h6><i className="fa fa-phone"></i>   Marks</h6><span>{petinfos && petinfos.distinguishingMark}</span>
                           </div>
                         </Col>
                         <Col md="6">
                           <div className="ttl-info text-left ttl-sm-mb-0">
-                            <h6><i className="fa fa-location-arrow"></i>   Color</h6><span>{petinfos.color} </span>
+                            <h6><i className="fa fa-location-arrow"></i>   Color</h6><span>{petinfos && petinfos.color} </span>
                           </div>
                         </Col>
                       </Row>
@@ -207,7 +207,7 @@ useEffect(() => {
                   <div className="follow">
                     <Row>
                       <Col col="6" className="text-md-center">
-                      <span>Age</span>   <div className="follow-num counter">{moment(petinfos.age).fromNow(true)}</div>
+                      <span>Age</span>   <div className="follow-num counter">{petinfos && moment(petinfos.age).fromNow(true)}</div>
                       </Col>
                     </Row>
                   </div>
@@ -225,7 +225,7 @@ useEffect(() => {
               </CardHeader>
               <CardBody>
                 <ListGroup>
-                  {petinfos.knownAllergies.map((pet,i) => 
+                  {petinfos && petinfos.knownAllergies.map((pet,i) => 
                        <ListGroupItem className="list-group-item-action" tag="a" ><i className="icon-target"></i>{pet}</ListGroupItem>
 
                   )}
@@ -246,7 +246,7 @@ useEffect(() => {
                   <table className="table card-table table-vcenter text-nowrap">
                     <tbody>
 
-                      {petinfos.vaccines.map((pet,i) => 
+                      {petinfos && petinfos.vaccines.map((pet,i) => 
                         <tr >
                           <td><a className="text-inherit " role="button" onClick={ () => {window.open(`https://en.wikipedia.org/w/index.php?search=${pet.vaccine}`).focus()}}>{pet.vaccine}</a></td>
                           <td>{moment(pet.date).format('LL')}</td>
@@ -325,7 +325,7 @@ useEffect(() => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {petinfos.medecines.map((pet,i) => 
+                                    {petinfos && petinfos.medecines.map((pet,i) => 
                                     
                                         <tr>
                                             <th scope="row">{"3"}</th>
