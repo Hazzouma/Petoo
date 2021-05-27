@@ -33,12 +33,6 @@ import DraggingCards from "../components/bonus_ui/cards/draggingCards";
 import Timeline1 from "../components/bonus_ui/timelines/timeline";
 
 
-// Buttons
-import DefaultButton from "../components/buttons/default-Button";
-import EdgeButton from "../components/buttons/edgeButton";
-import FlatButton from "../components/buttons/flatButton";
-import GroupButton from "../components/buttons/groupButton";
-import RaisedButton from "../components/buttons/raisedButton";
 
 // Forms
 import FormValidation from "../components/forms/form-control/form-validation";
@@ -98,13 +92,8 @@ import UserProfile from "../components/users/userProfile";
 
 
 
-// Editor
-import CkEditor from "../components/editor/ckEditor";
-import MdeEditor from "../components/editor/mdeEditor";
 
 
-// FAQ page
-import FaqComponent from "../components/faq";
 
 // knowledgebase page
 import KnowledgebaseComponent from "../components/knowledgebase";
@@ -124,11 +113,6 @@ import createProduct from "../components/application/ecommerce-app/createProduct
 //Notifications and appoiments
 import Notifndapp from "../components/notifications/Notificationsndapp"
 
-
-// Project app
-import ProjectList from "../components/application/project/project";
-import NewProject from "../components/application/project/new-project";
-
 // File Manager App
 import FileManager from "../components/application/file-manager/file-manager";
 
@@ -138,14 +122,9 @@ import kanbanBoard from "../components/application/kanban-board/kanbanBoard";
 // Task
 import TaskApp from "../components/application/task-app";
 
-// Contact app
-import ContactApp from "../components/application/contact-app";
 
-// todo-app
-import Todo from "../components/application/todo-app";
 
-// todo-firebase-app
-import TodoFirebase from "../components/application/todo-firebase-app";
+
 
 
 export const routesAdmin = [
@@ -177,13 +156,6 @@ export const routesAdmin = [
   { path: "/bonus-ui/card/draggingCards", Component: DraggingCards },
 
   { path: "/bonus-ui/timelines/timeline1", Component: Timeline1 },
-
-  
-  { path: "/buttons/default-btn", Component: DefaultButton },
-  { path: "/buttons/flatBtn", Component: FlatButton },
-  { path: "/buttons/edgeBtn", Component: EdgeButton },
-  { path: "/buttons/raisedBtn", Component: RaisedButton },
-  { path: "/buttons/groupBtn", Component: GroupButton },
 
   { path: "/forms/form-validation", Component: FormValidation },
   { path: "/forms/baseInput", Component: BaseInput },
@@ -231,11 +203,10 @@ export const routesAdmin = [
   { path: "/app/calendar/draggable-calendar", Component: DraggableCalendar },
 
 
-  { path: "/app/editor/ckEditor", Component: CkEditor },
-  { path: "/app/editor/mdeEditor", Component: MdeEditor },
 
-  // { path: "/app/social-app", Component: SocialApp },
-  { path: "/app/faq", Component: FaqComponent },
+
+
+ 
   { path: "/app/knowledgebase", Component: KnowledgebaseComponent },
 
   { path: "/app/ecommerce/product", Component: Product },
@@ -253,16 +224,19 @@ export const routesAdmin = [
 
 
 
-  { path: "/app/project/project-list", Component: ProjectList },
-  { path: "/app/project/new-project", Component: NewProject },
-
   { path: "/app/file-manager", Component: FileManager },
   { path: "/app/kanban-board", Component: kanbanBoard },
 
-  { path: "/app/contact", Component: ContactApp },
 
-  { path: "/app/todo-app/todo", Component: Todo },
-  { path: "/app/todo-app/todo-firebase", Component: TodoFirebase },
+
+
+
+
+
+
+
+
+
 ];
 //---------------OWNER
 export const routesOwner = [
@@ -290,6 +264,12 @@ export const routesOwner = [
   //Notification
   { path: "/myNotifications", Component: DataTable },
 ];
+
+
+
+
+
+
 
 // --------------VET
 export const routesVet = [
@@ -319,6 +299,15 @@ export const routesVet = [
   // Appointments & more infos
   { path: "/dashboard/task", Component: TaskApp },
 ];
+
+
+
+
+
+
+
+
+
 //-------------SHOP
 export const routesShop = [
   { path: "/dashboard/", Component: Default },
