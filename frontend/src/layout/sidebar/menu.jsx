@@ -5,6 +5,8 @@ import {
   Image,
   Film,
   Monitor,
+  Box,
+  Command
 
 } from "react-feather";
 export const MENUITEMS = [
@@ -50,7 +52,7 @@ export const MENUITEMS = [
     menucontent: "Ready to use Apps",
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/dashboard/default`,
+        path: `${process.env.PUBLIC_URL}/dashboard`,
         icon: Home,
         badge:"badge badge-primary",
         badgetxt: "Home",
@@ -58,7 +60,7 @@ export const MENUITEMS = [
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/app/users/createShop`,
+        path: `${process.env.PUBLIC_URL}/dashboard/CreateShop`,
         icon: Monitor,
         badge: "badge badge-info",
         badgetxt: "Admin",
@@ -109,87 +111,30 @@ export const MENUITEMS = [
         ],
       },
       {
-        title: "Users",
+        path: `${process.env.PUBLIC_URL}/dashboard/vetoList`,
         icon: Users,
-        path: `${process.env.PUBLIC_URL}/dashboard/userProfile`,
-        type: "sub",
-        bookmark: true,
-        active: false,
-        children: [
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/userProfile`,
-            type: "link",
-            title: "My profile",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/petProfile`,
-            type: "link",
-            title: "Pet Profile ",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/userEdit`,
-            type: "link",
-            title: "Users Edit",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/vetoList`,
-            type: "link",
-            title: "Vet List",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/vetCard`,
-            type: "link",
-            title: "Vet Card",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/petList`,
-            type: "link",
-            title: "Pet List ",
-          },
-
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/createShop`,
-            type: "link",
-            title: "Create Shop ",
-          },
-
-          
-          
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/createPet`,
-            type: "link",
-            title: "Create Pet ",
-          },
-        ],
+        title: "Vet List ",
+        type: "link",
       },
-  
-    ],
-  },
-
-
-  {
-    menutitle: "Miscellaneous",
-    menucontent: "Extras",
-    Items: [
       {
-        title: "Gallery",
-        icon: Image,
-        type: "sub",
-        active: false,
-        children: [
-          {
-            path: `${process.env.PUBLIC_URL}/app/gallery/imageGallery`,
-            title: "Gallery Grid ",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/app/gallery/imageWithDesc`,
-            title: "Gallery Grid  Desc ",
-            type: "link",
-          },
-        ],
+        path: `${process.env.PUBLIC_URL}/dashboard/petList`,
+        icon: Box,
+        title: "Pet List ",
+        type: "link",
       },
-
+      {
+        path: `${process.env.PUBLIC_URL}/dashboard/CreatePet`,
+        icon: Command,
+        title: "Create a Pet ",
+        type: "link",
+      },
+      
+      {
+        path: `${process.env.PUBLIC_URL}/dashboard/imageGallery`,
+        icon: Image,
+        title: "Gallery ",
+        type: "link",
+      },
       {
         title: "Blog",
         icon: Film,
@@ -197,22 +142,26 @@ export const MENUITEMS = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogDetail`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
             title: "Blog Details",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogSingle`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogSingle`,
             title: "Blog Single",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/app/blog/blogPost`,
+            path: `${process.env.PUBLIC_URL}/dashboard/blogPost`,
             title: "Add Post",
             type: "link",
           },
-        ],
-      },
+  
+    ],
+  },
+
+
+  
       
     
     ],
