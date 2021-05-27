@@ -1,7 +1,6 @@
 import {
   CURRENT_USER,
   VIDE_ERRORS,
-  FAIL_PET,
   FAIL_APP,
   GET_MY_PETS,
   GET_MY_APPOINTMENTS,
@@ -58,7 +57,6 @@ export const getMyAppointments = (idUser) => async (dispatch) => {
     );
     dispatch({ type: GET_MY_APPOINTMENTS, payload: result.data });
   } catch (error) {
-    console.log(error);
     dispatch({ type: FAIL_APP, payload: error.response.data.errors });
   }
 };

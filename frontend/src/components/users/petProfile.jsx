@@ -36,7 +36,8 @@ const PetProfile = (props) => {
 
 
 useEffect(() => {
-},[idPet,idUser])
+  dispatch(getMyPets(idUser))
+},[idUser,idPet])
    // eslint-disable-next-line 
   const [url, setUrl] = useState();
 

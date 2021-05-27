@@ -12,7 +12,7 @@ const dispatch = useDispatch()
         (state) => state.notifReducer.allNotifArray);
   const newtaskdata = useSelector(content => content.Taskapp.newtaskdata);
   const [activeTab, setActiveTab] = useState('0');
-  const { prenom,nom,email,profilePicture,idUser } = useSelector((state) => state.currentUser.user);
+  const { prenom,nom,email,profilePicture } = useSelector((state) => state.currentUser.user);
   const vets = useSelector(state => state.populationReducer.vetos)
   const appo = useSelector((state) => state.currentUser.myAppointments);
   const pets = useSelector((state)=> state.currentUser.myPets)
@@ -21,7 +21,7 @@ const dispatch = useDispatch()
 
 
   useEffect(() => {
-  },[pets,appo,vets])
+  },[])
 
 
 
@@ -256,16 +256,10 @@ const dispatch = useDispatch()
                         </Badge>
                         </td>
                         <td>
-                          { (!appo.confirmedByVet && appo.confirmedByOwner && !appo.isDone) ? 
-                          <Button onClick={()=>acceptAppointmentByOwner(idUser,)}>Confirm</Button>
-                          : ''}
-                        </td>
-                        <td>
                           { (!appo.confirmedByVet && !appo.confirmedByOwner && !appo.isDone || appo.confirmedByVet && !appo.confirmedByOwner && !appo.isDone || !appo.confirmedByVet && appo.confirmedByOwner && !appo.isDone) ? 
                           <Button onClick>Edit</Button>
                           : ''}
                         </td>
-
                       </tr>
                     </tbody>
                   </table>
