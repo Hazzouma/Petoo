@@ -48,8 +48,8 @@ useEffect(() => {
       <Container style={{backgroundImage: `url(${background})`, backgroundPosition: 'center',
                           backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}} fluid={true}>                         
         <Row  className="justify-content-md-center" > 
-          <Col sm={8}>         
-            <Card>
+          <Col sm={8} style={{margin: "30px"}}>         
+            <Card >
               
               <CardHeader>
                 <h5>Register a professional veterinary:</h5>

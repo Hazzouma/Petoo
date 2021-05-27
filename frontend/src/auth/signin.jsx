@@ -195,7 +195,13 @@ const Logins = (props) => {
                           </p>
 
                           <Link className='ml-2' to='/registerVet'>
-                          <button type="button" className="btn btn-info">Create a Vet Account</button>
+                            <div style={{ margin: "0",
+   display: "flex",
+   justifyContent: "center",
+   alignItems: "center",
+   }}>
+                          <button  type="button" className="btn btn-info">Create a Vet Account</button>
+                          </div>
                           </Link>
                         </Form>
                       </TabPane>

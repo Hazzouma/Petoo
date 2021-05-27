@@ -11,7 +11,7 @@ author: { type: String, default:"Petoo" },
 idAuthor: { type: String, required: true },
 blogPicture: {
     type: String,
-    default:
+    default: 
       "https://img.money.com/2021/03/Insurance-Pet-2021-Morning-Consult-Survey-Covid.jpg?quality=60&w=800",
   },
 })

@@ -65,6 +65,13 @@ export const MENUITEMS = [
         title: "Create a Pet ",
         type: "link",
       },
+      
+      {
+        path: `${process.env.PUBLIC_URL}/dashboard/appoiments`,
+        icon:  Calendar,
+        title: "Appoitments ",
+        type: "link",
+      },
 
       {
         path: `${process.env.PUBLIC_URL}/dashboard/imageGallery`,

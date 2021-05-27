@@ -4,7 +4,6 @@ import Taptop from "../layout/tap-top";
 import Header from "../layout/header";
 import Sidebar from "../layout/sidebar";
 import Footer from "../layout/footer";
-import ThemeCustomize from "../layout/theme-customizer";
 import { ToastContainer } from "react-toastify";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -47,7 +46,7 @@ const App = ({ children, getWhichUser }) => {
           <Footer />
         </div>
       </div>
-      <ThemeCustomize />
+      
       <ToastContainer />
     </Fragment>
   );
