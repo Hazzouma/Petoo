@@ -200,8 +200,14 @@ const Register = ({ history }) => {
                       {SignIn}
                     </Link>
                   </p>
-                  <Link className='ml-2' to='/registerVet'>
-                          <button type="button" class="btn btn-info">Create a Vet Account</button>
+                   <Link className='ml-2' to='/registerVet'>
+                            <div style={{ margin: "0",
+   display: "flex",
+   justifyContent: "center",
+   alignItems: "center",
+   }}>
+                          <button  type="button" className="btn btn-info">Create a Vet Account</button>
+                          </div>
                           </Link>
                 </Form>
               </div>

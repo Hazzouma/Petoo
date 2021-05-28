@@ -4,8 +4,8 @@ export const Navigation = (props) => {
   return (
     <nav id='menu' className='navbar navbar-default navbar-fixed-top'>
       <div className='container'>
-        <div className='navbar-header'>
-          <button
+        <div className='navbar-header' Style={{ display:"flex"}}>
+          <button 
             type='button'
             className='navbar-toggle collapsed'
             data-toggle='collapse'
@@ -28,11 +28,6 @@ export const Navigation = (props) => {
         >
           <ul className='nav navbar-nav navbar-right'>
             <li>
-              <a href='#features' className='page-scroll'>
-                Features
-              </a>
-            </li>
-            <li>
               <a href='#about' className='page-scroll'>
                 About
               </a>
@@ -53,13 +48,18 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
-              <a href='#team' className='page-scroll'>
-                Team
+              <a href='/login' className='page-scroll'>
+                Log In
               </a>
             </li>
             <li>
-              <a href='#contact' className='page-scroll'>
-                Contact
+              <a href='/register' className='page-scroll'>
+                Sing Up
+              </a>
+            </li>
+            <li>
+              <a href='/registerVet' className='page-scroll'>
+                Sign Up as a vet
               </a>
             </li>
           </ul>

@@ -194,7 +194,7 @@ const Logins = (props) => {
                             </Link>
                           </p>
 
-                          <Link className='ml-2' to='/registerVet'>
+                          {/* <Link className='ml-2' to='/registerVet'>
                             <div style={{ margin: "0",
    display: "flex",
    justifyContent: "center",
@@ -202,7 +202,7 @@ const Logins = (props) => {
    }}>
                           <button  type="button" className="btn btn-info">Create a Vet Account</button>
                           </div>
-                          </Link>
+                          </Link> */}
                         </Form>
                       </TabPane>
                     </TabContent>
