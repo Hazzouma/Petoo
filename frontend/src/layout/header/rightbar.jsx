@@ -49,6 +49,7 @@ setDefaultLanguage("en");
 setLanguageCookie();
 
 const Rightbar = (props) => {
+  const [numNotif, setNumNotif] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchresponsive, setSearchresponsive] = useState(false);
@@ -140,12 +141,15 @@ const Rightbar = (props) => {
     (state) => state.notifReducer.allNotifArray.reverse().slice(0, 6) //showing only 5 Notifications
   );
 
-  const notif = useSelector((state) => state.currentUser.user.notificationId);
-  let num = "0";
-  // const NotifnotRead= notifications.map((x) =>{if (x.isRead===false)
-  //   num++
-  // });
+  const arrNotif = useSelector((state) => state.notifReducer.allNotifArray);
+  const unReadNotif = arrNotif && arrNotif.filter((e) => e.isRead === false);
+  const notifMSG = useSelector((state) => state.notifReducer.msg);
 
+  useEffect(() => {
+    setNumNotif(unReadNotif && unReadNotif.length);
+    dispatch(getALLNotif(idUser));
+    // eslint-disable-next-line
+  }, [notifMSG]);
   return (
     <Fragment>
       <div className='nav-right col-8 pull-right right-header p-0'>
@@ -158,11 +162,15 @@ const Rightbar = (props) => {
           <li className='onhover-dropdown'>
             <div
               className='notification-box'
-              onClick={() => setNotificationDropDown(!notificationDropDown)}
+              onClick={() => {
+                setNotificationDropDown(!notificationDropDown);
+              }}
             >
               <Bell />
-              {num > 0 && ( // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
-                <span className='badge badge-pill badge-secondary'>{num}</span>
+              {numNotif > 0 && ( // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
+                <span className='badge badge-pill badge-secondary'>
+                  {numNotif}
+                </span>
               )}
             </div>
             <ul
@@ -188,7 +196,7 @@ const Rightbar = (props) => {
               <li>
                 <Link to='/dashboard/appoiments'>
                   <button
-                    onClick={() => dispatch(checkALLNotif(notif, idUser))}
+                    onClick={() => dispatch(checkALLNotif(idUser))}
                     className='btn btn-primary'
                   >
                     {CheckAllNotification}

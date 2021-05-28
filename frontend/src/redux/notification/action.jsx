@@ -23,13 +23,12 @@ export const checkNotif = (idNotif, idUser) => async (dispatch) => {
 };
 
 // Check ALL notifs at once
-export const checkALLNotif = (notificationId, idUser) => async (dispatch) => {
+export const checkALLNotif = (idUser) => async (dispatch) => {
   // console.log(notificationId)
   try {
     let result = await axios.post(
       `${process.env.PUBLIC_URL}/api/notif/checkAllAtOnce`,
       {
-        notificationId,
         idUser,
       }
     );

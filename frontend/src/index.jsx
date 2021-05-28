@@ -19,6 +19,7 @@ import { routesAdmin, routesOwner ,routesVet} from "./route";
 
 // Signin page
 import Signin from "./auth/signin";
+import LP from "./landing/Lp";
 
 // Authentication
 // import Login from "./pages/authentication/login";
@@ -92,6 +93,10 @@ const Root = (props) => {
       <Provider store={store}>
         <BrowserRouter basename={`/`}>
           <Switch>
+          <Route exact
+              path={`${process.env.PUBLIC_URL}/`}
+              component={LP}
+            />
             <Route
               path={`${process.env.PUBLIC_URL}/registerVet`}
               component={registerVet}

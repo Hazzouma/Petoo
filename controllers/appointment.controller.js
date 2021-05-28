@@ -416,7 +416,7 @@ exports.AppointmentAcceptbyVet = async (req, res) => {
     foundApp.confirmedByVet = true;
     const foundVet = await ownerModel.findOne({ idUser: vetID });
     const foundOwner = await ownerModel.findOne({ idUser: ownerID });
-    const foundPet = await petModel.findOne({ idpet: petID });
+    const foundPet = await petModel.findOne({ idPet: petID });
 
     //Create a  notification  for the OWNER
     const newNotificationOwner = new Notification({
@@ -440,9 +440,8 @@ exports.AppointmentAcceptbyVet = async (req, res) => {
     await newNotificationVet.save();
 
     res.status(200).json({
-      msg: `Appointment accepted by vet successfully!`,
+      msg: `Appointment accepted successfully!`,
       foundApp,
-      newNotification,
     });
   } catch (error) {
     console.log(error);

@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
+import { toast } from "react-toastify";
 import {
   Container,
   Row,
@@ -19,33 +20,52 @@ import { useSelector, useDispatch } from "react-redux";
 import { MoreHorizontal } from "react-feather";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { acceptAppointmentByOwner } from "../../redux/appointmentAction/action";
+import {
+  videErrors,
+  acceptAppointmentByOwner,
+  acceptAppointmentByVet,
+} from "../../redux/appointmentAction/action";
 const Notifndapp = (props) => {
   const dispatch = useDispatch();
   const notifications = useSelector(
     (state) => state.notifReducer.allNotifArray
   );
-  const newtaskdata = useSelector((content) => content.Taskapp.newtaskdata);
+  const pendingAppointments = useSelector(
+    (content) => content.currentUser.myAppointments
+  );
   const [activeTab, setActiveTab] = useState("0");
   const { prenom, nom, email, profilePicture, idUser } = useSelector(
     (state) => state.currentUser.user
   );
+  const confirmAppo = (vetID, petID, ownerID, appointmentID) =>
+    dispatch(acceptAppointmentByVet(vetID, petID, ownerID, appointmentID));
+  const role = useSelector((state) => state.currentUser.user.role);
   const vets = useSelector((state) => state.populationReducer.vetos);
   const appo = useSelector((state) => state.currentUser.myAppointments);
   const pets = useSelector((state) => state.currentUser.myPets);
+  const notif = useSelector((state) => state.appReducer.msg);
+  useEffect(() => {
+    if (notif) {
+      toast.success(notif, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 7000,
+      });
+      dispatch(videErrors());
+    }
+  }, [notif]);
   return (
     <Fragment>
       <Breadcrumb parent='Apps' title='Tasks' />
       <Container fluid={true}>
-        <div className='email-wrap bookmark-wrap'>
+        <span className='email-wrap bookmark-wrap'>
           <Row>
             <Col xl='3' className='box-col-6'>
-              <div className='email-left-aside'>
+              <span className='email-left-aside'>
                 <Card>
                   <CardBody>
-                    <div className='email-app-sidebar left-bookmark'>
-                      <div className='media'>
-                        <div className='media-size-email'>
+                    <span className='email-app-sidebar left-bookmark'>
+                      <span className='media'>
+                        <span className='media-size-email'>
                           <img
                             className='mr-3 rounded-circle'
                             src={profilePicture}
@@ -53,14 +73,14 @@ const Notifndapp = (props) => {
                             height='100px'
                             alt=''
                           />
-                        </div>
-                        <div className='media-body'>
+                        </span>
+                        <span className='media-body'>
                           <h6 className='f-w-600'>
                             {prenom} {nom}
                           </h6>
                           <p>{email}</p>
-                        </div>
-                      </div>
+                        </span>
+                      </span>
 
                       <hr />
 
@@ -131,17 +151,17 @@ const Notifndapp = (props) => {
                           <hr />
                         </li>
                       </Nav>
-                    </div>
+                    </span>
                   </CardBody>
                 </Card>
-              </div>
+              </span>
             </Col>
             <Col xl='9' md='12' className='box-col-12'>
-              <div className='email-right-aside bookmark-tabcontent'>
+              <span className='email-right-aside bookmark-tabcontent'>
                 <Card className='email-body radius-left'>
-                  <div className='pl-0'>
+                  <span className='pl-0'>
                     <TabContent activeTab={activeTab}>
-                      <TabPane tabId='1'>
+                      <TabPane tabId='1' activeTab={activeTab}>
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
                             <h6 className='mb-0 f-w-600'>All Appoiments</h6>
@@ -149,9 +169,9 @@ const Notifndapp = (props) => {
                         </Card>
                         <tr>
                           <td>
-                            <div className='no-favourite'>
+                            <span className='no-favourite'>
                               <span></span>
-                            </div>
+                            </span>
                           </td>
                         </tr>
                       </TabPane>
@@ -159,7 +179,7 @@ const Notifndapp = (props) => {
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
                             <h6 className='mb-0 f-w-600'>
-                              Confirmed Appoimens
+                              Confirmed Appoitments
                             </h6>
                           </CardHeader>
                         </Card>
@@ -167,21 +187,27 @@ const Notifndapp = (props) => {
                       <TabPane tabId='3'>
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
-                            <h6 className='mb-0 f-w-600'>Upcoming Appoimens</h6>
+                            <h6 className='mb-0 f-w-600'>
+                              Upcoming Appointments
+                            </h6>
                           </CardHeader>
                         </Card>
                       </TabPane>
                       <TabPane tabId='4'>
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
-                            <h6 className='mb-0 f-w-600'>Pending Appoimens</h6>
+                            <h6 className='mb-0 f-w-600'>
+                              Pending Appointments
+                            </h6>
                           </CardHeader>
                         </Card>
                       </TabPane>
                       <TabPane tabId='5'>
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
-                            <h6 className='mb-0 f-w-600'>Canceled Appoimens</h6>
+                            <h6 className='mb-0 f-w-600'>
+                              Canceled Appointments
+                            </h6>
                           </CardHeader>
                         </Card>
                       </TabPane>
@@ -195,8 +221,8 @@ const Notifndapp = (props) => {
                       <TabPane tabId='6'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
                                   <thead></thead>
                                   <tbody>
@@ -230,26 +256,25 @@ const Notifndapp = (props) => {
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-fasvourite'>
+                                          <span className='no-fasvourite'>
                                             <span>No notification found</span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                       <TabPane tabId='1'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
-                                  <thead></thead>
                                   <tbody>
                                     {appo.length ? (
                                       appo.map((appo, index) => {
@@ -269,7 +294,7 @@ const Notifndapp = (props) => {
                                         );
                                         return (
                                           <CardBody className='pt-0'>
-                                            <div className='appointment-table table-responsive'>
+                                            <span className='appointment-table table-responsive'>
                                               <table className='table table-bordernone'>
                                                 <tbody>
                                                   <tr>
@@ -296,7 +321,7 @@ const Notifndapp = (props) => {
                                                         </span>
                                                       </Link>
                                                     </td>
-                                                    <td>
+                                                    <td className='text-center'>
                                                       <p className='m-0 font-primary'>
                                                         {appo && appo.date}
                                                       </p>
@@ -314,7 +339,7 @@ const Notifndapp = (props) => {
                                                         </span>
                                                       </Link>
                                                     </td>
-                                                    <td className='text-right'>
+                                                    <td className='text-center'>
                                                       <Badge color='primary'>
                                                         {appo.isDone
                                                           ? "Done"
@@ -326,244 +351,331 @@ const Notifndapp = (props) => {
                                                     </td>
                                                     <td>
                                                       {appo.confirmedByVet &&
-                                                      !appo.confirmedByOwner &&
-                                                      !appo.isDone ? (
-                                                        <Button
-                                                          onClick={() =>
-                                                            acceptAppointmentByOwner(
-                                                              idUser
-                                                            )
-                                                          }
-                                                        >
-                                                          Confirm
-                                                        </Button>
-                                                      ) : (
-                                                        ""
-                                                      )}
+                                                        !appo.confirmedByOwner &&
+                                                        !appo.isDone && (
+                                                          <Button>
+                                                            Confirm
+                                                          </Button>
+                                                        )}
                                                     </td>
-                                                    <td>
+                                                    <td className='text-center'>
                                                       {(!appo.confirmedByVet &&
                                                         !appo.confirmedByOwner &&
                                                         !appo.isDone) ||
-                                                      (appo.confirmedByVet &&
-                                                        !appo.confirmedByOwner &&
-                                                        !appo.isDone) ||
-                                                      (!appo.confirmedByVet &&
-                                                        appo.confirmedByOwner &&
-                                                        !appo.isDone) ? (
-                                                        <Button onClick>
-                                                          Edit
-                                                        </Button>
-                                                      ) : (
-                                                        ""
-                                                      )}
+                                                        (appo.confirmedByVet &&
+                                                          !appo.confirmedByOwner &&
+                                                          !appo.isDone) ||
+                                                        (!appo.confirmedByVet &&
+                                                          appo.confirmedByOwner &&
+                                                          !appo.isDone && (
+                                                            <Button>
+                                                              Edit
+                                                            </Button>
+                                                          ))}
                                                     </td>
                                                   </tr>
                                                 </tbody>
                                               </table>
-                                            </div>
+                                            </span>
                                           </CardBody>
                                         );
                                       })
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-favourite'>
+                                          <span className='no-favourite'>
                                             <span>
                                               You can trust our Vet list and
                                               take an appointment
                                             </span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                       <TabPane tabId='2'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {newtaskdata.length ? (
-                                      newtaskdata.map((taskdata, index) => {
-                                        return (
-                                          <tr key={index}>
-                                            <td>
-                                              <h6 className='task_title_0'>
-                                                {taskdata.title}
-                                              </h6>
-                                              <p className='project_name_0'>
-                                                {taskdata.collection}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <p className='task_desc_0'>
-                                                {taskdata.desc}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <a
-                                                className='mr-2'
-                                                href='#javascript'
-                                              >
-                                                <Link />
-                                              </a>
-                                              <a href='#javascript'>
-                                                <MoreHorizontal />
-                                              </a>
-                                            </td>
-                                          </tr>
-                                        );
-                                      })
+                                    {pendingAppointments &&
+                                    pendingAppointments.length > 0 &&
+                                    (role === "petOwner" ||
+                                      role === "Admin") ? (
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
+                                          if (
+                                            pendApp &&
+                                            pendApp.confirmedByOwner &&
+                                            pendApp.confirmedByVet
+                                          )
+                                            return (
+                                              <tr key={index}>
+                                                <td>
+                                                  <h6 className='task_title_0'>
+                                                    Your appointment is
+                                                    confirmed
+                                                  </h6>
+                                                  <p className='project_name_0'>
+                                                    {pendApp.date}
+                                                  </p>
+                                                </td>
+                                                <td>
+                                                  <p className='task_desc_0'>
+                                                    {pendApp.description}
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                            );
+                                        }
+                                      )
+                                    ) : pendingAppointments &&
+                                      pendingAppointments.length > 0 &&
+                                      role === "Veterinary" ? (
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
+                                          if (
+                                            pendApp &&
+                                            pendApp.confirmedByOwner &&
+                                            pendApp.confirmedByVet
+                                          )
+                                            return (
+                                              <tr key={index}>
+                                                <td>
+                                                  <h6 className='task_title_0'>
+                                                    Your appointment is
+                                                    confirmed
+                                                  </h6>
+                                                  <p className='project_name_0'>
+                                                    {pendApp &&
+                                                      pendApp.description}
+                                                  </p>
+                                                </td>
+                                                <td>
+                                                  <p className='task_desc_0'>
+                                                    {pendApp && pendApp.date}
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                            );
+                                          else return "";
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-favourite'>
+                                          <span className='no-favourite'>
                                             <span>
-                                              No Confirmed Appoiments yet !!{" "}
+                                              No Confirmed Appointments yet !!{" "}
                                             </span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                       <TabPane tabId='3'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {newtaskdata.length ? (
-                                      newtaskdata.map((taskdata, index) => {
-                                        return (
-                                          <tr key={index}>
-                                            <td>
-                                              <h6 className='task_title_0'>
-                                                {taskdata.title}
-                                              </h6>
-                                              <p className='project_name_0'>
-                                                {taskdata.collection}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <p className='task_desc_0'>
-                                                {taskdata.desc}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <a
-                                                className='mr-2'
-                                                href='#javascript'
-                                              >
-                                                <Link />
-                                              </a>
-                                              <a href='#javascript'>
-                                                <MoreHorizontal />
-                                              </a>
-                                            </td>
-                                          </tr>
-                                        );
-                                      })
+                                    {pendingAppointments &&
+                                    pendingAppointments.length > 0 &&
+                                    role === "Veterinary" ? (
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
+                                          if (
+                                            pendApp.confirmedByOwner &&
+                                            !pendApp.confirmedByVet
+                                          )
+                                            return (
+                                              <tr key={index}>
+                                                <td>
+                                                  <h6 className='task_title_0'>
+                                                    New appointment:{" "}
+                                                    {pendApp && pendApp.date}
+                                                  </h6>
+                                                  <p className='project_name_0'>
+                                                    {pendApp &&
+                                                      pendApp.description}
+                                                  </p>
+                                                </td>
+                                                <td>
+                                                  <p className='task_desc_0'>
+                                                    Confirm or change the Date
+                                                    with your Patient
+                                                  </p>
+                                                </td>
+                                                <td className='text-center'>
+                                                  <Button
+                                                    onClick={() =>
+                                                      confirmAppo(
+                                                        pendApp.idVet,
+                                                        pendApp.idPet,
+                                                        pendApp.idOwner,
+                                                        pendApp.idAppointment
+                                                      )
+                                                    }
+                                                  >
+                                                    Confirm
+                                                  </Button>
+                                                </td>
+                                              </tr>
+                                            );
+                                        }
+                                      )
+                                    ) : pendingAppointments &&
+                                      pendingAppointments.length > 0 &&
+                                      (role === "petOwner" ||
+                                        role === "Admin") &&
+                                      pendingAppointments[0].confirmedByVet ? (
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
+                                          if (
+                                            pendApp &&
+                                            !pendApp.confirmedByOwner &&
+                                            pendApp.confirmedByVet
+                                          )
+                                            return (
+                                              <tr key={index}>
+                                                <td>
+                                                  <h6 className='task_title_0'>
+                                                    New appointment:{" "}
+                                                    {pendApp && pendApp.date}
+                                                  </h6>
+                                                  <p className='project_name_0'>
+                                                    {pendApp &&
+                                                      pendApp.description}
+                                                  </p>
+                                                </td>
+                                                <td>
+                                                  <p className='task_desc_0'>
+                                                    Confirm or change the Date
+                                                    with your Veterinary
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                            );
+                                          else return "";
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-favourite'>
+                                          <span className='no-favourite'>
                                             <span>No Upcoming Appoiments </span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                       <TabPane tabId='4'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {newtaskdata.length ? (
-                                      newtaskdata.map((taskdata, index) => {
-                                        return (
-                                          <tr key={index}>
-                                            <td>
-                                              <h6 className='task_title_0'>
-                                                {taskdata.title}
-                                              </h6>
-                                              <p className='project_name_0'>
-                                                {taskdata.collection}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <p className='task_desc_0'>
-                                                {taskdata.desc}
-                                              </p>
-                                            </td>
-                                            <td>
-                                              <a
-                                                className='mr-2'
-                                                href='#javascript'
-                                              >
-                                                <Link />
-                                              </a>
-                                              <a href='#javascript'>
-                                                <MoreHorizontal />
-                                              </a>
-                                            </td>
-                                          </tr>
-                                        );
-                                      })
+                                    {pendingAppointments &&
+                                    pendingAppointments.length > 0 &&
+                                    (role === "petOwner" ||
+                                      role === "Admin") ? (
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
+                                          const theVet =
+                                            vets &&
+                                            vets.find(
+                                              (vet) =>
+                                                vet.idUser === pendApp.idVet
+                                            );
+                                          if (
+                                            pendApp.confirmedByOwner &&
+                                            !pendApp.confirmedByVet
+                                          )
+                                            return (
+                                              <tr key={index}>
+                                                <td>
+                                                  <h6 className='task_title_0'>
+                                                    {pendApp.description}
+                                                  </h6>
+                                                  <p className='project_name_0'>
+                                                    {pendApp.date}
+                                                  </p>
+                                                </td>
+                                                <td>
+                                                  <p className='task_desc_0'>
+                                                    Waiting for confirmation
+                                                    from {theVet && theVet.nom}
+                                                  </p>
+                                                </td>
+                                                {/* <td>
+                                                  <a
+                                                    className='mr-2'
+                                                    href='#javascript'
+                                                  >
+                                                    <Link />
+                                                  </a>
+                                                  <a href='#javascript'>
+                                                    <MoreHorizontal />
+                                                  </a>
+                                                </td> */}
+                                              </tr>
+                                            );
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-favourite'>
+                                          <span className='no-favourite'>
                                             <span>No Pending Appoiments</span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                       <TabPane tabId='5'>
                         <Card className='mb-0'>
                           <CardBody className='p-0'>
-                            <div className='taskadd'>
-                              <div className='table-responsive'>
+                            <span className='taskadd'>
+                              <span className='table-responsive'>
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {notifications.length ? (
-                                      notifications.map((taskdata, index) => {
+                                    {notifications.length && false ? (
+                                      notifications.map((pendApp, index) => {
                                         return (
                                           <CardBody className='pt-0'>
-                                            <div className='appointment-table table-responsive'>
+                                            <span className='appointment-table table-responsive'>
                                               <table className='table table-bordernone'>
                                                 <tbody>
                                                   <tr>
@@ -601,33 +713,33 @@ const Notifndapp = (props) => {
                                                   </tr>
                                                 </tbody>
                                               </table>
-                                            </div>
+                                            </span>
                                           </CardBody>
                                         );
                                       })
                                     ) : (
                                       <tr>
                                         <td>
-                                          <div className='no-favourite'>
+                                          <span className='no-favourite'>
                                             <span>No Canceled Appoiments </span>
-                                          </div>
+                                          </span>
                                         </td>
                                       </tr>
                                     )}
                                   </tbody>
                                 </Table>
-                              </div>
-                            </div>
+                              </span>
+                            </span>
                           </CardBody>
                         </Card>
                       </TabPane>
                     </TabContent>
-                  </div>
+                  </span>
                 </Card>
-              </div>
+              </span>
             </Col>
           </Row>
-        </div>
+        </span>
       </Container>
     </Fragment>
   );
