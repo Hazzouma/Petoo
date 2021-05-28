@@ -157,9 +157,9 @@ const Leftbar = (props) => {
     <Fragment>
       <div className="header-logo-wrapper" id="out_side_click">
         <div className="logo-wrapper">
-          <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
-            <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png").default} alt="" />
-            <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png").default} alt="" />
+          <Link to={`${process.env.PUBLIC_URL}/dashboard/`}>
+            <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png")} alt="Petoo" />
+            <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png")} alt="Petoo" />
           </Link>
         </div>
         <div className="toggle-sidebar" onClick={() => responsive_openCloseSidebar(sidebartoggle)} style={window.innerWidth <= 991 ? {display:"block"} : {display:"none"}}>

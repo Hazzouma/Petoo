@@ -160,13 +160,12 @@ const Rightbar = (props) => {
             </span>
           </li>
           <li className='onhover-dropdown'>
-            <div
-              className='notification-box'
-              onClick={() => {
-                setNotificationDropDown(!notificationDropDown);
-              }}
-            >
-              <Bell />
+          <div className='notification-box'>
+              <Bell
+                onClick={() => {
+                  setNotificationDropDown(!notificationDropDown);
+                }}
+              />
               {numNotif > 0 && ( // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
                 <span className='badge badge-pill badge-secondary'>
                   {numNotif}

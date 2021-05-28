@@ -1,7 +1,13 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
 import { Form, Row } from "reactstrap";
 import { X } from "react-feather";
-import { MENUITEMS } from "../sidebar/menu";
+import { MENUITEMS } from "../sidebar/menuCuba";
+
+// import { MENUITEMSVet  } from "../sidebar/menuVet";
+// import  {MENUITEMSAdmin}  from "../sidebar/menu";
+
+// import { MENUITEMSOwner  } from "../sidebar/menuOwner";
+
 import LeftHeader from "./leftbar";
 import RightHeader from "./rightbar";
 import { Link } from "react-router-dom";
@@ -9,8 +15,23 @@ import { Loading } from "../../constant";
 import { useSelector } from "react-redux";
 
 const Header = (props) => {
+//   const {role} = useSelector(state => state.currentUser.user)
+  
+  
+//   const [MENUITEMS, setMENUITEMS]=useState()
+
+//   if (role=="Admin"){
+//     setMENUITEMS(MENUITEMSAdmin)   }
+//   else if (role=="Veterinary"){
+//     setMENUITEMS(MENUITEMSVet)    
+// }else if (role==="petOwner"){
+//   setMENUITEMS(MENUITEMSOwner) 
+   
+// }
+const [mainmenu, setMainMenu] = useState(MENUITEMS);
+
   // eslint-disable-next-line
-  const [mainmenu, setMainMenu] = useState(MENUITEMS);
+
   const [searchValue, setsearchValue] = useState("");
   // eslint-disable-next-line
   const [searchResult, setSearchResult] = useState(false);

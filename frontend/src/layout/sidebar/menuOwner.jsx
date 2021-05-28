@@ -1,7 +1,7 @@
-import { Home, Users, ShoppingBag, Image, Film, Command,Box
+import { Home, Users, ShoppingBag, Image, Film, Command,Box, Calendar
 
 } from "react-feather";
-export const MENUITEMS = [
+export const MENUITEMSOwner = [
 
   {
     menutitle: "Applications",
@@ -40,6 +40,11 @@ export const MENUITEMS = [
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
             title: "Order History",
+            type: "link",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/app/ecommerce/cart`,
+            title: "Cart",
             type: "link",
           },
         ],

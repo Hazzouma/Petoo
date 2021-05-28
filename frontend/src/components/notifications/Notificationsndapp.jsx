@@ -19,12 +19,14 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { MoreHorizontal } from "react-feather";
 import { Link } from "react-router-dom";
+import { getALLNotif } from "../../redux/notification/action";
 import moment from "moment";
 import {
   videErrors,
   acceptAppointmentByOwner,
   acceptAppointmentByVet,
 } from "../../redux/appointmentAction/action";
+import { getMyAppointments } from "../../redux/currentUser/action";
 const Notifndapp = (props) => {
   const dispatch = useDispatch();
   const notifications = useSelector(
@@ -46,6 +48,8 @@ const Notifndapp = (props) => {
   const notif = useSelector((state) => state.appReducer.msg);
   useEffect(() => {
     if (notif) {
+      dispatch(getMyAppointments(idUser));
+      dispatch(getALLNotif(idUser));
       toast.success(notif, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 7000,

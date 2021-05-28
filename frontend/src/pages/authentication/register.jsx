@@ -4,7 +4,7 @@ import {Container,Row,Col,Button, Modal, ModalHeader, ModalBody, ModalFooter,For
 
 import {
   Password,
-  SignIn,
+ 
   EmailAddress,
   CreateAccount,
   YourName,
@@ -196,8 +196,8 @@ const Register = ({ history }) => {
                   </div>
                   <p className='mt-4 mb-0'>
                     {"Already have an account?"}
-                    <Link className='ml-2' to='/cuba/login'>
-                      {SignIn}
+                    <Link className='ml-2' to='/login'>
+                      Sign In
                     </Link>
                   </p>
                    <Link className='ml-2' to='/registerVet'>

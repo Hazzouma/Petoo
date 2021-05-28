@@ -246,6 +246,18 @@ export const routesOwner = [
   { path: "/myNotifications", Component: DataTable },
   { path: "/dashboard/appoiments", Component: Notifndapp },
 
+  { path: "/app/ecommerce/product", Component: Product },
+  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
+  { path: "/app/ecommerce/cart", Component: Cart },
+  { path: "/app/ecommerce/wishlist", Component: Wishlist },
+  { path: "/app/ecommerce/checkout", Component: Checkout },
+  { path: "/app/ecommerce/invoice", Component: Invoice },
+  { path: "/app/ecommerce/product-list", Component: Productlist },
+  { path: "/app/ecommerce/payment-details", Component: Paymentdetails },
+  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
+  { path: "/app/ecommerce/pricing", Component: Pricing },
+  { path: "/app/ecommerce/createProduct", Component: createProduct },
+
 ];
 
 
@@ -282,6 +294,18 @@ export const routesVet = [
   // Appointments & more infos
   { path: "/dashboard/task", Component: TaskApp },
   { path: "/dashboard/appoiments", Component: Notifndapp },
+
+  { path: "/app/ecommerce/product", Component: Product },
+  { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
+  { path: "/app/ecommerce/cart", Component: Cart },
+  { path: "/app/ecommerce/wishlist", Component: Wishlist },
+  { path: "/app/ecommerce/checkout", Component: Checkout },
+  { path: "/app/ecommerce/invoice", Component: Invoice },
+  { path: "/app/ecommerce/product-list", Component: Productlist },
+  { path: "/app/ecommerce/payment-details", Component: Paymentdetails },
+  { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
+  { path: "/app/ecommerce/pricing", Component: Pricing },
+  { path: "/app/ecommerce/createProduct", Component: createProduct },
 
 ];
 

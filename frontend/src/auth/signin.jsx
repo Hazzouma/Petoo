@@ -100,12 +100,12 @@ const Logins = (props) => {
                     <a className='logo' href='index.html'>
                       <img
                         className='img-fluid for-light'
-                        src={require("../assets/images/logo/login.png").default}
+                        src={require("../assets/images/logo/login.png")}
                         alt=''
                       />
                       <img
                         className='img-fluid for-dark'
-                        src={require("../assets/images/logo/login.png").default}
+                        src={require("../assets/images/logo/login.png")}
                         alt=''
                       />
                     </a>

@@ -1,17 +1,17 @@
 import {
   Home,
-  FileText,
-  Server,
+
   Users,
   ShoppingBag,
-  Image,
+
   Film,
-  Monitor,
+
   Command,
+  Calendar,
   Box,
 
 } from "react-feather";
-export const MENUITEMS = [
+export const MENUITEMSVet = [
 
 
  
@@ -58,6 +58,11 @@ export const MENUITEMS = [
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
             title: "Order History",
+            type: "link",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/app/ecommerce/cart`,
+            title: "Cart",
             type: "link",
           },
           // {

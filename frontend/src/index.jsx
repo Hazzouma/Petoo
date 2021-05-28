@@ -94,7 +94,7 @@ const Root = (props) => {
         <BrowserRouter basename={`/`}>
           <Switch>
           <Route exact
-              path={`${process.env.PUBLIC_URL}/`}
+              path={`${process.env.PUBLIC_URL}/home`}
               component={LP}
             />
             <Route
@@ -197,7 +197,7 @@ const Root = (props) => {
                 {/* {console.log(role)} */}
                 <Route
                   exact
-                  path={`${process.env.PUBLIC_URL}/`}
+                  path={`${process.env.PUBLIC_URL}/dashboard/`}
                   render={() => {
                     return (
                       <Redirect
@@ -286,7 +286,7 @@ const Root = (props) => {
                 </TransitionGroup>
               </App>
             ) : (
-              <Redirect to={`${process.env.PUBLIC_URL}/login`} />
+              <Redirect to={`${process.env.PUBLIC_URL}/home`} />
             )}
           </Switch>
         </BrowserRouter>

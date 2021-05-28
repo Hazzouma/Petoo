@@ -3,29 +3,57 @@ import { useSelector } from "react-redux";
 //Clean : /menu
 //Owner: /menuOwner
 //All: /menuCuba
-import { MENUITEMS } from "./menu";
+import { MENUITEMSVet  } from "./menuVet";
+import { MENUITEMSAdmin}  from "./menu";
+
+import { MENUITEMSOwner  } from "./menuOwner";
+// import { MENUITEMS  } from "./menuCuba";
 import { ArrowRight, ArrowLeft, Grid } from "react-feather";
 import { Link } from "react-router-dom";
 import { translate } from "react-switch-lang";
 import configDB from "../../data/customizer/config";
 
 const Sidebar = (props) => {
+  const role = useSelector(state => state.currentUser.user.role);
+let [MENUITEMS, setMENUITEMS]=useState(MENUITEMSOwner )
+
+const selectMenu = (role) => {
+  if (role==="Admin"){
+    setMENUITEMS(MENUITEMSAdmin)   }
+  else if (role==="Veterinary"){
+    setMENUITEMS(MENUITEMSVet)    
+}else if (role==="petOwner"){
+  setMENUITEMS(MENUITEMSOwner) 
+}
+}
+
+
+// useEffect(() => {
+
+// }, [role]);
+// console.log(MENUITEMS)
+
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
   const [margin, setMargin] = useState(0);
   const [width, setWidth] = useState(0);
   const [sidebartoogle, setSidebartoogle] = useState(true);
+
+  
+  
+
   const wrapper =
     useSelector((content) => content.Customizer.sidebar_types.type) ||
     configDB.data.settings.sidebar.type;
 
   useEffect(() => {
+    selectMenu(role)
     document.querySelector(".left-arrow").classList.add("d-none");
 
     window.addEventListener("resize", handleResize);
     handleResize();
 
     const currentUrl = window.location.pathname;
-    mainmenu.map((items) => {
+    mainmenu && mainmenu.map((items) => {
       items.Items.filter((Items) => {
         if (Items.path === currentUrl) setNavActive(Items);
         if (!Items.children) return false;
@@ -46,13 +74,13 @@ const Sidebar = (props) => {
       });
       return items;
     });
-
+    
     return () => {
       window.removeEventListener("resize", handleResize);
     };
 
     // eslint-disable-next-line
-  }, []);
+  }, [role]);
 
   const handleResize = () => {
     setWidth(window.innerWidth - 500);
@@ -224,7 +252,7 @@ const Sidebar = (props) => {
                   <i className='fa fa-angle-right pl-2' aria-hidden='true'></i>
                 </div>
               </li>
-              {MENUITEMS.map((Item, i) => (
+              {MENUITEMS && MENUITEMS.map((Item, i) => (
                 <Fragment key={i}>
                   {Item.Items.map((menuItem, i) => (
                     <li className='sidebar-list' key={i}>
