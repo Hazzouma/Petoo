@@ -1,41 +1,46 @@
 import React, { Fragment } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import blogSingle from "../../assets/images/blog/blog-single.jpg";
-import comment from "../../assets/images/blog/comment.jpg";
-import nine from "../../assets/images/blog/9.jpg";
-import four from "../../assets/images/blog/4.jpg";
-import twelve from "../../assets/images/blog/12.png";
-import fourteen from "../../assets/images/blog/14.png";
 import {Container,Row,Col,Media} from "reactstrap";
-import {Comment,JolioMark} from "../../constant";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 const BlogSingle = () => {
+    let idBlog = useParams();
+    const blogs = useSelector((state) => state.populationReducer.blogs);
+    // eslint-disable-next-line
+  const bloginfos = blogs.find((blog, index) => {
+    if (blog.idBlog === idBlog.id)
+      // eslint-disable-next-line
+      return true;
+  });
+
     return (
         <Fragment>
-            <Breadcrumb parent="Blog" title="Blog Single"/>
+
+            <Breadcrumb parent="Blogs" title={bloginfos && bloginfos.title}/>
             <Container fluid={true}>
                 <Row>
                     <Col sm="12">
                         <div className="blog-single">
                             <div className="blog-box blog-details">
-                                <Media className="img-fluid w-100" src={blogSingle} alt="blog-main" />
+                                <Media className="img-fluid w-100" src={bloginfos && bloginfos.blogPicture} alt="blog-main" />
                                 <div className="blog-details">
                                     <ul className="blog-social">
-                                        <li className="digits">{"25 July 2018"}</li>
-                                        <li><i className="icofont icofont-user"></i>{"Mark"} <span>{"Jecno"} </span></li>
+                                        <li className="digits">{bloginfos && bloginfos.creationDate}</li>
+                                        <li><i className="icofont icofont-user"></i>{bloginfos && bloginfos.author}</li>
                                         <li className="digits"><i className="icofont icofont-thumbs-up"></i>{"02"}<span>{"Hits"}</span></li>
                                         <li className="digits"><i className="icofont icofont-ui-chat"></i>{"598 Comments"}</li>
                                     </ul>
                                     <h4>
-                                        {"All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet."}
+                                    {bloginfos && bloginfos.title}
                                     </h4>
                                     <div className="single-blog-content-top">
-                                        <p>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}</p>
-                                        <p>{"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like"}</p>
+                                        <p>{bloginfos && bloginfos.content}</p>
+                                        {/* <p>{"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like"}</p> */}
                                     </div>
                                 </div>
                             </div>
-                            <section className="comment-box">
+                            {/* <section className="comment-box">
                                 <h4>{Comment}</h4>
                                 <hr />
                                 <ul>
@@ -133,7 +138,7 @@ const BlogSingle = () => {
                                         </Media>
                                     </li>
                                 </ul>
-                            </section>
+                            </section> */}
                         </div>
                     </Col>
                 </Row>

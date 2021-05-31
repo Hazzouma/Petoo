@@ -167,7 +167,7 @@ export const routesAdmin = [
   { path: "/dashboard/imageGallery", Component: ImageGallery },
 
   { path: "/dashboard/blogDetail", Component: BlogDetail },
-  { path: "/dashboard/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogSingle/:id", Component: BlogSingle },
   { path: "/dashboard/blogPost", Component: BlogPost },
 
 
@@ -241,7 +241,7 @@ export const routesOwner = [
   { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
   { path: "/dashboard/blogDetail", Component: BlogDetail },
-  { path: "/dashboard/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogSingle/:id", Component: BlogSingle },
   //Notification
   { path: "/myNotifications", Component: DataTable },
   { path: "/dashboard/appoiments", Component: Notifndapp },
@@ -288,7 +288,7 @@ export const routesVet = [
   { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
   { path: "/dashboard/blogDetail", Component: BlogDetail },
-  { path: "/dashboard/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogSingle/:id", Component: BlogSingle },
   //Notification
   { path: "/dashboard/myNotifications", Component: DataTable },
   // Appointments & more infos
@@ -337,7 +337,7 @@ export const routesShop = [
   { path: "/dashboard/gallery", Component: ImageGallery },
   //blog
   { path: "/dashboard/blogDetail", Component: BlogDetail },
-  { path: "/dashboard/blogSingle", Component: BlogSingle },
+  { path: "/dashboard/blogSingle/:id", Component: BlogSingle },
   //Notification
   { path: "/dashboard/myNotifications", Component: DataTable },
   { path: "/dashboard/appoiments", Component: Notifndapp },

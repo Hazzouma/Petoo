@@ -1,15 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import blog from "../../assets/images/blog/blog.jpg";
-import blog2 from "../../assets/images/blog/blog-2.jpg";
-// import blog3 from "../../assets/images/blog/blog-3.jpg";
-// import blog5 from "../../assets/images/blog/blog-5.jpg";
-// import blog6 from "../../assets/images/blog/blog-6.jpg";
 import { Container, Row, Col, Card, Media } from "reactstrap"
-import {MarkJecno} from "../../constant";
 import { getBlogs} from "../../redux/population/action";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 
 const BlogDetail = () => {
@@ -47,6 +42,7 @@ const BlogDetail = () => {
                     {/* Small horizontal Blog */}
                     {blogs.map((info, i) => (
                     <Col xl="6 box-col-12 xl-100" key={i}>
+                        <Link to={`/dashboard/blogSingle/${info.idBlog}`}>
                         <Card>
                             <div className="blog-box blog-list row">
                                 <Col sm="5">
@@ -65,13 +61,14 @@ const BlogDetail = () => {
                                             <ul className="blog-social">
                                                 <li> by: {info.author}</li>
                                             </ul>
-                                            <hr />
+                                            
                                             <p className="mt-0">{info.preview}</p>
                                         </div>
                                     </div>
                                 </Col>
                             </div>
                         </Card>
+                        </Link>
                     </Col>
                     ))}
                 </Row>
