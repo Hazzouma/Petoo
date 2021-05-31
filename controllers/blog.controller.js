@@ -24,7 +24,7 @@ exports.BlogCreate = async (req, res) => {
     
     const { nom, prenom } = foundUser; // we'reb going to add the name of the author , wether admin or Vet
     
- 
+    newBlog.preview = (newBlog.content).substring(0, 100)+ "..."
     newBlog.idBlog = uniqid("Blog-"); //Create specific Id for blog, not the mongoDB one
     newBlog.idAuthor = userID; //Added the idUser to the blog
     newBlog.author= prenom + " " + nom

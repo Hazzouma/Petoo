@@ -1,20 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import blog from "../../assets/images/blog/blog.jpg";
 import blog2 from "../../assets/images/blog/blog-2.jpg";
-import blog3 from "../../assets/images/blog/blog-3.jpg";
-import blog5 from "../../assets/images/blog/blog-5.jpg";
-import blog6 from "../../assets/images/blog/blog-6.jpg";
+// import blog3 from "../../assets/images/blog/blog-3.jpg";
+// import blog5 from "../../assets/images/blog/blog-5.jpg";
+// import blog6 from "../../assets/images/blog/blog-6.jpg";
 import { Container, Row, Col, Card, Media } from "reactstrap"
 import {MarkJecno} from "../../constant";
+import { getBlogs} from "../../redux/population/action";
+import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+
 
 const BlogDetail = () => {
+
+    const dispatch = useDispatch();
+  const blogs = useSelector((state) => state.populationReducer.blogs);
+ console.log(blogs)
+  useEffect(() => {
+    dispatch(getBlogs());
+    // eslint-disable-next-line
+  }, []);
     return (
         <Fragment>
-            <Breadcrumb parent="Blog" title="Blog Details" />
+            <Breadcrumb parent="Blog" title="Blogs" />
             <Container fluid={true}>
                 <Row>
-                    <Col xl="6 box-col-12 xl-100">
+                    {/* Big Pic Blog */}
+                    {/* <Col xl="6 box-col-12 xl-100" >
                         <Card>
                             <div className="blog-box blog-shadow">
                                 <Media className="img-fluid" src={blog} alt="" />
@@ -29,115 +42,38 @@ const BlogDetail = () => {
                                 </div>
                             </div>
                         </Card>
-                    </Col>
-                    <Col xl="6 box-col-12 xl-100">
+                    </Col> */}
+                    
+                    {/* Small horizontal Blog */}
+                    {blogs.map((info, i) => (
+                    <Col xl="6 box-col-12 xl-100" key={i}>
                         <Card>
                             <div className="blog-box blog-list row">
                                 <Col sm="5">
-                                    <Media className="img-fluid sm-100-w" src={blog2} alt="" />
+                                    <Media className="img-fluid sm-100-w" src={info.blogPicture} alt="" />
                                 </Col>
                                 <Col sm="7">
                                     <div className="blog-details">
-                                        <div className="blog-date digits"><span>{"02"}</span> {"January 2019"}</div>
-                                        <h6>{"Perspiciatis unde omnis iste natus error sit voluptatem"} </h6>
+                                        <div className="blog-date digits"> {moment(
+                                                    parseInt(
+                                                      info.creationDate,
+                                                      10
+                                                    )
+                                                  ).fromNow()}</div>
+                                        <h5>{info.title} </h5>
                                         <div className="blog-bottom-content">
                                             <ul className="blog-social">
-                                                <li>{"by: Admin"}</li>
-                                                <li className="digits">{"0 Hits"}</li>
+                                                <li> by: {info.author}</li>
                                             </ul>
                                             <hr />
-                                            <p className="mt-0">{"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit."}</p>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </div>
-                        </Card>
-                        <Card>
-                            <div className="blog-box blog-list row">
-                                <Col sm="5">
-                                    <Media className="img-fluid sm-100-w" src={blog3} alt="" />
-                                </Col>
-                                <Col sm="7">
-                                    <div className="blog-details">
-                                        <div className="blog-date digits"><span>{"03"}</span> {"January 2019"}</div>
-                                        <h6>{"Perspiciatis unde omnis iste natus error sit voluptatem"} </h6>
-                                        <div className="blog-bottom-content">
-                                            <ul className="blog-social">
-                                                <li >{"by: Admin"}</li>
-                                                <li className="digits">{"02 Hits"}</li>
-                                            </ul>
-                                            <hr />
-                                            <p className="mt-0">{"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit."}</p>
+                                            <p className="mt-0">{info.preview}</p>
                                         </div>
                                     </div>
                                 </Col>
                             </div>
                         </Card>
                     </Col>
-                    <Col md="6" xl="3 box-col-6 xl-50">
-                        <Card>
-                            <div className="blog-box blog-grid text-center">
-                                <Media className="img-fluid top-radius-blog" src={blog5} alt="" />
-                                <div className="blog-details-main">
-                                    <ul className="blog-social">
-                                        <li className="digits">{"9 April 2019"}</li>
-                                        <li className="digits">{"by: Admin"}</li>
-                                        <li className="digits">{"0 Hits"}</li>
-                                    </ul>
-                                    <hr />
-                                    <h6 className="blog-bottom-details">{"Perspiciatis unde omnis iste natus error sit.Dummy text"}</h6>
-                                </div>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col md="6" xl="3 box-col-6 xl-50">
-                        <Card>
-                            <div className="blog-box blog-grid text-center">
-                                <Media className="img-fluid top-radius-blog" src={blog6} alt="" />
-                                <div className="blog-details-main">
-                                    <ul className="blog-social">
-                                        <li className="digits">{"9 April 2019"}</li>
-                                        <li className="digits">{"by: Admin"}</li>
-                                        <li className="digits">{"0 Hits"}</li>
-                                    </ul>
-                                    <hr />
-                                    <h6 className="blog-bottom-details">{"Perspiciatis unde omnis iste natus error sit.Dummy text"}</h6>
-                                </div>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col md="6" xl="3 box-col-6 xl-50">
-                        <Card>
-                            <div className="blog-box blog-grid text-center">
-                                <Media className="img-fluid top-radius-blog" src={blog5} alt="" />
-                                <div className="blog-details-main">
-                                    <ul className="blog-social">
-                                        <li className="digits">{"9 April 2019"}</li>
-                                        <li className="digits">{"by: Admin"}</li>
-                                        <li className="digits">{"0 Hits"}</li>
-                                    </ul>
-                                    <hr />
-                                    <h6 className="blog-bottom-details">{"Perspiciatis unde omnis iste natus error sit.Dummy text"}</h6>
-                                </div>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col md="6" xl="3 box-col-6 xl-50">
-                        <Card>
-                            <div className="blog-box blog-grid text-center">
-                                <Media className="img-fluid top-radius-blog" src={blog6} alt="" />
-                                <div className="blog-details-main">
-                                    <ul className="blog-social">
-                                        <li className="digits">{"9 April 2019"}</li>
-                                        <li className="digits">{"by: Admin"}</li>
-                                        <li className="digits">{"0 Hits"}</li>
-                                    </ul>
-                                    <hr />
-                                    <h6 className="blog-bottom-details">{"Perspiciatis unde omnis iste natus error sit.Dummy text"}</h6>
-                                </div>
-                            </div>
-                        </Card>
-                    </Col>
+                    ))}
                 </Row>
             </Container>
         </Fragment>

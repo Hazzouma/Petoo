@@ -4,6 +4,7 @@ const {
   GET_PETS,
   FAIL_POPULATION,
   VIDE_ERRORS,
+  GET_BLOGS,
 } = require("../actionTypes");
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   owners: [],
   vetos: [],
   pets: [],
+  blogs: [],
 };
 
 const populationReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +24,8 @@ const populationReducer = (state = initialState, { type, payload }) => {
       return { ...state, vetos: payload.foundAllVetos, msg: payload.msg };
     case GET_PETS:
       return { ...state, owners: payload.foundAllPets, msg: payload.msg };
+    case GET_BLOGS:
+      return { ...state, blogs:  payload.foundAllBlogs, msg: payload.msg };
     case FAIL_POPULATION:
       return { ...state, errors: payload };
     case VIDE_ERRORS:

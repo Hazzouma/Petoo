@@ -5,6 +5,7 @@ const {
   GET_PETS,
   FAIL_POPULATION,
   VIDE_ERRORS,
+  GET_BLOGS,
 } = require("../actionTypes");
 
 export const videErrors = () => {
@@ -39,6 +40,19 @@ export const getPets = () => async (dispatch) => {
       `${process.env.PUBLIC_URL}/api/pet/getAllPets`
     );
     dispatch({ type: GET_PETS, payload: result.data });
+  } catch (error) {
+    dispatch({ type: FAIL_POPULATION, payload: error.response.data.errors });
+  }
+};
+
+
+// get All Blogs
+export const getBlogs = () => async (dispatch) => {
+  try {
+    let result = await axios.get(
+      `${process.env.PUBLIC_URL}/api/blog/getAllBlogs`
+    );
+    dispatch({ type: GET_BLOGS, payload: result.data });
   } catch (error) {
     dispatch({ type: FAIL_POPULATION, payload: error.response.data.errors });
   }
