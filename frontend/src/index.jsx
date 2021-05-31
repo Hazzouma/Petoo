@@ -20,7 +20,8 @@ import { routesAdmin, routesOwner, routesVet } from "./route";
 // Signin page
 import Signin from "./auth/signin";
 import LP from "./landing/Lp";
-
+import BlogDetailHome from './components/blog/blogDetailHome';
+import BlogSingleHome from './components/blog/blogSingleHome'
 // Authentication
 // import Login from "./pages/authentication/login";
 // import LoginWithBgImage from "./pages/authentication/loginWithBgImage";
@@ -93,10 +94,20 @@ const Root = (props) => {
       <Provider store={store}>
         <BrowserRouter basename={`/`}>
           <Switch>
-            <Route
+          <Route
               exact
               path={`${process.env.PUBLIC_URL}/home`}
               component={LP}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/home/blogDetail`}
+              component={BlogDetailHome}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/home/blogSingle/:id`}
+              component={BlogSingleHome}
             />
             <Route
               path={`${process.env.PUBLIC_URL}/registerVet`}

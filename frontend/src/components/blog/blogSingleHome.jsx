@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import {Container,Row,Col,Media} from "reactstrap";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { getBlogs} from "../../redux/population/action";
+import { useSelector, useDispatch } from "react-redux";
 
-const BlogSingle = () => {
+const BlogSingleHome = () => {
+    const dispatch = useDispatch();
     let idBlog = useParams();
     const blogs = useSelector((state) => state.populationReducer.blogs);
     // eslint-disable-next-line
@@ -13,17 +15,23 @@ const BlogSingle = () => {
       // eslint-disable-next-line
       return true;
   });
+  console.log(bloginfos)
+
+  useEffect(() => {
+    dispatch(getBlogs());
+    // eslint-disable-next-line
+  }, []);
 
     return (
         <Fragment>
 
             <Breadcrumb parent="Blogs" title={bloginfos && bloginfos.title}/>
-            <Container fluid={true}>
-                <Row>
-                    <Col sm="12" style={{padding:"20px"}}>
-                        <div className="blog-single">
-                            <div className="blog-box blog-details">
-                                <Media className="img-fluid w-100" src={bloginfos && bloginfos.blogPicture} alt="blog-main" style={{borderRadius: "50px"}} />
+            <Container fluid={true} >
+                <Row  className="justify-content-md-center" >
+                    <Col sm={8} style={{margin: "30px"}} style={{borderStyle: "outset", borderRadius: "50px", padding:"20px"}} >
+                        <div className="blog-single" >
+                            <div className="blog-box blog-details" >
+                                <Media className="img-fluid w-100" style={{borderRadius: "50px"}} src={bloginfos && bloginfos.blogPicture} alt="blog-main" />
                                 <div className="blog-details">
                                     <ul className="blog-social">
                                         <li className="digits">{bloginfos && bloginfos.creationDate}</li>
@@ -147,4 +155,4 @@ const BlogSingle = () => {
     );
 };
 
-export default BlogSingle;
+export default BlogSingleHome;

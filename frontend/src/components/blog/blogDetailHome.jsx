@@ -7,7 +7,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 
-const BlogDetail = () => {
+const BlogDetailHome = () => {
 
     const dispatch = useDispatch();
   const blogs = useSelector((state) => state.populationReducer.blogs);
@@ -42,11 +42,11 @@ const BlogDetail = () => {
                     {/* Small horizontal Blog */}
                     {blogs.map((info, i) => (
                     <Col  key={i} sm={8} style={{margin: "30px"}} >
-                        <Link to={`/dashboard/blogSingle/${info.idBlog}`}>
+                        <Link to={`/home/blogSingle/${info.idBlog}`}>
                         <Card style={{borderStyle: "outset"}}>
                             <div className="blog-box blog-list row">
                                 <Col sm="5">
-                                    <Media className="img-fluid sm-100-w" src={info.blogPicture} alt="" style={{borderRadius: "30px"}} />
+                                    <Media className="img-fluid sm-100-w" src={info.blogPicture} alt=""  style={{borderRadius: "30px"}} />
                                 </Col>
                                 <Col sm="7">
                                     <div className="blog-details">
@@ -77,4 +77,4 @@ const BlogDetail = () => {
     );
 };
 
-export default BlogDetail;
+export default BlogDetailHome;

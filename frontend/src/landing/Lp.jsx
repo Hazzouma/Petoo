@@ -63,6 +63,11 @@ const LP = () => {
               </a>
             </li>
             <li>
+              <a href='/home/blogDetail' className='page-scroll'>
+                Blog
+              </a>
+            </li>
+            <li>
               <a href='/login' className='page-scroll'>
                 Log In
               </a>
