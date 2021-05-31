@@ -6,7 +6,7 @@ const {
   ResetPassword,
   validateOTP,
   allOwners,
-  OwnerEdit
+  OwnerEdit,
 } = require("../controllers/owner.controller");
 const {
   validation,
@@ -24,7 +24,10 @@ routerOwner.post("/login", loginValidate(), validation, Login);
 
 //Utilisateur authentifié
 routerOwner.get("/dashboard/default/current", isAuth, (req, res) => {
-  res.send({ msg: "Welcome", userLogged: req.userLogged });
+  res.send({
+    msg: `Welcome ${req.userLogged.prenom}`,
+    userLogged: req.userLogged,
+  });
 });
 
 //utilisateur a oublié son password
@@ -37,7 +40,7 @@ routerOwner.post("/forgetPwd", validReset(), validation, validateOTP);
 routerOwner.get("/getAllOwners", allOwners);
 
 //EditOwer
-routerOwner.get("/edit", OwnerEdit)
+routerOwner.post("/editUser", OwnerEdit);
 
 // // Find Owner by idUser && Send Full info
 // routerOwner.get("/find/:idUser", async (req, res, next) => {

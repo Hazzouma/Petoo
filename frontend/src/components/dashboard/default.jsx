@@ -27,8 +27,10 @@ import {
   JohnLoren,
 } from "../../constant";
 import Slider from "react-slick";
+// import { current } from "../../redux/currentUser/action";
 
 const Default = (props) => {
+  const dispatch = useDispatch();
   const [daytimes, setDayTimes] = useState();
   const today = new Date();
   const curHr = today.getHours();
@@ -46,9 +48,8 @@ const Default = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const { profilePicture, idUser } = useSelector(
-    (state) => state.currentUser.user
-  );
+  const { profilePicture } = useSelector((state) => state.currentUser.user);
+
   useEffect(() => {
     if (curHr < 12) {
       setDayTimes("Good Morning");
@@ -63,9 +64,9 @@ const Default = (props) => {
     } else {
       setMeridiem("AM");
     }
-
+    console.log(msg);
     // eslint-disable-next-line
-  }, [idUser]);
+  }, [msg]);
 
   return (
     <Fragment>
@@ -120,11 +121,12 @@ const Default = (props) => {
                   <Row
                     style={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "space-evenly",
                       paddingBottom: "2.5%",
+                      // alignItems: "center",
                     }}
                   >
-                    <div style={{ padding: "1%" }}>
+                    <div style={{ padding: "3%" }}>
                       <img
                         src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
                         style={{
@@ -138,7 +140,7 @@ const Default = (props) => {
                         alt='Pet Pic :)'
                       />
                     </div>
-                    <div style={{ padding: "1%" }}>
+                    <div style={{ padding: "3%" }}>
                       <img
                         src='https://jardinage.lemonde.fr/images/dossiers/2019-10/cacatoes-1-094044.jpg'
                         style={{
@@ -152,7 +154,7 @@ const Default = (props) => {
                         alt='Pet Pic :)'
                       />
                     </div>
-                    <div style={{ padding: "1%" }}>
+                    <div style={{ padding: "3%" }}>
                       <img
                         src='https://timesofindia.indiatimes.com/photo/67586673.cms'
                         style={{

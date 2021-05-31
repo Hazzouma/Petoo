@@ -7,7 +7,6 @@ const {
 
 const initialState = {
   isRead: false,
-  // isReadAt: "",
   msg: "",
   creationDate: "",
   errors: [],
@@ -19,7 +18,7 @@ const notifReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_NOTIFS:
       return {
         ...state,
-        allNotifArray: payload.arr,
+        allNotifArray: payload.arr.reverse(),
         msg: payload.msg,
       };
     case CHECK_ALL_NOTIFS:

@@ -10,7 +10,6 @@ import {
   Label,
   Input,
   Button,
-
 } from "reactstrap";
 import {
   NewPassword,
@@ -69,7 +68,6 @@ const Forgetpwd = (props) => {
       setOpenDoneReset(!openDoneReset);
     }
     console.log(openDoneReset + " reset");
-    console.log(openDone);
   };
   const validEmail = useSelector((state) => state.userReducer.user);
   // console.log(validEmail);
@@ -81,13 +79,13 @@ const Forgetpwd = (props) => {
       );
   };
   const Onpaste = (e) => {
-   let clipboardData = e.clipboardData || window.clipboardData;
-   let pastedData = clipboardData.getData('Text');
-      if (pastedData) {
-        setOtp2(pastedData[2]+pastedData[3])
-        setOtp3(pastedData[4]+pastedData[5])
-      }
-  }
+    let clipboardData = e.clipboardData || window.clipboardData;
+    let pastedData = clipboardData.getData("Text");
+    if (pastedData) {
+      setOtp2(pastedData[2] + pastedData[3]);
+      setOtp3(pastedData[4] + pastedData[5]);
+    }
+  };
   const handleChange = (e) => {
     setPassword(e.target.value);
   };
@@ -285,7 +283,7 @@ const Forgetpwd = (props) => {
                   </FormGroup>
                   <p className='mt-4 mb-0'>
                     {"Already have an password?"}
-                    <Link className='ml-2' to='/cuba/login'>
+                    <Link className='ml-2' to='/login'>
                       {SignIn}
                     </Link>
                   </p>

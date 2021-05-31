@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Loader from "../layout/loader";
 import Taptop from "../layout/tap-top";
 import Header from "../layout/header";
@@ -19,6 +19,7 @@ import { getVets } from "../redux/population/action";
 
 const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
+  // const msg = useSelector((s) => s.currentUser.msg);
   let token = localStorage.getItem("token");
   const role = useSelector((state) => state.currentUser.user.role);
   const idUser = useSelector((state) => state.currentUser.user.idUser);
@@ -32,8 +33,8 @@ const App = ({ children, getWhichUser }) => {
     dispatch(getMyPets(idUser)); //get my pets
     if (notification) {
       toast.success(notification, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 10000, //stay 10 secondes
+        position: toast.POSITION.TOP_LEFT,
+        autoClose: 5000, //stay 10 secondes
       });
       dispatch(videErrors());
     }

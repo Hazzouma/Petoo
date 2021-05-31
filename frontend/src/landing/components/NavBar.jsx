@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { appLinks } from "./navData";
 import menuBar from "../../assets/images/menu.svg";
- import petooLogo from "../../assets/images/logo/logo.png";
- import logo from "../../assets/images/logo/login.png";
+import petooLogo from "../../assets/images/logo/logo.png";
+import logo from "../../assets/images/logo/login.png";
 import { FiSearch } from "react-icons/fi";
-import { GrNotification } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import "./CSS/NavBar.css";
 function NavBar() {
-  const [isLogin, setIsLogin] = useState(false);
   const [showNav, setShowNav] = useState(false);
   return (
     <nav className='navigation'>
@@ -28,20 +26,16 @@ function NavBar() {
             ))}
           </ul>
         </div>
-      
-          <div className='rightLinks-max'>
-              <Link className='ml-2' to='/register'>
-              <button className='loginBtn' >
-                Sign Up
-              </button>
-              </Link>
-              <Link className='ml-2' to='/login'>
-              <button className='loginBtn' >
-                Log in
-              </button>
-              </Link>
-          </div>
-       
+
+        <div className='rightLinks-max'>
+          <Link className='ml-2' to='/register'>
+            <button className='loginBtn'>Sign Up</button>
+          </Link>
+          <Link className='ml-2' to='/login'>
+            <button className='loginBtn'>Log in</button>
+          </Link>
+        </div>
+
         {/*  Nav On 1024px is shown  */}
         <div className='SearchIcon'>
           <FiSearch size={35} style={{ margin: "0 50px" }} />
@@ -66,23 +60,17 @@ function NavBar() {
             </li>
           ))}
         </ul>
-       
-          <div className='rightLinks'>
-            <div className='bttns'>
-              
+
+        <div className='rightLinks'>
+          <div className='bttns'>
             <Link className='ml-2' to='/register'>
-              <button className='loginBtn' >
-                Log in
-              </button>
-              </Link>
-              <Link className='ml-2' to='/login'>
-              <button className='loginBtn' >
-                Log in
-              </button>
-              </Link>
-            </div>
+              <button className='loginBtn'>Log in</button>
+            </Link>
+            <Link className='ml-2' to='/login'>
+              <button className='loginBtn'>Log in</button>
+            </Link>
           </div>
-        
+        </div>
       </div>
     </nav>
   );

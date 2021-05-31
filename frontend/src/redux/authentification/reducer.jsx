@@ -40,10 +40,15 @@ const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, user: payload.foundOwner, load: false, isAuth: true };
     case FAIL_USER:
       return { ...state, errors: payload, msg: "", load: false };
-      case(RESET_USER):
+    case RESET_USER:
       return {
-         ...state, user:{} , errors:[], isAuth: false, load: false, msg:""
-      }
+        ...state,
+        user: {},
+        errors: [],
+        isAuth: false,
+        load: false,
+        msg: "",
+      };
     case LOGOUT_USER:
       localStorage.removeItem("token");
       return { ...state, user: {}, isAuth: false };

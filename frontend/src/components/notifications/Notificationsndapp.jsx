@@ -17,46 +17,50 @@ import {
   Button,
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { MoreHorizontal } from "react-feather";
 import { Link } from "react-router-dom";
 import { getALLNotif } from "../../redux/notification/action";
 import moment from "moment";
 import {
   videErrors,
-  acceptAppointmentByOwner,
   acceptAppointmentByVet,
 } from "../../redux/appointmentAction/action";
 import { getMyAppointments } from "../../redux/currentUser/action";
 const Notifndapp = (props) => {
   const dispatch = useDispatch();
-  const notifications = useSelector(
-    (state) => state.notifReducer.allNotifArray
-  );
+  const notifs = useSelector((state) => state.notifReducer.allNotifArray);
   const pendingAppointments = useSelector(
     (content) => content.currentUser.myAppointments
   );
-  const [activeTab, setActiveTab] = useState("0");
+  const [activeTab, setActiveTab] = useState("1");
   const { prenom, nom, email, profilePicture, idUser } = useSelector(
     (state) => state.currentUser.user
   );
+
   const confirmAppo = (vetID, petID, ownerID, appointmentID) =>
     dispatch(acceptAppointmentByVet(vetID, petID, ownerID, appointmentID));
+
+  const [notifications, setNotifications] = useState(notifs);
+
   const role = useSelector((state) => state.currentUser.user.role);
   const vets = useSelector((state) => state.populationReducer.vetos);
   const appo = useSelector((state) => state.currentUser.myAppointments);
   const pets = useSelector((state) => state.currentUser.myPets);
   const notif = useSelector((state) => state.appReducer.msg);
+  const gotNotifs = useSelector((state) => state.notifReducer.msg);
+
   useEffect(() => {
+    dispatch(getALLNotif(idUser));
+    setNotifications(notifs);
     if (notif) {
       dispatch(getMyAppointments(idUser));
-      dispatch(getALLNotif(idUser));
       toast.success(notif, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 7000,
       });
       dispatch(videErrors());
     }
-  }, [notif]);
+    // eslint-disable-next-line
+  }, [notif, gotNotifs]);
   return (
     <Fragment>
       <Breadcrumb parent='Apps' title='Tasks' />
@@ -143,9 +147,12 @@ const Notifndapp = (props) => {
                         </li>
                         <NavItem>
                           <a
-                            href='#javaScript'
+                            href='#'
                             className={activeTab === "6" ? "active" : ""}
-                            onClick={() => setActiveTab("6")}
+                            onClick={
+                              () => setActiveTab("6")
+                              // setNotifications(notifs);
+                            }
                           >
                             <span className='title'> All Notifications</span>
                           </a>
@@ -168,7 +175,7 @@ const Notifndapp = (props) => {
                       <TabPane tabId='1' activeTab={activeTab}>
                         <Card className='mb-0'>
                           <CardHeader className='d-flex'>
-                            <h6 className='mb-0 f-w-600'>All Appoiments</h6>
+                            <h6 className='mb-0 f-w-600'>All Appointments</h6>
                           </CardHeader>
                         </Card>
                         <tr>
@@ -230,33 +237,32 @@ const Notifndapp = (props) => {
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {notifications.length > 0 ? (
-                                      notifications
-                                        .reverse()
-                                        .map((notif, index) => {
-                                          return (
-                                            <tr key={index}>
-                                              <td>
-                                                <h6 className='task_title_0'>
-                                                  {prenom}
-                                                </h6>
-                                                <p className='project_name_0'>
-                                                  {moment(
-                                                    parseInt(
-                                                      notif.creationDate,
-                                                      10
-                                                    )
-                                                  ).fromNow()}
-                                                </p>
-                                              </td>
-                                              <td>
-                                                <p className='task_desc_0'>
-                                                  {notif.msg}
-                                                </p>
-                                              </td>
-                                            </tr>
-                                          );
-                                        })
+                                    {notifications &&
+                                    notifications.length > 0 ? (
+                                      notifications.map((notif, index) => {
+                                        return (
+                                          <tr key={index}>
+                                            <td>
+                                              <h6 className='task_title_0'>
+                                                {prenom}
+                                              </h6>
+                                              <p className='project_name_0'>
+                                                {moment(
+                                                  parseInt(
+                                                    notif.creationDate,
+                                                    10
+                                                  )
+                                                ).fromNow()}
+                                              </p>
+                                            </td>
+                                            <td>
+                                              <p className='task_desc_0'>
+                                                {notif.msg}
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        );
+                                      })
                                     ) : (
                                       <tr>
                                         <td>
@@ -415,8 +421,9 @@ const Notifndapp = (props) => {
                                     pendingAppointments.length > 0 &&
                                     (role === "petOwner" ||
                                       role === "Admin") ? (
-                                      pendingAppointments.map(
-                                        (pendApp, index) => {
+                                      pendingAppointments
+                                        .reverse()
+                                        .map((pendApp, index) => {
                                           if (
                                             pendApp &&
                                             pendApp.confirmedByOwner &&
@@ -440,13 +447,13 @@ const Notifndapp = (props) => {
                                                 </td>
                                               </tr>
                                             );
-                                        }
-                                      )
+                                        })
                                     ) : pendingAppointments &&
                                       pendingAppointments.length > 0 &&
                                       role === "Veterinary" ? (
-                                      pendingAppointments.map(
-                                        (pendApp, index) => {
+                                      pendingAppointments
+                                        .reverse()
+                                        .map((pendApp, index) => {
                                           if (
                                             pendApp &&
                                             pendApp.confirmedByOwner &&
@@ -472,8 +479,7 @@ const Notifndapp = (props) => {
                                               </tr>
                                             );
                                           else return "";
-                                        }
-                                      )
+                                        })
                                     ) : (
                                       <tr>
                                         <td>
@@ -503,8 +509,9 @@ const Notifndapp = (props) => {
                                     {pendingAppointments &&
                                     pendingAppointments.length > 0 &&
                                     role === "Veterinary" ? (
-                                      pendingAppointments.map(
-                                        (pendApp, index) => {
+                                      pendingAppointments
+                                        .reverse()
+                                        .map((pendApp, index) => {
                                           if (
                                             pendApp.confirmedByOwner &&
                                             !pendApp.confirmedByVet
@@ -543,15 +550,15 @@ const Notifndapp = (props) => {
                                                 </td>
                                               </tr>
                                             );
-                                        }
-                                      )
+                                        })
                                     ) : pendingAppointments &&
                                       pendingAppointments.length > 0 &&
                                       (role === "petOwner" ||
                                         role === "Admin") &&
                                       pendingAppointments[0].confirmedByVet ? (
-                                      pendingAppointments.map(
-                                        (pendApp, index) => {
+                                      pendingAppointments
+                                        .reverse()
+                                        .map((pendApp, index) => {
                                           if (
                                             pendApp &&
                                             !pendApp.confirmedByOwner &&
@@ -578,8 +585,7 @@ const Notifndapp = (props) => {
                                               </tr>
                                             );
                                           else return "";
-                                        }
-                                      )
+                                        })
                                     ) : (
                                       <tr>
                                         <td>
@@ -608,8 +614,9 @@ const Notifndapp = (props) => {
                                     pendingAppointments.length > 0 &&
                                     (role === "petOwner" ||
                                       role === "Admin") ? (
-                                      pendingAppointments.map(
-                                        (pendApp, index) => {
+                                      pendingAppointments
+                                        .reverse()
+                                        .map((pendApp, index) => {
                                           const theVet =
                                             vets &&
                                             vets.find(
@@ -649,8 +656,7 @@ const Notifndapp = (props) => {
                                                 </td> */}
                                               </tr>
                                             );
-                                        }
-                                      )
+                                        })
                                     ) : (
                                       <tr>
                                         <td>
@@ -676,6 +682,7 @@ const Notifndapp = (props) => {
                                   <thead></thead>
                                   <tbody>
                                     {notifications.length && false ? (
+                                      notifications &&
                                       notifications.map((pendApp, index) => {
                                         return (
                                           <CardBody className='pt-0'>

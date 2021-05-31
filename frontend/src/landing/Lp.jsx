@@ -1,48 +1,57 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { useState, useEffect } from 'react'
-import { Navigation } from './components/navigation'
-import { Header } from './components/header'
-import { Features } from './components/features'
-import { About } from './components/about'
-import { Services } from './components/services'
-import { Gallery } from './components/gallery'
-import { Testimonials } from './components/testimonials'
-import { Team } from './components/Team'
-import "./Lp.css"
-import JsonData from './data/data.json'
-import SmoothScroll from 'smooth-scroll'
+import React from "react";
+import { useState, useEffect } from "react";
+// import { Navigation } from './components/navigation'
+import { Header } from "./components/header";
+// import { Features } from './components/features'
+import { About } from "./components/about";
+import { Services } from "./components/services";
+// import { Gallery } from './components/gallery'
+import { Testimonials } from "./components/testimonials";
+import { Team } from "./components/Team";
+import "./Lp.css";
+import JsonData from "./data/data.json";
+import SmoothScroll from "smooth-scroll";
 import logo from "../assets/images/logo/login.png";
-import './style.css'
-// 
-
+import "./style.css";
+//
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
-})
+});
 
 const LP = () => {
-  const [landingPageData, setLandingPageData] = useState({})
+  const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
-    setLandingPageData(JsonData)
-  }, [])
+    setLandingPageData(JsonData);
+  }, []);
 
   return (
-    <div> 
-     
-      
-    <nav style={{ display:"flex", alignItems:'center'}}>
-      <a href='/'  style={{paddingRight:'50px'}}>
-        <img src={logo} alt='LOGO' className='logoClassSmall' />
-      </a>
-      <div style={{ display:"flex", width:'100%', justifyContent:'space-between'}}>
-      <ul style={{ display:"flex", fontSize:'24px',width:'100%', justifyContent:'space-around'}}>
-        <li style={{paddingLeft:'35px'}}>
-          <a href='#about' className='page-scroll'>
-            About
-          </a>
-        </li>
+    <div>
+      <nav style={{ display: "flex", alignItems: "center" }}>
+        <a href='/' style={{ paddingRight: "50px" }}>
+          <img src={logo} alt='LOGO' className='logoClassSmall' />
+        </a>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <ul
+            style={{
+              display: "flex",
+              fontSize: "24px",
+              width: "100%",
+              justifyContent: "space-around",
+            }}
+          >
+            <li style={{ paddingLeft: "35px" }}>
+              <a href='#about' className='page-scroll'>
+                About
+              </a>
+            </li>
             <li>
               <a href='#services' className='page-scroll'>
                 Services
@@ -69,22 +78,17 @@ const LP = () => {
               </a>
             </li>
           </ul>
-      </div>
-    </nav>
+        </div>
+      </nav>
 
-
-
-
-      
       <Header />
-      
+
       <About data={landingPageData.About} />
       <Services data={landingPageData.Services} />
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
-
     </div>
-  )
-}
+  );
+};
 
-export default LP
+export default LP;

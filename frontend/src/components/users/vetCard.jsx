@@ -24,13 +24,11 @@ import {
 import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import moment from "moment";
+// import moment from "moment";
 import {
   addAppointmentByOwner,
   videErrors,
 } from "../../redux/appointmentAction/action";
-
-import TimePickerFour from "../forms/form-widget/timepickerComponent/timepicker-four";
 
 const VetCard = (props) => {
   const dispatch = useDispatch();
@@ -94,6 +92,7 @@ const VetCard = (props) => {
       });
       dispatch(videErrors());
     }
+    // eslint-disable-next-line
   }, [vets, pets, notification, idOwner]);
   // eslint-disable-next-line
 
@@ -112,7 +111,7 @@ const VetCard = (props) => {
                     <Media
                       body
                       alt=''
-                      src={vetinfos.profilePicture}
+                      src={vetinfos && vetinfos.profilePicture}
                       data-intro='This is Profile image'
                     />
                   </div>
@@ -126,7 +125,7 @@ const VetCard = (props) => {
                             <h6>
                               <i className='fa fa-envelope mr-2'></i> Email
                             </h6>
-                            <span>{vetinfos.email}</span>
+                            <span>{vetinfos && vetinfos.email}</span>
                           </div>
                         </Col>
                         <Col md='5'>
@@ -144,10 +143,13 @@ const VetCard = (props) => {
                       <div className='user-designation'>
                         <div className='title'>
                           <a target='_blank' href='#javascript'>
-                            {vetinfos.prenom} {vetinfos.nom}
+                            {vetinfos && vetinfos.prenom}{" "}
+                            {vetinfos && vetinfos.nom}
                           </a>
                         </div>
-                        <div className='desc mt-2'>{vetinfos.role} </div>
+                        <div className='desc mt-2'>
+                          {vetinfos && vetinfos.role}{" "}
+                        </div>
                       </div>
                     </Col>
 
@@ -158,7 +160,7 @@ const VetCard = (props) => {
                             <h6>
                               <i className='fa fa-phone'></i> Phone
                             </h6>
-                            <span>{vetinfos.phoneNumber}</span>
+                            <span>{vetinfos && vetinfos.phoneNumber}</span>
                           </div>
                         </Col>
                         <Col md='6'>
@@ -167,7 +169,7 @@ const VetCard = (props) => {
                               <i className='fa fa-location-arrow'></i>
                                  Location
                             </h6>
-                            <span>{vetinfos.ville}</span>
+                            <span>{vetinfos && vetinfos.ville}</span>
                           </div>
                         </Col>
                       </Row>
@@ -181,8 +183,8 @@ const VetCard = (props) => {
                         <div className='follow-num counter'>
                           {" "}
                           <h4>
-                            {vetinfos.adresse} , {vetinfos.codePostale} ,
-                            Tunisia{" "}
+                            {vetinfos && vetinfos.adresse} ,{" "}
+                            {vetinfos && vetinfos.codePostale} , Tunisia{" "}
                           </h4>
                         </div>
                       </Col>
@@ -223,7 +225,7 @@ const VetCard = (props) => {
                       }}
                       role='button'
                     >
-                      <h6 className='txt-primary'>{pet.name}</h6>
+                      <h6 className='txt-primary'>{pet && pet.name}</h6>
                       <img
                         src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
                         style={{

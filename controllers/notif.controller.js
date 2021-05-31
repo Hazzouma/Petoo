@@ -56,8 +56,8 @@ exports.markReadNotif = async (req, res) => {
 //getting all notifs for the current user
 exports.getNotif = async (req, res) => {
   try {
-    const idUser = req.body;
-    const foundOwner = await ownerModel.findOne(idUser); //hatitha entre () mich {} khater ena badalt fel redux ki nab3athha b3aththa men ghadi objet , kenet ghalta khater
+    const { idUser } = req.body;
+    const foundOwner = await ownerModel.findOne({ idUser }); //hatitha entre () mich {} khater ena badalt fel redux ki nab3athha b3aththa men ghadi objet , kenet ghalta khater
 
     if (!foundOwner)
       //check owner exists

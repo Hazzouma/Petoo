@@ -135,15 +135,32 @@ exports.allOwners = async (req, res) => {
 
 exports.OwnerEdit = async (req, res) => {
   try {
-    const { idOwner } = req.params;
-  
-    let newData = await ownerModel.findOneAndUpdate(
-      { idUser: idOwner  },
-      { $set: { ...req.body } },
-      { new: true }
-    );
-    console.log(newData);
-    res.status(200).send({ msg: "Profile edited successfully", newData });
+    const { user } = req.body;
+    if (!user)
+      return res
+        .status(404)
+        .send({ errors: [{ msg: "Something went wrong!" }] });
+    const { idUser, password } = user;
+    let foundUser = await ownerModel.findOne({ idUser });
+    if (password) {
+      //if pass has ben changed
+      newPassword = passwordHash.generate(password); //crypt
+      foundUser = await ownerModel.findOneAndUpdate(
+        { idUser },
+        {
+          $set: { ...user, password: newPassword },
+        }
+      );
+    } else {
+      //if NOT
+      foundUser = await ownerModel.findOneAndUpdate(
+        { idUser },
+        {
+          $set: { ...user },
+        }
+      );
+    }
+    res.status(200).send({ msg: "Profile edited successfully!", foundUser });
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not modify!" }] });

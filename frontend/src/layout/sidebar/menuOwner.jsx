@@ -1,8 +1,14 @@
-import { Home, Users, ShoppingBag, Image, Film, Command,Box, Calendar
-
+import {
+  Home,
+  Users,
+  ShoppingBag,
+  Image,
+  Film,
+  Command,
+  Box,
+  Calendar,
 } from "react-feather";
 export const MENUITEMSOwner = [
-
   {
     menutitle: "Applications",
     menucontent: "Ready to use Apps",
@@ -10,7 +16,7 @@ export const MENUITEMSOwner = [
       {
         path: `${process.env.PUBLIC_URL}/dashboard`,
         icon: Home,
-        badge:"badge badge-primary",
+        badge: "badge badge-primary",
         badgetxt: "Home",
         title: "Dashboard ",
         type: "link",
@@ -36,10 +42,10 @@ export const MENUITEMSOwner = [
             title: "Product List",
             type: "link",
           },
-          
+
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/orderhistory`,
-            title: "Order History",
+            title: "My Order History",
             type: "link",
           },
           {
@@ -56,24 +62,24 @@ export const MENUITEMSOwner = [
         title: "Vet List ",
         type: "link",
       },
-      
+
       {
         path: `${process.env.PUBLIC_URL}/dashboard/petList`,
         icon: Box,
-        title: "Pet List ",
+        title: "My Pet List ",
         type: "link",
       },
 
       {
         path: `${process.env.PUBLIC_URL}/dashboard/CreatePet`,
         icon: Command,
-        title: "Create a Pet ",
+        title: "Add my Pet ",
         type: "link",
       },
-      
+
       {
         path: `${process.env.PUBLIC_URL}/dashboard/appoiments`,
-        icon:  Calendar,
+        icon: Calendar,
         title: "Appoitments ",
         type: "link",
       },
@@ -84,7 +90,7 @@ export const MENUITEMSOwner = [
         title: "Gallery ",
         type: "link",
       },
-      
+
       {
         title: "Blog",
         icon: Film,
@@ -101,13 +107,8 @@ export const MENUITEMSOwner = [
             title: "Blog Single",
             type: "link",
           },
-        
         ],
       },
     ],
   },
-
-
-
-  
 ];

@@ -1,4 +1,5 @@
 import {
+  USER_EDITED,
   CURRENT_USER,
   VIDE_ERRORS,
   FAIL_APP,
@@ -43,8 +44,9 @@ export const getMyPets = (idUser) => async (dispatch) => {
     );
     dispatch({ type: GET_MY_PETS, payload: result.data });
   } catch (errors) {
-/*     dispatch({ type: FAIL_PET, payload: errors.response.data.errors });
- */  }
+    /*     dispatch({ type: FAIL_PET, payload: errors.response.data.errors });
+     */
+  }
 };
 
 //get current user appointments
@@ -57,6 +59,20 @@ export const getMyAppointments = (idUser) => async (dispatch) => {
     );
     dispatch({ type: GET_MY_APPOINTMENTS, payload: result.data });
   } catch (error) {
+    dispatch({ type: FAIL_APP, payload: error.response.data.errors });
+  }
+};
+
+//modif profile
+export const userEdit = (user, history) => async (dispatch) => {
+  try {
+    let result = await axios.post(`${process.env.PUBLIC_URL}/api/editUser`, {
+      user,
+    });
+    dispatch({ type: USER_EDITED, payload: result.data });
+    history.push(`${process.env.PUBLIC_URL}/dashboard`);
+  } catch (error) {
+    console.log(error);
     dispatch({ type: FAIL_APP, payload: error.response.data.errors });
   }
 };

@@ -100,6 +100,7 @@ export const VALIDATE_OTP = "VALIDATE_OTP";
 export const VIDE_ERRORS = "VIDE_ERRORS";
 export const RESET_USER = "RESET_USER";
 export const ADD_VET = "ADD_VET";
+export const USER_EDITED = "USER_EDITED";
 
 /* PET ACTIONS */
 export const ADD_PET = "ADD_PET";
@@ -138,7 +139,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const VIDE_ERRORS_MSG_ = "VIDE_ERRORS_MSG_";
 
 /*Blog*/
-  
+
 export const ADD_BLOG = "ADD_BLOG";
 export const FAIL_BLOG = "FAIL_BLOG";
 export const LOAD_BLOG = "LOAD_BLOG";

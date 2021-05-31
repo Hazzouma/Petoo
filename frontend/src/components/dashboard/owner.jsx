@@ -11,9 +11,11 @@ import {
   CardHeader,
   CardBody,
   // CardFooter,
-  Media
+  Media,
 } from "reactstrap";
 import { Clock } from "react-feather";
+import { current, videErrors } from "../../redux/currentUser/action";
+
 import {
   CouponCode,
   NewsUpdate,
@@ -27,8 +29,10 @@ import {
   JohnLoren,
 } from "../../constant";
 import Slider from "react-slick";
+import { toast } from "react-toastify";
 
 const Default = (props) => {
+  const dispatch = useDispatch();
   const [daytimes, setDayTimes] = useState();
   const today = new Date();
   const curHr = today.getHours();
@@ -46,12 +50,18 @@ const Default = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const { profilePicture, idUser } = useSelector(
-    (state) => state.currentUser.user
-  );
-  const pets = useSelector(state => state.currentUser.myPets)
+  const { profilePicture } = useSelector((state) => state.currentUser.user);
+  const pets = useSelector((state) => state.currentUser.myPets);
+  const msg = useSelector((s) => s.currentUser.msg);
 
   useEffect(() => {
+    dispatch(videErrors());
+    dispatch(current());
+    if (msg === "Profile edited successfully!")
+      toast.success(msg, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 10000,
+      });
     if (curHr < 12) {
       setDayTimes("Good Morning");
     } else if (curHr < 18) {
@@ -66,80 +76,88 @@ const Default = (props) => {
       setMeridiem("AM");
     }
 
+    dispatch(videErrors());
     // eslint-disable-next-line
-  }, [idUser]);
+  }, []);
 
   return (
     <Fragment>
-      <Breadcrumb parent="Dashboard" title="Home" />
-      <Container fluid={true}>
-        <Row className="second-chart-list third-news-update justify-content-md-center ">
+      <Breadcrumb parent='Dashboard' title='Home' />
+      <Container fluid='true'>
+        <Row className='second-chart-list third-news-update justify-content-md-center '>
           {/* Good Morning Components */}
-          <Col xl="8 xl-10" lg="12" className="morning-sec box-col-12">
-            <Card className="o-hidden profile-greeting">
+          <Col xl='8 xl-10' lg='12' className='morning-sec box-col-12'>
+            <Card className='o-hidden profile-greeting'>
               <CardBody>
-                <div className="media">
-                  <div className="badge-groups w-100">
-                    <div className="badge f-12">
+                <div className='media'>
+                  <div className='badge-groups w-100'>
+                    <div className='badge f-12'>
                       <Clock
                         style={{ width: "16px", height: "16px" }}
-                        className="mr-1"
+                        className='mr-1'
                       />
-                      <span id="txt">
+                      <span id='txt'>
                         {curHr}:{curMi < 10 ? "0" + curMi : curMi} {meridiem}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="greeting-user text-center">
-                  <div className="profile-vector d-flex justify-content-center">
-                  <Media className="rounded-circle border border-5 border-white" src={profilePicture} fluid={true} height="130px" width="130px" alt="" />
+                <div className='greeting-user text-center'>
+                  <div className='profile-vector d-flex justify-content-center'>
+                    <Media
+                      className='rounded-circle border border-5 border-white'
+                      src={profilePicture}
+                      fluid='true'
+                      height='130px'
+                      width='130px'
+                      alt=''
+                    />
                   </div>
-                  <h4 className="f-w-600">
-                    <span id="greeting">{daytimes}</span>{" "}
-                    <span className="right-circle">
-                      <i className="fa fa-check-circle f-14 middle"></i>
+                  <h4 className='f-w-600'>
+                    <span id='greeting'>{daytimes}</span>{" "}
+                    <span className='right-circle'>
+                      <i className='fa fa-check-circle f-14 middle'></i>
                     </span>
                   </h4>
                   <p>
                     <span>
                       {" "}
-                      {
-                        "You can click on your pet picture to access his profile"
-                      }
+                      {pets.length
+                        ? "You can click on your pet picture to access his profile"
+                        : "Starting exploring our website ♥"}
                     </span>
                   </p>
                   <Row
                     style={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "space-evenly",
                       paddingBottom: "2.5%",
+                      alignItems: "center",
                     }}
                   >
-                    {pets.map((pet, i) =>
-                    <Link to={`/dashboard/petProfile/${pet.idPet}`}>
-                    <div style={{ padding: "1%" }}>
-                    <h6 className="text-white">{pet.name}</h6>
-                      <img
-                        src="https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg"
-                        style={{
-                          border: "3px solid white",
-                          overflow: "hidden",
-                          position: "relative",
-                          width: "80px",
-                          height: "80px",
-                          borderRadius: "50%",
-                        }}
-                        alt="Pet Pic :)"
-                      />
-                      
-                    </div>
-                    </Link>
-                    )}
+                    {pets.map((pet, i) => (
+                      <Link to={`/dashboard/petProfile/${pet.idPet}`} key={i}>
+                        <div style={{ padding: "1%" }}>
+                          <h6 className='text-white'>{pet.name}</h6>
+                          <img
+                            src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
+                            style={{
+                              border: "3px solid white",
+                              overflow: "hidden",
+                              position: "relative",
+                              width: "80px",
+                              height: "80px",
+                              borderRadius: "50%",
+                            }}
+                            alt='Pet Pic :)'
+                          />
+                        </div>
+                      </Link>
+                    ))}
                   </Row>
-                  <Link to="/dashboard/blogDetail">
-                    <div className="whatsnew-btn">
-                      <button className="btn btn-primary">
+                  <Link to='/dashboard/blogDetail'>
+                    <div className='whatsnew-btn'>
+                      <button className='btn btn-primary'>
                         {"Whats New !"}
                       </button>
                     </div>
@@ -149,64 +167,64 @@ const Default = (props) => {
             </Card>
           </Col>
           {/* Appointments Box Starts Here */}
-          <Col xl="12" className="appointment">
+          <Col xl='12' className='appointment'>
             <Card>
-              <CardHeader className="card-no-border">
-                <div className="header-top">
-                  <h5 className="m-0">{Appointment}</h5>
-                  <div className="card-header-right-icon"></div>
+              <CardHeader className='card-no-border'>
+                <div className='header-top'>
+                  <h5 className='m-0'>{Appointment}</h5>
+                  <div className='card-header-right-icon'></div>
                 </div>
               </CardHeader>
-              <CardBody className="pt-0">
-                <div className="appointment-table table-responsive">
-                  <table className="table table-bordernone">
+              <CardBody className='pt-0'>
+                <div className='appointment-table table-responsive'>
+                  <table className='table table-bordernone'>
                     <tbody>
                       <tr>
                         <td>
                           <img
-                            className="img-fluid img-40 rounded-circle mb-3"
+                            className='img-fluid img-40 rounded-circle mb-3'
                             src={cat}
-                            alt=""
+                            alt=''
                           />
-                          <div className="status-circle bg-primary"></div>
+                          <div className='status-circle bg-primary'></div>
                         </td>
-                        <td className="img-content-box">
-                          <span className="d-block">{VenterLoren}</span>
-                          <span className="font-roboto">Now</span>
+                        <td className='img-content-box'>
+                          <span className='d-block'>{VenterLoren}</span>
+                          <span className='font-roboto'>Now</span>
                         </td>
                         <td>
-                          <p className="m-0 font-primary">{"28 Sept"}</p>
+                          <p className='m-0 font-primary'>{"28 Sept"}</p>
                         </td>
-                        <td className="text-right">
-                          <div className="button btn btn-primary">
+                        <td className='text-right'>
+                          <div className='button btn btn-primary'>
                             {Done}
-                            <i className="fa fa-check-circle ml-2"></i>
+                            <i className='fa fa-check-circle ml-2'></i>
                           </div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <img
-                            className="img-fluid img-40 rounded-circle"
+                            className='img-fluid img-40 rounded-circle'
                             src={
                               require("../../assets/images/appointment/app-ent.jpg")
                                 .default
                             }
-                            alt=""
+                            alt=''
                           />
-                          <div className="status-circle bg-primary"></div>
+                          <div className='status-circle bg-primary'></div>
                         </td>
-                        <td className="img-content-box">
-                          <span className="d-block">{JohnLoren}</span>
-                          <span className="font-roboto">{"11:00"}</span>
+                        <td className='img-content-box'>
+                          <span className='d-block'>{JohnLoren}</span>
+                          <span className='font-roboto'>{"11:00"}</span>
                         </td>
                         <td>
-                          <p className="m-0 font-primary">{"22 Sept"}</p>
+                          <p className='m-0 font-primary'>{"22 Sept"}</p>
                         </td>
-                        <td className="text-right">
-                          <div className="button btn btn-danger">
+                        <td className='text-right'>
+                          <div className='button btn btn-danger'>
                             {Pending}
-                            <i className="fa fa-check-circle ml-2"></i>
+                            <i className='fa fa-check-circle ml-2'></i>
                           </div>
                         </td>
                       </tr>
@@ -217,13 +235,13 @@ const Default = (props) => {
             </Card>
           </Col>
           {/* Appointments Box Ends Here */}
-          <Col xl="6">
+          <Col xl='6'>
             <Card>
               <CardHeader>
-                <div className="header-top">
-                  <h5 className="m-0">{NewsUpdate}</h5>
-                  <div className="card-header-right-icon">
-                    <select className="button btn btn-primary">
+                <div className='header-top'>
+                  <h5 className='m-0'>{NewsUpdate}</h5>
+                  <div className='card-header-right-icon'>
+                    <select className='button btn btn-primary'>
                       <option>{Today}</option>
                       <option>{Tomorrow}</option>
                       <option>{Yesterday}</option>
@@ -231,26 +249,26 @@ const Default = (props) => {
                   </div>
                 </div>
               </CardHeader>
-              <CardBody className="p-0">
-                <div className="news-update">
+              <CardBody className='p-0'>
+                <div className='news-update'>
                   <h6>{"36% off For pixel lights Couslations Types."}</h6>
                   <span>{"Lorem Ipsum is simply dummy..."}</span>
                 </div>
-                <div className="news-update">
+                <div className='news-update'>
                   <h6>{"We are produce new product this"}</h6>
                   <span>
                     {" "}
                     {"Lorem Ipsum is simply text of the printing... "}
                   </span>
                 </div>
-                <div className="news-update">
+                <div className='news-update'>
                   <h6>{"50% off For COVID Couslations Types."}</h6>
                   <span>{"Lorem Ipsum is simply dummy..."}</span>
                 </div>
               </CardBody>
-              <div className="card-footer">
-                <div className="bottom-btn">
-                  <a href="#javascript">{"More..."}</a>
+              <div className='card-footer'>
+                <div className='bottom-btn'>
+                  <a href='#javascript'>{"More..."}</a>
                 </div>
               </div>
             </Card>
@@ -258,58 +276,58 @@ const Default = (props) => {
           {/* New Box Ends Here */}
 
           {/* The Row containing BOTH Appointments and Best Seller Starts Here */}
-          <Col xl="6 xl-50" className="appointment-sec box-col-6">
+          <Col xl='6 xl-50' className='appointment-sec box-col-6'>
             <Row>
               {/* best Seller Box Starts Here */}
-              <Col xl="12" className="news box-col-6">
-                <Card className="offer-box">
-                  <CardBody className="p-0">
-                    <div className="offer-slider">
+              <Col xl='12' className='news box-col-6'>
+                <Card className='offer-box'>
+                  <CardBody className='p-0'>
+                    <div className='offer-slider'>
                       <div
-                        className="carousel slide"
-                        id="carouselExampleCaptions"
-                        data-ride="carousel"
+                        className='carousel slide'
+                        id='carouselExampleCaptions'
+                        data-ride='carousel'
                       >
-                        <div className="carousel-inner">
+                        <div className='carousel-inner'>
                           <Slider {...settings}>
-                            <div className="carousel-item active">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item active'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Much More Selling product"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Best Selling Product"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"78% offer"}
                                       </span>
-                                      <span className="badge badge-dotted badge-pill ml-2">
+                                      <span className='badge badge-dotted badge-pill ml-2'>
                                         {CouponCode} : {"12345"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
+                                      className='img-fluid'
                                       src={
                                         require("../../assets/images/dashboard-2/offer-shoes-3.png")
                                           .default
                                       }
-                                      alt="..."
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Women Straight Kurta"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$100.00"}
                                       </span>
                                     </div>
@@ -317,41 +335,41 @@ const Default = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="carousel-item">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Women Straight Kurta"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$100.00"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
+                                      className='img-fluid'
                                       src={
                                         require("../../assets/images/dashboard-2/offer-shoes-3.png")
                                           .default
                                       }
-                                      alt="..."
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Nike Air Shoes"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$120.55"}
                                       </span>
                                     </div>
@@ -359,44 +377,44 @@ const Default = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="carousel-item">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Maximum Selling product"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Best Selling Product"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"50% offer"}
                                       </span>
-                                      <span className="badge badge-dotted badge-pill ml-2">
+                                      <span className='badge badge-dotted badge-pill ml-2'>
                                         {CouponCode} : {"21546"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
+                                      className='img-fluid'
                                       src={
                                         require("../../assets/images/dashboard-2/offer-shoes-3.png")
                                           .default
                                       }
-                                      alt="..."
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Nike Air Shoes"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$120.55"}
                                       </span>
                                     </div>
@@ -411,55 +429,55 @@ const Default = (props) => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col xl="12 " className="news box-col-6">
-                <Card className="offer-box">
-                  <CardBody className="p-0">
-                    <div className="offer-slider">
+              <Col xl='12 ' className='news box-col-6'>
+                <Card className='offer-box'>
+                  <CardBody className='p-0'>
+                    <div className='offer-slider'>
                       <div
-                        className="carousel slide"
-                        id="carouselExampleCaptions"
-                        data-ride="carousel"
+                        className='carousel slide'
+                        id='carouselExampleCaptions'
+                        data-ride='carousel'
                       >
-                        <div className="carousel-inner">
+                        <div className='carousel-inner'>
                           <Slider {...settings}>
-                            <div className="carousel-item active">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item active'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Much More Selling product"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Best Selling Product"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"78% offer"}
                                       </span>
-                                      <span className="badge badge-dotted badge-pill ml-2">
+                                      <span className='badge badge-dotted badge-pill ml-2'>
                                         {CouponCode} : {"12345"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
+                                      className='img-fluid'
                                       src={
                                         require("../../assets/images/dashboard-2/offer-shoes-3.png")
                                           .default
                                       }
-                                      alt="..."
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Women Straight Kurta"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$100.00"}
                                       </span>
                                     </div>
@@ -467,41 +485,41 @@ const Default = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="carousel-item">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Women Straight Kurta"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$100.00"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
+                                      className='img-fluid'
                                       src={
                                         require("../../assets/images/dashboard-2/offer-shoes-3.png")
                                           .default
                                       }
-                                      alt="..."
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Nike Air Shoes"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$120.55"}
                                       </span>
                                     </div>
@@ -509,41 +527,41 @@ const Default = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="carousel-item">
-                              <div className="selling-slide row">
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="left-content">
+                            <div className='carousel-item'>
+                              <div className='selling-slide row'>
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='left-content'>
                                       <p>{"Maximum Selling product"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Best Selling Product"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"50% offer"}
                                       </span>
-                                      <span className="badge badge-dotted badge-pill ml-2">
+                                      <span className='badge badge-dotted badge-pill ml-2'>
                                         {CouponCode} : {"21546"}
                                       </span>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-12">
-                                  <div className="center-img">
+                                <div className='col-xl-4 col-md-12'>
+                                  <div className='center-img'>
                                     <img
-                                      className="img-fluid"
-                                      src="https://www.mercado24.com/wp-content/uploads/2020/07/61L4nrFQ0mL._SL1000_.jpg"
-                                      alt="..."
+                                      className='img-fluid'
+                                      src='https://www.mercado24.com/wp-content/uploads/2020/07/61L4nrFQ0mL._SL1000_.jpg'
+                                      alt='...'
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-4 col-md-6">
-                                  <div className="d-flex">
-                                    <div className="right-content">
+                                <div className='col-xl-4 col-md-6'>
+                                  <div className='d-flex'>
+                                    <div className='right-content'>
                                       <p>{"Money back Guarrantee"}</p>
-                                      <h4 className="f-w-600">
+                                      <h4 className='f-w-600'>
                                         {"Nike Air Shoes"}
                                       </h4>
-                                      <span className="badge badge-white badge-pill">
+                                      <span className='badge badge-white badge-pill'>
                                         {"$120.55"}
                                       </span>
                                     </div>

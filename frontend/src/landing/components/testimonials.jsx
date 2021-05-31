@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
 export const Testimonials = (props) => {
   return (
     <div id='testimonials'>
@@ -13,8 +12,8 @@ export const Testimonials = (props) => {
                 <div key={`${d.name}-${i}`} className='col-md-4'>
                   <div className='testimonial'>
                     <div className='testimonial-image'>
-                      {' '}
-                      <img src={d.img} alt='' />{' '}
+                      {" "}
+                      <img src={d.img} alt='' />{" "}
                     </div>
                     <div className='testimonial-content'>
                       <p>"{d.text}"</p>
@@ -23,9 +22,9 @@ export const Testimonials = (props) => {
                   </div>
                 </div>
               ))
-            : 'loading'}
+            : "loading"}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

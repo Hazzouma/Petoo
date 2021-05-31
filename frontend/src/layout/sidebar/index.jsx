@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 //Clean : /menu
 //Owner: /menuOwner
 //All: /menuCuba
-import { MENUITEMSVet  } from "./menuVet";
-import { MENUITEMSAdmin}  from "./menu";
+import { MENUITEMSVet } from "./menuVet";
+import { MENUITEMSAdmin } from "./menu";
 
-import { MENUITEMSOwner  } from "./menuOwner";
+import { MENUITEMSOwner } from "./menuOwner";
 // import { MENUITEMS  } from "./menuCuba";
 import { ArrowRight, ArrowLeft, Grid } from "react-feather";
 import { Link } from "react-router-dom";
@@ -14,67 +14,59 @@ import { translate } from "react-switch-lang";
 import configDB from "../../data/customizer/config";
 
 const Sidebar = (props) => {
-  const role = useSelector(state => state.currentUser.user.role);
-let [MENUITEMS, setMENUITEMS]=useState(MENUITEMSOwner )
+  const role = useSelector((state) => state.currentUser.user.role);
+  let [MENUITEMS, setMENUITEMS] = useState(MENUITEMSOwner);
 
-const selectMenu = (role) => {
-  if (role==="Admin"){
-    setMENUITEMS(MENUITEMSAdmin)   }
-  else if (role==="Veterinary"){
-    setMENUITEMS(MENUITEMSVet)    
-}else if (role==="petOwner"){
-  setMENUITEMS(MENUITEMSOwner) 
-}
-}
+  const selectMenu = (role) => {
+    if (role === "Admin") {
+      setMENUITEMS(MENUITEMSAdmin);
+    } else if (role === "Veterinary") {
+      setMENUITEMS(MENUITEMSVet);
+    } else if (role === "petOwner") {
+      setMENUITEMS(MENUITEMSOwner);
+    }
+  };
 
-
-// useEffect(() => {
-
-// }, [role]);
-// console.log(MENUITEMS)
-
-  const [mainmenu, setMainMenu] = useState(MENUITEMS);
+  // const [mainmenu, setMainMenu] = useState(MENUITEMS);
   const [margin, setMargin] = useState(0);
   const [width, setWidth] = useState(0);
   const [sidebartoogle, setSidebartoogle] = useState(true);
-
-  
-  
 
   const wrapper =
     useSelector((content) => content.Customizer.sidebar_types.type) ||
     configDB.data.settings.sidebar.type;
 
   useEffect(() => {
-    selectMenu(role)
+    selectMenu(role);
     document.querySelector(".left-arrow").classList.add("d-none");
 
     window.addEventListener("resize", handleResize);
     handleResize();
 
     const currentUrl = window.location.pathname;
-    mainmenu && mainmenu.map((items) => {
-      items.Items.filter((Items) => {
-        if (Items.path === currentUrl) setNavActive(Items);
-        if (!Items.children) return false;
-        Items.children.filter((subItems) => {
-          if (subItems.path === currentUrl) setNavActive(subItems);
-          if (!subItems.children) return false;
-          subItems.children.filter((subSubItems) => {
-            if (subSubItems.path === currentUrl) {
-              setNavActive(subSubItems);
-              return true;
-            } else {
-              return false;
-            }
+    MENUITEMS &&
+      MENUITEMS.map((items) => {
+        items.Items.filter((Items) => {
+          if (Items.path === currentUrl) setNavActive(Items);
+          if (!Items.children) return false;
+          Items.children.filter((subItems) => {
+            if (subItems.path === currentUrl) setNavActive(subItems);
+            if (!subItems.children) return false;
+            subItems.children.filter((subSubItems) => {
+              if (subSubItems.path === currentUrl) {
+                setNavActive(subSubItems);
+                return true;
+              } else {
+                return false;
+              }
+            });
+            return subItems;
           });
-          return subItems;
+          return Items;
         });
-        return Items;
+        return items;
       });
-      return items;
-    });
-    
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -108,7 +100,7 @@ const selectMenu = (role) => {
       return menuItems;
     });
     item.active = !item.active;
-    setMainMenu({ mainmenu: MENUITEMS });
+    setMENUITEMS(MENUITEMS);
   };
 
   const toggletNavActive = (item) => {
@@ -149,7 +141,7 @@ const selectMenu = (role) => {
       });
     }
     item.active = !item.active;
-    setMainMenu({ mainmenu: MENUITEMS });
+    setMENUITEMS(MENUITEMS);
   };
 
   const scrollToRight = () => {
@@ -197,6 +189,10 @@ const selectMenu = (role) => {
     document.querySelector(".sidebar-wrapper").className =
       "sidebar-wrapper close_icon";
   };
+
+  useEffect(() => {
+    selectMenu(role);
+  }, [role]);
 
   return (
     <Fragment>
@@ -252,170 +248,171 @@ const selectMenu = (role) => {
                   <i className='fa fa-angle-right pl-2' aria-hidden='true'></i>
                 </div>
               </li>
-              {MENUITEMS && MENUITEMS.map((Item, i) => (
-                <Fragment key={i}>
-                  {Item.Items.map((menuItem, i) => (
-                    <li className='sidebar-list' key={i}>
-                      {menuItem.type === "sub" ? (
-                        <a
-                          className={`sidebar-link sidebar-title  ${
-                            menuItem.active ? "active" : ""
-                          }`}
-                          href='#javascript'
-                          onClick={() => setNavActive(menuItem)}
-                        >
-                          <menuItem.icon />
-                          <span>{props.t(menuItem.title)}</span>
-                          {menuItem.badge ? (
-                            <label className={menuItem.badge}>
-                              {menuItem.badgetxt}
-                            </label>
-                          ) : (
-                            ""
-                          )}
-                          <div className='according-menu'>
-                            {menuItem.active ? (
-                              <i className='fa fa-angle-down'></i>
+              {MENUITEMS &&
+                MENUITEMS.map((Item, i) => (
+                  <Fragment key={i}>
+                    {Item.Items.map((menuItem, i) => (
+                      <li className='sidebar-list' key={i}>
+                        {menuItem.type === "sub" ? (
+                          <a
+                            className={`sidebar-link sidebar-title  ${
+                              menuItem.active ? "active" : ""
+                            }`}
+                            href='#javascript'
+                            onClick={() => setNavActive(menuItem)}
+                          >
+                            <menuItem.icon />
+                            <span>{props.t(menuItem.title)}</span>
+                            {menuItem.badge ? (
+                              <label className={menuItem.badge}>
+                                {menuItem.badgetxt}
+                              </label>
                             ) : (
-                              <i className='fa fa-angle-right'></i>
+                              ""
                             )}
-                          </div>
-                        </a>
-                      ) : (
-                        ""
-                      )}
+                            <div className='according-menu'>
+                              {menuItem.active ? (
+                                <i className='fa fa-angle-down'></i>
+                              ) : (
+                                <i className='fa fa-angle-right'></i>
+                              )}
+                            </div>
+                          </a>
+                        ) : (
+                          ""
+                        )}
 
-                      {menuItem.type === "link" ? (
-                        <Link
-                          to={menuItem.path}
-                          className={`sidebar-link sidebar-title link-nav  ${
-                            menuItem.active ? "active" : ""
-                          }`}
-                          href='#javascript'
-                          onClick={() => toggletNavActive(menuItem)}
-                        >
-                          <menuItem.icon />
-                          <span>{props.t(menuItem.title)}</span>
-                          {menuItem.badge ? (
-                            <label className={menuItem.badge}>
-                              {menuItem.badgetxt}
-                            </label>
-                          ) : (
-                            ""
-                          )}
-                        </Link>
-                      ) : (
-                        ""
-                      )}
+                        {menuItem.type === "link" ? (
+                          <Link
+                            to={menuItem.path}
+                            className={`sidebar-link sidebar-title link-nav  ${
+                              menuItem.active ? "active" : ""
+                            }`}
+                            href='#javascript'
+                            onClick={() => toggletNavActive(menuItem)}
+                          >
+                            <menuItem.icon />
+                            <span>{props.t(menuItem.title)}</span>
+                            {menuItem.badge ? (
+                              <label className={menuItem.badge}>
+                                {menuItem.badgetxt}
+                              </label>
+                            ) : (
+                              ""
+                            )}
+                          </Link>
+                        ) : (
+                          ""
+                        )}
 
-                      {menuItem.children ? (
-                        <ul
-                          className='sidebar-submenu'
-                          style={
-                            menuItem.active
-                              ? sidebartoogle
-                                ? {
-                                    opacity: 1,
-                                    transition: "opacity 500ms ease-in",
-                                  }
-                                : { display: "block" }
-                              : { display: "none" }
-                          }
-                        >
-                          {menuItem.children.map((childrenItem, index) => {
-                            return (
-                              <li key={index}>
-                                {childrenItem.type === "sub" ? (
-                                  <a
-                                    className={`${
-                                      childrenItem.active ? "active" : ""
-                                    }`}
-                                    href='#javascript'
-                                    onClick={() =>
-                                      toggletNavActive(childrenItem)
+                        {menuItem.children ? (
+                          <ul
+                            className='sidebar-submenu'
+                            style={
+                              menuItem.active
+                                ? sidebartoogle
+                                  ? {
+                                      opacity: 1,
+                                      transition: "opacity 500ms ease-in",
                                     }
-                                  >
-                                    {props.t(childrenItem.title)}
-                                    <span className='sub-arrow'>
-                                      <i className='fa fa-chevron-right'></i>
-                                    </span>
-                                    <div className='according-menu'>
-                                      {childrenItem.active ? (
-                                        <i className='fa fa-angle-down'></i>
-                                      ) : (
-                                        <i className='fa fa-angle-right'></i>
+                                  : { display: "block" }
+                                : { display: "none" }
+                            }
+                          >
+                            {menuItem.children.map((childrenItem, index) => {
+                              return (
+                                <li key={index}>
+                                  {childrenItem.type === "sub" ? (
+                                    <a
+                                      className={`${
+                                        childrenItem.active ? "active" : ""
+                                      }`}
+                                      href='#javascript'
+                                      onClick={() =>
+                                        toggletNavActive(childrenItem)
+                                      }
+                                    >
+                                      {props.t(childrenItem.title)}
+                                      <span className='sub-arrow'>
+                                        <i className='fa fa-chevron-right'></i>
+                                      </span>
+                                      <div className='according-menu'>
+                                        {childrenItem.active ? (
+                                          <i className='fa fa-angle-down'></i>
+                                        ) : (
+                                          <i className='fa fa-angle-right'></i>
+                                        )}
+                                      </div>
+                                    </a>
+                                  ) : (
+                                    ""
+                                  )}
+
+                                  {childrenItem.type === "link" ? (
+                                    <Link
+                                      to={childrenItem.path}
+                                      className={`${
+                                        childrenItem.active ? "active" : ""
+                                      }`}
+                                      onClick={() =>
+                                        toggletNavActive(childrenItem)
+                                      }
+                                    >
+                                      {props.t(childrenItem.title)}
+                                    </Link>
+                                  ) : (
+                                    ""
+                                  )}
+
+                                  {childrenItem.children ? (
+                                    <ul
+                                      className='nav-sub-childmenu submenu-content'
+                                      style={
+                                        childrenItem.active
+                                          ? { display: "block" }
+                                          : { display: "none" }
+                                      }
+                                    >
+                                      {childrenItem.children.map(
+                                        (childrenSubItem, key) => (
+                                          <li key={key}>
+                                            {childrenSubItem.type === "link" ? (
+                                              <Link
+                                                to={childrenSubItem.path}
+                                                className={`${
+                                                  childrenSubItem.active
+                                                    ? "active"
+                                                    : ""
+                                                }`}
+                                                onClick={() =>
+                                                  toggletNavActive(
+                                                    childrenSubItem
+                                                  )
+                                                }
+                                              >
+                                                {props.t(childrenSubItem.title)}
+                                              </Link>
+                                            ) : (
+                                              ""
+                                            )}
+                                          </li>
+                                        )
                                       )}
-                                    </div>
-                                  </a>
-                                ) : (
-                                  ""
-                                )}
-
-                                {childrenItem.type === "link" ? (
-                                  <Link
-                                    to={childrenItem.path}
-                                    className={`${
-                                      childrenItem.active ? "active" : ""
-                                    }`}
-                                    onClick={() =>
-                                      toggletNavActive(childrenItem)
-                                    }
-                                  >
-                                    {props.t(childrenItem.title)}
-                                  </Link>
-                                ) : (
-                                  ""
-                                )}
-
-                                {childrenItem.children ? (
-                                  <ul
-                                    className='nav-sub-childmenu submenu-content'
-                                    style={
-                                      childrenItem.active
-                                        ? { display: "block" }
-                                        : { display: "none" }
-                                    }
-                                  >
-                                    {childrenItem.children.map(
-                                      (childrenSubItem, key) => (
-                                        <li key={key}>
-                                          {childrenSubItem.type === "link" ? (
-                                            <Link
-                                              to={childrenSubItem.path}
-                                              className={`${
-                                                childrenSubItem.active
-                                                  ? "active"
-                                                  : ""
-                                              }`}
-                                              onClick={() =>
-                                                toggletNavActive(
-                                                  childrenSubItem
-                                                )
-                                              }
-                                            >
-                                              {props.t(childrenSubItem.title)}
-                                            </Link>
-                                          ) : (
-                                            ""
-                                          )}
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                ) : (
-                                  ""
-                                )}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      ) : (
-                        ""
-                      )}
-                    </li>
-                  ))}
-                </Fragment>
-              ))}
+                                    </ul>
+                                  ) : (
+                                    ""
+                                  )}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        ) : (
+                          ""
+                        )}
+                      </li>
+                    ))}
+                  </Fragment>
+                ))}
             </ul>
           </div>
           <div className='right-arrow' onClick={scrollToRight}>

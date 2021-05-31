@@ -1,12 +1,12 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
 import { Form, Row } from "reactstrap";
 import { X } from "react-feather";
-import { MENUITEMS } from "../sidebar/menuCuba";
+// import { MENUITEMS } from "../sidebar/menuCuba";
 
-// import { MENUITEMSVet  } from "../sidebar/menuVet";
-// import  {MENUITEMSAdmin}  from "../sidebar/menu";
+import { MENUITEMSVet } from "../sidebar/menuVet";
+import { MENUITEMSAdmin } from "../sidebar/menu";
 
-// import { MENUITEMSOwner  } from "../sidebar/menuOwner";
+import { MENUITEMSOwner } from "../sidebar/menuOwner";
 
 import LeftHeader from "./leftbar";
 import RightHeader from "./rightbar";
@@ -15,20 +15,20 @@ import { Loading } from "../../constant";
 import { useSelector } from "react-redux";
 
 const Header = (props) => {
-//   const {role} = useSelector(state => state.currentUser.user)
-  
-  
-//   const [MENUITEMS, setMENUITEMS]=useState()
+  const { role } = useSelector((state) => state.currentUser.user);
 
-//   if (role=="Admin"){
-//     setMENUITEMS(MENUITEMSAdmin)   }
-//   else if (role=="Veterinary"){
-//     setMENUITEMS(MENUITEMSVet)    
-// }else if (role==="petOwner"){
-//   setMENUITEMS(MENUITEMSOwner) 
-   
-// }
-const [mainmenu, setMainMenu] = useState(MENUITEMS);
+  const [MENUITEMS, setMENUITEMS] = useState(MENUITEMSOwner);
+
+  const selectMenu = (role) => {
+    if (role === "Admin") {
+      setMENUITEMS(MENUITEMSAdmin);
+    } else if (role === "Veterinary") {
+      setMENUITEMS(MENUITEMSVet);
+    } else if (role === "petOwner") {
+      setMENUITEMS(MENUITEMSOwner);
+    }
+  };
+  // const [mainmenu, setMainMenu] = useState(MENUITEMS);
 
   // eslint-disable-next-line
 
@@ -49,16 +49,17 @@ const [mainmenu, setMainMenu] = useState(MENUITEMS);
   }, []);
 
   useEffect(() => {
+    selectMenu(role);
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
     };
-  }, [escFunction]);
+  }, [escFunction, role]);
   const handleSearchKeyword = (keyword) => {
     keyword ? addFix() : removeFix();
     const items = [];
     setsearchValue(keyword);
-    mainmenu.map((menuItems) => {
+    MENUITEMS.map((menuItems) => {
       menuItems.Items.filter((mItems) => {
         if (
           mItems.title.toLowerCase().includes(keyword) &&
@@ -115,6 +116,18 @@ const [mainmenu, setMainMenu] = useState(MENUITEMS);
     document.querySelector(".Typeahead-menu").classList.remove("is-open");
     document.body.className = `${layout_version} ${layout_type}`;
   };
+  const afficherSelonRole = (role) => {
+    if (role == "Admin") {
+      setMENUITEMS(MENUITEMSAdmin);
+    } else if (role == "Veterinary") {
+      setMENUITEMS(MENUITEMSVet);
+    } else if (role === "petOwner") {
+      setMENUITEMS(MENUITEMSOwner);
+    }
+  };
+  useEffect(() => {
+    afficherSelonRole(role);
+  }, [role]);
 
   return (
     <Fragment>
@@ -128,7 +141,7 @@ const [mainmenu, setMainMenu] = useState(MENUITEMS);
                     className='Typeahead-input form-control-plaintext w-100'
                     id='demo-input'
                     type='search'
-                    placeholder='Search Cuba ..'
+                    placeholder='Search Petoo..'
                     defaultValue={searchValue}
                     onChange={(e) => handleSearchKeyword(e.target.value)}
                   />

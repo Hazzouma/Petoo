@@ -56,14 +56,8 @@ const Rightbar = (props) => {
   // const [langdropdown, setLangdropdown] = useState(false);
   const [moonlight, setMoonlight] = useState(false);
   // eslint-disable-next-line
-  const [selected, setSelected] = useState("en");
   const [cartDropdown, setCartDropDown] = useState(false);
-  const [notificationDropDown, setNotificationDropDown] = useState(false);
 
-  // const handleSetLanguage = (key) => {
-  //   setLanguage(key);
-  //   setSelected(key);
-  // };
   const { prenom, role, profilePicture } = useSelector(
     (state) => state.currentUser.user
   );
@@ -137,17 +131,23 @@ const Rightbar = (props) => {
     }
   };
 
-  const notifications = useSelector(
-    (state) => state.notifReducer.allNotifArray.reverse().slice(0, 6) //showing only 5 Notifications
+  const notifs = useSelector(
+    (state) => state.notifReducer.allNotifArray //showing only 5 Notifications
   );
 
-  const arrNotif = useSelector((state) => state.notifReducer.allNotifArray);
-  const unReadNotif = arrNotif && arrNotif.filter((e) => e.isRead === false);
+  const [notifications, setNotifications] = useState(notifs);
   const notifMSG = useSelector((state) => state.notifReducer.msg);
+  const lengthUnRead = (notifications) => {
+    const unReadNotif =
+      notifications && notifications.filter((e) => e.isRead === false);
+    return unReadNotif.length;
+  };
 
   useEffect(() => {
-    setNumNotif(unReadNotif && unReadNotif.length);
+    // setNotifications(notifs);
+    setNumNotif(lengthUnRead(notifs));
     dispatch(getALLNotif(idUser));
+    setNotifications(notifs.slice(0, 6));
     // eslint-disable-next-line
   }, [notifMSG]);
   return (
@@ -160,23 +160,15 @@ const Rightbar = (props) => {
             </span>
           </li>
           <li className='onhover-dropdown'>
-          <div className='notification-box'>
-              <Bell
-                onClick={() => {
-                  setNotificationDropDown(!notificationDropDown);
-                }}
-              />
+            <div className='notification-box'>
+              <Bell />
               {numNotif > 0 && ( // Adding condition to show the number of notfs not Readed , else if all readed dont show number of notifs
                 <span className='badge badge-pill badge-secondary'>
                   {numNotif}
                 </span>
               )}
             </div>
-            <ul
-              className={`notification-dropdown onhover-show-div ${
-                notificationDropDown ? "active" : ""
-              }`}
-            >
+            <ul className={`notification-dropdown onhover-show-div`}>
               <li>
                 <Bell />
                 <h6 className='f-18 mb-0'>{Notification}</h6>
@@ -193,14 +185,12 @@ const Rightbar = (props) => {
                 </li>
               ))}
               <li>
-                <Link to='/dashboard/appoiments'>
-                  <button
-                    onClick={() => dispatch(checkALLNotif(idUser))}
-                    className='btn btn-primary'
-                  >
-                    {CheckAllNotification}
-                  </button>
-                </Link>
+                <button
+                  onClick={() => dispatch(checkALLNotif(idUser))}
+                  className='btn btn-primary'
+                >
+                  {CheckAllNotification}
+                </button>
               </li>
             </ul>
           </li>

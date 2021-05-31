@@ -1,4 +1,5 @@
 import {
+  USER_EDITED,
   CURRENT_USER,
   VIDE_ERRORS,
   GET_MY_PETS,
@@ -27,6 +28,13 @@ const currentUser = (state = initialState, { type, payload }) => {
         isAuth: true,
         msg: payload.msg,
         load: false,
+      };
+    case USER_EDITED:
+      return {
+        ...state,
+        load: false,
+        user: payload.foundUser,
+        msg: payload.msg,
       };
     case GET_MY_APPOINTMENTS:
       return {
