@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const ownerModel = require("../models/owner");
+const Notification = require("../models/Notification");
 const uniqid = require("uniqid");
 const passwordHash = require("password-hash");
 const mailgun = require("mailgun-js");
@@ -160,6 +161,16 @@ exports.OwnerEdit = async (req, res) => {
         }
       );
     }
+    const newNotification = new Notification({
+      idNotification: uniqid("Notif-"),
+      msg: `Your modifications in your profile were applied successfully!`,
+    });
+
+    foundUser.notificationId.push(newNotification.idNotification);
+
+    await foundUser.save();
+    await newNotification.save();
+
     res.status(200).send({ msg: "Profile edited successfully!", foundUser });
   } catch (error) {
     console.log(error);

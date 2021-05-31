@@ -1,64 +1,91 @@
-import React, { Fragment,useEffect } from 'react';
-import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardFooter, Media } from 'reactstrap'
-import {useSelector} from 'react-redux';
-import {Link} from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import Breadcrumb from "../../layout/breadcrumb";
+import { Container, Row, Col, Card, CardFooter, Media } from "reactstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 const PetList = (props) => {
-  const pets = useSelector(state => state.currentUser.myPets)
-
+  const waitPets = useSelector((state) => state.currentUser.myPets);
+  const confirmedPets = useSelector((state) => state.currentUser.msg);
+  const role = useSelector((state) => state.currentUser.user.role);
+  const [pets, setPets] = useState([]);
   useEffect(() => {
-  },[pets])
+    setPets(waitPets);
+  }, [confirmedPets]);
 
   return (
     <Fragment>
-      <Breadcrumb parent="Users" title="List Of Pets" />
+      <Breadcrumb parent='Users' title='List Of Pets' />
       <Container fluid={true}>
-        
         <Row>
-          {pets.map((pet, i) => 
-          
+          {pets.length ? (
+            pets.map((pet, i) => (
+              <Col md='6' lg='4' xl='4' className='box-col-6' key={i}>
+                <Card className='custom-card'>
+                  <Link to={`/dashboard/petProfile/${pet.idPet}`}>
+                    <div className='card-profile'>
+                      <Media
+                        body
+                        className='rounded-circle'
+                        src='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg'
+                        fluid={true}
+                        alt=''
+                      />
+                    </div>
+                    <div className='text-center profile-details'>
+                      <h4>{pet.name}</h4>
+                      <h6>{pet.race}</h6>
+                    </div>
+                    <CardFooter className='row'>
+                      {/* Ratings Starts Here  */}
+                      <Col sm='4 col-4'>
+                        <h6>Gender</h6>
+                        <h5>{pet.gender}</h5>
+                      </Col>
+                      {/* Ratings Ends Here  */}
 
-          <Col md="6" lg="4" xl="4" className="box-col-6" key={i}>
-            <Card className="custom-card">
-            <Link to={`/dashboard/petProfile/${pet.idPet}`}>
-              <div className="card-profile">
-                <Media body className="rounded-circle" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg" fluid={true} alt="" />
-              </div>
-              <div className="text-center profile-details">
-                <h4>{pet.name}</h4>
-                <h6>{pet.race}</h6>
-              </div>
-              <CardFooter className="row">
-
-                 {/* Ratings Starts Here  */}
-                <Col sm="4 col-4">
-                  <h6>Gender</h6>
-                  <h5>
-                  {pet.gender}
-                    
-                    </h5>
-                </Col>
-                {/* Ratings Ends Here  */}
-
-                <Col sm="4 col-4">
-                  <h6>Age</h6>
-                  <h5><span className="counter">{moment(pet.age).fromNow(true)}</span></h5>
-                </Col>
-                <Col sm="4 col-4">
-                  <h6>Vaccines</h6>
-                  <h3><span className="counter">{pet.vaccines.length}</span></h3>
-                </Col>
-              </CardFooter>
+                      <Col sm='4 col-4'>
+                        <h6>Age</h6>
+                        <h5>
+                          <span className='counter'>
+                            {moment(pet.age).fromNow(true)}
+                          </span>
+                        </h5>
+                      </Col>
+                      <Col sm='4 col-4'>
+                        <h6>Vaccines</h6>
+                        <h3>
+                          <span className='counter'>{pet.vaccines.length}</span>
+                        </h3>
+                      </Col>
+                    </CardFooter>
+                  </Link>
+                </Card>
+              </Col>
+            ))
+          ) : role === "Veterinary" ? (
+            <Col sm={12}>
+              <span className='text-center'>
+                <h4>Accept an appointment to assign a pet to you.</h4>
+                <Link to={`${process.env.PUBLIC_URL}/dashboard/appoiments`}>
+                  <h5 className='text-center'>See my appointments</h5>
+                </Link>
+              </span>
+            </Col>
+          ) : (
+            <Col sm={12}>
+              <span className='text-center'>
+                <h4>Add your pet to get your full list of Pets.</h4>
+              </span>
+              <Link to={`${process.env.PUBLIC_URL}/dashboard/CreatePet`}>
+                <h5 className='text-center'>Add a pet</h5>
               </Link>
-            </Card>
-          </Col>
-          
+            </Col>
           )}
         </Row>
       </Container>
     </Fragment>
   );
-}
+};
 
 export default PetList;

@@ -21,11 +21,23 @@ const populationReducer = (state = initialState, { type, payload }) => {
     case GET_OWNERS:
       return { ...state, owners: payload.foundAllOwners, msg: payload.msg };
     case GET_VETOS:
-      return { ...state, vetos: payload.foundAllVetos, msg: payload.msg };
+      return {
+        ...state,
+        vetos: payload.foundAllVetos.reverse(),
+        msg: payload.msg,
+      };
     case GET_PETS:
-      return { ...state, owners: payload.foundAllPets, msg: payload.msg };
+      return {
+        ...state,
+        owners: payload.foundAllPets.reverse(),
+        msg: payload.msg,
+      };
     case GET_BLOGS:
-      return { ...state, blogs:  payload.foundAllBlogs, msg: payload.msg };
+      return {
+        ...state,
+        blogs: payload.foundAllBlogs.reverse(),
+        msg: payload.msg,
+      };
     case FAIL_POPULATION:
       return { ...state, errors: payload };
     case VIDE_ERRORS:

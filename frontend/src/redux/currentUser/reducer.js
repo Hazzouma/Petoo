@@ -39,7 +39,7 @@ const currentUser = (state = initialState, { type, payload }) => {
     case GET_MY_APPOINTMENTS:
       return {
         ...state,
-        myAppointments: payload.arrayOfAppointments,
+        myAppointments: payload.arrayOfAppointments.reverse(),
         msg: payload.msg,
         load: false,
       };

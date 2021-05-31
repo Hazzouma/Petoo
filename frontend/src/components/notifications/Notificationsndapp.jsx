@@ -336,28 +336,34 @@ const Notifndapp = (props) => {
                                                         {appo && appo.date}
                                                       </p>
                                                     </td>
-                                                    <td className='text-center'>
+                                                    <td className='text-center txt-dark'>
                                                       <Link
                                                         to={`/dashboard/petProfile/${
                                                           petinfo &&
                                                           petinfo.idPet
                                                         }`}
                                                       >
-                                                        <span className='d-block txt-dark'>
+                                                        <span className='d-block'>
                                                           {petinfo &&
                                                             petinfo.name}
                                                         </span>
                                                       </Link>
                                                     </td>
                                                     <td className='text-center'>
-                                                      <Badge color='primary'>
-                                                        {appo.isDone
-                                                          ? "Done"
-                                                          : appo.confirmedByVet &&
-                                                            appo.confirmedByOwner
-                                                          ? "Confirmed"
-                                                          : "Pending"}
-                                                      </Badge>
+                                                      {appo.isDone ? (
+                                                        <Badge color='primary'>
+                                                          Done
+                                                        </Badge>
+                                                      ) : appo.confirmedByVet &&
+                                                        appo.confirmedByOwner ? (
+                                                        <Badge color='primary'>
+                                                          Confirmed
+                                                        </Badge>
+                                                      ) : (
+                                                        <Badge color='secondary'>
+                                                          Pending
+                                                        </Badge>
+                                                      )}
                                                     </td>
                                                     <td>
                                                       {appo.confirmedByVet &&
@@ -368,7 +374,7 @@ const Notifndapp = (props) => {
                                                           </Button>
                                                         )}
                                                     </td>
-                                                    <td className='text-center'>
+                                                    {/* <td className='text-center'>
                                                       {(!appo.confirmedByVet &&
                                                         !appo.confirmedByOwner &&
                                                         !appo.isDone) ||
@@ -382,7 +388,7 @@ const Notifndapp = (props) => {
                                                               Edit
                                                             </Button>
                                                           ))}
-                                                    </td>
+                                                    </td> */}
                                                   </tr>
                                                 </tbody>
                                               </table>
@@ -421,9 +427,8 @@ const Notifndapp = (props) => {
                                     pendingAppointments.length > 0 &&
                                     (role === "petOwner" ||
                                       role === "Admin") ? (
-                                      pendingAppointments
-                                        .reverse()
-                                        .map((pendApp, index) => {
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
                                           if (
                                             pendApp &&
                                             pendApp.confirmedByOwner &&
@@ -447,7 +452,8 @@ const Notifndapp = (props) => {
                                                 </td>
                                               </tr>
                                             );
-                                        })
+                                        }
+                                      )
                                     ) : pendingAppointments &&
                                       pendingAppointments.length > 0 &&
                                       role === "Veterinary" ? (

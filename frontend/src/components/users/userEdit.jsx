@@ -97,14 +97,10 @@ const UserEdit = (props) => {
   // console.log(editedUser);
 
   const sendModifs = () => {
-    checkPass();
     if (pass1 === pass2) dispatch(userEdit(editedUser, history));
   };
 
-  useEffect(() => {
-    setPass1("");
-    setPass2("");
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Fragment>

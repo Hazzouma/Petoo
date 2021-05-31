@@ -10,8 +10,7 @@ const notifOwner = require("./routes/notifRouter");
 const routerShop = require("./routes/shopRoute");
 const routerProduct = require("./routes/productRoute");
 const routerAppointment = require("./routes/appointmentRouter");
-const routerOrder = require("./routes/orderRoute")
-const routerBlog = require('./routes/blogRoute')
+const routerBlog = require("./routes/blogRoute");
 //environement
 require("dotenv").config({ path: "./config/.env" });
 
@@ -34,7 +33,6 @@ app.use("/api/notif", notifOwner);
 app.use("/api/shop", routerShop);
 app.use("/api/product", routerProduct);
 app.use("/api/appointment", routerAppointment);
-app.use("/api/order",  routerOrder);
 app.use("/api/blog", routerBlog);
 
 //cors
