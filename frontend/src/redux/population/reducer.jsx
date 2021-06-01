@@ -5,6 +5,7 @@ const {
   FAIL_POPULATION,
   VIDE_ERRORS,
   GET_BLOGS,
+  GET_PRODUCTS
 } = require("../actionTypes");
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   vetos: [],
   pets: [],
   blogs: [],
+  products:[],
 };
 
 const populationReducer = (state = initialState, { type, payload }) => {
@@ -38,6 +40,12 @@ const populationReducer = (state = initialState, { type, payload }) => {
         blogs: payload.foundAllBlogs.reverse(),
         msg: payload.msg,
       };
+      case GET_PRODUCTS:
+        return {
+          ...state,
+          products: payload.foundAllProducts.reverse(),
+          msg: payload.msg,
+        };
     case FAIL_POPULATION:
       return { ...state, errors: payload };
     case VIDE_ERRORS:

@@ -1,15 +1,19 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import { Container, Row, Col, Card, CardFooter, Media } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAssignedPets } from "../../redux/currentUser/action";
 import { Link } from "react-router-dom";
 import moment from "moment";
 const PetList = (props) => {
+  const dispatch = useDispatch();
+
   const waitPets = useSelector((state) => state.currentUser.myPets);
   const confirmedPets = useSelector((state) => state.currentUser.msg);
-  const role = useSelector((state) => state.currentUser.user.role);
+  const { role, idUser } = useSelector((state) => state.currentUser.user);
   const [pets, setPets] = useState([]);
   useEffect(() => {
+    role === "Veterinary" && dispatch(getAssignedPets(idUser));
     setPets(waitPets);
   }, [confirmedPets]);
 
@@ -22,7 +26,7 @@ const PetList = (props) => {
             pets.map((pet, i) => (
               <Col md='6' lg='4' xl='4' className='box-col-6' key={i}>
                 <Card className='custom-card'>
-                  <Link to={`/dashboard/petProfile/${pet.idPet}`}>
+                  <Link to={`/dashboard/petProfile/${pet && pet.idPet}`}>
                     <div className='card-profile'>
                       <Media
                         body
@@ -33,14 +37,14 @@ const PetList = (props) => {
                       />
                     </div>
                     <div className='text-center profile-details'>
-                      <h4>{pet.name}</h4>
-                      <h6>{pet.race}</h6>
+                      <h4>{pet && pet.name}</h4>
+                      <h6>{pet && pet.race}</h6>
                     </div>
                     <CardFooter className='row'>
                       {/* Ratings Starts Here  */}
                       <Col sm='4 col-4'>
                         <h6>Gender</h6>
-                        <h5>{pet.gender}</h5>
+                        <h5>{pet && pet.gender}</h5>
                       </Col>
                       {/* Ratings Ends Here  */}
 
@@ -48,14 +52,16 @@ const PetList = (props) => {
                         <h6>Age</h6>
                         <h5>
                           <span className='counter'>
-                            {moment(pet.age).fromNow(true)}
+                            {moment(pet && pet.age).fromNow(true)}
                           </span>
                         </h5>
                       </Col>
                       <Col sm='4 col-4'>
                         <h6>Vaccines</h6>
                         <h3>
-                          <span className='counter'>{pet.vaccines.length}</span>
+                          <span className='counter'>
+                            {pet && pet.vaccines.length}
+                          </span>
                         </h3>
                       </Col>
                     </CardFooter>

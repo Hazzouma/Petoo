@@ -2,6 +2,7 @@ const petModel = require("../models/pet");
 const ownerModel = require("../models/owner");
 const Notification = require("../models/Notification");
 const uniqid = require("uniqid");
+const appointment = require("../models/Appointment");
 
 //register
 exports.PetCreate = async (req, res) => {
@@ -148,5 +149,44 @@ exports.getPetsOfOwner = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ errors: [{ msg: "Can not get your pets!" }] });
+  }
+};
+
+//get assigned pet from appointment to vet
+exports.getAssignedPets = async (req, res) => {
+  try {
+    const { idVet } = req.body;
+    if (!idVet) {
+      return res.status(404).send({ errors: [{ msg: "Nothing was found!" }] });
+    }
+    let foundVet = await ownerModel.findOne({ idUser: idVet });
+
+    if (!foundVet) {
+      return res.status(404).send({ errors: [{ msg: "Vet was found!" }] });
+    }
+
+    const arrayOfAssignedIDPets = await Promise.all(
+      foundVet.appointmentId.map(async (app) => {
+        const findApp = await appointment.findOne({ idAppointment: app });
+        if (findApp.confirmedByVet) return findApp.idPet;
+      })
+    );
+    const arryofNonFilteredPets = await Promise.all(
+      arrayOfAssignedIDPets.map(async (pet) => {
+        const pt = await petModel.findOne({ idPet: pet });
+        if (typeof pet !== undefined && pet !== null) return pt;
+        else return;
+      })
+    );
+    const arrayOfPets = arryofNonFilteredPets.filter((e) => e !== null);
+
+    res
+      .status(200)
+      .send({ msg: "All your assigned Pets", arr: await arrayOfPets });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ errors: [{ msg: "Can not get your assigned pets!" }] });
   }
 };

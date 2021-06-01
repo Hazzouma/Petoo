@@ -11,6 +11,7 @@ price:{type: String, required: true},
 brand:{type: String, default:""},
 promoPrice:{type: String, default: ""},
 productType:{type: String, default: ""}, //Food, accessoire, jeu.....
+photo:{type: String, default:""},
 
 })
 

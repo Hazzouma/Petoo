@@ -5,6 +5,7 @@ import {
   FAIL_APP,
   GET_MY_PETS,
   GET_MY_APPOINTMENTS,
+  FAIL_PET,
 } from "../actionTypes";
 
 import axios from "axios";
@@ -34,6 +35,20 @@ export const current = () => async (dispatch) => {
   }
 };
 
+//get current user appointments
+export const getMyAppointments = (idUser) => async (dispatch) => {
+  try {
+    const s = { idUser: idUser };
+    let result = await axios.post(
+      `${process.env.PUBLIC_URL}/api/appointment/getMyAppointments`,
+      s
+    );
+    dispatch({ type: GET_MY_APPOINTMENTS, payload: result.data });
+  } catch (error) {
+    dispatch({ type: FAIL_APP, payload: error.response.data.errors });
+  }
+};
+
 //get current owner pets
 export const getMyPets = (idUser) => async (dispatch) => {
   try {
@@ -48,18 +63,17 @@ export const getMyPets = (idUser) => async (dispatch) => {
      */
   }
 };
-
-//get current user appointments
-export const getMyAppointments = (idUser) => async (dispatch) => {
+//get assigned pet from appointment to Vet
+export const getAssignedPets = (idUser) => async (dispatch) => {
   try {
-    const s = { idUser: idUser };
     let result = await axios.post(
-      `${process.env.PUBLIC_URL}/api/appointment/getMyAppointments`,
-      s
+      `${process.env.PUBLIC_URL}/api/pet/assignedPets`,
+      { idVet: idUser }
     );
-    dispatch({ type: GET_MY_APPOINTMENTS, payload: result.data });
+    dispatch({ type: GET_MY_PETS, payload: result.data });
   } catch (error) {
-    dispatch({ type: FAIL_APP, payload: error.response.data.errors });
+    console.log(error);
+    dispatch({ type: FAIL_PET, payload: error.response.data.errors });
   }
 };
 

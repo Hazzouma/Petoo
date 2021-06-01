@@ -3,6 +3,7 @@ import Breadcrumb from '../../layout/breadcrumb'
 import {Container,Row,Col,Media} from "reactstrap";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
+import moment from 'moment';
 
 const BlogSingle = () => {
     let idBlog = useParams();
@@ -26,7 +27,7 @@ const BlogSingle = () => {
                                 <Media className="img-fluid w-100" src={bloginfos && bloginfos.blogPicture} alt="blog-main" style={{borderRadius: "50px"}} />
                                 <div className="blog-details">
                                     <ul className="blog-social">
-                                        <li className="digits">{bloginfos && bloginfos.creationDate}</li>
+                                        <li className="digits">{bloginfos && moment(parseInt(bloginfos.creationDate , 10)).fromNow()}</li>
                                         <li><i className="icofont icofont-user"></i>{bloginfos && bloginfos.author}</li>
                                         <li className="digits"><i className="icofont icofont-thumbs-up"></i>{"02"}<span>{"Hits"}</span></li>
                                         <li className="digits"><i className="icofont icofont-ui-chat"></i>{"598 Comments"}</li>

@@ -10,12 +10,22 @@ import Allfilters from '../../../components/application/ecommerce-app/filters/al
 import Carousal from '../../../components/application/ecommerce-app/filters/carousal'
 import { getVisibleproducts } from '../../../services/ecommerce.service'
 import  {watchfetchProducts} from "../../../redux/ecommerce/product/action"
-import { Filters,ShowingProducts,Featured,LowestPrices,HighestPrices,NotFoundData,ProductDetails,Quantity,AddToCart,ViewDetails,ProductSizeArray } from "../../../constant";
-
+import { Filters,NotFoundData,ProductDetails,Quantity,AddToCart,ViewDetails,ProductSizeArray } from "../../../constant";
+import {getProducts } from '../../../redux/population/action'
 const Product = (props) => {
-
-  const history = useHistory();
   const dispatch = useDispatch()
+    
+  const products = useSelector((state) => state.populationReducer.products);
+
+  useEffect(() => {
+   
+    dispatch(getProducts());
+    // eslint-disable-next-line
+  }, []);
+
+ 
+  const history = useHistory();
+
   const data = useSelector(content => content.data.productItems);
   // eslint-disable-next-line 
   const [layoutColumns, setLayoutColumns] = useState(3);
@@ -30,10 +40,10 @@ const Product = (props) => {
   const [filterSidebar, setFilterSidebar] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const filters = useSelector(content => content.filters);
-  const products = getVisibleproducts(data, filters)
+  //const products = getVisibleproducts(data, filters)
 
 
-  useEffect(() => {
+  useEffect(() => { 
     dispatch(watchfetchProducts())
   },[dispatch]);
 
@@ -197,12 +207,12 @@ const Product = (props) => {
                 </div>
               </Col>
               <Col md="6" className="text-right">
-                <span className="f-w-600 m-r-5">{ShowingProducts}</span>
+                <span className="f-w-600 m-r-5">ShowingProducts</span>
                 <div className="select2-drpdwn-product select-options d-inline-block" onChange={(e) => filterSortFunc(e.target.value)}>
                   <select className="form-control btn-square" name="select">
-                    <option value="Featured">{Featured}</option>
-                    <option value="LowestPrices">{LowestPrices}</option>
-                    <option value="HighestPrices">{HighestPrices}</option>
+                    <option value="Featured">Featured</option>
+                    <option value="LowestPrices">LowestPrices</option>
+                    <option value="HighestPrices">HighestPrices</option>
                   </select>
                 </div>
               </Col>
@@ -213,7 +223,7 @@ const Product = (props) => {
                   <div className="filter-section">
                     <Card>
                       <CardHeader>
-                        <h6 className="mb-0 f-w-600">{Filters}
+                        <h6 className="mb-0 f-w-600">Filters
                             <span className="pull-right">
                             <i className="fa fa-chevron-down toggle-data" onClick={onClickFilter}></i>
                           </span>
@@ -254,17 +264,17 @@ const Product = (props) => {
               <div className="search-not-found text-center">
                 <div>
                   <img className="img-fluid second-search" src={errorImg} alt="" />
-                  <p>{NotFoundData}</p>
+                  <p>Data Not Found</p>
                 </div>
               </div>
               :
               <Row className="gridRow">
-                {products ? products.map((item, i) =>
+                { products.map((item, i) =>
                   <div className={`${layoutColumns === 3 ? 'col-xl-3 col-sm-6 xl-4 col-grid-box' : 'col-xl-' + layoutColumns}`} key={i}>
                     <Card>
                       <div className="product-box">
                         <div className="product-img">
-                          {(item.status === 'sale') ?
+                          {/* {(item.status === 'sale') ?
                             <span className="ribbon ribbon-danger">
                               {item.status}
                             </span> : ''}
@@ -283,23 +293,23 @@ const Product = (props) => {
                           {(item.status === 'Hot') ?
                             <span className="ribbon ribbon ribbon-clip ribbon-warning">
                               {item.status}
-                            </span> : ''}
-                          <img className="img-fluid" src={require("../../../assets/images/" + item.img)} alt="" />
+                            </span> : ''} */}
+                          <img className="img-fluid" src={item.photo} alt="" />
                           <div className="product-hover">
                             <ul>
                               <li>
-                                <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/cart`}>
+                                {/* <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/cart`}>
                                   <Button color="default" onClick={() => addcart(item, quantity)}>
                                     <i className="icon-shopping-cart"></i>
                                   </Button>
-                                </Link>
+                                </Link> */}
                               </li>
-                              <li>
+                              {/* <li>
                                 <Button color="default" data-toggle="modal"
                                   onClick={() => onOpenModal(item.id)}>
                                   <i className="icon-eye"></i>
                                 </Button>
-                              </li>
+                              </li> */}
                               <li>
                                 <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/wishlist`}>
                                   <Button color="default" onClick={() => addWishList(item)} >
@@ -319,23 +329,25 @@ const Product = (props) => {
                             <i className="fa fa-star"></i>
                           </div>
                           <h4 onClick={() => onClickDetailPage(item)} className="font-primary" >{item.name}</h4>
-                          <p>{item.note}</p>
+                           <p>{item.description}</p>
                           <div className="product-price">
                             {symbol} {item.price}
-                            <del>{symbol} {item.discountPrice}</del>
+
+                            <del>{symbol} {item.promoPrice}</del>
                             
                           </div>
                         </div>
                       </div>
                     </Card>
                   </div>
-                ) : ''}
+                ) }
 
-                <Modal className="modal-lg modal-dialog-centered product-modal" isOpen={open}>
+                {/* <Modal className="modal-lg modal-dialog-centered product-modal" isOpen={open}>
                   <ModalBody>
                     <ModalHeader toggle={onCloseModal}>
                       <div className="product-box row">
                         <Col lg="6" className="product-img">
+                          
                           <Media className="img-fluid" src={singleProduct.img ? require("../../../assets/images/" + singleProduct.img) : ""} alt="" />
                         </Col>
                         <Col lg="6" className="product-details  text-left">
@@ -385,7 +397,7 @@ const Product = (props) => {
                       </div>
                     </ModalHeader>
                   </ModalBody>
-                </Modal>
+                </Modal> */}
               </Row>
             }
           </div>

@@ -5,6 +5,7 @@ const {
   PetEdit,
   allPets,
   getPetsOfOwner,
+  getAssignedPets,
 } = require("../controllers/pet.controller");
 const { creationPet, validationPet } = require("../middlewares/validatePet");
 
@@ -18,9 +19,9 @@ routerPet.post("/modif/:idPet", PetEdit);
 routerPet.get("/getAllPets", allPets);
 
 //get all pets of owner
-routerPet.post("/getYourPets" ,getPetsOfOwner);
+routerPet.post("/getYourPets", getPetsOfOwner);
 
-//get pets of that specific owner
-// routerPet.post("/getYourPets", getPetsOfOwner);
+//get assigned pets of vet after confirming
+routerPet.post("/assignedPets", getAssignedPets);
 
 module.exports = routerPet;

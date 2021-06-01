@@ -121,6 +121,7 @@ export const GET_PETS = "GET_PETS";
 export const GET_VETOS = "GET_VETOS";
 export const GET_OWNERS = "GET_OWNERS";
 export const GET_BLOGS="GET_BLOGS";
+export const GET_PRODUCTS="GET_PRODUCTS"
 
 /* APPOINTMENTS */
 export const FAIL_APP = "FAIL_VET";
