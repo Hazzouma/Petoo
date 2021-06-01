@@ -99,7 +99,7 @@ const Notifndapp = (props) => {
                             className={activeTab === "1" ? "active" : ""}
                             onClick={() => setActiveTab("1")}
                           >
-                            <span className='title'> All Appoiments</span>
+                            <span className='title'> All Appointments</span>
                           </a>
                         </NavItem>
 
@@ -109,7 +109,10 @@ const Notifndapp = (props) => {
                             className={activeTab === "2" ? "active" : ""}
                             onClick={() => setActiveTab("2")}
                           >
-                            <span className='title'> Confirmed appoiments</span>
+                            <span className='title'>
+                              {" "}
+                              Confirmed appointments
+                            </span>
                           </a>
                         </NavItem>
 
@@ -119,7 +122,12 @@ const Notifndapp = (props) => {
                             className={activeTab === "3" ? "active" : ""}
                             onClick={() => setActiveTab("3")}
                           >
-                            <span className='title'> UpComing appoiments</span>
+                            {(role === "Veterinary" || role === "Admin") && (
+                              <span className='title'>
+                                {" "}
+                                UpComing appointments
+                              </span>
+                            )}
                           </a>
                         </NavItem>
 
@@ -129,7 +137,7 @@ const Notifndapp = (props) => {
                             className={activeTab === "4" ? "active" : ""}
                             onClick={() => setActiveTab("4")}
                           >
-                            <span className='title'> Pending appoiments</span>
+                            <span className='title'> Pending appointments</span>
                           </a>
                         </NavItem>
 
@@ -139,7 +147,10 @@ const Notifndapp = (props) => {
                             className={activeTab === "5" ? "active" : ""}
                             onClick={() => setActiveTab("5")}
                           >
-                            <span className='title'> Canceled appoiment</span>
+                            <span className='title'>
+                              {" "}
+                              Canceled appointments
+                            </span>
                           </a>
                         </NavItem>
                         <li>
@@ -457,9 +468,8 @@ const Notifndapp = (props) => {
                                     ) : pendingAppointments &&
                                       pendingAppointments.length > 0 &&
                                       role === "Veterinary" ? (
-                                      pendingAppointments
-                                        .reverse()
-                                        .map((pendApp, index) => {
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
                                           if (
                                             pendApp &&
                                             pendApp.confirmedByOwner &&
@@ -485,7 +495,8 @@ const Notifndapp = (props) => {
                                               </tr>
                                             );
                                           else return "";
-                                        })
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
@@ -515,9 +526,8 @@ const Notifndapp = (props) => {
                                     {pendingAppointments &&
                                     pendingAppointments.length > 0 &&
                                     role === "Veterinary" ? (
-                                      pendingAppointments
-                                        .reverse()
-                                        .map((pendApp, index) => {
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
                                           if (
                                             pendApp.confirmedByOwner &&
                                             !pendApp.confirmedByVet
@@ -554,17 +564,24 @@ const Notifndapp = (props) => {
                                                     Confirm
                                                   </Button>
                                                 </td>
+                                                <td className='text-center'>
+                                                  {!pendApp.confirmedByVet &&
+                                                    pendApp.confirmedByOwner &&
+                                                    !pendApp.isDone && (
+                                                      <Button>Edit</Button>
+                                                    )}
+                                                </td>
                                               </tr>
                                             );
-                                        })
+                                        }
+                                      )
                                     ) : pendingAppointments &&
                                       pendingAppointments.length > 0 &&
                                       (role === "petOwner" ||
                                         role === "Admin") &&
                                       pendingAppointments[0].confirmedByVet ? (
-                                      pendingAppointments
-                                        .reverse()
-                                        .map((pendApp, index) => {
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
                                           if (
                                             pendApp &&
                                             !pendApp.confirmedByOwner &&
@@ -591,12 +608,15 @@ const Notifndapp = (props) => {
                                               </tr>
                                             );
                                           else return "";
-                                        })
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
                                           <span className='no-favourite'>
-                                            <span>No Upcoming Appoiments </span>
+                                            <span>
+                                              No Upcoming Appointments{" "}
+                                            </span>
                                           </span>
                                         </td>
                                       </tr>
@@ -620,9 +640,8 @@ const Notifndapp = (props) => {
                                     pendingAppointments.length > 0 &&
                                     (role === "petOwner" ||
                                       role === "Admin") ? (
-                                      pendingAppointments
-                                        .reverse()
-                                        .map((pendApp, index) => {
+                                      pendingAppointments.map(
+                                        (pendApp, index) => {
                                           const theVet =
                                             vets &&
                                             vets.find(
@@ -662,12 +681,13 @@ const Notifndapp = (props) => {
                                                 </td> */}
                                               </tr>
                                             );
-                                        })
+                                        }
+                                      )
                                     ) : (
                                       <tr>
                                         <td>
                                           <span className='no-favourite'>
-                                            <span>No Pending Appoiments</span>
+                                            <span>No Pending Appointments</span>
                                           </span>
                                         </td>
                                       </tr>
@@ -738,7 +758,9 @@ const Notifndapp = (props) => {
                                       <tr>
                                         <td>
                                           <span className='no-favourite'>
-                                            <span>No Canceled Appoiments </span>
+                                            <span>
+                                              No Canceled Appointments{" "}
+                                            </span>
                                           </span>
                                         </td>
                                       </tr>
