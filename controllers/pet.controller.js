@@ -178,8 +178,12 @@ exports.getAssignedPets = async (req, res) => {
         else return;
       })
     );
-    const arrayOfPets = arryofNonFilteredPets.filter((e) => e !== null);
-
+    const uniqArrayOfPets = arryofNonFilteredPets.filter((e) => e !== null);
+    //remove duplicated objects inside array
+    const arrayOfPets = [
+      ...new Map(uniqArrayOfPets.map((item) => [item.id, item])).values(),
+    ];
+    // arrayOfPets = [...new Set(arrayOfPets)];
     res
       .status(200)
       .send({ msg: "All your assigned Pets", arr: await arrayOfPets });

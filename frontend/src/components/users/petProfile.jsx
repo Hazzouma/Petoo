@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
 import {
   Container,
@@ -28,13 +28,16 @@ import moment from "moment";
 
 const PetProfile = (props) => {
   let idPet = useParams();
+  console.log(idPet);
+  const mypets = useSelector((state) => state.currentUser.myPets);
   const role = useSelector((state) => state.currentUser.user.role);
-  const pets = useSelector((state) => state.currentUser.myPets);
-   // eslint-disable-next-line
-  const petinfos = pets.find((pets, index) => {
-    if (pets.idPet === idPet.id) return true;
-  });
-
+  const msg = useSelector((state) => state.currentUser.msg);
+  const [pets, setPets] = useState(mypets);
+  const [petinfos, setPet] = useState( // eslint-disable-next-line
+    pets.find((pets, index) => {
+      if (pets.idPet === idPet.id) return true;
+    })
+  );
   const [startDate, setstartDate] = useState(new Date()); //Date picker related
   const handleChange = (date) => {
     //Date Picker related
@@ -45,7 +48,7 @@ const PetProfile = (props) => {
   const toggle = () => setModal(!modal); // Modal Related
   const [modal1, setModal2] = useState(false);
   const toggle1 = () => setModal2(!modal1);
- // eslint-disable-next-line
+// eslint-disable-next-line
   const [url, setUrl] = useState();
 
   const readUrl = (event) => {
@@ -61,6 +64,14 @@ const PetProfile = (props) => {
       setUrl(reader.result);
     };
   };
+  useEffect(() => {
+    setPets(mypets);
+    setPet( // eslint-disable-next-line
+      mypets.find((pets, index) => {
+        if (pets.idPet === idPet.id) return true;
+      })
+    ); // eslint-disable-next-line
+  }, [msg]);
   return (
     <Fragment>
       <Breadcrumb parent='Users' title='My Pet' />
@@ -273,6 +284,7 @@ const PetProfile = (props) => {
                     {petinfos &&
                       petinfos.knownAllergies.map((pet, i) => (
                         <ListGroupItem
+                          key={i}
                           className='list-group-item-action'
                           tag='a'
                         >
@@ -299,7 +311,7 @@ const PetProfile = (props) => {
                         petinfos.vaccines.map((pet, i) => (
                           <tr>
                             <td>
-                            {/* eslint-disable-next-line */}
+                               {/* eslint-disable-next-line */}
                               <a
                                 className='text-inherit '
                                 role='button'

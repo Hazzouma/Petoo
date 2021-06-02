@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect} from "react";
 import Loader from "../layout/loader";
 import Taptop from "../layout/tap-top";
 import Header from "../layout/header";
@@ -13,6 +13,7 @@ import {
   videErrors,
   getMyPets,
   getMyAppointments,
+  getAssignedPets,
 } from "../redux/currentUser/action";
 import { getALLNotif } from "../redux/notification/action";
 import { getVets } from "../redux/population/action";
@@ -21,8 +22,7 @@ const App = ({ children, getWhichUser }) => {
   const dispatch = useDispatch();
   // const msg = useSelector((s) => s.currentUser.msg);
   let token = localStorage.getItem("token");
-  const role = useSelector((state) => state.currentUser.user.role);
-  const idUser = useSelector((state) => state.currentUser.user.idUser);
+  const { role, idUser } = useSelector((state) => state.currentUser.user);
   const notification = useSelector((state) => state.currentUser.msg);
   useEffect(() => {
     dispatch(current());
@@ -30,7 +30,9 @@ const App = ({ children, getWhichUser }) => {
     dispatch(getVets()); //get all Vets
     dispatch(getMyAppointments(idUser)); //get my appointments
     dispatch(getALLNotif(idUser)); // get my notifications
-    dispatch(getMyPets(idUser)); //get my pets
+    role === "Admin" || role === "petOwner"
+      ? dispatch(getMyPets(idUser))
+      : dispatch(getAssignedPets(idUser)); //get my pets
     if (notification) {
       toast.success(notification, {
         position: toast.POSITION.TOP_LEFT,
@@ -39,7 +41,7 @@ const App = ({ children, getWhichUser }) => {
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [token, role, idUser]);
+  }, [token, role]);
   return (
     <Fragment>
       <Loader />
