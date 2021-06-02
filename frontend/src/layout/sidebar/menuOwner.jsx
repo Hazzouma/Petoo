@@ -3,10 +3,10 @@ import {
   Users,
   ShoppingBag,
   Image,
-  Film,
   Command,
   Box,
   Calendar,
+  FileText,
 } from "react-feather";
 export const MENUITEMSOwner = [
   {
@@ -30,11 +30,6 @@ export const MENUITEMSOwner = [
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/product`,
             title: "Product",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product-page/1`,
-            title: "Product Page",
             type: "link",
           },
           {
@@ -92,22 +87,10 @@ export const MENUITEMSOwner = [
       },
 
       {
-        title: "Blog",
-        icon: Film,
-        type: "sub",
-        active: false,
-        children: [
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
-            title: "Blog Details",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/blogSingle`,
-            title: "Blog Single",
-            type: "link",
-          },
-        ],
+        path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
+        icon: FileText,
+        title: "Blog ",
+        type: "link",
       },
     ],
   },

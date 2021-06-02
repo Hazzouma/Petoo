@@ -16,7 +16,6 @@ import {
   CheckSquare,
   Calendar,
   Image,
-  Film,
   // Mail,
   // MessageCircle,
   // Command,
@@ -700,7 +699,7 @@ export const MENUITEMS = [
 
       {
         title: "Blog",
-        icon: Film,
+        icon: FileText,
         type: "sub",
         active: false,
         children: [

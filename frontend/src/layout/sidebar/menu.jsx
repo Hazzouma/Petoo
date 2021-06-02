@@ -3,11 +3,11 @@ import {
   Users,
   ShoppingBag,
   Image,
-  Film,
   Monitor,
   Box,
   Command,
-  Calendar
+  Calendar,
+  FileText,
 
 } from "react-feather";
 
@@ -85,11 +85,7 @@ export const  MENUITEMSAdmin = [
             title: "Product",
             type: "link",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product-page/1`,
-            title: "Product Page",
-            type: "link",
-          },
+          
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/product-list`,
             title: "Product List",
@@ -147,23 +143,19 @@ export const  MENUITEMSAdmin = [
 
       {
         title: "Blog",
-        icon: Film,
+        icon: FileText,
         type: "sub",
         active: false,
         children: [
           {
             path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
-            title: "Blog Details",
+            title: "Blogs ",
             type: "link",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/blogSingle`,
-            title: "Blog Single",
-            type: "link",
-          },
+          
           {
             path: `${process.env.PUBLIC_URL}/dashboard/blogPost`,
-            title: "Add Post",
+            title: "Add Blog",
             type: "link",
           },
   

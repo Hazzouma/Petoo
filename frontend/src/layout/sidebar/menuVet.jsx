@@ -1,14 +1,12 @@
 import {
   Home,
-
   Users,
   ShoppingBag,
-
-  Film,
-
   Command,
   Calendar,
   Box,
+  FileText,
+  
 
 } from "react-feather";
 export const MENUITEMSVet = [
@@ -45,11 +43,7 @@ export const MENUITEMSVet = [
             title: "Product",
             type: "link",
           },
-          {
-            path: `${process.env.PUBLIC_URL}/app/ecommerce/product-page/1`,
-            title: "Product Page",
-            type: "link",
-          },
+        
           {
             path: `${process.env.PUBLIC_URL}/app/ecommerce/product-list`,
             title: "Product List",
@@ -101,23 +95,18 @@ export const MENUITEMSVet = [
 
       {
         title: "Blog",
-        icon: Film,
+        icon: FileText,
         type: "sub",
         active: false,
         children: [
           {
             path: `${process.env.PUBLIC_URL}/dashboard/blogDetail`,
-            title: "Blog Details",
-            type: "link",
-          },
-          {
-            path: `${process.env.PUBLIC_URL}/dashboard/blogSingle`,
-            title: "Blog Single",
+            title: "Blogs",
             type: "link",
           },
           {
             path: `${process.env.PUBLIC_URL}/dashboard/blogPost`,
-            title: "Add Post",
+            title: "Add Blog",
             type: "link",
           },
         ],

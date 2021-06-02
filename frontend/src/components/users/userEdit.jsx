@@ -8,7 +8,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-
   Media,
   Form,
   FormGroup,
@@ -16,11 +15,9 @@ import {
   Input,
 } from "reactstrap";
 
-
 import DatePicker from "react-datepicker";
 import { userEdit } from "../../redux/currentUser/action";
 import { useHistory } from "react-router";
-
 
 const UserEdit = (props) => {
   const history = useHistory();

@@ -10,9 +10,9 @@ import {
   Minimize,
   Search,
   ShoppingCart,
-  Minus,
-  Plus,
-  X,
+  // Minus,
+  // Plus,
+  // X,
 } from "react-feather";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,15 +24,7 @@ import {
 } from "react-switch-lang";
 import { logout } from "../../redux/authentification/action";
 import { checkALLNotif } from "../../redux/notification/action";
-import {
-  Notification,
-  CheckAllNotification,
-  LogOut,
-  CheckOut,
-  ShopingBag,
-  OrderTotal,
-  GoToShopingBag,
-} from "../../constant";
+
 
 import en from "../../assets/i18n/en.json";
 import es from "../../assets/i18n/es.json";
@@ -41,7 +33,10 @@ import fr from "../../assets/i18n/fr.json";
 import du from "../../assets/i18n/du.json";
 import cn from "../../assets/i18n/cn.json";
 import ae from "../../assets/i18n/ae.json";
-import { InputGroup, InputGroupAddon, Button } from "reactstrap";
+import { 
+  // InputGroup, 
+  // InputGroupAddon,
+   Button } from "reactstrap";
 // import { useSelector } from "react-redux";
 
 setTranslations({ en, es, pt, fr, du, cn, ae });
@@ -67,9 +62,9 @@ const Rightbar = (props) => {
     dispatch(logout(history));
   };
 
-  const RedirectToCart = () => {
-    history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
-  };
+  // const RedirectToCart = () => {
+  //   history.push(`${process.env.PUBLIC_URL}/app/ecommerce/cart`);
+  // };
 
   const UserMenuRedirect = (redirect) => {
     history.push(redirect);
@@ -171,7 +166,7 @@ const Rightbar = (props) => {
             <ul className={`notification-dropdown onhover-show-div`}>
               <li>
                 <Bell />
-                <h6 className='f-18 mb-0'>{Notification}</h6>
+                <h6 className='f-18 mb-0'>Notification</h6>
               </li>
               {notifications.map((n, i) => (
                 <li key={i}>
@@ -189,7 +184,7 @@ const Rightbar = (props) => {
                   onClick={() => dispatch(checkALLNotif(idUser))}
                   className='btn btn-primary'
                 >
-                  {CheckAllNotification}
+                  Check all notification
                 </button>
               </li>
             </ul>
@@ -216,10 +211,10 @@ const Rightbar = (props) => {
               }`}
             >
               <li>
-                <h6 className='mb-0 f-20'>{ShopingBag}</h6>
+                <h6 className='mb-0 f-20'>Shoping Bag </h6>
                 <ShoppingCart />
               </li>
-              <li className='mt-0'>
+              {/* <li className='mt-0'>
                 <div className='media' onClick={RedirectToCart}>
                   <img
                     className='img-fluid rounded-circle mr-3 img-60'
@@ -329,10 +324,14 @@ const Rightbar = (props) => {
                   </h6>
                 </div>
               </li>
+    */}
+
+  
+
               <li>
                 <Link to={`${process.env.PUBLIC_URL}/dashboard/product`}>
                   <Button color='primary' className='btn btn-block view-cart'>
-                    {GoToShopingBag}
+                    Go to shoping bag
                   </Button>
                 </Link>
                 <Link to={`${process.env.PUBLIC_URL}/dashboard/checkout`}>
@@ -340,7 +339,7 @@ const Rightbar = (props) => {
                     color='secondary'
                     className='btn-block view-cart mt-2'
                   >
-                    {CheckOut}
+                    Check Out
                   </Button>
                 </Link>
               </li>
@@ -459,7 +458,7 @@ const Rightbar = (props) => {
                 }
               >
                 <LogIn />
-                <span>{LogOut}</span>
+                <span>Log Out</span>
               </li>
             </ul>
           </li>

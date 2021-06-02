@@ -30,7 +30,7 @@ const PetProfile = (props) => {
   let idPet = useParams();
   console.log(idPet);
   const mypets = useSelector((state) => state.currentUser.myPets);
-  const role = useSelector((state) => state.currentUser.user.role);
+  const { role, idUser } = useSelector((state) => state.currentUser.user);
   const msg = useSelector((state) => state.currentUser.msg);
   const [pets, setPets] = useState(mypets);
   const [petinfos, setPet] = useState(
@@ -50,7 +50,7 @@ const PetProfile = (props) => {
   const toggle = () => setModal(!modal); // Modal Related
   const [modal1, setModal2] = useState(false);
   const toggle1 = () => setModal2(!modal1);
-// eslint-disable-next-line
+  // eslint-disable-next-line
   const [url, setUrl] = useState();
 
   const readUrl = (event) => {
@@ -73,7 +73,7 @@ const PetProfile = (props) => {
       mypets.find((pets, index) => {
         if (pets.idPet === idPet.id) return true;
       })
-    );// eslint-disable-next-line
+    ); // eslint-disable-next-line
   }, [msg]);
   return (
     <Fragment>
@@ -169,7 +169,7 @@ const PetProfile = (props) => {
                     </Col>
                   </Row>
                   {/* Modal Starts Here */}
-                  {role === "Admin" ? (
+                  {petinfos && petinfos.idOwnerOfPet === idUser ? (
                     <>
                       <Button color='primary' onClick={toggle}>
                         Edit Pet
@@ -286,7 +286,37 @@ const PetProfile = (props) => {
             <Col sm={8}>
               <Card>
                 <CardHeader>
-                  <h5>Known Allergies</h5>
+                  <h5 className='float-left'>Known Allergies</h5>
+                  {role === "Veterinary" && (
+                    <div className='float-right'>
+                      <Button color='primary' onClick={toggle}>
+                        Edit allergies
+                      </Button>
+                      <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>
+                          Edit My Pet's Known Allergies
+                        </ModalHeader>
+                        <ModalBody>
+                          <FormGroup>
+                            <Label className='form-label'>Name</Label>
+                            <Input
+                              className='form-control'
+                              type='text'
+                              placeholder='Name'
+                            />
+                          </FormGroup>
+                        </ModalBody>
+                        <ModalFooter>
+                          <Button color='primary' onClick={toggle}>
+                            {Close}
+                          </Button>
+                          <Button color='secondary' onClick={toggle}>
+                            {SaveChanges}
+                          </Button>
+                        </ModalFooter>
+                      </Modal>
+                    </div>
+                  )}
                 </CardHeader>
                 <CardBody>
                   <ListGroup>
@@ -311,7 +341,35 @@ const PetProfile = (props) => {
             <Col sm={8}>
               <Card>
                 <CardHeader>
-                  <h5>Vaccination History</h5>
+                  <h5 className='float-left'>Vaccination History</h5>
+                  {role === "Veterinary" && (
+                    <div className='float-right'>
+                      <Button color='primary' onClick={toggle}>
+                        Edit Pet's Vaccination History
+                      </Button>
+                      <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>Edit My Pet</ModalHeader>
+                        <ModalBody>
+                          <FormGroup>
+                            <Label className='form-label'>Name</Label>
+                            <Input
+                              className='form-control'
+                              type='text'
+                              placeholder='Name'
+                            />
+                          </FormGroup>
+                        </ModalBody>
+                        <ModalFooter>
+                          <Button color='primary' onClick={toggle}>
+                            {Close}
+                          </Button>
+                          <Button color='secondary' onClick={toggle}>
+                            {SaveChanges}
+                          </Button>
+                        </ModalFooter>
+                      </Modal>
+                    </div>
+                  )}
                 </CardHeader>
                 <div className='table-responsive'>
                   <table className='table card-table table-vcenter text-nowrap'>
@@ -320,7 +378,7 @@ const PetProfile = (props) => {
                         petinfos.vaccines.map((pet, i) => (
                           <tr>
                             <td>
-                               {/* eslint-disable-next-line */}
+                              {/* eslint-disable-next-line */}
                               <a
                                 className='text-inherit '
                                 role='button'

@@ -44,6 +44,7 @@ const  Productpage = (props)  => {
             nav2: slider2.current
           });
       } ,[dispatch]);
+      // eslint-disable-next-line
     const { nav1, nav2 } = state;
     const singleItem = useSelector(content => content.data.singleItem)
     const symbol = useSelector(content => content.data.symbol)
