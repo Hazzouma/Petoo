@@ -141,7 +141,7 @@ const Product = (props) => {
   }
 
   const onClickDetailPage = (product) => {
-    const id = product.id;
+    const id = product.idProduct;
     history.push(`${process.env.PUBLIC_URL}/app/ecommerce/product-page/${id}`)
   }
 
@@ -298,11 +298,11 @@ const Product = (props) => {
                           <div className="product-hover">
                             <ul>
                               <li>
-                                {/* <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/cart`}>
+                                <Link to={`${process.env.PUBLIC_URL}/app/ecommerce/cart`}>
                                   <Button color="default" onClick={() => addcart(item, quantity)}>
                                     <i className="icon-shopping-cart"></i>
                                   </Button>
-                                </Link> */}
+                                </Link>
                               </li>
                               {/* <li>
                                 <Button color="default" data-toggle="modal"

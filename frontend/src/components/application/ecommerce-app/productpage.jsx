@@ -10,8 +10,23 @@ import { ADD_TO_WISHLIST } from '../../../redux/actionTypes'
 import Ratings from 'react-ratings-declarative'
 import { ProductReview,  Brand, Availability, AddToCart, BuyNow } from "../../../constant";
 import { Truck, Gift,CreditCard,Clock } from 'react-feather';
+import { useParams } from "react-router";
 
 const  Productpage = (props)  => {
+    const dispatch = useDispatch()
+    let idProduct = useParams();
+    const products = useSelector((state) => state.populationReducer.products);
+    // eslint-disable-next-line
+  const productinfos = products.find((product, index) => {
+    if (product.idProduct === idProduct.id)
+      // eslint-disable-next-line
+      return true;
+  });
+
+  
+
+
+
     const history = useHistory()
     const [state, setState] = useState({ nav1: null, nav2: null });
     const [rating,setRating] = useState(0)
@@ -20,7 +35,7 @@ const  Productpage = (props)  => {
     
     const slider1 = useRef();
     const slider2 = useRef();
-    const dispatch = useDispatch()
+    
 
     useEffect(() => {
         dispatch(watchfetchSingleProducts())
@@ -95,63 +110,46 @@ const  Productpage = (props)  => {
                                 <Card>
                                     <CardBody>
                                     <div className="product-page-details">
-                                        <h3>{"Women Pink shirt."}</h3>
+                                        <h3>{productinfos && productinfos.name}</h3>
                                     </div>
                                     <div className="product-price f-28">
-                                        {symbol}{singleItem.price}
-                                        <del>{symbol}{singleItem.discountPrice}</del>
+                                        {symbol}{productinfos && productinfos.price}
+                                        <del>{symbol}{productinfos && productinfos.promoPrice}</del>
                                     </div>
-                                    <ul className="product-color m-t-15">
+                                    {/* <ul className="product-color m-t-15">
                                         <li className="bg-primary"></li>
                                         <li className="bg-secondary"></li>
                                         <li className="bg-success"></li>
                                         <li className="bg-info"></li>
                                         <li className="bg-warning"></li>
-                                    </ul>
+                                    </ul> */}
                                     <hr/>
-                                    <p>{"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that."}</p>
+                                    <p>{productinfos && productinfos.description}</p>
                                     <hr/>
                                     <div>
                                         <table className="product-page-width">
                                         <tbody>
                                             <tr>
                                             <td> <b>{Brand} &nbsp;&nbsp;&nbsp;:</b></td>
-                                            <td>{"Pixelstrap"}</td>
+                                            <td>{productinfos && productinfos.brand}</td>
                                             </tr>
-                                            <tr>
+                                            {/* <tr>
                                             <td> <b>{Availability} &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
                                             <td className="txt-success">{singleItem.stock}</td>
-                                            </tr>
+                                            </tr> */}
                                             <tr>
                                             <td> <b>{"Seller"} &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
                                             <td>{"ABC"}</td>
                                             </tr>
                                             <tr>
-                                            <td> <b>{"Fabric"} &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                            <td>{"Cotton"}</td>
+                                            <td> <b>{"Type"} &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                                            <td>{productinfos && productinfos.productType}</td>
                                             </tr>
                                         </tbody>
                                         </table>
                                     </div>
                                     <hr/>
-                                    <Row>
-                                        <Col md="6">
-                                        <h6 className="product-title">{"share it"}</h6>
-                                        </Col>
-                                        <Col md="6">
-                                        <div className="product-icon">
-                                            <ul className="product-social">
-                                            <li className="d-inline-block"><a href="#javascript"><i className="fa fa-facebook"></i></a></li>
-                                            <li className="d-inline-block"><a href="#javascript"><i className="fa fa-google-plus"></i></a></li>
-                                            <li className="d-inline-block"><a href="#javascript"><i className="fa fa-twitter"></i></a></li>
-                                            <li className="d-inline-block"><a href="#javascript"><i className="fa fa-instagram"></i></a></li>
-                                            <li className="d-inline-block"><a href="#javascript"><i className="fa fa-rss"></i></a></li>
-                                            </ul>
-                                            <form className="d-inline-block f-right"></form>
-                                        </div>
-                                        </Col>
-                                    </Row>
-                                    <hr/>
+                                    {/*   */}
                                     <Row>
                                         <Col md="6">
                                         <h6 className="product-title">{"Rate Now"}</h6>
@@ -169,7 +167,7 @@ const  Productpage = (props)  => {
                                                 <Ratings.Widget />
                                                 <Ratings.Widget />
                                             </Ratings>
-                                            <span>{ProductReview}</span>
+                                            {/* <span>{ProductReview}</span> */}
                                         </div>
                                         </Col>
                                     </Row>
@@ -189,7 +187,7 @@ const  Productpage = (props)  => {
                                 </Card>
                             </Col>
                             <Col xl="3 xl-cs-35">
-                                <Card>
+                                {/* <Card>
                                     <CardBody>
                                     <div className="filter-block">
                                         <h4>{"Brand"}</h4>
@@ -202,8 +200,8 @@ const  Productpage = (props)  => {
                                         </ul>
                                     </div>
                                     </CardBody>
-                                </Card>
-                                <Card>
+                                </Card> */}
+                                {/* <Card>
                                     <CardBody>
                                     <div className="collection-filter-block">
                                         <ul>
@@ -242,11 +240,12 @@ const  Productpage = (props)  => {
                                         </ul>
                                     </div>
                                     </CardBody>
-                                </Card>
+                                </Card> */}
                             </Col>
                         </Row>
                     </Card>
-                    <Tablet /></Col>
+                    {/* <Tablet /> */}
+                    </Col>
                    </Row>
                 </Container>
             </Fragment>
