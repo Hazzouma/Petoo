@@ -15,7 +15,8 @@ import { getCartTotal } from "../../../services/ecommerce.service";
 import ReactToPrint from "react-to-print";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Cuba,HelloCuba,InvoiceHash,IssuedMay,PaymentDue,JohanDeo,JohanDeoMailId,ProjectDescription,ProjectDescriptionDetails,ProductName,Sub_total,ThankBusiness,ThankBusinessDesc,Print,Quantity,Price,Cancel } from '../../../constant';
+import logo from "../../../assets/images/logo/login.png";
+import { InvoiceHash,IssuedMay,PaymentDue,ThankBusiness,ThankBusinessDesc,Print,Cancel } from '../../../constant';
 
 class Invoice extends React.Component {
   render() {
@@ -36,14 +37,14 @@ class Invoice extends React.Component {
                               <Media left>
                                 <Media
                                   className="media-object img-60"
-                                  src={require("../../../assets/images/other-images/coming-soon-Logo.png")}
+                                  src={logo}
                                   alt=""
                                 />
                               </Media>
                               <Media body className="m-l-20">
-                                <h4 className="media-heading">{Cuba}</h4>
+                                <h4 className="media-heading">Petoo</h4>
                                 <p>
-                                  {HelloCuba}
+                                  contact@petoo.com
                                   <br />
                                   <span className="digits">{"289-335-6503"}</span>
                                 </p>
@@ -80,9 +81,9 @@ class Invoice extends React.Component {
                               />
                             </Media>
                             <Media body className="m-l-20">
-                              <h4 className="media-heading">{JohanDeo}</h4>
+                              <h4 className="media-heading">Johan Doe</h4>
                               <p>
-                                {JohanDeoMailId}
+                                Johan@gmail.com
                                 <br />
                                 <span className="digits">{"555-555-5555"}</span>
                               </p>
@@ -91,9 +92,9 @@ class Invoice extends React.Component {
                         </Col>
                         <Col md="8">
                           <div className="text-md-right" id="project">
-                            <h6>{ProjectDescription}</h6>
+                            <h6>Project Description</h6>
                             <p>
-                              {ProjectDescriptionDetails}
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                             </p>
                           </div>
                         </Col>
@@ -108,16 +109,16 @@ class Invoice extends React.Component {
                             <tbody>
                               <tr>
                                 <td className="item">
-                                  <h6 className="p-2 mb-0">{ProductName}</h6>
+                                  <h6 className="p-2 mb-0">Product Name</h6>
                                 </td>
                                 <td className="quantity">
-                                  <h6 className="p-2 mb-0">{Quantity}</h6>
+                                  <h6 className="p-2 mb-0">Quantity</h6>
                                 </td>
                                 <td className="Rate">
-                                  <h6 className="p-2 mb-0">{Price}</h6>
+                                  <h6 className="p-2 mb-0">Price</h6>
                                 </td>
                                 <td className="subtotal">
-                                  <h6 className="p-2 mb-0">{Sub_total}</h6>
+                                  <h6 className="p-2 mb-0">Sub-total</h6>
                                 </td>
                               </tr>
                               {cart.map((item, index) => {

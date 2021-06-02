@@ -69,28 +69,23 @@ const  Productpage = (props)  => {
     
     return (
         <Fragment>
-                <Breadcrumb parent="Ecommerce" title="Product Page"/>
+                <Breadcrumb parent="Ecommerce" title={productinfos && productinfos.name}/>
                 <Container fluid={true}>
-                   <Row>
-                       <Col>
-                       <Card>
-                        <Row className="product-page-main">
-                            <Col xl="4">
+                   <Row className='justify-content-md-center'>
+                       <Col sm='8' >
+                       <Card >
+                        <Row className="product-page-main" style={{justifyContent:"center"}} >
+                            <Col xl="4"  >
+                                {/* for now i'm showin only 1 photo , i've prepared in the schema an array [photoS] in case we want to show many */}
+
                                 <Slider  
                                     asNavFor={nav2} 
                                     arrows= {false}
                                         ref={slider => (slider1.current = slider)} className="product-slider">
-                                    {singleItem.variants ? singleItem.variants.map((item, i) => {
-                                        return (
-                                            <div className="item" key={i}>
-                                                <Media src={require("../../../assets/images/" + item.images)} alt="" className="img-fluid" />
-                                            </div>
-                                        )
-                                    }) :
-                                        <Media src={singleItem.img} alt="" className="img-fluid" />
-                                    }   
+                                   <Media src={productinfos && productinfos.photo} alt="" className="img-fluid" />
+                                       
                                     </Slider>
-                                    <Slider asNavFor={nav1}
+                                    {/* <Slider asNavFor={nav1}
                                     ref={slider => (slider2.current= slider)}
                                     slidesToShow={4}
                                     swipeToSlide={true}
@@ -104,11 +99,11 @@ const  Productpage = (props)  => {
                                             </div>
                                         )
                                     }) : ''}
-                                </Slider>
+                                </Slider> */}
                             </Col>
                             <Col xl="5 xl-100">
                                 <Card>
-                                    <CardBody>
+                                    <CardBody >
                                     <div className="product-page-details">
                                         <h3>{productinfos && productinfos.name}</h3>
                                     </div>
