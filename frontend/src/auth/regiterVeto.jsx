@@ -168,7 +168,7 @@ useEffect(() => {
                   <Col sm="9 offset-sm-3">
 
                     <Button  color="primary" className="mr-1"  onClick={() => registerUser()} >Submit</Button>
-                    <Link className='ml-2' to='/register'>
+                    <Link className='ml-2' to='/home'>
                     <Button color="light" type="reset" >Cancel</Button>
                     </Link>
                   </Col>

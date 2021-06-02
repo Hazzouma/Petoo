@@ -30,7 +30,6 @@ import {
   EmailAddress,
   RememberPassword,
   ForgotPassword,
-  CreateAccount,
   LoginWithJWT,
 } from "../constant";
 import { useDispatch, useSelector } from "react-redux";
@@ -190,19 +189,19 @@ const Logins = (props) => {
                           <p className='mt-4 mb-0'>
                             {"Don't have account?"}
                             <Link className='ml-2' to='/register'>
-                              {CreateAccount}
+                              CreateAccount
                             </Link>
                           </p>
 
-                          {/* <Link className='ml-2' to='/registerVet'>
+                           <Link className='ml-2' to='/home'>
                             <div style={{ margin: "0",
-   display: "flex",
-   justifyContent: "center",
-   alignItems: "center",
-   }}>
-                          <button  type="button" className="btn btn-info">Create a Vet Account</button>
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  }}>
+                          <button  type="button" className="btn btn-info">Return to home page</button>
                           </div>
-                          </Link> */}
+                          </Link> 
                         </Form>
                       </TabPane>
                     </TabContent>

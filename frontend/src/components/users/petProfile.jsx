@@ -33,8 +33,10 @@ const PetProfile = (props) => {
   const role = useSelector((state) => state.currentUser.user.role);
   const msg = useSelector((state) => state.currentUser.msg);
   const [pets, setPets] = useState(mypets);
-  const [petinfos, setPet] = useState( // eslint-disable-next-line
+  const [petinfos, setPet] = useState(
+    // eslint-disable-next-line
     pets.find((pets, index) => {
+      // eslint-disable-next-line
       if (pets.idPet === idPet.id) return true;
     })
   );
@@ -66,11 +68,12 @@ const PetProfile = (props) => {
   };
   useEffect(() => {
     setPets(mypets);
-    setPet( // eslint-disable-next-line
+    setPet(
+      // eslint-disable-next-line
       mypets.find((pets, index) => {
         if (pets.idPet === idPet.id) return true;
       })
-    ); // eslint-disable-next-line
+    );// eslint-disable-next-line
   }, [msg]);
   return (
     <Fragment>
@@ -79,7 +82,7 @@ const PetProfile = (props) => {
         <div className='user-profile'>
           <Row className='justify-content-md-center'>
             {/* The Profile Card Starts Here */}
-            <Col sm='12'>
+            <Col sm='8'>
               <Card className='card hovercard text-center'>
                 <CardHeader className='cardheader'></CardHeader>
                 <div className='user-image'>
@@ -166,7 +169,7 @@ const PetProfile = (props) => {
                     </Col>
                   </Row>
                   {/* Modal Starts Here */}
-                  {role === "Owner" ? (
+                  {role === "Admin" ? (
                     <>
                       <Button color='primary' onClick={toggle}>
                         Edit Pet
@@ -205,16 +208,6 @@ const PetProfile = (props) => {
 
                           <Col>
                             <FormGroup className='m-t-15 custom-radio-ml'>
-                              <div className='radio radio-primary'>
-                                <Input
-                                  id='radio11'
-                                  type='radio'
-                                  name='radio1'
-                                  value='option1'
-                                  //onClick={() => setGender("Male")}
-                                />
-                                <Label for='radio11'>Male</Label>
-                              </div>
                               <div className='radio radio-secondary'>
                                 <Input
                                   id='radio22'
@@ -225,22 +218,38 @@ const PetProfile = (props) => {
                                 />
                                 <Label for='radio22'>Female</Label>
                               </div>
-                            </FormGroup>
-                          </Col>
-
-                          <FormGroup>
-                            <Label className='form-label'>Date Of Birth</Label>
-                            {/* Date Picker */}
-                            <FormGroup className='form-row'>
-                              <div className='input-group'>
-                                <DatePicker
-                                  className='form-control digits'
-                                  selected={startDate}
-                                  onChange={(e) => handleChange(e)}
+                              <br />
+                              <div className='radio radio-primary'>
+                                <Input
+                                  id='radio11'
+                                  type='radio'
+                                  name='radio1'
+                                  value='option1'
+                                  //onClick={() => setGender("Male")}
                                 />
+                                <Label for='radio11'>Male</Label>
                               </div>
                             </FormGroup>
-                          </FormGroup>
+                          </Col>
+                          <Row>
+                            <Col>
+                              <FormGroup>
+                                <Label className='form-label'>
+                                  Date Of Birth
+                                </Label>
+                                {/* Date Picker */}
+                                <FormGroup className='form-row'>
+                                  <div className='input-group'>
+                                    <DatePicker
+                                      className='form-control digits'
+                                      selected={startDate}
+                                      onChange={(e) => handleChange(e)}
+                                    />
+                                  </div>
+                                </FormGroup>
+                              </FormGroup>
+                            </Col>
+                          </Row>
                         </ModalBody>
                         <ModalFooter>
                           <Button color='primary' onClick={toggle}>
@@ -384,10 +393,10 @@ const PetProfile = (props) => {
                         </ModalBody>
                         <ModalFooter>
                           <Button color='primary' onClick={toggle1}>
-                            {Close}
+                            Close
                           </Button>
                           <Button color='secondary' onClick={toggle1}>
-                            {SaveChanges}
+                            SaveChanges
                           </Button>
                         </ModalFooter>
                       </Modal>

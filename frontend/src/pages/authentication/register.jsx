@@ -2,14 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {Container,Row,Col,Button, Modal, ModalHeader, ModalBody, ModalFooter,Form, FormGroup, Label, Input} from 'reactstrap'
 
-import {
-  Password,
- 
-  EmailAddress,
-  CreateAccount,
-  YourName,
-  PrivacyPolicy,
-} from "../../constant";
 import { toast } from "react-toastify";
 import { Facebook } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,7 +79,7 @@ const Register = ({ history }) => {
                   <h4>{"Create your account"}</h4>
                   <p>{"Enter your personal details to create account"}</p>
                   <FormGroup>
-                    <Label className='col-form-label pt-0'>{YourName}</Label>
+                    <Label className='col-form-label pt-0'>Your Name</Label>
                     <div className='form-row'>
                       <Col xs='6'>
                         <Input
@@ -112,7 +104,7 @@ const Register = ({ history }) => {
                     </div>
                   </FormGroup>
                   <FormGroup>
-                    <Label className='col-form-label'>{EmailAddress}</Label>
+                    <Label className='col-form-label'>Email Address</Label>
                     <Input
                       className='form-control'
                       type='email'
@@ -123,7 +115,7 @@ const Register = ({ history }) => {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label className='col-form-label'>{Password}</Label>
+                    <Label className='col-form-label'>Password</Label>
                     <Input
                       className='form-control'
                       type={togglePassword ? "text" : "password"}
@@ -170,7 +162,7 @@ const Register = ({ history }) => {
                       <Label className='text-muted' for='checkbox1'>
                         {"Agree with"}
                         <a className='ml-2' href="/" onClick={Scrollmodaltoggle}>
-                          {PrivacyPolicy}
+                          PrivacyPolicy
                         </a>
                       </Label>
                     </div>
@@ -180,7 +172,7 @@ const Register = ({ history }) => {
                       // type='submit'
                       onClick={() => registerUser()}
                     >
-                      {CreateAccount}
+                      CreateAccount
                     </Button>
                   </div>
                   <h6 className='text-muted mt-4 or'>{"Or signup with"}</h6>
@@ -199,16 +191,27 @@ const Register = ({ history }) => {
                     <Link className='ml-2' to='/login'>
                       Sign In
                     </Link>
-                  </p>
-                   <Link className='ml-2' to='/registerVet'>
+                  </p> 
+                  <div style={{display: "flex"}}>
+                    <Link className='ml-2' to='/registerVet'>
                             <div style={{ margin: "0",
-   display: "flex",
-   justifyContent: "center",
-   alignItems: "center",
-   }}>
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            }}>
                           <button  type="button" className="btn btn-info">Create a Vet Account</button>
                           </div>
-                          </Link>
+                    </Link>
+                    <Link className='ml-2' to='/home'>
+                            <div style={{ margin: "0",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  }}>
+                          <button  type="button" className="btn btn-primary">Return to home page</button>
+                          </div>
+                          </Link> 
+                  </div>
                 </Form>
               </div>
             </div>
