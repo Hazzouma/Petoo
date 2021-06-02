@@ -1,15 +1,15 @@
 import React,{Fragment, useState,useEffect,useRef} from 'react';
 import Breadcrumb from '../../../layout/breadcrumb'
 import {Container,Row,Col,Card,Button,Media, CardBody} from 'reactstrap'
-import Tablet from './tabsets';
+//import Tablet from './tabsets';
 import Slider from 'react-slick';
 import {useHistory} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { addToCart,watchfetchSingleProducts } from '../../../redux/ecommerce/product/action';
 import { ADD_TO_WISHLIST } from '../../../redux/actionTypes'
 import Ratings from 'react-ratings-declarative'
-import { ProductReview,  Brand, Availability, AddToCart, BuyNow } from "../../../constant";
-import { Truck, Gift,CreditCard,Clock } from 'react-feather';
+//import {  Brand, AddToCart, BuyNow } from "../../../constant";
+//import { Truck, Gift,CreditCard,Clock } from 'react-feather';
 import { useParams } from "react-router";
 
 const  Productpage = (props)  => {
@@ -130,7 +130,7 @@ const  Productpage = (props)  => {
                                         <table className="product-page-width">
                                         <tbody>
                                             <tr>
-                                            <td> <b>{Brand} &nbsp;&nbsp;&nbsp;:</b></td>
+                                            <td> <b>Brand &nbsp;&nbsp;&nbsp;:</b></td>
                                             <td>{productinfos && productinfos.brand}</td>
                                             </tr>
                                             {/* <tr>
@@ -174,10 +174,10 @@ const  Productpage = (props)  => {
                                     <hr/>
                                     <div className="m-t-15">
                                         <Button  color="primary" className="m-r-10" onClick={() => addcart(singleItem, quantity)} >
-                                            <i className="fa fa-shopping-basket mr-1"></i>{AddToCart}
+                                            <i className="fa fa-shopping-basket mr-1"></i>AddToCart
                                         </Button>
                                         <Button  color="success" className="m-r-10" onClick={() => buyProduct(singleItem, quantity)}>
-                                            <i className="fa fa-shopping-cart mr-1"></i>{BuyNow}
+                                            <i className="fa fa-shopping-cart mr-1"></i>BuyNow
                                         </Button>
                                         <Button color="secondary" onClick={() => addWishList(singleItem)}>
                                             <i className="fa fa-heart mr-1"></i>{"Add To WishList"}

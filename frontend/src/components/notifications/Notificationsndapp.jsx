@@ -157,6 +157,7 @@ const Notifndapp = (props) => {
                           <hr />
                         </li>
                         <NavItem>
+                         {/* eslint-disable-next-line */}
                           <a
                             href='#'
                             className={activeTab === "6" ? "active" : ""}
@@ -300,13 +301,14 @@ const Notifndapp = (props) => {
                                     {appo.length ? (
                                       appo.map((appo, index) => {
                                         const vetinfos = vets.find(
+                                          // eslint-disable-next-line
                                           (vet, index) => {
                                             if (vet.idUser === appo.idVet)
                                               // eslint-disable-next-line
                                               return true;
-                                          }
+                                          }// eslint-disable-next-line
                                         );
-                                        const petinfo = pets.find(
+                                        const petinfo = pets.find( // eslint-disable-next-line
                                           (pet, index) => {
                                             if (pet.idPet === appo.idPet)
                                               // eslint-disable-next-line
@@ -437,8 +439,9 @@ const Notifndapp = (props) => {
                                     {pendingAppointments &&
                                     pendingAppointments.length > 0 &&
                                     (role === "petOwner" ||
+                                    // eslint-disable-next-line
                                       role === "Admin") ? (
-                                      pendingAppointments.map(
+                                      pendingAppointments.map( // eslint-disable-next-line
                                         (pendApp, index) => {
                                           if (
                                             pendApp &&
@@ -523,10 +526,10 @@ const Notifndapp = (props) => {
                                 <Table>
                                   <thead></thead>
                                   <tbody>
-                                    {pendingAppointments &&
+                                    {pendingAppointments &&// eslint-disable-next-line
                                     pendingAppointments.length > 0 &&
                                     role === "Veterinary" ? (
-                                      pendingAppointments.map(
+                                      pendingAppointments.map( // eslint-disable-next-line
                                         (pendApp, index) => {
                                           if (
                                             pendApp.confirmedByOwner &&
@@ -638,9 +641,10 @@ const Notifndapp = (props) => {
                                   <tbody>
                                     {pendingAppointments &&
                                     pendingAppointments.length > 0 &&
+                                    // eslint-disable-next-line
                                     (role === "petOwner" ||
                                       role === "Admin") ? (
-                                      pendingAppointments.map(
+                                      pendingAppointments.map( // eslint-disable-next-line
                                         (pendApp, index) => {
                                           const theVet =
                                             vets &&

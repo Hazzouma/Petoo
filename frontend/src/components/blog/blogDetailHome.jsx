@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
-import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, Media } from "reactstrap"
 import { getBlogs} from "../../redux/population/action";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import NavBar from "../../landing/components/NavBar"
 
 
 const BlogDetailHome = () => {
@@ -18,7 +18,7 @@ const BlogDetailHome = () => {
   }, []);
     return (
         <Fragment>
-            <Breadcrumb parent="Petoo Blogs" title="Blogs" />
+            <NavBar/>
             <Container fluid={true}>
                 <Row className="justify-content-md-center">
                     {/* Big Pic Blog */}

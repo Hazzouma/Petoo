@@ -117,9 +117,9 @@ const Header = (props) => {
     document.body.className = `${layout_version} ${layout_type}`;
   };
   const afficherSelonRole = (role) => {
-    if (role == "Admin") {
+    if (role === "Admin") {
       setMENUITEMS(MENUITEMSAdmin);
-    } else if (role == "Veterinary") {
+    } else if (role === "Veterinary") {
       setMENUITEMS(MENUITEMSVet);
     } else if (role === "petOwner") {
       setMENUITEMS(MENUITEMSOwner);

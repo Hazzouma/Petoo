@@ -15,6 +15,7 @@ const PetList = (props) => {
   useEffect(() => {
     role === "Veterinary" && dispatch(getAssignedPets(idUser));
     setPets(waitPets);
+    // eslint-disable-next-line
   }, [confirmedPets]);
 
   return (

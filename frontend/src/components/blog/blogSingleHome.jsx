@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
-import Breadcrumb from '../../layout/breadcrumb'
 import {Container,Row,Col,Media} from "reactstrap";
 import { useParams } from "react-router";
 import { getBlogs} from "../../redux/population/action";
 import { useSelector, useDispatch } from "react-redux";
+import NavBar from "../../landing/components/NavBar"
+import moment from 'moment';
 
 const BlogSingleHome = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const BlogSingleHome = () => {
       // eslint-disable-next-line
       return true;
   });
-  console.log(bloginfos)
 
   useEffect(() => {
     dispatch(getBlogs());
@@ -24,17 +24,17 @@ const BlogSingleHome = () => {
 
     return (
         <Fragment>
-
-            <Breadcrumb parent="Blogs" title={bloginfos && bloginfos.title}/>
+            <NavBar/>
+           
             <Container fluid={true} >
                 <Row  className="justify-content-md-center" >
-                    <Col sm={8} style={{margin: "30px"}} style={{borderStyle: "outset", borderRadius: "50px", padding:"20px"}} >
+                    <Col sm={8} style={{borderStyle: "outset", borderRadius: "50px", padding:"20px", margin: "30px"}} >
                         <div className="blog-single" >
                             <div className="blog-box blog-details" >
                                 <Media className="img-fluid w-100" style={{borderRadius: "50px"}} src={bloginfos && bloginfos.blogPicture} alt="blog-main" />
                                 <div className="blog-details">
                                     <ul className="blog-social">
-                                        <li className="digits">{bloginfos && bloginfos.creationDate}</li>
+                                        <li className="digits">{bloginfos && moment(parseInt(bloginfos.creationDate , 10)).fromNow()}</li>
                                         <li><i className="icofont icofont-user"></i>{bloginfos && bloginfos.author}</li>
                                         <li className="digits"><i className="icofont icofont-thumbs-up"></i>{"02"}<span>{"Hits"}</span></li>
                                         <li className="digits"><i className="icofont icofont-ui-chat"></i>{"598 Comments"}</li>

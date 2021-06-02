@@ -1,16 +1,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import Breadcrumb from '../../../layout/breadcrumb'
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Row, Col, Card, CardHeader, CardBody, Button, ListGroup, Form, FormGroup, Input, Media, Modal, ModalHeader, ModalBody, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
+import { Container, Row, Col, Card, CardHeader, CardBody, Button, ListGroup, Form, FormGroup, Input, Media, } from 'reactstrap'
 import { SEARCH_BY, SORT_BY, ADD_TO_CART, ADD_TO_WISHLIST } from '../../../redux/actionTypes'
 import { Grid, List } from 'react-feather'
 import { Link, useHistory } from 'react-router-dom'
 import errorImg from '../../../assets/images/search-not-found.png';
 import Allfilters from '../../../components/application/ecommerce-app/filters/allfilters'
 import Carousal from '../../../components/application/ecommerce-app/filters/carousal'
-import { getVisibleproducts } from '../../../services/ecommerce.service'
+//import { getVisibleproducts } from '../../../services/ecommerce.service'
 import  {watchfetchProducts} from "../../../redux/ecommerce/product/action"
-import { Filters,NotFoundData,ProductDetails,Quantity,AddToCart,ViewDetails,ProductSizeArray } from "../../../constant";
+//import { Filters,NotFoundData,ProductDetails,Quantity,AddToCart,ViewDetails,ProductSizeArray } from "../../../constant";
 import {getProducts } from '../../../redux/population/action'
 const Product = (props) => {
   const dispatch = useDispatch()
@@ -26,20 +26,21 @@ const Product = (props) => {
  
   const history = useHistory();
 
-  const data = useSelector(content => content.data.productItems);
+  // const data = useSelector(content => content.data.productItems);
   // eslint-disable-next-line 
   const [layoutColumns, setLayoutColumns] = useState(3);
 
   const symbol = useSelector(content => content.data.symbol);
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [sidebaron, setSidebaron] = useState(true);
-  const [singleProduct, setSingleProduct] = useState([]);
+  // const [singleProduct, setSingleProduct] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   // eslint-disable-next-line
   const [stock, setStock] = useState('');
   const [filterSidebar, setFilterSidebar] = useState(true);
+   // eslint-disable-next-line
   const [quantity, setQuantity] = useState(1);
-  const filters = useSelector(content => content.filters);
+  // const filters = useSelector(content => content.filters);
   //const products = getVisibleproducts(data, filters)
 
 
@@ -92,38 +93,38 @@ const Product = (props) => {
   }
 
 
-  const onOpenModal = (productId) => {
-    setOpen(true);
-    data.forEach((product, i) => {
-      if (product.id === productId) {
-        setSingleProduct(product)
-      }
-    })
-  };
+  // const onOpenModal = (productId) => {
+  //   setOpen(true);
+  //   data.forEach((product, i) => {
+  //     if (product.id === productId) {
+  //       setSingleProduct(product)
+  //     }
+  //   })
+  // };
 
-  const onCloseModal = () => {
-    setOpen(false)
-  };
+  // const onCloseModal = () => {
+  //   setOpen(false)
+  // };
 
 
-  const minusQty = () => {
-    if (quantity > 1) {
-      setStock('InStock')
-      setQuantity(quantity - 1)
-    }
-  }
+  // const minusQty = () => {
+  //   if (quantity > 1) {
+  //     setStock('InStock')
+  //     setQuantity(quantity - 1)
+  //   }
+  // }
 
-  const changeQty = (e) => {
-    setQuantity(parseInt(e.target.value))
-  }
+  // const changeQty = (e) => {
+  //   setQuantity(parseInt(e.target.value))
+  // }
 
-  const plusQty = () => {
-    if (quantity >= 1) {
-      setQuantity(quantity + 1)
-    } else {
-      setStock('Out of Stock !')
-    }
-  }
+  // const plusQty = () => {
+  //   if (quantity >= 1) {
+  //     setQuantity(quantity + 1)
+  //   } else {
+  //     setStock('Out of Stock !')
+  //   }
+  // }
 
   const addcart = (product, qty) => {
     dispatch({ type: ADD_TO_CART, payload: { product, qty } })
@@ -165,7 +166,7 @@ const Product = (props) => {
                   </a>
                 </div>
                 <span className="d-none-productlist filter-toggle" onClick={() => setFilterSidebar(!filterSidebar)} >
-                  <h6 className="mb-0">{Filters}
+                  <h6 className="mb-0">Filters
                       <span className="ml-2">
                       <i className="toggle-data fa fa-chevron-down"></i>
                     </span>

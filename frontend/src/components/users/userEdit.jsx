@@ -8,7 +8,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
+
   Media,
   Form,
   FormGroup,
@@ -16,7 +16,7 @@ import {
   Input,
 } from "reactstrap";
 
-import { Bio, Save, UpdateProfile } from "../../constant";
+
 import DatePicker from "react-datepicker";
 import { userEdit } from "../../redux/currentUser/action";
 import { useHistory } from "react-router";
@@ -316,7 +316,7 @@ const UserEdit = (props) => {
                   className='btn btn-primary'
                   onClick={() => sendModifs()}
                 >
-                  {UpdateProfile}
+                  UpdateProfile
                 </button>
               </div>
             </Col>

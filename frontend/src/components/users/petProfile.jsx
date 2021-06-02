@@ -30,6 +30,7 @@ const PetProfile = (props) => {
   let idPet = useParams();
   const role = useSelector((state) => state.currentUser.user.role);
   const pets = useSelector((state) => state.currentUser.myPets);
+   // eslint-disable-next-line
   const petinfos = pets.find((pets, index) => {
     if (pets.idPet === idPet.id) return true;
   });
@@ -44,7 +45,7 @@ const PetProfile = (props) => {
   const toggle = () => setModal(!modal); // Modal Related
   const [modal1, setModal2] = useState(false);
   const toggle1 = () => setModal2(!modal1);
-
+ // eslint-disable-next-line
   const [url, setUrl] = useState();
 
   const readUrl = (event) => {
@@ -298,6 +299,7 @@ const PetProfile = (props) => {
                         petinfos.vaccines.map((pet, i) => (
                           <tr>
                             <td>
+                            {/* eslint-disable-next-line */}
                               <a
                                 className='text-inherit '
                                 role='button'

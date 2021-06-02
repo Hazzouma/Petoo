@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import Loader from "../layout/loader";
 import Taptop from "../layout/tap-top";
 import Header from "../layout/header";

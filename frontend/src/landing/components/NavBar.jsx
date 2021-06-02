@@ -1,78 +1,72 @@
-import React, { useState } from "react";
-import { appLinks } from "./navData";
-import menuBar from "../../assets/images/menu.svg";
-import petooLogo from "../../assets/images/logo/logo.png";
+import React from "react";
+//import { appLinks } from "./navData";
+//import menuBar from "../../assets/images/menu.svg";
+//import petooLogo from "../../assets/images/logo/logo.png";
+
+//import { FiSearch } from "react-icons/fi";
+//import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo/login.png";
-import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import "./CSS/NavBar.css";
+// import "./CSS/NavBar.css";
 function NavBar() {
-  const [showNav, setShowNav] = useState(false);
+  //const [showNav, setShowNav] = useState(false);
   return (
-    <nav className='navigation'>
-      <div className='navList'>
-        <div>
-          <a href='/' className='logoContainer'>
-            <img src={petooLogo} alt='LOGO' className='logoClassBig' />
+    <nav style={{ display: "flex", alignItems: "center" }}>
+        <a href='/' style={{ paddingRight: "50px" }}>
             <img src={logo} alt='LOGO' className='logoClassSmall' />
-          </a>
-        </div>
-        <div className='innerLinks'>
-          <ul className='listInnerLinks'>
-            {appLinks.map((e) => (
-              <li className='innerLink' key={e.id}>
-                <a href={e.url}>{e.text}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className='rightLinks-max'>
-          <Link className='ml-2' to='/register'>
-            <button className='loginBtn'>Sign Up</button>
-          </Link>
-          <Link className='ml-2' to='/login'>
-            <button className='loginBtn'>Log in</button>
-          </Link>
-        </div>
-
-        {/*  Nav On 1024px is shown  */}
-        <div className='SearchIcon'>
-          <FiSearch size={35} style={{ margin: "0 50px" }} />
-          <button className='show'>
-            <img
-              src={menuBar}
-              alt='menuBar'
-              onClick={() => {
-                setShowNav(!showNav);
-              }}
-            />
-          </button>
-        </div>
-      </div>
-      <div className={showNav ? "showMenu" : "hideMenu"}>
-        {/* conditional rendering*/}
-        <ul className='showNavigation'>
-          {appLinks.map((e) => (
-            <li className='innerLink-SS withSVG' key={e.id}>
-              {e.icon}
-              <a href={e.url}>{e.text}</a>
+        </a>
+        <div
+            style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+            }}
+        >
+            <ul
+            style={{
+                display: "flex",
+                fontSize: "24px",
+                width: "100%",
+                justifyContent: "space-around",
+            }}
+            >
+            <li style={{ paddingLeft: "35px" }}>
+                <a href= '/home#about' className='page-scroll'>
+                About
+                </a>
             </li>
-          ))}
-        </ul>
-
-        <div className='rightLinks'>
-          <div className='bttns'>
-            <Link className='ml-2' to='/register'>
-              <button className='loginBtn'>Log in</button>
-            </Link>
-            <Link className='ml-2' to='/login'>
-              <button className='loginBtn'>Log in</button>
-            </Link>
-          </div>
+            <li>
+                <a href='/home#services' className='page-scroll'>
+                Services
+                </a>
+            </li>
+            <li>
+                <a href='/home#testimonials' className='page-scroll'>
+                Testimonials
+                </a>
+            </li>
+            <li>
+                <a href='/home/blogDetail' className='page-scroll'>
+                Blog
+                </a>
+            </li>
+            <li>
+                <a href='/login' className='page-scroll'>
+                Log In
+                </a>
+            </li>
+            <li>
+                <a href='/register' className='page-scroll'>
+                Sing Up
+                </a>
+            </li>
+            <li>
+                <a href='/registerVet' className='page-scroll'>
+                Sign Up as a vet
+                </a>
+            </li>
+            </ul>
         </div>
-      </div>
-    </nav>
+        </nav>
   );
 }
 
