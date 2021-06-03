@@ -137,7 +137,7 @@ const Default = (props) => {
                   >
                     {pets.map((pet, i) => (
                       <Link to={`/dashboard/petProfile/${pet.idPet}`} key={i}>
-                        <div style={{ padding: "1%" }}>
+                        <div>
                           <h6 className='text-white'>{pet.name}</h6>
                           <img
                             src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
