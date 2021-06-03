@@ -25,6 +25,7 @@ const ownerSchema = new Schema({
   about: { type: String, default: "" },
   proNumber: { type: String, default: "" },
   appointmentId: { type: Array, default: [] },
+  isBanned : {type:Boolean,default : false},
 });
 
 //Owner model

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Breadcrumb from "../../layout/breadcrumb";
+import { userEdit } from "../../redux/currentUser/action";
 import {
   Container,
   Row,
@@ -30,12 +31,14 @@ import {
   videErrors,
 } from "../../redux/appointmentAction/action";
 
-const VetCard = (props) => {
+const VetCard = (props,history) => {
   const dispatch = useDispatch();
   let idVet = useParams();
   const idOwner = useSelector((state) => state.currentUser.user.idUser);
   const vets = useSelector((state) => state.populationReducer.vetos);
   const notification = useSelector((state) => state.appReducer.msg);
+  const Role = useSelector((state) => state.currentUser.user.role);
+
   // eslint-disable-next-line
   const vetinfos = vets.find((vet, index) => {
     if (vet.idUser === idVet.Veto)
@@ -53,6 +56,7 @@ const VetCard = (props) => {
   // Date Picker States Starts Here
   const [startDate, setstartDate] = useState(new Date());
   const [descripton, setDescription] = useState("");
+  const Banned=!(vetinfos.isBanned)
   //Date Picker States Ends Here
   const pets = useSelector((state) => state.currentUser.myPets);
 
@@ -84,6 +88,8 @@ const VetCard = (props) => {
     // console.log(vetID, petID, ownerID, appointment);
     setModal(!modal);
   };
+  const editedUser={idUser:vetID,
+    isBanned:Banned}
   useEffect(() => {
     if (notification) {
       toast.success(notification, {
@@ -93,7 +99,7 @@ const VetCard = (props) => {
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [vets, pets, notification, idOwner]);
+  }, [vets, pets, notification, idOwner,vetinfos]);
   // eslint-disable-next-line
 
   return (
@@ -187,6 +193,10 @@ const VetCard = (props) => {
                             {vetinfos && vetinfos.codePostale} , Tunisia{" "}
                           </h4>
                         </div>
+                        {Role ==='Admin' ? 
+                        <Button onClick={()=>dispatch(userEdit(editedUser, history))}>{vetinfos.isBanned==false ? "Ban this user" : "Unban User"}
+                          </Button>
+                          : ''}
                       </Col>
                     </Row>
                   </div>

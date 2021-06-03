@@ -87,7 +87,6 @@ export const userEdit = (user, history) => async (dispatch) => {
     dispatch({ type: USER_EDITED, payload: result.data });
     history.push(`${process.env.PUBLIC_URL}/dashboard`);
   } catch (error) {
-    console.log(error);
-    dispatch({ type: FAIL_APP, payload: error.response.data.errors });
+    dispatch({ type: FAIL_APP, payload: "error happened" });
   }
 };

@@ -1,5 +1,6 @@
 import React, { Fragment ,useState, useEffect} from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
+import axios from 'axios'
 // import Ckeditor from 'react-ckeditor-component'
 import Dropzone from 'react-dropzone-uploader'
 import {addBlog, videErrors} from '../../redux/blogActions/action'
@@ -21,7 +22,21 @@ const BlogPost = ({history}) => {
     dispatch(addBlog(blog,history, userID))
   }
 
-  const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
+  const getUploadParams =  async file => {
+    // Push all the axios request promise into a single array
+      // Initial FormData
+
+try {
+ let res= await axios.post("https://api.cloudinary.com/v1_1/petoo/image/upload",file) 
+    const data = res.data;
+    const fileURL = data.secure_url // You should store this URL for future references in your app
+    console.log(res);
+  
+} catch (error) {
+  console.log(error)
+}
+      }
+  
   const handleChangeStatus = ({ meta, file }, status) => { }
 
   //managing errors if exist

@@ -36,7 +36,10 @@ exports.Login = async (req, res) => {
       return res
         .status(404)
         .send({ errors: [{ msg: "Check your combination! " }] });
-
+    if (foundOwner.isBanned ==true )
+    return res
+    .status(404)
+    .send({ errors: [{ msg: "You are banned from the platform please call support " }] });
     const pass = foundOwner.password;
     const comparePass = passwordHash.verify(password, pass);
     if (!comparePass)
@@ -177,3 +180,4 @@ exports.OwnerEdit = async (req, res) => {
     res.status(500).send({ errors: [{ msg: "Can not modify!" }] });
   }
 };
+
