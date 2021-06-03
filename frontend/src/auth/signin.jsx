@@ -176,7 +176,7 @@ const Logins = (props) => {
                           <h6 className='text-muted mt-4 or'>
                             {"Or Sign in with"}
                           </h6>
-                          <div className='social mt-4'>
+                          {/* <div className='social mt-4'>
                             <div className='btn-showcase'>
                               <Button color='light' onClick={() => {}}>
                                 <Facebook className='txt-fb' />
@@ -185,7 +185,7 @@ const Logins = (props) => {
                                 <i className='icon-social-google txt-googleplus'></i>
                               </Button>
                             </div>
-                          </div>
+                          </div> */}
                           <p className='mt-4 mb-0'>
                             {"Don't have account?"}
                             <Link className='ml-2' to='/register'>

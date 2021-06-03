@@ -31,7 +31,7 @@ import {
   videErrors,
 } from "../../redux/appointmentAction/action";
 
-const VetCard = (props,history) => {
+const VetCard = (props, history) => {
   const dispatch = useDispatch();
   let idVet = useParams();
   const idOwner = useSelector((state) => state.currentUser.user.idUser);
@@ -56,7 +56,7 @@ const VetCard = (props,history) => {
   // Date Picker States Starts Here
   const [startDate, setstartDate] = useState(new Date());
   const [descripton, setDescription] = useState("");
-  const Banned=!(vetinfos.isBanned)
+  const Banned = !vetinfos.isBanned;
   //Date Picker States Ends Here
   const pets = useSelector((state) => state.currentUser.myPets);
 
@@ -88,8 +88,7 @@ const VetCard = (props,history) => {
     // console.log(vetID, petID, ownerID, appointment);
     setModal(!modal);
   };
-  const editedUser={idUser:vetID,
-    isBanned:Banned}
+  const editedUser = { idUser: vetID, isBanned: Banned };
   useEffect(() => {
     if (notification) {
       toast.success(notification, {
@@ -99,7 +98,7 @@ const VetCard = (props,history) => {
       dispatch(videErrors());
     }
     // eslint-disable-next-line
-  }, [vets, pets, notification, idOwner,vetinfos]);
+  }, [vets, pets, notification, idOwner, vetinfos]);
   // eslint-disable-next-line
 
   return (
@@ -193,10 +192,19 @@ const VetCard = (props,history) => {
                             {vetinfos && vetinfos.codePostale} , Tunisia{" "}
                           </h4>
                         </div>
-                        {Role ==='Admin' ? 
-                        <Button onClick={()=>dispatch(userEdit(editedUser, history))}>{vetinfos.isBanned==false ? "Ban this user" : "Unban User"}
+                        {Role === "Admin" ? (
+                          <Button
+                            onClick={() =>
+                              dispatch(userEdit(editedUser, history))
+                            }
+                          >
+                            {vetinfos.isBanned === false
+                              ? "Ban this User"
+                              : "Unban User"}
                           </Button>
-                          : ''}
+                        ) : (
+                          ""
+                        )}
                       </Col>
                     </Row>
                   </div>

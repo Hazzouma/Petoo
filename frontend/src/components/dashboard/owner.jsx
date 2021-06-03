@@ -17,21 +17,21 @@ import { Clock } from "react-feather";
 import { current, videErrors } from "../../redux/currentUser/action";
 
 import {
-  CouponCode,
+  // CouponCode,
   NewsUpdate,
-  Appointment,
+  // Appointment,
   Tomorrow,
   Yesterday,
-  Pending,
+  // Pending,
   Today,
-  VenterLoren,
-  Done,
-  JohnLoren,
+  // VenterLoren,
+  // Done,
+  // JohnLoren,
 } from "../../constant";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
-import app from "../app";
+// import app from "../app";
 
 const Default = (props) => {
   const dispatch = useDispatch();
@@ -40,7 +40,6 @@ const Default = (props) => {
   const curHr = today.getHours();
   const curMi = today.getMinutes();
   const [meridiem, setMeridiem] = useState("AM");
-  let vet = {};
   const settings = {
     className: "center",
     centerMode: true,
@@ -334,7 +333,6 @@ const Default = (props) => {
           {/* New Box Ends Here */}
 
           {/* The Row containing BOTH Appointments and Best Seller Starts Here */}
-
 
           {/* The Row containing BOTH Appointments and Best Seller Ends Here */}
         </Row>

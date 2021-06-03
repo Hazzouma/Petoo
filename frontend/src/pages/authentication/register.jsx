@@ -176,7 +176,7 @@ const Register = ({ history }) => {
                     </Button>
                   </div>
                   <h6 className='text-muted mt-4 or'>{"Or signup with"}</h6>
-                  <div className='social mt-4'>
+                  {/* <div className='social mt-4'>
                     <div className='btn-showcase'>
                       <Button color='light'>
                         <Facebook className='txt-fb' />
@@ -185,7 +185,7 @@ const Register = ({ history }) => {
                         <i className='icon-social-google txt-googleplus'></i>
                       </Button>
                     </div>
-                  </div>
+                  </div> */}
                   <p className='mt-4 mb-0'>
                     {"Already have an account?"}
                     <Link className='ml-2' to='/login'>

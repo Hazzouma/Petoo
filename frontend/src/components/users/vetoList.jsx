@@ -5,7 +5,7 @@ import {
   Row,
   Col,
   Card,
-  CardHeader,
+  // CardHeader,
   CardFooter,
   Media,
 } from "reactstrap";
@@ -31,7 +31,6 @@ const VetoList = (props) => {
             <Col md='6' lg='6' xl='4' className='box-col-6' key={i}>
               <Link to={`/dashboard/vetCard/${info.idUser}`}>
                 <Card className='custom-card'>
-
                   <div className='card-profile'>
                     <Media
                       body
