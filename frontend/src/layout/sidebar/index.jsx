@@ -111,7 +111,6 @@ const Sidebar = (props) => {
         "sidebar-wrapper close_icon ";
       document
         .querySelector(".mega-menu-container")
-        .classList.remove("d-block");
       if (item.type === "sub") {
         document.querySelector(".page-header").className = "page-header ";
         document.querySelector(".sidebar-wrapper").className =
@@ -201,12 +200,12 @@ const Sidebar = (props) => {
           <Link to={`${process.env.PUBLIC_URL}/dashboard/`}>
             <img
               className='img-fluid for-light'
-              src={require("../../assets/images/logo/logo.png").default}
+              src={require("../../assets/images/logo/logo.png")}
               alt='Petoo'
             />
             <img
               className='img-fluid for-dark'
-              src={require("../../assets/images/logo/logo.png").default}
+              src={require("../../assets/images/logo/logo.png")}
               alt='Petoo'
             />
           </Link>
