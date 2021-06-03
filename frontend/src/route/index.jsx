@@ -32,8 +32,6 @@ import DraggingCards from "../components/bonus_ui/cards/draggingCards";
 // Timeline
 import Timeline1 from "../components/bonus_ui/timelines/timeline";
 
-
-
 // Forms
 import FormValidation from "../components/forms/form-control/form-validation";
 import BaseInput from "../components/forms/form-control/baseInput";
@@ -57,16 +55,13 @@ import SizingTable from "../components/tables/sizingTable";
 import StylingTable from "../components/tables/stylingTable";
 import DataTable from "../components/tables/dataTable";
 
-
 // Gallary
 import ImageGallery from "../components/gallery/imageGallery";
-
 
 // Blog
 import BlogDetail from "../components/blog/blogDetail";
 import BlogSingle from "../components/blog/blogSingle";
 import BlogPost from "../components/blog/blogPost";
-
 
 // Users
 import PetProfile from "../components/users/petProfile";
@@ -78,13 +73,6 @@ import PetList from "../components/users/petList";
 import CreateShop from "../components/users/createShop";
 import CreatePet from "../components/users/createPet";
 import UserProfile from "../components/users/userProfile";
-
-
-
-
-
-
-
 
 // E-commerce-app
 import Product from "../components/application/ecommerce-app/product";
@@ -99,7 +87,7 @@ import Invoice from "../components/application/ecommerce-app/invoice";
 import Pricing from "../components/application/ecommerce-app/pricing";
 import createProduct from "../components/application/ecommerce-app/createProduct";
 //Notifications and appoiments
-import Notifndapp from "../components/notifications/Notificationsndapp"
+import Notifndapp from "../components/notifications/Notificationsndapp";
 
 // File Manager App
 import FileManager from "../components/application/file-manager/file-manager";
@@ -109,11 +97,6 @@ import kanbanBoard from "../components/application/kanban-board/kanbanBoard";
 
 // Task
 import TaskApp from "../components/application/task-app";
-
-
-
-
-
 
 export const routesAdmin = [
   { path: "/dashboard/", Component: Default },
@@ -163,14 +146,11 @@ export const routesAdmin = [
   { path: "/table/styling", Component: StylingTable },
   { path: "/table/datatable", Component: DataTable },
 
-
   { path: "/dashboard/imageGallery", Component: ImageGallery },
 
   { path: "/dashboard/blogDetail", Component: BlogDetail },
   { path: "/dashboard/blogSingle/:id", Component: BlogSingle },
   { path: "/dashboard/blogPost", Component: BlogPost },
-
-
 
   { path: "/dashboard/petProfile/:id", Component: PetProfile },
   { path: "/dashboard/userEdit", Component: UserEdit },
@@ -181,14 +161,6 @@ export const routesAdmin = [
   { path: "/dashboard/CreateShop", Component: CreateShop },
   { path: "/dashboard/CreatePet", Component: CreatePet },
   { path: "/dashboard/userProfile", Component: UserProfile },
-
-
-
-
-
-
-
-
 
   { path: "/app/ecommerce/product", Component: Product },
   { path: "/app/ecommerce/product-page/:id", Component: ProductDetail },
@@ -203,21 +175,8 @@ export const routesAdmin = [
   { path: "/app/ecommerce/createProduct", Component: createProduct },
   { path: "/dashboard/appoiments", Component: Notifndapp },
 
-
-
   { path: "/app/file-manager", Component: FileManager },
   { path: "/app/kanban-board", Component: kanbanBoard },
-
-
-
-
-
-
-
-
-
-
-
 ];
 //---------------OWNER
 export const routesOwner = [
@@ -251,20 +210,13 @@ export const routesOwner = [
   { path: "/app/ecommerce/cart", Component: Cart },
   { path: "/app/ecommerce/wishlist", Component: Wishlist },
   { path: "/app/ecommerce/checkout", Component: Checkout },
-  { path: "/app/ecommerce/invoice", Component: Invoice },
+  // { path: "/app/ecommerce/invoice", Component: Invoice },
   { path: "/app/ecommerce/product-list", Component: Productlist },
   { path: "/app/ecommerce/payment-details", Component: Paymentdetails },
   { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
   { path: "/app/ecommerce/pricing", Component: Pricing },
   { path: "/app/ecommerce/createProduct", Component: createProduct },
-
 ];
-
-
-
-
-
-
 
 // --------------VET
 export const routesVet = [
@@ -300,22 +252,13 @@ export const routesVet = [
   { path: "/app/ecommerce/cart", Component: Cart },
   { path: "/app/ecommerce/wishlist", Component: Wishlist },
   { path: "/app/ecommerce/checkout", Component: Checkout },
-  { path: "/app/ecommerce/invoice", Component: Invoice },
+  // { path: "/app/ecommerce/invoice", Component: Invoice },
   { path: "/app/ecommerce/product-list", Component: Productlist },
   { path: "/app/ecommerce/payment-details", Component: Paymentdetails },
   { path: "/app/ecommerce/orderhistory", Component: OrderHistory },
   { path: "/app/ecommerce/pricing", Component: Pricing },
   { path: "/app/ecommerce/createProduct", Component: createProduct },
-
 ];
-
-
-
-
-
-
-
-
 
 //-------------SHOP
 export const routesShop = [
@@ -325,7 +268,7 @@ export const routesShop = [
   { path: "/dashboard/product-page/:id", Component: ProductDetail },
   { path: "/dashboard/cart", Component: Cart },
   { path: "/dashboard/wishlist", Component: Wishlist },
-  { path: "/dashboard/invoice", Component: Invoice },
+  // { path: "/dashboard/invoice", Component: Invoice },
   { path: "/dashboard/product-list", Component: Productlist },
   { path: "/dashboard/orderhistory", Component: OrderHistory },
   { path: "/dashboard/createProduct", Component: createProduct },

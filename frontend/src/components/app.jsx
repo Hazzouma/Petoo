@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect} from "react";
+import React, { Fragment, useEffect } from "react";
 import Loader from "../layout/loader";
 import Taptop from "../layout/tap-top";
 import Header from "../layout/header";
@@ -30,13 +30,12 @@ const App = ({ children, getWhichUser }) => {
     dispatch(getVets()); //get all Vets
     dispatch(getMyAppointments(idUser)); //get my appointments
     dispatch(getALLNotif(idUser)); // get my notifications
-    role === "Admin" || role === "petOwner"
-      ? dispatch(getMyPets(idUser))
-      : dispatch(getAssignedPets(idUser)); //get my pets
+    role === "Veterinary" && dispatch(getAssignedPets(idUser));
+    dispatch(getMyPets(idUser)); //get my pets
     if (notification) {
       toast.success(notification, {
         position: toast.POSITION.TOP_LEFT,
-        autoClose: 5000, //stay 10 secondes
+        autoClose: 3000, //stay 3 secondes
       });
       dispatch(videErrors());
     }

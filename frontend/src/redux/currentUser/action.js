@@ -4,6 +4,7 @@ import {
   VIDE_ERRORS,
   FAIL_APP,
   GET_MY_PETS,
+  GET_ASSIGNED_PETS,
   GET_MY_APPOINTMENTS,
   FAIL_PET,
 } from "../actionTypes";
@@ -70,7 +71,7 @@ export const getAssignedPets = (idUser) => async (dispatch) => {
       `${process.env.PUBLIC_URL}/api/pet/assignedPets`,
       { idVet: idUser }
     );
-    dispatch({ type: GET_MY_PETS, payload: result.data });
+    dispatch({ type: GET_ASSIGNED_PETS, payload: result.data });
   } catch (error) {
     console.log(error);
     dispatch({ type: FAIL_PET, payload: error.response.data.errors });

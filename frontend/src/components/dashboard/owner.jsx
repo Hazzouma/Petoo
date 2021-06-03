@@ -30,6 +30,8 @@ import {
 } from "../../constant";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import app from "../app";
 
 const Default = (props) => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const Default = (props) => {
   const curHr = today.getHours();
   const curMi = today.getMinutes();
   const [meridiem, setMeridiem] = useState("AM");
-
+  let vet = {};
   const settings = {
     className: "center",
     centerMode: true,
@@ -50,9 +52,20 @@ const Default = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const [startDate, setStartDate] = useState(new Date());
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
   const { profilePicture } = useSelector((state) => state.currentUser.user);
   const pets = useSelector((state) => state.currentUser.myPets);
   const msg = useSelector((s) => s.currentUser.msg);
+  const appointments = useSelector((s) => s.currentUser.myAppointments);
+  const vets = useSelector((s) => s.populationReducer.vetos);
+
+  const [vetos, setVetos] = useState([]);
+  const [apps, setApps] = useState([]);
 
   useEffect(() => {
     dispatch(videErrors());
@@ -75,10 +88,18 @@ const Default = (props) => {
     } else {
       setMeridiem("AM");
     }
-
+    setVetos(vets);
+    console.log(vets);
+    console.log(appointments);
+    setApps(
+      appointments &&
+        appointments.filter((app, index) => {
+          return index === 0 || index === 1 || index === 2 || index === 3;
+        })
+    );
     dispatch(videErrors());
     // eslint-disable-next-line
-  }, []);
+  }, [appointments]);
 
   return (
     <Fragment>
@@ -137,7 +158,7 @@ const Default = (props) => {
                   >
                     {pets.map((pet, i) => (
                       <Link to={`/dashboard/petProfile/${pet.idPet}`} key={i}>
-                        <div style={{ padding: "1%" }}>
+                        <div>
                           <h6 className='text-white'>{pet.name}</h6>
                           <img
                             src='https://static.wamiz.com/images/animaux/chiens/large/husky-siberien.jpg'
@@ -167,70 +188,107 @@ const Default = (props) => {
             </Card>
           </Col>
           {/* Appointments Box Starts Here */}
-          <Col xl='12' className='appointment'>
+          <Col xl='6' className='xl-100 box-col-12'>
+            <Card>
+              <CardBody className='cal-date-widget'>
+                <Row>
+                  <Col xl='6' xs='12' md='6' sm='6'>
+                    <div className='cal-info text-center'>
+                      <h2>3</h2>
+                      <div className='d-inline-block mt-2'>
+                        <span className='b-r-dark pr-3'>{"June"}</span>
+                        <span className='pl-3'>{"2021"}</span>
+                      </div>
+                      <p className='mt-4 f-16 text-muted'>
+                        {
+                          "A dog is the only thing on earth that loves you more than you love yourself."
+                        }
+                      </p>
+                    </div>
+                  </Col>
+                  <Col xl='6' xs='12' md='6' sm='6'>
+                    <div className='cal-datepicker'>
+                      <div
+                        className='datepicker-here float-sm-right'
+                        data-language='en'
+                      >
+                        <DatePicker
+                          selected={startDate}
+                          onChange={handleChange}
+                          inline
+                        />
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl='6' className='appointment'>
             <Card>
               <CardHeader className='card-no-border'>
                 <div className='header-top'>
-                  <h5 className='m-0'>{Appointment}</h5>
+                  <h5 className='m-0'>Appointments</h5>
                   <div className='card-header-right-icon'></div>
                 </div>
               </CardHeader>
               <CardBody className='pt-0'>
-                <div className='appointment-table table-responsive'>
-                  <table className='table table-bordernone'>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <img
-                            className='img-fluid img-40 rounded-circle mb-3'
-                            src={cat}
-                            alt=''
-                          />
-                          <div className='status-circle bg-primary'></div>
-                        </td>
-                        <td className='img-content-box'>
-                          <span className='d-block'>{VenterLoren}</span>
-                          <span className='font-roboto'>Now</span>
-                        </td>
-                        <td>
-                          <p className='m-0 font-primary'>{"28 Sept"}</p>
-                        </td>
-                        <td className='text-right'>
-                          <div className='button btn btn-primary'>
-                            {Done}
-                            <i className='fa fa-check-circle ml-2'></i>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <img
-                            className='img-fluid img-40 rounded-circle'
-                            src={
-                              require("../../assets/images/appointment/app-ent.jpg")
-                                .default
-                            }
-                            alt=''
-                          />
-                          <div className='status-circle bg-primary'></div>
-                        </td>
-                        <td className='img-content-box'>
-                          <span className='d-block'>{JohnLoren}</span>
-                          <span className='font-roboto'>{"11:00"}</span>
-                        </td>
-                        <td>
-                          <p className='m-0 font-primary'>{"22 Sept"}</p>
-                        </td>
-                        <td className='text-right'>
-                          <div className='button btn btn-danger'>
-                            {Pending}
-                            <i className='fa fa-check-circle ml-2'></i>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                {apps.length > 0 ? (
+                  apps.map((app, i) => (
+                    <div className='appointment-table table-responsive' key={i}>
+                      <table className='table table-bordernone'>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                className='img-fluid img-40 rounded-circle mb-3'
+                                src={cat}
+                                alt=''
+                              />
+                              <div className='status-circle bg-primary'></div>
+                            </td>
+                            <td className='img-content-box'>
+                              <span className='d-block'>Date</span>
+                              <span className='font-roboto'>
+                                {app && app.date}
+                              </span>
+                            </td>
+                            <td>
+                              <p className='m-0 font-primary'></p>
+                            </td>
+                            <td className='text-right'>
+                              {app &&
+                              app.confirmedByOwner &&
+                              app.confirmedByVet ? (
+                                <div className='button btn btn-primary'>
+                                  Done
+                                  <i className='fa fa-check-circle ml-2'></i>
+                                </div>
+                              ) : app &&
+                                app.confirmedByOwner &&
+                                !app.confirmedByVet ? (
+                                <div className='button btn btn-primary'>
+                                  Pending
+                                  <i className='fa fa-check-circle ml-2'></i>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  ))
+                ) : (
+                  <div className='text-center'>
+                    <h3>
+                      <span className='d-block'>
+                        Book an appointment first!
+                      </span>
+                    </h3>
+                  </div>
+                )}
               </CardBody>
             </Card>
           </Col>

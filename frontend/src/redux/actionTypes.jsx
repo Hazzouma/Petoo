@@ -108,6 +108,7 @@ export const FAIL_PET = "FAIL_PET";
 export const LOAD_PET = "LOAD_PET";
 export const VIDE_ERRORS_MSG = "VIDE_ERRORS_MSG";
 export const GET_MY_PETS = "GET_MY_PETS";
+export const GET_ASSIGNED_PETS = "GET_ASSIGNED_PETS";
 
 /* NOTIFICATIONS */
 export const FAIL_NOTIF = "FAIL_NOTIF";
@@ -120,8 +121,8 @@ export const FAIL_POPULATION = "FAIL_POPULATION";
 export const GET_PETS = "GET_PETS";
 export const GET_VETOS = "GET_VETOS";
 export const GET_OWNERS = "GET_OWNERS";
-export const GET_BLOGS="GET_BLOGS";
-export const GET_PRODUCTS="GET_PRODUCTS"
+export const GET_BLOGS = "GET_BLOGS";
+export const GET_PRODUCTS = "GET_PRODUCTS";
 
 /* APPOINTMENTS */
 export const FAIL_APP = "FAIL_VET";

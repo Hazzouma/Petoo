@@ -5,6 +5,7 @@ import {
   GET_MY_PETS,
   FAIL_PET,
   GET_MY_APPOINTMENTS,
+  GET_ASSIGNED_PETS,
 } from "../actionTypes";
 
 //Initale States
@@ -15,6 +16,7 @@ const initialState = {
   load: false,
   msg: "",
   myPets: [],
+  myAssignedPets: [],
   myAppointments: [],
 };
 
@@ -47,6 +49,13 @@ const currentUser = (state = initialState, { type, payload }) => {
       return { ...state, errors: [], msg: "", load: false };
     case GET_MY_PETS:
       return { ...state, myPets: payload.arr, msg: payload.msg };
+    case GET_ASSIGNED_PETS:
+      return {
+        ...state,
+        myAssignedPets: payload.arr,
+        msg: payload.msg,
+      };
+
     case FAIL_PET:
       return { ...state, errors: payload.errors };
     default:
