@@ -1,5 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Breadcrumb from "../../layout/breadcrumb";
+import {  Modal,
+  ModalHeader,
+  ModalBody,
+  Input,
+  FormGroup,
+  Label,
+  ModalFooter,} from "reactstrap"
+  import { Close, SaveChanges } from "../../constant";
 import { toast } from "react-toastify";
 import {
   Container,
@@ -31,6 +39,10 @@ const Notifndapp = (props) => {
   const pendingAppointments = useSelector(
     (content) => content.currentUser.myAppointments
   );
+
+  const [modal, setModal] = useState(false); // Modal Related
+  const toggle = () => setModal(!modal); // Modal Related
+
   const [activeTab, setActiveTab] = useState("1");
   const { prenom, nom, email, profilePicture, idUser } = useSelector(
     (state) => state.currentUser.user
@@ -570,8 +582,29 @@ const Notifndapp = (props) => {
                                                 <td className='text-center'>
                                                   {!pendApp.confirmedByVet &&
                                                     pendApp.confirmedByOwner &&
-                                                    !pendApp.isDone && (
-                                                      <Button>Edit</Button>
+                                                    !pendApp.isDone && (<>
+                                                      <Button onClick={toggle}>Edit</Button>
+                                                      <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>Edit Date of Appointment</ModalHeader>
+                        <ModalBody>
+                          <FormGroup>
+                            <Label className='form-label'>Date of Appointment</Label>
+                            <Input
+                              className='form-control'
+                              type='date'
+                              placeholder='Name'
+                            />
+                          </FormGroup>
+                          </ModalBody>
+                        <ModalFooter>
+                          <Button color='primary' onClick={toggle}>
+                            {Close}
+                          </Button>
+                          <Button color='secondary' onClick={toggle}>
+                            {SaveChanges}
+                          </Button>
+                        </ModalFooter>
+                      </Modal></>
                                                     )}
                                                 </td>
                                               </tr>
